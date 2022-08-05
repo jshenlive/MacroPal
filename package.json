@@ -1,7 +1,7 @@
 {
   "name": "stigma",
   "version": "1.0.0",
-  "description": "A boilerplate project for anyone interested in making a project that uses React and Rails.",
+  "description": "MacroPal, A fitness application to help individuals and athletes keep track of their physical activity and healthy eating",
   "main": "index.js",
   "directories": {
     "lib": "lib",
