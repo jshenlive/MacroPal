@@ -2,10 +2,9 @@ class CreateLineExercises < ActiveRecord::Migration[6.1]
   def change
     create_table :line_exercises do |t|
       t.integer :exercise_duration
-      t.date :date
-      t.integer :workout_calories
-      t.references :user, null: false, foreign_key: true
-      t.references :exercise, null: false, foreign_key: true
+      t.integer :total_exercise_calories
+      t.references :exercises, index: true, foreign_key: true
+      t.references :workouts, index: true, foreign_key: true
 
       t.timestamps
     end

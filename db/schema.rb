@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_06_182559) do
+ActiveRecord::Schema.define(version: 2022_08_06_202007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2022_08_06_182559) do
     t.integer "calories_burned_xl"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "line_exercises", force: :cascade do |t|
+    t.integer "exercise_duration"
+    t.integer "total_exercise_calories"
+    t.bigint "exercises_id"
+    t.bigint "workouts_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercises_id"], name: "index_line_exercises_on_exercises_id"
+    t.index ["workouts_id"], name: "index_line_exercises_on_workouts_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +56,16 @@ ActiveRecord::Schema.define(version: 2022_08_06_182559) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "workouts", force: :cascade do |t|
+    t.integer "total_workout_calories"
+    t.date "date"
+    t.bigint "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_workouts_on_users_id"
+  end
+
+  add_foreign_key "line_exercises", "exercises", column: "exercises_id"
+  add_foreign_key "line_exercises", "workouts", column: "workouts_id"
+  add_foreign_key "workouts", "users", column: "users_id"
 end

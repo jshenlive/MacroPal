@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
-  resources :line_exercises
-  resources :workouts
+  # resources :line_exercises
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :api do 
     
     # /api/data
-    get '/data', to: 'tests#index'
+    # get '/data', to: 'tests#index'
 
     # /api/users
     resources :users
 
     # /api/exercises
     resources :exercises
+
+    # /api/workouts
+    resources :workouts
 
   end
 
