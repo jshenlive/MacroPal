@@ -1751,3 +1751,93 @@ Processing by Api::UsersController#create as HTML
 Completed 422 Unprocessable Entity in 25ms (Views: 6.2ms | ActiveRecord: 2.9ms | Allocations: 12688)
 
 
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (41.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "rails_project_development"[0m
+  [1m[35m (33.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "rails_project_test"[0m
+  [1m[35m (162.0ms)[0m  [1m[35mCREATE DATABASE "rails_project_development" ENCODING = 'unicode'[0m
+  [1m[35m (82.3ms)[0m  [1m[35mCREATE DATABASE "rails_project_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "is_admin" boolean, "email" character varying, "username" character varying, "city" character varying, "province" character varying, "country" character varying, "age" integer, "birthday" date, "weight_kg" integer, "height_cm" integer, "avatar_url" character varying, "password_digest" character varying, "message" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20220806161506)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-08-06 21:08:50.954744"], ["updated_at", "2022-08-06 21:08:50.954744"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "a2d06b399555293679847a1714330c1b1282737a"], ["created_at", "2022-08-06 21:08:50.962598"], ["updated_at", "2022-08-06 21:08:50.962598"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "is_admin" boolean, "email" character varying, "username" character varying, "city" character varying, "province" character varying, "country" character varying, "age" integer, "birthday" date, "weight_kg" integer, "height_cm" integer, "avatar_url" character varying, "password_digest" character varying, "message" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20220806161506)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-08-06 21:08:51.013471"], ["updated_at", "2022-08-06 21:08:51.013471"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2022-08-06 21:08:51.018243"], ["key", "environment"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "a2d06b399555293679847a1714330c1b1282737a"], ["created_at", "2022-08-06 21:08:51.022328"], ["updated_at", "2022-08-06 21:08:51.022328"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "is_admin", "email", "username", "city", "province", "country", "age", "weight_kg", "height_cm", "avatar_url", "password_digest", "message", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["first_name", "Jojo"], ["last_name", "Pinto"], ["is_admin", true], ["email", "jopinto@hotmail.com"], ["username", "jojo"], ["city", "Vancouver"], ["province", "BC"], ["country", "Canada"], ["age", 30], ["weight_kg", 70], ["height_cm", 175], ["avatar_url", "#<File:0x0000000107e68d38>"], ["password_digest", "$2a$12$CFB68/X4frHniolqGxJLueF7Rz83xa6JIxp4pjXKNlPGa/AMuzQ9y"], ["message", "this is 'get' from test user: Jojo"], ["created_at", "2022-08-06 21:08:51.279019"], ["updated_at", "2022-08-06 21:08:51.279019"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/assets/img/favicon.png" for 127.0.0.1 at 2022-08-06 14:09:12 -0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/assets/img/favicon.png"):
+  
+Started POST "/api/users" for 127.0.0.1 at 2022-08-06 14:09:48 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"first_name"=>"Jack", "last_name"=>"Howard", "username"=>"Jacky", "email"=>"Jacky@gmail.com", "age"=>"25", "weight_kg"=>"56", "height_cm"=>"190", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"first_name"=>"Jack", "last_name"=>"Howard", "email"=>"Jacky@gmail.com", "username"=>"Jacky", "age"=>"25", "weight_kg"=>"56", "height_cm"=>"190"}}
+Completed 422 Unprocessable Entity in 28ms (Views: 5.8ms | ActiveRecord: 3.1ms | Allocations: 12656)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-06 14:11:09 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"first_name"=>"Jack", "last_name"=>"Howard", "username"=>"Jacky", "email"=>"Jacky@gmail.com", "age"=>"25", "weight_kg"=>"56", "height_cm"=>"190", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"first_name"=>"Jack", "last_name"=>"Howard", "email"=>"Jacky@gmail.com", "username"=>"Jacky", "age"=>"25", "weight_kg"=>"56", "height_cm"=>"190"}}
+Completed 422 Unprocessable Entity in 16ms (Views: 1.6ms | ActiveRecord: 3.9ms | Allocations: 8224)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-06 14:16:36 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"first_name"=>"Jack", "last_name"=>"Howard", "username"=>"Jacky", "email"=>"Jacky@gmail.com", "age"=>"25", "weight_kg"=>"56", "height_cm"=>"190", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"first_name"=>"Jack", "last_name"=>"Howard", "email"=>"Jacky@gmail.com", "username"=>"Jacky", "age"=>"25", "weight_kg"=>"56", "height_cm"=>"190"}}
+Completed 422 Unprocessable Entity in 17ms (Views: 1.1ms | ActiveRecord: 5.2ms | Allocations: 4464)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-06 14:20:02 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"first_name"=>"Jack", "last_name"=>"Howard", "username"=>"Jacky", "email"=>"Jacky@gmail.com", "age"=>25, "weight_kg"=>56, "height_cm"=>190, "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"first_name"=>"Jack", "last_name"=>"Howard", "email"=>"Jacky@gmail.com", "username"=>"Jacky", "age"=>25, "weight_kg"=>56, "height_cm"=>190}}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 650)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-06 14:25:19 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"first_name"=>"Jack", "last_name"=>"Howard", "username"=>"Jacky", "email"=>"Jacky@gmail.com", "age"=>25, "weight_kg"=>56, "height_cm"=>190, "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "Jack"], ["last_name", "Howard"], ["email", "Jacky@gmail.com"], ["username", "Jacky"], ["age", 25], ["weight_kg", 56], ["height_cm", 190], ["password_digest", "$2a$12$JH5A1S5Fh.T/.tw7EBGlOeo0NIegQ22e6GqQ5HWLjdrF/ugi.vU2i"], ["created_at", "2022-08-06 21:25:20.203930"], ["updated_at", "2022-08-06 21:25:20.203930"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 225ms (Views: 0.4ms | ActiveRecord: 9.4ms | Allocations: 6488)
+
+

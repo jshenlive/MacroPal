@@ -5,17 +5,17 @@ export default function Users () {
 
   const submitHandler = function (event) {
     event.preventDefault();
-    axios.post('/api/users', {
+    axios.post('/api/users', {"user":{
       first_name: 'Jack',
       last_name: 'Howard',
       username: 'Jacky',
       email: 'Jacky@gmail.com',
-      age: '25',
-      weight_kg: '56',
-      height_cm: '190',
+      age: 25,
+      weight_kg: 56,
+      height_cm: 190,
       password: '12345',
       password_confirmation: '12345',
-    })
+    }})
     .then(() => console.log('Variables sent'))
     .catch(() => console.log('Nashod'))
   };
