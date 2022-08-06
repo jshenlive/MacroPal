@@ -1,5 +1,6 @@
 #tmp
 /tmp/
+/log/
 
 # dependencies
 /client/node_modules
