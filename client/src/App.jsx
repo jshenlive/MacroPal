@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import Navbar from './Navbar';
-import Main from './Main';
-import Footer from './Footer';
+import Navbar from './components/Navbar';
+import Main from './components/Main';
+import Footer from './components/Footer';
+import Users from './Users';
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class App extends Component {
         <nav>
           <Navbar />
         </nav>
-          <Main />
+          <Users />
           <Footer />
       </main>
     );

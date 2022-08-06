@@ -1,4 +1,5 @@
 class Api::UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token,raise:false
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -16,9 +17,10 @@ class Api::UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-
+    
     if @user.save
-      render json: @user, status: :created, location: @user
+      puts "We are here"
+      render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -46,6 +48,6 @@ class Api::UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :is_admin, :username, :email, :city, :province, :country, :age, :birthday, :weight_kg, :height_cm, :avatar_url, :password_digest)
+      params.require(:user).permit(:first_name, :last_name, :username, :email, :age, :weight_kg, :height_cm, :password_digest)
     end
 end
