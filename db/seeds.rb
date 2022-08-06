@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+require 'csv'
 
 puts "Seeding Data ..."
 
@@ -22,7 +22,7 @@ end
 
 # Let's do this ...
 
-puts "Finding or Creating initial users ..."
+puts "Creating initial users ..."
 
 u = User.create!({
   first_name: "Jojo",
@@ -43,5 +43,23 @@ u = User.create!({
   password_confirmation: "1234"
 })
 
+puts "Added Users"
 
-puts "Done!"
+puts "Finding or Creating Initial Exercises"
+exercisesfile = Rails.root + 'db/seed_assets/exercises.csv'
+
+CSV.foreach(exercisesfile, headers: true) do |row|
+  Exercise.find_or_create_by({name: row[0]}) do |t|
+    t.name = row[0]
+    t.calories_burned_s = row[1]
+    t.calories_burned_m = row[2]
+    t.calories_burned_l = row[3]
+    t.calories_burned_xl = row[4]
+  end
+end 
+
+puts "Added Exercises"
+
+
+
+puts "All Done!"
