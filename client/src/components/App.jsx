@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import Navbar from './Navbar';
 import Main from './Main';
 import Footer from './Footer';
@@ -12,18 +12,18 @@ class App extends Component {
     }
   }
 
-  fetchData = () => {
-    axios.get('/api/users/1') // You can simply make your requests to "/api/whatever you want"
-    .then((response) => {
-      // handle success
-      console.log(response.data) // The entire response from the Rails API
+  // fetchData = () => {
+  //   axios.get('/api/users/1') // You can simply make your requests to "/api/whatever you want"
+  //   .then((response) => {
+  //     // handle success
+  //     console.log(response.data) // The entire response from the Rails API
 
-      console.log(response.data.message) // Just the message
-      this.setState({
-        message: response.data.message
-      });
-    }) 
-  }
+  //     console.log(response.data.message) // Just the message
+  //     this.setState({
+  //       message: response.data.message
+  //     });
+  //   }) 
+  // }
 
   render() {
     return (
