@@ -31,6 +31,7 @@ u = User.create!({
   email: "jopinto@hotmail.com",
   avatar_url: open_asset('jojo.png'),
   age: 30,
+  birthday: "1992-08-05",
   weight_kg: 70,
   height_cm: 175,
   city: 'Vancouver',
