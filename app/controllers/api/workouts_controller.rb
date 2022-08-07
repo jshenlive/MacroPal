@@ -2,25 +2,35 @@ class Api::WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy]
 
   # GET /workouts
-  def index
-    @workouts = Workout.all
+  # def index
 
-    render json: @workouts
-  end
+  # end
 
-  # GET /workouts/1
+  # GET /workouts/1 (with workout id)
   def show
-    render json: @workout
+    @workout = Workout.find(params[:id])
+    @line_exercises = LineExercise.where(workout_id: @workout.id)
+    @exercises = @line_exercises.map { |item|
+      {exercise: Exercise.find(item.exercise_id), exercise_duration: item.exercise_duration, total_exercise_calories: item.total_exercise_calories}
+    }
+
+    #should render with the the previous 3 variables as keys into a json object
+    respond_to do |format|
+      format.json  { render :json => {:workout => @workout, 
+                                      :line_exercises => @line_exercises,
+                                      :exercises => @exercises }}
+      end
   end
 
-  # POST /workouts
+  # POST /workouts/
   def create
-    @workout = Workout.new(workout_params)
 
-    if @workout.save
-      render json: @workout, status: :created, location: @workout
+    workout = create_workout()
+
+    if workout.valid?
+      render json: workout
     else
-      render json: @workout.errors, status: :unprocessable_entity
+      render json: workout.errors, status: :unprocessable_entity
     end
   end
 
@@ -44,8 +54,17 @@ class Api::WorkoutsController < ApplicationController
       @workout = Workout.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def workout_params
-      params.require(:workout).permit(:exercise_duration, :day_of_week, :workout_calories, :user_id, :exercise_id)
+      params.require(:workout).permit(:user_id, :date)
     end
+
+    def create_workout
+      workout = Workout.new(workout_params
+      )
+      workout.total_workout_calories = #TODO????
+      workout.workout_duration = #TODO????
+
+      workout.save!
+      workout
+    end 
 end
