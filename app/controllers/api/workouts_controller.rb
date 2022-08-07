@@ -61,8 +61,18 @@ class Api::WorkoutsController < ApplicationController
     def create_workout
       workout = Workout.new(workout_params
       )
-      workout.total_workout_calories = #TODO????
-      workout.workout_duration = #TODO????
+      workout.total_workout_calories = #TODO???? cart_total_calories_burned
+      workout.workout_duration = #TODO???? cart_total_duration
+
+      enhanced_cart.each do |entry|
+        exercise = entry[:exercise]
+        exercise_duration = entry[:exercise_duration]
+        workout.line_exercises.new(
+          exercise: exercise,
+          exercise_duration: exercise_duration,
+          total_exercise_calories: exercise.calories_burned_m / 60 * exercise_duration
+        )
+      end
 
       workout.save!
       workout
