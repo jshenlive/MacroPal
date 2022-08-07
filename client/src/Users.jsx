@@ -31,8 +31,19 @@ export default class SignupForm extends React.Component {
 
     handleSubmit = (event) => {
       event.preventDefault();
-      alert(`Current state is
-      ${JSON.stringify(this.state)}`)
+
+      axios
+      .post(
+        '/api/users',
+        {'user': this.state}
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     };
 
     render() {
