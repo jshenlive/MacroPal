@@ -1,5 +1,5 @@
-class CartsController < ApplicationController
-
+class Api::CartsController < ApplicationController
+  include ActionController::Cookies
 
   def show
     # @cart_items = enhanced_cart
@@ -9,25 +9,29 @@ class CartsController < ApplicationController
 
   # use case "button_to add_exercise_cart_path(exercise_id: @exercise.id, exercise_duration: user_input_duration) "
   def add_exercise
+    p cart
     exercise_id = params[:exercise_id].to_s
-    exercise_duration = params[:exercise_duration].to_s
+    exercise_duration = params[:exercise_duration].to_i
 
     modify_cart(exercise_id, exercise_duration)
-
-    redirect_back fallback_location: root_path
+    puts "after modify_cart:"
+    p enhanced_cart
+    # redirect_back fallback_location: root_path
   end
 
   def remove_exercise
     exercise_id = params[:product_id].to_s
     modify_cart(exercise_id, -1)
 
-    redirect_back fallback_location: root_path
+    # redirect_back fallback_location: root_path
   end
 
   private
 
   def modify_cart(exercise_id, estimate_duration)
     cart[exercise_id] = estimate_duration
+ 
+    puts cart[exercise_id]
     # cart[exercise_id] = (cart[exercise_id] || 0) + estimate_duration
     cart.delete(exercise_id) if cart[exercise_id] <= 0
     update_cart(cart)

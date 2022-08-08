@@ -16,6 +16,7 @@ export default function Workout () {
   const [showResults, setShowResults] = useState(false);
   const [showSummary, setshowSummary] = useState(true);
   const [query, setQuery] = useState("");
+  // const [queryID, setQueryID] = useState(0);
   const [queryItems, setQueryItems] = useState({});
   const [suggestions, setSuggestions] = useState([]);
   const [exerciseCalories, setExerciseCalories] = useState("");
@@ -92,7 +93,7 @@ export default function Workout () {
     const reqData = {"exercise": exerciseData}
 
       // async function to post the exercise object to backend
-      const response = await Axios.post('/api/carts/add_exercise')
+      const response = await Axios.post('/api/carts/add_exercise',   {"exercise_id": queryItems.id, "exercise_duration":durations})
       .then((response) => {
         console.log(response);
       })
