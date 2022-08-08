@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import useAppData from "hooks/useAppData"
+import { randNumGen } from "../helpers/helpers"
 // import Addworkout from "./Addworkout";
 import Axios from "axios";
 import Container from 'react-bootstrap/Container';
@@ -12,10 +12,15 @@ import '../App.scss'
 
 export default function Workout () {
 
-  const [exercises, setExercises] = useState([])
-  const [query, setQuery] = useState("")
-  const [suggestions, setSuggestions] = useState([])
-  const [units, setUnits] = useState({})
+  const [exercises, setExercises] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const [showSummary, setshowSummary] = useState(true);
+  const [query, setQuery] = useState("");
+  const [queryItems, setQueryItems] = useState({});
+  const [suggestions, setSuggestions] = useState([]);
+  const [exerciseCalories, setExerciseCalories] = useState("");
+  const [units, setUnits] = useState({});
+  const [durations, setDurations] = useState("");
   const weight = 67;
 
   useEffect(() => {
@@ -24,7 +29,6 @@ export default function Workout () {
       // async function to get the exercise data from rails
       const response = await Axios.get('/api/exercises');
       // response.data is an array with objects of exercises
-      console.log(response.data)
       setExercises(response.data)
     }
     loadExercises();
@@ -47,17 +51,64 @@ export default function Workout () {
   }
 
   const onSuggestHandler = (query) => {
-    setQuery(query);
+    setQuery(query.name);
+    setQueryItems(query);
     setSuggestions([]);
-  }
+  };
 
+  const calculateWorkoutCalories = () => {
+
+    const weightInPounds = (weight*2.205)
+    const durationPerHour = (Number(durations)/60)
+//if weight is less than 130 pounds
+    if (weightInPounds <= 130) {
+      const result = queryItems.calories_burned_s * durationPerHour;
+      setExerciseCalories(result.toFixed(2));
+    }
+    if (weightInPounds > 130 && weightInPounds <= 155) {
+      const result = queryItems.calories_burned_m * durationPerHour;
+      setExerciseCalories(result.toFixed(2));
+    }
+    if (weightInPounds > 155 && weightInPounds <= 180) {
+      const result = queryItems.calories_burned_l * durationPerHour;
+      setExerciseCalories(result.toFixed(2));
+    }
+    if (weightInPounds > 180) {
+      const result = queryItems.calories_burned_xl * durationPerHour;
+      setExerciseCalories(result.toFixed(2));
+    }
+      setShowResults(true);
+  };
+
+  const addExercise = async() => {
+ // object with exercise information
+    const exerciseData = {
+      exercise_id: randNumGen,
+      workout_id: queryItems.id,
+      total_exercise_calories: exerciseCalories,
+      exercise_duration: durations,
+    }
+//request body
+    const reqData = {"exercise": exerciseData}
+
+      // async function to post the exercise object to backend
+      const response = await Axios.post('/api/carts/add_exercise')
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    setshowSummary(false);
+  }
       return (
         <Container fluid>
           <Row>
 
             <Col>
             </Col>
-
+            {showSummary? 
             <Col>       
               <div className="workout-title mt-5">
                 Calculate How Many Calories You're Burning
@@ -71,7 +122,7 @@ export default function Workout () {
                     >
                       <Form.Control 
                       type="text"
-                      name= "duration"
+                      name= "activitiesQuery"
                       onChange={event => onChangeHandler(event.target.value)}
                       onBlur={() => {
                         setTimeout(() => {
@@ -79,13 +130,13 @@ export default function Workout () {
                         }, 100)
                       }}
                       value={query}
-                      placeholder="Enter Duration"
+                      placeholder="Choose Your Activity"
                       />
                           {suggestions && suggestions.map((suggestion, index) =>
                             <div 
                             key={index} 
                             className="query-suggestions"
-                            onClick={() => onSuggestHandler(suggestion.name)}
+                            onClick={() => onSuggestHandler(suggestion)}
                             >
                               {suggestion.name}
                             </div>
@@ -105,6 +156,7 @@ export default function Workout () {
                       <Form.Control 
                       type="text"
                       name= "duration"
+                      onChange={event => setDurations(event.target.value)}
                       placeholder="Enter Duration"
                       />
                     </FloatingLabel>
@@ -136,13 +188,43 @@ export default function Workout () {
                 </div>
                 </Col>
               </Row>
-
-            <Button className="mt-2" variant="info" type="submit">
+            { !showResults ?
+            <Button 
+            className="mt-2" 
+            variant="info" 
+            type="submit"
+            onClick={() => calculateWorkoutCalories()}
+            >
               Calculate
             </Button>
+            : null }
+            <br/>
+            { showResults ? 
+            <Row>
+              <Col>
+                <div>Total Calories burned: {exerciseCalories}</div> 
+              </Col>
+              <Col>
+                <Button 
+                  className="mt-2" 
+                  variant="info" 
+                  type="submit"
+                  onClick={() => addExercise()}
+                  >
+                    Add Exercise
+              </Button>
+              </Col>
+            </Row>
+            : null }
             </Col>
+              :
+              <Col>
+                <div> Exercise Added!</div>
+              </Col>
+              }
 
             <Col>
+
             </Col>
 
           </Row>
@@ -150,15 +232,3 @@ export default function Workout () {
       );
 
 }
-
-
-
-
-// <Addworkout 
-// calculateWorkoutCalories={calculateWorkoutCalories}
-// />
-
-// const { 
-//   state,
-//   calculateWorkoutCalories,
-// } = useAppData();
