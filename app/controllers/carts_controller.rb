@@ -4,9 +4,10 @@ class CartsController < ApplicationController
   def show
   end
 
+  # use case "button_to add_exercise_cart_path(exercise_id: @exercise.id, exercise_duration: user_input_duration) "
   def add_exercise
     exercise_id = params[:exercise_id].to_s
-    exercise_duration = params[:estimate_duration].to_s
+    exercise_duration = params[:exercise_duration].to_s
 
     modify_cart(exercise_id, exercise_duration)
 

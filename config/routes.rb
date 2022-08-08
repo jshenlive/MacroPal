@@ -5,11 +5,6 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resource :cart, only: [:show] do
-    post   :add_exercise
-    post   :remove_exercise
-  end
-
 
   namespace :api do 
     
@@ -24,6 +19,14 @@ Rails.application.routes.draw do
 
     # /api/workouts
     resources :workouts
+
+    # /api/carts
+    resource :carts, only: [:show] do
+      #/api/carts/add_exercise
+      post   :add_exercise
+      #/api/carts/remove_exercise
+      post   :remove_exercise
+    end
 
   end
 
