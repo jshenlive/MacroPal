@@ -1,14 +1,29 @@
 Rails.application.routes.draw do
-
+  # resources :line_exercises
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resource :cart, only: [:show] do
+    post   :add_exercise
+    post   :remove_exercise
+  end
+
 
   namespace :api do 
     
     # /api/data
-    get '/data', to: 'tests#index'
-    
+    # get '/data', to: 'tests#index'
+
     # /api/users
     resources :users
+
+    # /api/exercises
+    resources :exercises
+
+    # /api/workouts
+    resources :workouts
 
   end
 

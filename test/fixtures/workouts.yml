@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exercise_duration: 1
+  day_of_week: 1
+  workout_calories: 1
+  user: one
+  exercise: one
+
+two:
+  exercise_duration: 1
+  day_of_week: 1
+  workout_calories: 1
+  user: two
+  exercise: two

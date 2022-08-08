@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  calories_burned_s: MyString
+  calories_burned_m: MyString
+  calories_burned_l: MyString
+  calories_burned_xl: MyString
+
+two:
+  name: MyString
+  calories_burned_s: MyString
+  calories_burned_m: MyString
+  calories_burned_l: MyString
+  calories_burned_xl: MyString
