@@ -8371,3 +8371,23 @@ Processing by Api::CartsController#add_exercise as HTML
 Completed 204 No Content in 2ms (ActiveRecord: 0.2ms | Allocations: 1314)
 
 
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-08 16:38:12 -0700
+Started GET "/api/exercises" for 127.0.0.1 at 2022-08-08 16:38:12 -0700
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.7ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 57ms (Views: 39.4ms | ActiveRecord: 5.1ms | Allocations: 33523)
+
+
+Started POST "/api/carts/add_exercise" for 127.0.0.1 at 2022-08-08 16:39:45 -0700
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>1, "exercise_duration"=>"45", "cart"=>{"exercise_id"=>1, "exercise_duration"=>"45"}}
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3, $4)[0m  [["id", 2], ["id", 1], ["id", 8], ["id", 9]]
+  ↳ app/controllers/application_controller.rb:20:in `map'
+Completed 204 No Content in 4ms (ActiveRecord: 0.4ms | Allocations: 1917)
+
+

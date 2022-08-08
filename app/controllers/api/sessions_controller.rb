@@ -13,7 +13,7 @@ class Api::SessionsController < ApplicationController
       
     if user = User.authenticate_with_credentials(params[:username], params[:password])
       session[:user_id] = user.id
-      render json: {session[:user_id]}
+      render json: User.find_by_id(session[:user_id])
       # redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form.

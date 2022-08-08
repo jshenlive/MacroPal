@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
+  
   # Prevent CSRF attacks by raising an exception. uncomment the following line
-
   # protect_from_forgery with: :null_session
 
   include ActionController::Helpers

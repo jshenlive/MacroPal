@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   # resources :line_exercises
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
   namespace :api do 
-    
+  
+  # get login => post login if success => 
+
+  #/api/login
+  get '/login' => 'sessions#new' 
+
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
     # /api/data
     # get '/data', to: 'tests#index'
 
