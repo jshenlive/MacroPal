@@ -25,5 +25,6 @@
   "bugs": {
     "url": "https://github.com/NimaBoscarino/stigma/issues"
   },
-  "homepage": "https://github.com/NimaBoscarino/stigma#readme"
+  "homepage": "https://github.com/NimaBoscarino/stigma#readme",
+  "dependencies": {}
 }

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import Login from './components/Login';
-import Register from './components/Register';
+// import Login from './components/Login';
+// import Register from './components/Register';
+import Addworkout from './components/Addworkout';
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class App extends Component {
         <nav>
           <Navbar />
         </nav>
-          <Main />
+          <Addworkout />
           <Footer />
       </main>
     );
