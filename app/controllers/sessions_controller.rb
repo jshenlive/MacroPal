@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    render json: {}
   end
 
   def create
@@ -12,16 +13,19 @@ class SessionsController < ApplicationController
       
     if user = User.authenticate_with_credentials(params[:username], params[:password])
       session[:user_id] = user.id
-      redirect_to '/'
+      render json: {session[:user_id]}
+      # redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form.
-      redirect_to '/login'
+      # redirect_to '/login'
+      render json: {}
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to '/login'
+    # redirect_to '/login'
+    render json: {}
   end
 
 

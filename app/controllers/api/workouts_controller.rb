@@ -58,7 +58,6 @@ class Api::WorkoutsController < ApplicationController
       update_cart({})
     end
 
-
     # Use callbacks to share common setup or constraints between actions.
     def set_workout
       @workout = Workout.find(params[:id])
