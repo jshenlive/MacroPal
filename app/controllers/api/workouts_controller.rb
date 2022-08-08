@@ -2,9 +2,13 @@ class Api::WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy]
 
   # GET /workouts
-  # def index
+  def index
+    @workout = Workout.where(["user_id = :user_id",{user_id: params[:user_id]})
+    
+    render json: @workout
+    
 
-  # end
+  end
 
   # GET /workouts/1 (with workout id)
   def show
@@ -25,7 +29,7 @@ class Api::WorkoutsController < ApplicationController
   # POST /workouts/
   def create
 
-    workout = create_workout()
+    workout = create_workout(workout_params)
 
     if workout.valid?
       render json: workout
@@ -58,11 +62,10 @@ class Api::WorkoutsController < ApplicationController
       params.require(:workout).permit(:user_id, :date)
     end
 
-    def create_workout
-      workout = Workout.new(workout_params
-      )
-      workout.total_workout_calories = #TODO???? cart_total_calories_burned
-      workout.workout_duration = #TODO???? cart_total_duration
+    def create_workout(params)
+      workout = Workout.new(params)
+      workout.total_workout_calories = cart_total_calories_burned
+      workout.workout_duration = cart_total_duration
 
       enhanced_cart.each do |entry|
         exercise = entry[:exercise]
