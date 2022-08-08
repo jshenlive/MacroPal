@@ -1,7 +1,7 @@
 import React from "react";
 import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image'
 import Row from 'react-bootstrap/Row';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./Footer.scss";
 
 export default function Footer () {
@@ -9,12 +9,15 @@ export default function Footer () {
     <Container>
       <Row>
         <footer className="footer mt-auto">
-          <div>Column 1</div>
-          <div>Column 2</div>
-          <div>Column 3</div>
+          <div>	Copyright &copy; FitPal All rights reserved</div>
+          <div>Resources</div>
+          <div>About Us</div>
           <div>
-            <FontAwesomeIcon icon="fa-brands fa-facebook" />
-            </div>
+            <Image src="./instagram-icon.png" alt="Youtube"></Image>
+            <Image src="./instagram-icon.png" alt="Instagram"></Image>
+            <Image src="./instagram-icon.png" alt="Twitter"></Image>
+            <Image src="./instagram-icon.png" alt="Facebook"></Image>
+          </div>
         </footer>
       </Row>
     </Container>

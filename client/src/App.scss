@@ -12,10 +12,39 @@ form{
         padding: 50px 35px;
 }
 
+.index-footer {
+  margin-top: 106px;
+}
+
 .registeration{
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 500px;
+}
+/* Workouts.jsx */
+
+.query-suggestions {
+  cursor: pointer;
+  border: 1px solid #b8c0ff; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #e7c6ff; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 12px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: block; /* Make it into a block element to fill the whole list */
+}
+
+.query-suggestions:hover {
+  cursor: pointer;
+  border: 1px solid #b8c0ff;
+  margin-top: -1px;
+  background-color: #ffd6ff;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 12px;
+  color: black;
+  display: block;
 }

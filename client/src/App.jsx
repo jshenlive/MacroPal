@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Footer from './components/Footer';
-// import Login from './components/Login';
 import Register from './components/Register';
-import Addworkout from './components/Addworkout';
+import Login from './components/Login';
+import Workout from './components/Workout';
+import './App.scss';
 
 class App extends Component {
   constructor(props) {
@@ -13,15 +14,20 @@ class App extends Component {
       message: 'Click the button to load data!'
     }
   }
+  
   render() {
     return (
       <main>
         <nav>
           <Navbar />
         </nav>
-          <Addworkout />
+          <Main />
           <Register />
+          <Workout />
+          <Login />
+          <div className="index-footer">
           <Footer />
+          </div>
       </main>
     );
   }
