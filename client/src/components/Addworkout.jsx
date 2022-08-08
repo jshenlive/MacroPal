@@ -56,6 +56,11 @@ export default class Addworkout extends React.Component {
 
     };
 
+
+  getCalories = (minutes, activity, weight) => {
+    minutes+
+  }
+  
     render() {
 
       return(

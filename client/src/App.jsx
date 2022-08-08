@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Footer from './components/Footer';
 // import Login from './components/Login';
-// import Register from './components/Register';
+import Register from './components/Register';
 import Addworkout from './components/Addworkout';
 
 class App extends Component {
@@ -20,6 +20,7 @@ class App extends Component {
           <Navbar />
         </nav>
           <Addworkout />
+          <Register />
           <Footer />
       </main>
     );
