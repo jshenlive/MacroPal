@@ -33,10 +33,10 @@ export default class SignupForm extends React.Component {
     })
   }
 
-    handleSubmit = (event) => {
+    handleSubmit = async(event) => {
       event.preventDefault();
 
-      axios
+      await axios
       .post(
         "/api/users",
         {"user": this.state}

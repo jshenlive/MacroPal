@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2022_08_06_202007) do
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
-  add_foreign_key "line_exercises", "exercises", column: "exercise_id"
-  add_foreign_key "line_exercises", "workouts", column: "workout_id"
-  add_foreign_key "workouts", "users", column: "user_id"
+  add_foreign_key "line_exercises", "exercises"
+  add_foreign_key "line_exercises", "workouts"
+  add_foreign_key "workouts", "users"
 end
