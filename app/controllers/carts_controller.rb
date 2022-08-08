@@ -2,6 +2,9 @@ class CartsController < ApplicationController
 
 
   def show
+    # @cart_items = enhanced_cart
+    # render json: @cart_items
+
   end
 
   # use case "button_to add_exercise_cart_path(exercise_id: @exercise.id, exercise_duration: user_input_duration) "

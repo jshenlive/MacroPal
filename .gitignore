@@ -1,6 +1,9 @@
 #tmp
 /tmp/
 
+#log
+/log/
+
 # dependencies
 /client/node_modules
 /client/.pnp
