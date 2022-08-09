@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { randNumGen } from "../helpers/helpers"
-// import Addworkout from "./Addworkout";
+import { AppUnits } from "../hooks/useAppData"
 import Axios from "axios";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -19,9 +19,24 @@ export default function Workout () {
   const [queryItems, setQueryItems] = useState({});
   const [suggestions, setSuggestions] = useState([]);
   const [exerciseCalories, setExerciseCalories] = useState("");
-  const [units, setUnits] = useState({});
   const [durations, setDurations] = useState("");
-  const weight = 67;
+  const {
+    units,
+    setUnits,
+    setUnitFunction,
+    calculateWeightInLbs,
+  } = AppUnits();
+
+  const exampleWeight = 67;
+  
+  const weight = function(exampleWeight) {
+    if (units.name === "English") {
+      return calculateWeightInLbs(exampleWeight);
+    }
+    if (units.name === "Metric") {
+      return exampleWeight;
+    }
+  }
 
   useEffect(() => {
 
@@ -58,22 +73,21 @@ export default function Workout () {
 
   const calculateWorkoutCalories = () => {
 
-    const weightInPounds = (weight*2.205)
     const durationPerHour = (Number(durations)/60)
 //if weight is less than 130 pounds
-    if (weightInPounds <= 130) {
+    if (weight(exampleWeight) <= 130) {
       const result = queryItems.calories_burned_s * durationPerHour;
       setExerciseCalories(result.toFixed(2));
     }
-    if (weightInPounds > 130 && weightInPounds <= 155) {
+    if (weight(exampleWeight) > 130 && weight(exampleWeight) <= 155) {
       const result = queryItems.calories_burned_m * durationPerHour;
       setExerciseCalories(result.toFixed(2));
     }
-    if (weightInPounds > 155 && weightInPounds <= 180) {
+    if (weight(exampleWeight) > 155 && weight(exampleWeight) <= 180) {
       const result = queryItems.calories_burned_l * durationPerHour;
       setExerciseCalories(result.toFixed(2));
     }
-    if (weightInPounds > 180) {
+    if (weight(exampleWeight) > 180) {
       const result = queryItems.calories_burned_xl * durationPerHour;
       setExerciseCalories(result.toFixed(2));
     }
@@ -142,7 +156,6 @@ export default function Workout () {
                             </div>
                           )}
 
-
                     </FloatingLabel>
                   </Form.Group>
                   <Row>
@@ -166,7 +179,7 @@ export default function Workout () {
                 <Form.Control 
                       type="text"
                       className="mt-2"
-                      placeholder={`Your Weight: ${weight} ${units}`}
+                      placeholder={`Your Weight: ${weight(exampleWeight)} ${units.mass}`}
                       readOnly
                       />
                   <div key="inline-radio" className="mb-3">
@@ -176,6 +189,8 @@ export default function Workout () {
                     name="unit"
                     type="radio"
                     id="inline-radio-1"
+                    onClick={() => setUnitFunction("English")}
+                    checked={units.name === "English"}
                   />
                   <Form.Check
                     inline
@@ -183,7 +198,8 @@ export default function Workout () {
                     name="unit"
                     type="radio"
                     id="inline-radio-2"
-                    checked
+                    onClick={() => setUnitFunction("Metric")}
+                    checked={units.name === "Metric"}
                   />
                 </div>
                 </Col>
@@ -219,7 +235,62 @@ export default function Workout () {
             </Col>
               :
               <Col>
-                <div> Exercise Added!</div>
+                <Row>
+                  <div> Exercise Added!</div>
+                </Row>
+                <Row>
+                  <Col>
+                    <div> Summary Of Today's Exercises</div>
+                    <Row>
+                    <div>Exercise 1</div>
+                    <Button 
+                    className="mt-2" 
+                    variant="info" 
+                    type="submit"
+                    >
+                      Edit
+                    </Button>
+                    </Row>
+                    <Row>
+                    <div>Exercise 2</div>
+                    <Button 
+                    className="mt-2" 
+                    variant="info" 
+                    type="submit"
+                    >
+                      Edit
+                    </Button>
+                    </Row>
+                    <Row>
+                    <div>Exercise 3</div>
+                    <Button 
+                    className="mt-2" 
+                    variant="info" 
+                    type="submit"
+                    >
+                      Edit
+                    </Button>
+                    </Row>
+                    <Row>
+                    <div>Exercise 4</div>
+                    <Button 
+                    className="mt-2" 
+                    variant="info" 
+                    type="submit"
+                    >
+                      Edit
+                    </Button>
+                    </Row>
+
+                    <Row>
+                      <div>Total Calories burned Today: 700 Cal</div>
+                    </Row>
+                  </Col>
+
+                  <Col>
+
+                  </Col>
+                </Row>
               </Col>
               }
 
