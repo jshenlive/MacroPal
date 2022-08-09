@@ -8433,14 +8433,21 @@ Processing by Api::CartsController#add_exercise as HTML
 Completed 204 No Content in 6ms (ActiveRecord: 0.4ms | Allocations: 1660)
 
 
+<<<<<<< HEAD
 >>>>>>> f9158f9eecb733849211fb29acbf94c5b1e9f532
 Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 17:26:51 +0000
 Started GET "/api/exercises" for 10.0.2.2 at 2022-08-09 17:26:51 +0000
   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+=======
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-09 10:04:00 -0700
+Started GET "/api/exercises" for 127.0.0.1 at 2022-08-09 10:04:00 -0700
+  [1m[35m (10.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+>>>>>>> bfb0f5e3c82006a036490a34b7a295eba0a7c9d5
   
 ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
   
 Processing by Api::ExercisesController#index as HTML
+<<<<<<< HEAD
   [1m[36mExercise Load (3.8ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
   ↳ app/controllers/api/exercises_controller.rb:8:in `index'
 Completed 200 OK in 64ms (Views: 34.1ms | ActiveRecord: 7.3ms | Allocations: 33545)
@@ -9806,5 +9813,1553 @@ Processing by Api::CartsController#add_exercise as HTML
   [1m[36mExercise Load (0.5ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3, $4, $5)[0m  [["id", 9], ["id", 3], ["id", 7], ["id", 8], ["id", 6]]
   ↳ app/controllers/application_controller.rb:20:in `map'
 Completed 204 No Content in 5ms (ActiveRecord: 0.5ms | Allocations: 1192)
+=======
+  [1m[36mExercise Load (8.9ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 74ms (Views: 44.6ms | ActiveRecord: 17.4ms | Allocations: 33512)
+
+
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-09 10:19:40 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-09 10:19:50 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-09 10:27:21 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-09 10:27:32 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 10:56:06 -0700
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant StaticPagesController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 10:58:48 -0700
+  
+ActionController::RoutingError (uninitialized constant StaticPagesController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 10:59:18 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant StaticPagesController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 10:59:20 -0700
+  
+ActionController::RoutingError (uninitialized constant StaticPagesController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 11:02:24 -0700
+  
+ActionController::RoutingError (uninitialized constant SessionsController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 11:02:42 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant SessionsController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 11:08:45 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ArgumentError (Before process_action callback :verify_authenticity_token has not been defined):
+  
+app/controllers/application_controller.rb:2:in `<class:ApplicationController>'
+app/controllers/application_controller.rb:1:in `<main>'
+app/controllers/sessions_controller.rb:1:in `<main>'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:09:42 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 365)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:09:56 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:10:33 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 6ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 83)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:13:40 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 365)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:13:48 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:13:54 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 83)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:13:59 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 83)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:14:03 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 83)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:14:17 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:15:36 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 82)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:15:38 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:15:49 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 82)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:15:51 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:16:12 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:16:40 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:16:43 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:18:51 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:19:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:19:24 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:19:26 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:19:27 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:20:00 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:20:18 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 365)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:20:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:23:03 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 83)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:23:05 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 83)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:23:44 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 82)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:23:46 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:24:02 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 82)
+
+
+Started GET "/babel/parser/lib/index.js" for 127.0.0.1 at 2022-08-09 11:25:35 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/babel/parser/lib/index.js"):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 11:27:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:27:26 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:27:49 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:28:07 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:28:08 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 80)
+
+
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-09 11:28:42 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-09 11:28:57 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 127.0.0.1 at 2022-08-09 11:29:22 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 11:29:46 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:30:09 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:30:56 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:30:58 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:31:18 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:32:44 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:32:48 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:32:51 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 78)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:33:39 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 194)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:34:34 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | Allocations: 194)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:37:49 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 365)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:37:52 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 11:38:11 -0700
+  
+SyntaxError (/Users/jshen/lighthouse/Final/MacroPal/app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+    else
+    ^~~~
+):
+  
+app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 11:38:40 -0700
+  
+SyntaxError (/Users/jshen/lighthouse/Final/MacroPal/app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+    else
+    ^~~~
+):
+  
+app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:39:48 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 124)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 11:40:09 -0700
+  
+SyntaxError (/Users/jshen/lighthouse/Final/MacroPal/app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+    else
+    ^~~~
+):
+  
+app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+app/controllers/api/users_controller.rb:25: syntax error, unexpected `else'
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 11:40:33 -0700
+  
+SyntaxError (/Users/jshen/lighthouse/Final/MacroPal/app/controllers/api/users_controller.rb:26: syntax error, unexpected label, expecting `end'
+      render json: status: :unprocessable_entity
+                   ^~~~~~~
+):
+  
+app/controllers/api/users_controller.rb:26: syntax error, unexpected label, expecting `end'
+app/controllers/api/users_controller.rb:26: syntax error, unexpected label, expecting `end'
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 11:41:09 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (6.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "12345@1234"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 245ms (Views: 6.2ms | ActiveRecord: 14.1ms | Allocations: 14413)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:41:40 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 202)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:41:50 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"1234@1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"1234@1234", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 210)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 2)):
+  
+app/models/user.rb:15:in `authenticate_with_credentials'
+app/controllers/sessions_controller.rb:14:in `create'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:42:07 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started POST "/api/login" for ::1 at 2022-08-09 11:42:25 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/api/login"):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 11:43:24 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 125)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:43:31 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 175)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 2)):
+  
+app/models/user.rb:15:in `authenticate_with_credentials'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:43:47 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "email"=>"12345@1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"", "email"=>"12345@1234", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 159)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 2)):
+  
+app/models/user.rb:15:in `authenticate_with_credentials'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:45:48 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 1672)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 3)):
+  
+app/models/user.rb:15:in `authenticate_with_credentials'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:47:03 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 135)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 3)):
+  
+app/models/user.rb:15:in `authenticate_with_credentials'
+app/controllers/sessions_controller.rb:14:in `create'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:47:04 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 164)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:47:17 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 81)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:48:01 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 207)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:48:03 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 83)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:48:11 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]", "session"=>{"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 1611)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:55:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:48:35 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 123)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:48:37 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234@1234", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234@1234", "email"=>"", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 140)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 3)):
+  
+app/models/user.rb:15:in `authenticate_with_credentials'
+app/controllers/sessions_controller.rb:14:in `create'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:49:39 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 83)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:49:46 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]", "session"=>{"username"=>"1234", "email"=>"12345@1234", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 128)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:55:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 11:50:28 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "9999@9999"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 220ms (Views: 0.9ms | ActiveRecord: 3.3ms | Allocations: 12058)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 11:50:51 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 84)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:51:06 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 139)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:55:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:54:47 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 206)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:54:54 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 1579)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:55:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:56:22 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 207)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:56:29 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 1579)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:57:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:57:01 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms | Allocations: 1609)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:57:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:57:03 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 129)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:57:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:57:16 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms | Allocations: 1609)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:58:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:57:17 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 129)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:58:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:57:18 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 128)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:58:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:57:51 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 188)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:60:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:57:52 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 128)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:60:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:57:59 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms | Allocations: 277)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:60:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:58:22 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 193)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:61:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:58:38 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "session"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 191)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  username
+               session
+               password
+               controller):
+  
+app/controllers/sessions_controller.rb:61:in `session_params'
+app/controllers/sessions_controller.rb:14:in `create'
+Started GET "/logged_in" for ::1 at 2022-08-09 11:59:02 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 293)
+
+
+Started POST "/login" for ::1 at 2022-08-09 11:59:08 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234@1234", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234@1234", "email"=>"", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 960)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass
+
+      puts session_params[:username]
+                         ^^^^^^^^^^^):
+  
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:59:17 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 840)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass
+
+      puts session_params[:username]
+                         ^^^^^^^^^^^):
+  
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 11:59:21 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"1234", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 840)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass
+
+      puts session_params[:username]
+                         ^^^^^^^^^^^):
+  
+app/controllers/sessions_controller.rb:14:in `create'
+Started POST "/login" for ::1 at 2022-08-09 12:00:10 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"1234", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 2384)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 3)):
+  
+app/models/user.rb:15:in `authenticate_with_credentials'
+app/controllers/sessions_controller.rb:16:in `create'
+Started POST "/login" for ::1 at 2022-08-09 12:00:22 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"1234", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1622)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 3)):
+  
+app/models/user.rb:15:in `authenticate_with_credentials'
+app/controllers/sessions_controller.rb:16:in `create'
+Started POST "/login" for ::1 at 2022-08-09 12:00:56 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"1234", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "1234"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 2.1ms | Allocations: 4611)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:01:13 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"1234@1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"1234@1234", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "1234"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 3761)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:01:25 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "9999"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 712)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 12:01:45 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "9999@9999"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 218ms (Views: 4.5ms | ActiveRecord: 3.0ms | Allocations: 12517)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:02:13 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:02:20 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "9999"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 712)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:02:47 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "email"=>"jopinto@hotmail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "email"=>"jopinto@hotmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 194ms (Views: 3.3ms | ActiveRecord: 0.2ms | Allocations: 1124)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:03:04 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 1.8ms | Allocations: 932)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:03:11 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:03:15 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:03:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:03:29 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:03:42 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:03:45 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:03:50 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:04:13 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:06:26 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 18ms (Views: 0.7ms | ActiveRecord: 3.0ms | Allocations: 11048)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:06:31 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 792)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:07:07 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 25ms (Views: 0.8ms | ActiveRecord: 3.3ms | Allocations: 11069)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:07:08 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 792)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:07:10 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:07:12 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:07:30 -0700
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 67ms (Views: 0.7ms | ActiveRecord: 4.3ms | Allocations: 13444)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:07:34 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 818)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:08:11 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 808)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:08:13 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 807)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:08:15 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.8ms | Allocations: 807)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:08:36 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:09:22 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:11:08 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:11:24 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:11:43 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:11:52 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 790)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:12:10 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:12:22 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:13:11 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 790)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:13:13 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:13:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:13:24 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 790)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:13:29 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:13:34 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:13:43 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:14:14 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 25ms (Views: 0.6ms | ActiveRecord: 6.1ms | Allocations: 11055)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:14:16 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 99)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:14:19 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 791)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:15:12 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:31:in `is_logged_in?'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 790)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:17:47 -0700
+  
+SyntaxError (/Users/jshen/lighthouse/Final/MacroPal/app/controllers/sessions_controller.rb:64: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/sessions_controller.rb:64: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/sessions_controller.rb:64: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/logged_in" for ::1 at 2022-08-09 12:17:58 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:49:in `current_user'
+Completed 200 OK in 24ms (Views: 0.9ms | ActiveRecord: 3.6ms | Allocations: 11109)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:18:01 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 97)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:18:04 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:49:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 794)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:20:56 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 212)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:21:04 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:49:in `current_user'
+Completed 200 OK in 23ms (Views: 0.5ms | ActiveRecord: 3.8ms | Allocations: 10978)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:21:11 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:49:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 795)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:21:14 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:49:in `current_user'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 794)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:21:17 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:21:25 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:21:25 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:21:28 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:49:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 793)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:22:52 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 212)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:22:56 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:49:in `current_user'
+Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 2.8ms | Allocations: 10997)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:24:04 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 21ms (Views: 0.6ms | ActiveRecord: 5.1ms | Allocations: 11064)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:24:07 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:24:17 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234@1234", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234@1234", "email"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "1234@1234"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 930)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:24:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 804)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:24:50 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 27ms (Views: 0.7ms | ActiveRecord: 5.4ms | Allocations: 11063)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:24:50 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:24:54 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 804)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:26:05 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:26:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:26:24 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:26:28 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:26:43 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 803)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:27:25 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 804)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:27:28 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:27:28 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 803)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:27:29 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:27:29 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 803)
+
+
+Started POST "/logout" for ::1 at 2022-08-09 12:27:36 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:27:36 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 803)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:27:53 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-08-09 12:27:54 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 97)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:27:54 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 89)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:28:02 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:28:32 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:28:44 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "9999"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 855)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 12:28:53 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"9999", "email"=>"9999@9999", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "9999@9999"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 215ms (Views: 7.5ms | ActiveRecord: 2.2ms | Allocations: 4817)
+
+
+Started GET "/main.15523fc928ea8603750e.hot-update.js" for 127.0.0.1 at 2022-08-09 12:29:16 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/main.15523fc928ea8603750e.hot-update.js"):
+  
+Started GET "/logged_in" for ::1 at 2022-08-09 12:29:16 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 89)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 12:30:43 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"1234@1234", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (13.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "1234@1234"], ["username", "1234"], ["password_digest", "$2a$12$czAtTuIeRSpHChJEDJ8hweF18EPVziNaSvBzVz9aqtNXFRECcPITO"], ["created_at", "2022-08-09 19:30:43.846221"], ["updated_at", "2022-08-09 19:30:43.846221"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (7.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 297ms (Views: 0.5ms | ActiveRecord: 25.1ms | Allocations: 11348)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:30:50 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 208)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:30:59 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"1234", "email"=>"1234@1234", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"1234", "email"=>"1234@1234", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "1234"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 204ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 1285)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:31:04 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-08-09 12:31:07 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 97)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:31:07 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:36:15 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:36:21 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-08-09 12:36:44 -0700
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"12345", "email"=>"12345@12345", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (4.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "12345@12345"], ["username", "12345"], ["password_digest", "$2a$12$YZLQcOF5PXZYNqjZd3N56eRUrySBgqZZFkIsUJkrHmnuiSKE8gz1C"], ["created_at", "2022-08-09 19:36:44.633441"], ["updated_at", "2022-08-09 19:36:44.633441"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 233ms (Views: 0.2ms | ActiveRecord: 14.2ms | Allocations: 6086)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:36:52 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:37:08 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"12345", "email"=>"12345@12345", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"12345", "email"=>"12345@12345", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "12345"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 204ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 998)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:37:14 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 741)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-08-09 12:37:30 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:37:31 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:37:38 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:37:45 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 89)
+
+
+Started POST "/login" for ::1 at 2022-08-09 12:37:55 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"12345", "email"=>"12345@12345", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"12345", "email"=>"12345@12345", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "12345"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 207ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 856)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:38:00 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 738)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:38:05 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 738)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:38:11 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.5ms | Allocations: 738)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:40:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 738)
+
+
+Started GET "/logged_in" for ::1 at 2022-08-09 12:43:11 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.4ms | Allocations: 738)
+>>>>>>> bfb0f5e3c82006a036490a34b7a295eba0a7c9d5
 
 

@@ -2,6 +2,8 @@ class Api::CartsController < ApplicationController
   include ActionController::Cookies
 
   def show
+
+    ## TODO 
     # @cart_items = enhanced_cart
     # render json: @cart_items
 
