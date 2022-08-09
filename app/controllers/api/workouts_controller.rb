@@ -17,11 +17,10 @@ class Api::WorkoutsController < ApplicationController
     }
 
     #should render with the the previous 3 variables as keys into a json object
-    respond_to do |format|
-      format.json  { render :json => {:workout => @workout, 
+    render :json => {:workout => @workout, 
                                       :line_exercises => @line_exercises,
-                                      :exercises => @exercises }}
-      end
+                                      :exercises => @exercises }
+    
   end
 
   # POST /workouts/
@@ -74,15 +73,15 @@ class Api::WorkoutsController < ApplicationController
 
       user = User.find_by_id(params[:user_id])
       weight_class = ""
-      if  (0..59).include?(user.weight_kg)
+      if  (0..70).include?(user.weight_kg)
         weight_class = "calories_burned_s"
-      elsif (60..70).include?(user.weight_kg)
-        weight_class = "calories_burned_m"
       elsif (71..81).include?(user.weight_kg)
+        weight_class = "calories_burned_m"
+      elsif (82..93).include?(user.weight_kg)
         weight_class = "calories_burned_l"
       else
         weight_class = "calories_burned_xl" 
-      
+      end
       
       workout.total_workout_calories = cart_total_calories_burned(weight_class)
       workout.workout_duration = cart_total_duration
