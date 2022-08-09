@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get login => post login if success => 
 
   #/api/login
-  get '/login' => 'sessions#new' 
+  get '/logged_in' => 'sessions#is_logged_in?' 
 
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
