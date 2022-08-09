@@ -2,11 +2,9 @@ class Api::CartsController < ApplicationController
   include ActionController::Cookies
 
   def show
-
-    ## TODO 
-    # @cart_items = enhanced_cart
-    # render json: @cart_items
-
+    render json: @enhanced_cart
+    # enhanced_cart is an object that contains:
+    # { exercise: {id:..., name:..., ...}, exercise_duration: ...}
   end
 
   # use case "button_to add_exercise_cart_path(exercise_id: @exercise.id, exercise_duration: user_input_duration) "
