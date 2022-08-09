@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # resources :line_exercises
-
+  post '/login',    to: 'sessions#create'
+  post '/logout',   to: 'sessions#destroy'
+  get '/logout',   to: 'sessions#destroy'
+  get '/logged_in', to: 'sessions#is_logged_in?'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
@@ -9,10 +12,7 @@ Rails.application.routes.draw do
   # get login => post login if success => 
 
   #/api/login
-  get '/logged_in' => 'sessions#is_logged_in?' 
 
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
 
     # /api/data
     # get '/data', to: 'tests#index'

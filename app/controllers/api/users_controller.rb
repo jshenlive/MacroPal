@@ -20,10 +20,10 @@ class Api::UsersController < ApplicationController
     
     if @user.save
       session[:user_id] = @user.id
-      render json: @user, 
+      render json: @user 
       #status: :created, location: @user
     else
-      render json: status: :unprocessable_entity
+      render json: @user.errors
     end
   end
 

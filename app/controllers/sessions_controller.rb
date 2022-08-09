@@ -1,4 +1,4 @@
-class Api::SessionsController < ApplicationController
+class SessionsController < ApplicationController
 
   def new
     render json: {}
@@ -10,12 +10,17 @@ class Api::SessionsController < ApplicationController
     # if user && user.authenticate(params[:password])
       # Save the user id inside the browser cookie. This is how we keep the user 
       # logged in when they navigate around our website.
-      
-    if @user = User.authenticate_with_credentials(session_params)
-      session[:user_id] = user.id
+    
+  
+
+    if @user = User.authenticate_with_credentials(session_params[:username],session_params[:email],session_params[:password])
+
+      puts 'auth with cred is working'
+      session[:user_id] = @user.id
       render json: @user
       # redirect_to '/'
     else
+      puts 'auth with cred is NOT working'
     # If user's login doesn't work, send them back to the login form.
       # redirect_to '/login'
       render json: {status:401, error:"Could not authenticate your account"}
@@ -23,13 +28,16 @@ class Api::SessionsController < ApplicationController
   end
 
   def is_logged_in?
-    @current_user = User.find(session[:user_id]) if session[:user_id]
-    if @current_user
+    if logged_in? && current_user
+
+      puts "logged in"
+
       render json: {
         logged_in: true,
         user: @current_user
       }
     else
+      puts "not logged in"
       render json: {
         logged_in: false
       }
@@ -38,7 +46,9 @@ class Api::SessionsController < ApplicationController
 
 
   def destroy
-        session..delete :user_id
+    puts "destroying"
+        session[:user_id] = nil if session[:user_id]
+        p session[:user_id]
         render json: {
           status: 200,
           logged_out: true
@@ -48,6 +58,6 @@ class Api::SessionsController < ApplicationController
   private
 
   def session_params
-      params.require(:user).permit(:username, :password)
+      params.require(:user).permit(:username, :email, :password)
   end
 end
