@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # validates :password, confirmation: { case_sensitive: true }
   # validates :password, length: {minimum:4}
   
-  def self.authenticate_with_credentials(username,email,password)
+  def self.authenticate_with_credentials(username, password)
     user = User.find_by_username(username)
     if user && user.authenticate(password)
       user

@@ -1,5 +1,5 @@
+import React, { Component } from 'react';
 import axios from 'axios';
-import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import './Login.scss'
 
 // -- Controlled component - React form -- //
-export default class SignupForm extends React.Component {
+export default class Signup extends Component {
 
   constructor(props) {
     super(props);
@@ -17,47 +17,81 @@ export default class SignupForm extends React.Component {
       last_name: '',
       username: '',
       email: '',
+      password: '',
+      password_confirmation: '',
       age: '',
       weight_kg: '',
       height_cm: '',
-      password: '',
-      password_confirmation: '',
+      errors: ''
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInputChange(event) {
+handleChange = (event) => {
+    const {name, value} = event.target
     this.setState({
-        [event.target.name]: event.target.value,
+      [name]: value
     })
-  }
+  };
 
-    handleSubmit = async(event) => {
-      event.preventDefault();
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const {username, email, password, password_confirmation, first_name, last_name, age, weight_kg, height_cm } = this.state
+    let user = {
+      username: username,
+      email: email,
+      password: password,
+      password_confirmation: password_confirmation,
+      first_name: first_name,
+      last_name: last_name,
+      age: age,
+      weight_kg: weight_kg,
+      height_cm: height_cm,
+    }
 
-      await axios
-      .post(
-        "/api/users",
-        {"user": this.state}
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+axios.post('http://127.0.0.1:3001/api/users', {user}, {withCredentials: true})
+    .then(response => {
+      if (response.data.status === 'created') {
+        this.props.handleLogin(response.data)
+        this.redirect()
+      } else {
+        this.setState({
+          errors: response.data.errors
+        })
+      }
+    })
+    .catch(error => console.log('api errors:', error))
+  };
 
-    };
+  redirect = () => {
+    this.props.history.push('/')
+  };
+
+handleErrors = () => {
+    return (
+      <div>
+        <ul>{this.state.errors.map((error) => {
+          return <li key={error}>{error}</li>
+        })}
+        </ul> 
+      </div>
+    )
+  };
 
     render() {
+
+      const {username, email, password, password_confirmation, first_name, last_name, age, weight_kg, height_cm } = this.state
+
       return (
         <Container fluid className="mb-5">
         <Row> </Row>
         <Row className="mt-2">
           <Col></Col>
           <Col >
-          <Form autoComplete="off"  onSubmit={this.handleSubmit} className="registerForm">
+          <Form 
+          autoComplete="off"  
+          onSubmit={this.handleSubmit}
+          className="registerForm"
+          >
             <div className="loginText">
               Sign up today!
             </div>
@@ -68,8 +102,8 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="text"
               name= "first_name"
-              value={this.state.first_name}
-              onChange={this.handleInputChange}
+              value={first_name}
+              onChange={this.handleChange}
               placeholder="First Name"
               />
             </Form.Group>
@@ -81,8 +115,8 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="text"
               name= "last_name"
-              value={this.state.last_name}
-              onChange={this.handleInputChange}
+              value={last_name}
+              onChange={this.handleChange}
               placeholder="Last Name"
               />
             </Form.Group>
@@ -96,8 +130,8 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="text"
               name= "username"
-              value={this.state.username}
-              onChange={this.handleInputChange}
+              value={username}
+              onChange={this.handleChange}
               placeholder="User Name"
               />
             </Form.Group>
@@ -109,8 +143,8 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="email"
               name= "email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
+              value={email}
+              onChange={this.handleChange}
               placeholder="Email Address"
               />
             </Form.Group>
@@ -125,8 +159,8 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="password"
               name= "password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
+              value={password}
+              onChange={this.handleChange}
               placeholder="Password"
               />
             </Form.Group>
@@ -138,8 +172,8 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="password"
               name= "password_confirmation"
-              value={this.state.password_confirmation}
-              onChange={this.handleInputChange}
+              value={password_confirmation}
+              onChange={this.handleChange}
               placeholder="Password Confirmation"
               />
             </Form.Group>
@@ -151,8 +185,8 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="number"
               name= "age"
-              value={this.state.age}
-              onChange={this.handleInputChange}
+              value={age}
+              onChange={this.handleChange}
               placeholder="Age"
               />
             </Form.Group>
@@ -162,8 +196,8 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="number"
               name= "weight_kg"
-              value={this.state.weight_kg}
-              onChange={this.handleInputChange}
+              value={weight_kg}
+              onChange={this.handleChange}
               placeholder="Weight in KG"
               />
             </Form.Group>
@@ -173,14 +207,17 @@ export default class SignupForm extends React.Component {
               <Form.Control 
               type="number"
               name= "height_cm"
-              value={this.state.height_cm}
-              onChange={this.handleInputChange}
+              value={height_cm}
+              onChange={this.handleChange}
               placeholder="Height in CM"
               />
             </Form.Group>
 
-            <Button className="mt-2" variant="info" type="submit">
-              Submit
+            <Button 
+            className="mt-2" 
+            variant="info" 
+            type="submit">
+              Sign Up
             </Button>
           </Form>
           </Col>
