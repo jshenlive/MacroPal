@@ -21,9 +21,6 @@ class App extends Component {
         <nav>
           <Navbar />
         </nav>
-          <Main />
-          <Signup />
-          <Login />
           <Exercise />
           <div className="index-footer">
           <Footer />

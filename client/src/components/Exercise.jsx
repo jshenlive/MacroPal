@@ -14,7 +14,7 @@ export default function Exercise () {
 
   const [exercises, setExercises] = useState([]);
   const [showResults, setShowResults] = useState(false);
-  const [showSummary, setshowSummary] = useState(true);
+  const [showSummary, setshowSummary] = useState(false);
   const [query, setQuery] = useState("");
   const [queryItems, setQueryItems] = useState({});
   const [suggestions, setSuggestions] = useState([]);
@@ -60,7 +60,6 @@ export default function Exercise () {
         return exercise.name.match(regex)
       })
     }
-    console.log('matches', matches)
     setSuggestions(matches)
     setQuery(query)
   }
@@ -114,7 +113,7 @@ export default function Exercise () {
         console.log(error);
       });
 
-    setshowSummary(false);
+    setshowSummary(true);
   }
       return (
         <Container fluid>
@@ -122,7 +121,7 @@ export default function Exercise () {
 
             <Col>
             </Col>
-            {showSummary? 
+            {!showSummary? 
             <Col>       
               <div className="workout-title mt-5">
                 Calculate How Many Calories You're Burning
@@ -234,56 +233,28 @@ export default function Exercise () {
             : null }
             </Col>
               :
-              <Col>
+              <Col className="mt-5">
                 <Row>
                   <div> Exercise Added!</div>
                 </Row>
                 <Row>
                   <Col>
-                    <div> Summary Of Today's Exercises</div>
-                    <Row>
-                    <div>Exercise 1</div>
-                    <Button 
-                    className="mt-2" 
-                    variant="info" 
-                    type="submit"
-                    >
-                      Edit
-                    </Button>
-                    </Row>
-                    <Row>
-                    <div>Exercise 2</div>
-                    <Button 
-                    className="mt-2" 
-                    variant="info" 
-                    type="submit"
-                    >
-                      Edit
-                    </Button>
-                    </Row>
-                    <Row>
-                    <div>Exercise 3</div>
-                    <Button 
-                    className="mt-2" 
-                    variant="info" 
-                    type="submit"
-                    >
-                      Edit
-                    </Button>
-                    </Row>
-                    <Row>
-                    <div>Exercise 4</div>
-                    <Button 
-                    className="mt-2" 
-                    variant="info" 
-                    type="submit"
-                    >
-                      Edit
-                    </Button>
-                    </Row>
+                    <div> 
+                      <h3>{query}!</h3>
+                      <p>
+                      Regular cycling stimulates and improves your heart, lungs and circulation, reducing your risk of cardiovascular diseases. Cycling strengthens your heart muscles, lowers resting pulse and reduces blood fat levels.
+                      </p>
 
+                    </div>
                     <Row>
-                      <div>Total Calories burned Today: 700 Cal</div>
+                      <div>Your Exercises Today</div>
+                    <Button 
+                    className="mt-2" 
+                    variant="info" 
+                    type="submit"
+                    >
+                      View
+                    </Button>
                     </Row>
                   </Col>
 
