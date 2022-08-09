@@ -6,13 +6,11 @@ class Api::WorkoutsController < ApplicationController
     @workout = Workout.where(["user_id = :user_id",{user_id: params[:user_id]})
     
     render json: @workout
-    
-
   end
 
   # GET /workouts/1 (with workout id)
   def show
-    @workout = Workout.find(params[:id])
+    @workout = set_workout
     @line_exercises = LineExercise.where(workout_id: @workout.id)
     @exercises = @line_exercises.map { |item|
       {exercise: Exercise.find(item.exercise_id), exercise_duration: item.exercise_duration, total_exercise_calories: item.total_exercise_calories}
@@ -32,6 +30,7 @@ class Api::WorkoutsController < ApplicationController
     workout = create_workout(workout_params)
 
     if workout.valid?
+      empty_cart!
       render json: workout
     else
       render json: workout.errors, status: :unprocessable_entity
@@ -53,6 +52,12 @@ class Api::WorkoutsController < ApplicationController
   end
 
   private
+
+    def empty_cart!
+      # empty hash means no products in cart :)
+      update_cart({})
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_workout
       @workout = Workout.find(params[:id])
