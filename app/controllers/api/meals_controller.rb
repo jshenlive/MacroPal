@@ -1,9 +1,9 @@
-class MealsController < ApplicationController
+class Api::MealsController < ApplicationController
   before_action :set_meal, only: [:show, :update, :destroy]
 
   # GET /meals
   def index
-    @meals = Meal.all
+    @meals = Meal.where(["user_id = :user_id",{user_id: params[:user_id]})
 
     render json: @meals
   end

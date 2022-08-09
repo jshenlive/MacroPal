@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
  
-  resources :meals
-  resources :foods
+
   post '/login',    to: 'sessions#create'
   post '/logout',   to: 'sessions#destroy'
   get '/logout',   to: 'sessions#destroy'
@@ -37,6 +36,9 @@ Rails.application.routes.draw do
     end
 
     resources :line_exercises
+
+    resources :meals
+    resources :foods
 
   end
 

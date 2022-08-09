@@ -1,9 +1,9 @@
 class Api::WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy]
 
-  # GET /workouts
+  # post /workouts
   def index
-    @workout = Workout.where(["user_id = :user_id",{user_id: params[:user_id]})
+    @workout = Workout.where(["user_id = :user_id",{user_id: params[:user_id]}])
     
     render json: @workout
   end
@@ -27,7 +27,7 @@ class Api::WorkoutsController < ApplicationController
   # POST /workouts/
   def create
 
-    workout = create_workout(workout_params)
+    workout = create_workout()
 
     if workout.valid?
       empty_cart!
@@ -67,9 +67,24 @@ class Api::WorkoutsController < ApplicationController
       params.require(:workout).permit(:user_id, :date)
     end
 
-    def create_workout(params)
-      workout = Workout.new(params)
-      workout.total_workout_calories = cart_total_calories_burned
+    def create_workout()
+      workout = Workout.new(
+        user_id: params[:user_id],
+        date: params[:date])
+
+      user = User.find_by_id(params[:user_id])
+      weight_class = ""
+      if  (0..59).include?(user.weight_kg)
+        weight_class = "calories_burned_s"
+      elsif (60..70).include?(user.weight_kg)
+        weight_class = "calories_burned_m"
+      elsif (71..81).include?(user.weight_kg)
+        weight_class = "calories_burned_l"
+      else
+        weight_class = "calories_burned_xl" 
+      
+      
+      workout.total_workout_calories = cart_total_calories_burned(weight_class)
       workout.workout_duration = cart_total_duration
 
       enhanced_cart.each do |entry|
@@ -78,7 +93,7 @@ class Api::WorkoutsController < ApplicationController
         workout.line_exercises.new(
           exercise: exercise,
           exercise_duration: exercise_duration,
-          total_exercise_calories: exercise.calories_burned_m / 60 * exercise_duration
+          total_exercise_calories: exercise[weight_class] / 60 * exercise_duration
         )
       end
 

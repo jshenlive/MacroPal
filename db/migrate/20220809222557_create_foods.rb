@@ -5,7 +5,7 @@ class CreateFoods < ActiveRecord::Migration[6.1]
       t.integer :calories
       t.integer :protein
       t.integer :carbs
-      t.references :vitamines, null: false, foreign_key: true
+      t.string :vitamines
 
       t.timestamps
     end
