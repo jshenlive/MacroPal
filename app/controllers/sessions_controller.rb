@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     
   
 
-    if @user = User.authenticate_with_credentials(session_params[:username],session_params[:email],session_params[:password])
+    if @user = User.authenticate_with_credentials(session_params[:username],session_params[:password])
 
       puts 'auth with cred is working'
       session[:user_id] = @user.id
@@ -58,6 +58,6 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:username, :password)
   end
 end
