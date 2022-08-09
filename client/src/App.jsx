@@ -4,16 +4,12 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import Signup from './components/Signup';
 import Login from './components/Login';
-<<<<<<< HEAD
-import Exercise from './components/Exercise';
-=======
 import Workout from './components/Workout';
 import Home from './components/Home';
 // import Login from './components/Login';
 import Signup from './components/Signup';
 import axios from 'axios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
->>>>>>> bfb0f5e3c82006a036490a34b7a295eba0a7c9d5
 import './App.scss';
 
 class App extends Component {
