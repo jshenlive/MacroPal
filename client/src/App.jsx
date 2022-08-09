@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import Register from './components/Register';
+import Signup from './components/Signup';
 import Login from './components/Login';
-import Workout from './components/Workout';
+import Exercise from './components/Exercise';
 import './App.scss';
 
 class App extends Component {
@@ -22,9 +22,9 @@ class App extends Component {
           <Navbar />
         </nav>
           <Main />
-          <Register />
+          <Signup />
           <Login />
-          <Workout />
+          <Exercise />
           <div className="index-footer">
           <Footer />
           </div>
