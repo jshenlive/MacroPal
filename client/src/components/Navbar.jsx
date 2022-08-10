@@ -24,19 +24,30 @@ console.log('props', props);
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
+          {!props.state.isLoggedIn && 
+            <>
+            <Nav.Link href="#features">Home</Nav.Link>
+
+            </>
+          }
+          {props.state.isLoggedIn && 
+            <>
             <Nav.Link href="#features">Home</Nav.Link>
             <Nav.Link href="#pricing">Admin</Nav.Link>
-            <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
+              <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
               <NavDropdown.Item href="/Workout">
                 Add Exercise
               </NavDropdown.Item>
+
               <NavDropdown.Item href="#action/3.3">Add Food</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Summary
               </NavDropdown.Item>
             </NavDropdown>
+            </>
+          }
           </Nav>
           <Nav>
 

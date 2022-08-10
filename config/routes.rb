@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # resources :line_exercises
+ 
+
   post '/login',    to: 'sessions#create'
   post '/logout',   to: 'sessions#destroy'
   get '/logout',   to: 'sessions#destroy'
@@ -33,6 +34,12 @@ Rails.application.routes.draw do
       #/api/carts/remove_exercise
       post   :remove_exercise
     end
+
+    resources :line_exercises
+
+    resources :meals
+    resources :foods
+    post '/food', to: "foods#get_food"
 
   end
 

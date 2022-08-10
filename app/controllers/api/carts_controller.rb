@@ -3,9 +3,7 @@ class Api::CartsController < ApplicationController
 
   def show
     @enhanced_cart = enhanced_cart
-    render json: @enhanced_Cart
-    #enhanced_cart is an object that contains:
-    # { exercise: {id:..., name:..., ...}. exercise_duration: ...}
+    render json: @enhanced_cart
   end
 
   # use case "button_to add_exercise_cart_path(exercise_id: @exercise.id, exercise_duration: user_input_duration) "

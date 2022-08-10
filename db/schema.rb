@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_06_202007) do
+ActiveRecord::Schema.define(version: 2022_08_09_223137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2022_08_06_202007) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "foods", force: :cascade do |t|
+    t.string "name"
+    t.integer "calories"
+    t.float "protein"
+    t.float "carbs"
+    t.float "fat"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "line_exercises", force: :cascade do |t|
     t.integer "exercise_duration"
     t.integer "total_exercise_calories"
@@ -34,6 +44,19 @@ ActiveRecord::Schema.define(version: 2022_08_06_202007) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["exercise_id"], name: "index_line_exercises_on_exercise_id"
     t.index ["workout_id"], name: "index_line_exercises_on_workout_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.string "meal_type"
+    t.date "date"
+    t.integer "food_weight"
+    t.integer "total_calories_gained"
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_meals_on_food_id"
+    t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,5 +91,7 @@ ActiveRecord::Schema.define(version: 2022_08_06_202007) do
 
   add_foreign_key "line_exercises", "exercises"
   add_foreign_key "line_exercises", "workouts"
+  add_foreign_key "meals", "foods"
+  add_foreign_key "meals", "users"
   add_foreign_key "workouts", "users"
 end
