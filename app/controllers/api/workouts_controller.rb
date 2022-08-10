@@ -36,18 +36,20 @@ class Api::WorkoutsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /workouts/1
+  # PATCH/PUT /workouts/1 ##TODO
   def update
-    if @workout.update(workout_params)
-      render json: @workout
-    else
-      render json: @workout.errors, status: :unprocessable_entity
-    end
+    puts "not implemented yet"
+    # if @workout.update(workout_params)
+    #   render json: @workout
+    # else
+    #   render json: @workout.errors, status: :unprocessable_entity
+    # end
   end
 
-  # DELETE /workouts/1
+  # DELETE /workouts/1  ##TODO
   def destroy
-    @workout.destroy
+    puts "not implemented yet"
+    # @workout.destroy
   end
 
   private

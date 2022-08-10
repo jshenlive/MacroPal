@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 2022_08_09_223137) do
   create_table "foods", force: :cascade do |t|
     t.string "name"
     t.integer "calories"
-    t.integer "protein"
-    t.integer "carbs"
-    t.string "vitamines"
+    t.float "protein"
+    t.float "carbs"
+    t.float "fat"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

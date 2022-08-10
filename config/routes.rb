@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
     resources :meals
     resources :foods
+    post '/food', to: "foods#get_food"
 
   end
 

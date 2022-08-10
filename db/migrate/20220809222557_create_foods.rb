@@ -3,9 +3,9 @@ class CreateFoods < ActiveRecord::Migration[6.1]
     create_table :foods do |t|
       t.string :name
       t.integer :calories
-      t.integer :protein
-      t.integer :carbs
-      t.string :vitamines
+      t.float :protein
+      t.float :carbs
+      t.float :fat
 
       t.timestamps
     end
