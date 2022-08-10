@@ -2,12 +2,12 @@ class Api::FoodsController < ApplicationController
   before_action :set_food, only: [:show, :update, :destroy]
 
   def get_food
-    food = Food.find_by_name(params[:name].downcase)
+    food = Food.where("name LIKE ?","%"+params[:name].titleize+"%").where(category: params[:category].split('-').join(" ").capitalize)
 
-    if food
+    if food.length>0
       render json:food
     else
-      food = fetch_save(params[:name])
+      food = fetch_save(params[:name],params[:category],params[:health],params[:brand])
 
       if food
         render json:food
@@ -61,23 +61,76 @@ class Api::FoodsController < ApplicationController
   #     @food = Food.find(params[:id])
   #   end
 
-    def fetch_save(name)
+    def fetch_save(name,category,health,brand)
+      is_branded = false
       url = "https://api.edamam.com/api/food-database/v2/parser?app_id=39060379&app_key=c39f5957bf3c1eecc8c77da5f0093af5&ingr=#{name}"
+
+      if category
+        url += "&category=#{category}"
+        if category == "packaged-foods" || category == "fast-foods"
+          is_branded = true
+        end
+      end
+
+      if health
+        url += "&health=#{health}"
+      end
+      
+
+      puts url
+
       fetch = JSON.parse RestClient.get(url)
 
-      if fetch["parsed"].length > 0 
-      
-        name = fetch["parsed"][0]["food"]['label'].downcase
-        calories = fetch["parsed"][0]["food"]['nutrients']['ENERC_KCAL']
-        protein = fetch["parsed"][0]["food"]['nutrients']["PROCNT"]
-        fat = fetch["parsed"][0]["food"]['nutrients']["FAT"]
-        carbs = fetch["parsed"][0]["food"]['nutrients']["CHOCDF"]
-        
-        save_food(name, calories, protein, carbs, fat)
+      fetch = fetch["hints"]
+
+      if fetch.length == 1
+        food = parse_food(fetch)
+      elsif fetch.length > 1 
+        list = []
+        fetch.each do |item|
+          list.append(parse_food(item, is_branded))
+        end
+        list
       else
         {}
       end
+      # if fetch["parsed"].length > 0 
+      
+      #   name = fetch["parsed"][0]["food"]['label'].downcase
+      #   calories = fetch["parsed"][0]["food"]['nutrients']['ENERC_KCAL']
+      #   protein = fetch["parsed"][0]["food"]['nutrients']["PROCNT"]
+      #   fat = fetch["parsed"][0]["food"]['nutrients']["FAT"]
+      #   carbs = fetch["parsed"][0]["food"]['nutrients']["CHOCDF"]
+        
+      #   save_food(name, calories, protein, carbs, fat)
+      # else
+      #   {}
+      # end
     end 
+
+    def parse_food(item,branded)
+      name = item["food"]['label']
+      calories = item["food"]['nutrients']['ENERC_KCAL']
+      pro = item["food"]['nutrients']["PROCNT"]
+      carbs = item["food"]['nutrients']["CHOCDF"]
+      fat = item["food"]['nutrients']["FAT"]
+      category = item["food"]["category"]
+      brand = nil
+      if branded
+        brand = item["food"]["brand"]
+      end
+
+      food = Food.find_by(name: name, category: category, brand: brand)
+
+      if food
+        food
+      else
+        food = Food.new(name: name, calories: calories, protein: pro, fat: fat, carbs: carbs, category: category, brand:brand)
+        food.save      
+        food
+      end
+
+    end
 
     def save_food(name,cal,pro,carbs,fat)
       food = Food.new(
@@ -93,6 +146,6 @@ class Api::FoodsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def food_params
-      params.require(:food).permit(:name, :calories, :protein, :fat, :carbs)
+      params.require(:food).permit(:name, :category, :health, :brand)
     end
 end

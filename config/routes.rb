@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
     # /api/workouts
     resource :workouts
-    
+
     get '/workouts/user/:user_id', to: "workouts#index"
 
   
