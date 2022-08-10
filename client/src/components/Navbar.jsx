@@ -1,24 +1,22 @@
 import React from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 //-- Nav Bar -- //
-
-export default function Fitpalnavbar() {
-
-  const logout = ()=>{
+export default function Fitpalnavbar(props) {
+console.log('props', props);
+  const logout = () => {
     axios.post('/logout')
-      .then(()=>
-      {
-        window.location = "/"
-      })
-      .catch(error => console.log('api errors:', error))
-    }
-
+    .then(()=>
+    {
+      window.location = "/"
+    })
+    .catch(error => console.log('api errors:', error))
+  }
+  
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" >
       <Container>
@@ -41,27 +39,25 @@ export default function Fitpalnavbar() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link>
-            <Link to='/signup'>
-              Sign up
-            </Link>
-            </Nav.Link>
-            
-            <Nav.Link eventKey={2}>
-            <Link to='/login'>
-              Login
-            </Link>
-            </Nav.Link>
 
-            <Nav.Link eventKey={2}>
-            <button 
-            placeholder="submit" 
-            type="submit" 
-            onClick={logout}
-            >
-            Log out
-            </button>  
+            {!props.state.isLoggedIn && 
+            <>
+            <Nav.Link eventKey={2} href="http://localhost:3000/signup">
+              Sign up
             </Nav.Link>
+            <Nav.Link eventKey={2} href="http://localhost:3000/login">
+              Login
+            </Nav.Link>
+            </>
+            }
+
+            {props.state.isLoggedIn && <Nav.Link 
+            eventKey={2}
+            onClick={logout}
+             >
+            Log out
+            </Nav.Link>}
+
           </Nav>
         </Navbar.Collapse>
       </Container>

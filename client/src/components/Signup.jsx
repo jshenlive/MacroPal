@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Navigate } from "react-router-dom";
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,6 +14,7 @@ export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      redirect: false,
       first_name: '',
       last_name: '',
       username: '',
@@ -48,11 +50,14 @@ handleChange = (event) => {
       height_cm: height_cm,
     }
 
-axios.post('http://127.0.0.1:3001/api/users', {user}, {withCredentials: true})
+axios.post('/api/users', {user}, {withCredentials: true})
     .then(response => {
-      if (response.data.status === 'created') {
+
+      if (response.status == 200) {
         this.props.handleLogin(response.data)
-        this.redirect()
+        this.setState({
+          redirect: true
+        })
       } else {
         this.setState({
           errors: response.data.errors
@@ -62,9 +67,9 @@ axios.post('http://127.0.0.1:3001/api/users', {user}, {withCredentials: true})
     .catch(error => console.log('api errors:', error))
   };
 
-  redirect = () => {
-    this.props.history.push('/')
-  };
+  // redirect = () => {
+
+  // };
 
 handleErrors = () => {
     return (
@@ -78,7 +83,9 @@ handleErrors = () => {
   };
 
     render() {
-
+      if (this.state.redirect) {
+        return <Navigate to="/" />
+      }
       const {username, email, password, password_confirmation, first_name, last_name, age, weight_kg, height_cm } = this.state
 
       return (
