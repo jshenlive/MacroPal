@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
-import Main from './components/Main';
+import Main from './components/Header';
 import Footer from './components/Footer';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import Workout from './components/Workout';
-import Home from './components/Home';
 import axios from 'axios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.scss';
@@ -54,17 +52,19 @@ class App extends Component {
 
 
   render() {
-    return (
 
+    return (
+      <>
+      <Navbar state={this.state}/>
       <BrowserRouter>
         <Routes>
-         <Route  exact path='/' element={<Main state={this.state}/>}/>
-         <Route  exact path='/navbar' element={<Navbar state={this.state}/>}/>
+         <Route  exact path='/' element={<Main/>}/>
          <Route  exact path='/login' element={<Login handleLogin={this.handleLogin} />}/>
          <Route  exact path='/signup' element={<Signup handleLogin={this.handleLogin} />}/>
         </Routes>
       </BrowserRouter>
-
+      <Footer />
+      </>
     );
   }
 

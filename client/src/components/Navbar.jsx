@@ -28,7 +28,7 @@ console.log('props', props);
             <Nav.Link href="#pricing">Admin</Nav.Link>
             <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href="/Workout">
                 Add Exercise
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Add Food</NavDropdown.Item>

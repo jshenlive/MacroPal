@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './Login.scss'
+import '../App.scss'
 import {Link} from 'react-router-dom'
 
 export default class Login extends Component {
@@ -79,7 +79,7 @@ export default class Login extends Component {
           className="mb-2" 
           onSubmit={this.handleSubmit}
         >
-          <div className="loginText">
+          <div className="login-text">
             PLease log in to continue...
           </div>
             <Form.Group >

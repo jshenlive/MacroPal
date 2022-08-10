@@ -12484,3 +12484,93 @@ FOREIGN KEY ("user_id")
   [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3312665787932193105)[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:48:06 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:48:06 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 346)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:48:07 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 90)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 00:48:10 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 206ms (Views: 0.9ms | ActiveRecord: 3.5ms | Allocations: 13050)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:48:10 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 00:48:27 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 99)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:48:27 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:48:27 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 101)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 01:03:53 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 01:03:53 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 204)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 01:34:26 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 01:34:26 +0000
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 346)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 03:34:01 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 03:35:03 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 03:37:20 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 03:43:03 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 03:43:03 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 131)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 03:45:44 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 03:45:44 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | Allocations: 88)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  

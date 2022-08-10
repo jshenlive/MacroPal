@@ -1,15 +1,10 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import Login from "./Login";
-import './Main.css'
-import { propTypes } from "react-bootstrap/esm/Image";
+import '../App.scss'
 
 export default function Main (props) {
 
   return (
     <>
-    <Navbar state={props.state}/>
       <header class="header-body">
         <div class="d-flex flex-column justify-content-center w-100 h-100">
           <div class="d-flex flex-column justify-content-center align-items-center">
@@ -18,7 +13,6 @@ export default function Main (props) {
           </div>
         </div>
       </header>
-    <Footer />
     </>
   );
 }
