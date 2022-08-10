@@ -1692,3 +1692,975 @@ Completed 200 OK in 243ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 888
 
 =======
 >>>>>>> 8fd2028b2a6f87b6fb22b83199b2a34b928e7188
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:05:17 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20220810045444_create_line_foods.rb
+
+
+):
+  
+activerecord (6.1.5.1) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.5.1) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.5.1) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (6.1.5.1) lib/active_record/migration.rb:595:in `block in call'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.5.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.5.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.1.5.1) lib/rails/engine.rb:539:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:05:18 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20220810045444_create_line_foods.rb
+
+
+):
+  
+activerecord (6.1.5.1) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.5.1) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.5.1) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (6.1.5.1) lib/active_record/migration.rb:595:in `block in call'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.5.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.5.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.1.5.1) lib/rails/engine.rb:539:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:05:27 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20220810045444_create_line_foods.rb
+
+
+):
+  
+activerecord (6.1.5.1) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.5.1) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.5.1) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (6.1.5.1) lib/active_record/migration.rb:595:in `block in call'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.5.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.5.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.1.5.1) lib/rails/engine.rb:539:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:05:53 +0000
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20220810045444_create_line_foods.rb
+
+
+):
+  
+activerecord (6.1.5.1) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.5.1) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.5.1) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (6.1.5.1) lib/active_record/migration.rb:595:in `block in call'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.5.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.5.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.1.5.1) lib/rails/engine.rb:539:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:05:59 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20220810045444_create_line_foods.rb
+
+
+):
+  
+activerecord (6.1.5.1) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.5.1) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.5.1) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (6.1.5.1) lib/active_record/migration.rb:595:in `block in call'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.5.1) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.5.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.5.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.5.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.5.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.1.5.1) lib/rails/engine.rb:539:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3312665787932193105)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateLineFoods (20220810045444)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "line_foods" ("id" bigserial primary key, "food_amount" integer, "total_food_calories" integer, "food_id" bigint NOT NULL, "meal_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_51ed53b961"
+FOREIGN KEY ("food_id")
+  REFERENCES "foods" ("id")
+, CONSTRAINT "fk_rails_2f065d0960"
+FOREIGN KEY ("meal_id")
+  REFERENCES "meals" ("id")
+)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_line_foods_on_food_id" ON "line_foods" ("food_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_line_foods_on_meal_id" ON "line_foods" ("meal_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220810045444"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3312665787932193105)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:07:41 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 33ms (Views: 0.8ms | ActiveRecord: 3.8ms | Allocations: 13589)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:07:41 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 831)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:07:41 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 820)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:08:35 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 242ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 1158)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:09:33 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.6ms | Allocations: 820)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:10:15 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 256ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 874)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:12:51 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 5ms (Views: 0.8ms | ActiveRecord: 0.4ms | Allocations: 803)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:12:59 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 246ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:16:59 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:17:10 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 249ms (Views: 0.9ms | ActiveRecord: 0.3ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:31:13 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 18ms (Views: 0.7ms | ActiveRecord: 7.7ms | Allocations: 3438)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:33:12 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.5ms | Allocations: 803)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:37:35 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 803)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:38:20 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 9ms (Views: 0.8ms | ActiveRecord: 0.6ms | Allocations: 803)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:40:24 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 803)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 17:40:29 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 318)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:40:29 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:40:31 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:40:34 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 241ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 877)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:40:54 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.4ms | Allocations: 803)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:42:42 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 5ms (Views: 1.0ms | ActiveRecord: 0.7ms | Allocations: 803)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:42:50 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 243ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 874)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:45:57 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:46:02 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 247ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:47:10 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 803)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:47:16 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 254ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:48:13 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:48:19 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 252ms (Views: 7.9ms | ActiveRecord: 0.2ms | Allocations: 874)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:52:06 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 803)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:52:12 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 250ms (Views: 0.8ms | ActiveRecord: 0.4ms | Allocations: 874)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 17:52:17 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 219)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:52:17 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:52:18 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 17:52:22 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 247ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:52:25 +0000
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 17:52:25 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.4ms | Allocations: 889)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (1.1ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 47ms (Views: 31.0ms | ActiveRecord: 4.9ms | Allocations: 31141)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-10 17:52:34 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>10, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>10, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 6ms (ActiveRecord: 0.4ms | Allocations: 1608)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-10 17:52:34 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 798)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:56:41 +0000
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 17:56:41 +0000
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 38ms (Views: 0.9ms | ActiveRecord: 6.9ms | Allocations: 15571)
+
+
+  [1m[36mExercise Load (0.9ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 82ms (Views: 43.6ms | ActiveRecord: 20.8ms | Allocations: 47796)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-10 17:56:47 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>10, "exercise_duration"=>"34", "cart"=>{"exercise_id"=>10, "exercise_duration"=>"34"}}
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 7ms (ActiveRecord: 0.7ms | Allocations: 1744)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-10 17:56:47 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 814)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 17:57:40 +0000
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 17:57:40 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 6ms (Views: 0.9ms | ActiveRecord: 0.4ms | Allocations: 887)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (1.0ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 38ms (Views: 36.6ms | ActiveRecord: 1.0ms | Allocations: 25955)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-10 17:57:46 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>22, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>22, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2)[0m  [["id", 10], ["id", 22]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 4ms (ActiveRecord: 0.4ms | Allocations: 928)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-10 17:57:46 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2)[0m  [["id", 10], ["id", 22]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 889)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:01:07 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 18:01:07 +0000
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 5ms (Views: 0.8ms | ActiveRecord: 0.7ms | Allocations: 817)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.9ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 28ms (Views: 26.8ms | ActiveRecord: 0.9ms | Allocations: 25953)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 18:01:08 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 223)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:01:08 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:01:10 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 18:01:14 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 244ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 1143)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 18:04:18 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 219)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:04:18 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:04:19 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 18:04:23 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 244ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 874)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:04:29 +0000
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 18:04:29 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 811)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.8ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 27ms (Views: 25.9ms | ActiveRecord: 0.8ms | Allocations: 25953)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-10 18:04:34 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>60, "exercise_duration"=>"34", "cart"=>{"exercise_id"=>60, "exercise_duration"=>"34"}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 60]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 4ms (ActiveRecord: 0.3ms | Allocations: 798)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-10 18:04:34 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 60]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 742)
+
+
+Started POST "/api/workouts" for 10.0.2.2 at 2022-08-10 18:04:35 +0000
+Processing by Api::WorkoutsController#create as HTML
+  Parameters: {"date"=>"2022-08-10T18:04:35.073Z", "workout"=>{"date"=>"2022-08-10T18:04:35.073Z"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:71:in `create_workout'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 2.6ms | Allocations: 5181)
+
+
+  
+NoMethodError (undefined method `weight_kg' for nil:NilClass
+
+      if  (0..70).include?(user.weight_kg)
+                               ^^^^^^^^^^):
+  
+app/controllers/api/workouts_controller.rb:73:in `create_workout'
+app/controllers/api/workouts_controller.rb:29:in `create'
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 18:05:25 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 294)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:05:25 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:05:27 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 18:05:32 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 243ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 979)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:05:35 +0000
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 18:05:35 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 816)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.7ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 28ms (Views: 26.9ms | ActiveRecord: 0.7ms | Allocations: 25987)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-10 18:05:39 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>54, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>54, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.5ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 54]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 4ms (ActiveRecord: 0.5ms | Allocations: 839)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-10 18:05:39 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 54]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 743)
+
+
+Started POST "/api/workouts" for 10.0.2.2 at 2022-08-10 18:05:40 +0000
+Processing by Api::WorkoutsController#create as HTML
+  Parameters: {"date"=>"2022-08-10T18:05:40.310Z", "workout"=>{"date"=>"2022-08-10T18:05:40.310Z"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:71:in `create_workout'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.4ms | Allocations: 1887)
+
+
+  
+NoMethodError (undefined method `weight_kg' for nil:NilClass
+
+      if  (0..70).include?(user.weight_kg)
+                               ^^^^^^^^^^):
+  
+app/controllers/api/workouts_controller.rb:73:in `create_workout'
+app/controllers/api/workouts_controller.rb:29:in `create'
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 18:08:11 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:08:11 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 6ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 825)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.8ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 29ms (Views: 27.7ms | ActiveRecord: 0.8ms | Allocations: 25953)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 18:08:14 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:08:14 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:08:16 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 18:08:20 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 245ms (Views: 1.0ms | ActiveRecord: 0.4ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:08:24 +0000
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 18:08:24 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 827)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.8ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 27ms (Views: 26.1ms | ActiveRecord: 0.8ms | Allocations: 25952)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-10 18:08:27 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>57, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>57, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 57]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 4ms (ActiveRecord: 0.3ms | Allocations: 794)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-10 18:08:27 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 57]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 743)
+
+
+Started POST "/api/workouts" for 10.0.2.2 at 2022-08-10 18:08:29 +0000
+Processing by Api::WorkoutsController#create as HTML
+  Parameters: {"user_id"=>1, "date"=>"2022-08-10T18:08:29.487Z", "workout"=>{"date"=>"2022-08-10T18:08:29.487Z", "user_id"=>1}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:71:in `create_workout'
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 57]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mWorkout Create (1.2ms)[0m  [1m[32mINSERT INTO "workouts" ("total_workout_calories", "workout_duration", "date", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["total_workout_calories", 92], ["workout_duration", 23], ["date", "2022-08-10"], ["user_id", 1], ["created_at", "2022-08-10 18:08:29.480786"], ["updated_at", "2022-08-10 18:08:29.480786"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mLineExercise Create (0.7ms)[0m  [1m[32mINSERT INTO "line_exercises" ("exercise_duration", "total_exercise_calories", "exercise_id", "workout_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["exercise_duration", 23], ["total_exercise_calories", 92], ["exercise_id", 57], ["workout_id", 1], ["created_at", "2022-08-10 18:08:29.487320"], ["updated_at", "2022-08-10 18:08:29.487320"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+Completed 200 OK in 76ms (Views: 0.6ms | ActiveRecord: 5.6ms | Allocations: 14759)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 18:08:33 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 218)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:08:33 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:08:34 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 18:08:38 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 244ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 909)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:08:42 +0000
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-10 18:08:42 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 0.3ms | Allocations: 814)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.7ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 31ms (Views: 29.9ms | ActiveRecord: 0.7ms | Allocations: 25957)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-10 18:08:47 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>53, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>53, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 53]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 5ms (ActiveRecord: 0.3ms | Allocations: 814)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-10 18:08:47 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 53]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 743)
+
+
+Started POST "/api/workouts" for 10.0.2.2 at 2022-08-10 18:08:49 +0000
+Processing by Api::WorkoutsController#create as HTML
+  Parameters: {"user_id"=>1, "date"=>"2022-08-10T18:08:50.034Z", "workout"=>{"date"=>"2022-08-10T18:08:50.034Z", "user_id"=>1}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:71:in `create_workout'
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 53]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mWorkout Create (0.6ms)[0m  [1m[32mINSERT INTO "workouts" ("total_workout_calories", "workout_duration", "date", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["total_workout_calories", 69], ["workout_duration", 23], ["date", "2022-08-10"], ["user_id", 1], ["created_at", "2022-08-10 18:08:49.990083"], ["updated_at", "2022-08-10 18:08:49.990083"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mLineExercise Create (0.5ms)[0m  [1m[32mINSERT INTO "line_exercises" ("exercise_duration", "total_exercise_calories", "exercise_id", "workout_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["exercise_duration", 23], ["total_exercise_calories", 69], ["exercise_id", 53], ["workout_id", 2], ["created_at", "2022-08-10 18:08:49.994091"], ["updated_at", "2022-08-10 18:08:49.994091"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+Completed 200 OK in 17ms (Views: 0.3ms | ActiveRecord: 2.7ms | Allocations: 5194)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:14:49 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 17ms (Views: 0.8ms | ActiveRecord: 6.1ms | Allocations: 3449)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 18:14:51 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:14:51 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 18:14:53 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 18:14:56 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 242ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 877)
+
+

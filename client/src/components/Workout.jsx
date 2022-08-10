@@ -129,9 +129,9 @@ export default function Exercise (props) {
   }
 
   const submitAllExercise = () => {
-
+    console.log('props-state-user', props.state)
         const userData = {
-          id: props.state.user_id,
+          id: props.state.user.data.user.id,
           date: new Date(),
         }
 

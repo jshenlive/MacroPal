@@ -3,10 +3,10 @@ import React from "react";
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
 
-export default function Exercise() {
+export default function Profile() {
 
   return (
-    <h1>Welcome to the list of your activities</h1>
+    <h1>User Profile</h1>
   );
 
 }

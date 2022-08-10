@@ -65,10 +65,14 @@ export default class Login extends Component {
   };
 
   render() {
+
+    console.log('state', this.state);
+
     if (this.state.redirect) {
-      return <Navigate to="/" />
+      return <Navigate to="/profile" />
     }
-    const {username,password} = this.state
+    const {username,password} = this.state;
+
     return (
     <Container fluid>
       <Row> </Row>
