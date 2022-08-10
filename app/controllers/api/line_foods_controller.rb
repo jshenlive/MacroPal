@@ -1,4 +1,4 @@
-class LineFoodsController < ApplicationController
+class Api::LineFoodsController < ApplicationController
   before_action :set_line_food, only: [:show, :update, :destroy]
 
   # GET /line_foods
