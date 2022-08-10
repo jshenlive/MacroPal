@@ -46,6 +46,6 @@ class Api::LineExercisesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def line_exercise_params
-      params.require(:line_exercise).permit(:exercise_duration, :day_of_week, :workout_calories, :user_id, :exercise_id)
+      params.require(:line_exercise).permit(:exercise_duration, :day_of_week, :workout_calories, :workout_id, :exercise_id)
     end
 end

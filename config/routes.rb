@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
 
+
   post '/login',    to: 'sessions#create'
   post '/logout',   to: 'sessions#destroy'
   get '/logout',   to: 'sessions#destroy'
@@ -25,7 +26,11 @@ Rails.application.routes.draw do
     resources :exercises
 
     # /api/workouts
-    resources :workouts
+    resource :workouts
+    
+    get '/workouts/user/:user_id', to: "workouts#index"
+
+  
 
     # /api/carts
     resource :carts, only: [:show] do
@@ -40,6 +45,14 @@ Rails.application.routes.draw do
     resources :meals
     resources :foods
     post '/food', to: "foods#get_food"
+    resources :line_foods
+
+    resource :food_carts, only: [:show] do
+      #/api/carts/add_exercise
+      post   :add_food
+      #/api/carts/remove_exercise
+      post   :remove_food
+    end
 
   end
 

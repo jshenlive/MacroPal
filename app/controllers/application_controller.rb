@@ -14,24 +14,47 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cart
 
+  def food_cart
+    @food_cart ||= cookies[:food_cart].present? ? JSON.parse(cookies[:food_cart]) : {}
+  end
+  helper_method :food_cart
 
   # a collection of cart items used for displaying in the views and creating workout and calculating cart totals 
   def enhanced_cart
     @enhanced_cart ||= Exercise.where(id: cart.keys).map {|exercise| { exercise:exercise, exercise_duration: cart[exercise.id.to_s] } }
   end
   helper_method :enhanced_cart
- 
-  # called in modify_cart
-  def update_cart(new_cart)
-    puts "update_car: ", new_cart
 
-    cookies[:cart] = {
-      value: JSON.generate(new_cart),
-      expires: 1.days.from_now
-    }
-    p cookies[:cart]
-    cookies[:cart]
+
+  def enhanced_food_cart
+    @enhanced_food_cart ||= Food.where(id: food_cart.keys).map {|food| { food:food, food_amount: food_cart[food.id.to_s] } }
   end
+  helper_method :enhanced_food_cart
+ 
+ 
+  # called in modify_cart/modify_food_cart
+  def update_cart(cookie, new_cart)
+    puts "update_cart: ", new_cart
+
+    cookies[cookie] = {
+      value: JSON.generate(new_cart),
+      expires: 3.days.from_now
+    }
+    p cookies[cookie]
+    cookies[cookie]
+  end
+
+  def empty_cart!
+    # empty hash means no products in cart :)
+    update_cart(:cart, {})
+  end
+  helper_method :empty_cart!
+
+  def empty_food_cart!
+    # empty hash means no products in cart :)
+    update_cart(:food_cart,{})
+  end
+  helper_method :empty_food_cart!
 
   # called from create_workout in workout controller
   def cart_total_calories_burned(weight_class)
@@ -45,15 +68,18 @@ class ApplicationController < ActionController::Base
   
 
 
-  def current_user
-    p session[:user_id]
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
 
+  ## For sessions:
 
   # def authorize
   #   redirect_to '/login' unless current_user
   # end
+  
+
+  def current_user
+    p session[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 
   def authorized_user?
       @user == current_user

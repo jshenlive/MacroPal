@@ -2,16 +2,17 @@ class Api::FoodsController < ApplicationController
   before_action :set_food, only: [:show, :update, :destroy]
 
   def get_food
-    food = Food.find_by_name(params[:name])
+    food = Food.find_by_name(params[:name].downcase)
 
     if food
       render json:food
     else
       food = fetch_save(params[:name])
-      if food.save
+
+      if food
         render json:food
       else
-        render json: food.errors, status: :unprocessable_entity
+        render json: {}, status: :unprocessable_entity
       end
     end
   end
@@ -63,16 +64,19 @@ class Api::FoodsController < ApplicationController
     def fetch_save(name)
       url = "https://api.edamam.com/api/food-database/v2/parser?app_id=39060379&app_key=c39f5957bf3c1eecc8c77da5f0093af5&ingr=#{name}"
       fetch = JSON.parse RestClient.get(url)
-      # fetch["parsed"][0]['food']
 
+      if fetch["parsed"].length > 0 
       
-      calories = fetch["parsed"][0]["food"]['nutrients']['ENERC_KCAL']
-      protein = fetch["parsed"][0]["food"]['nutrients']["PROCNT"]
-      fat = fetch["parsed"][0]["food"]['nutrients']["FAT"]
-      carbs = fetch["parsed"][0]["food"]['nutrients']["CHOCDF"]
-      
-      save_food(name, calories, protein, carbs, fat)
-
+        name = fetch["parsed"][0]["food"]['label'].downcase
+        calories = fetch["parsed"][0]["food"]['nutrients']['ENERC_KCAL']
+        protein = fetch["parsed"][0]["food"]['nutrients']["PROCNT"]
+        fat = fetch["parsed"][0]["food"]['nutrients']["FAT"]
+        carbs = fetch["parsed"][0]["food"]['nutrients']["CHOCDF"]
+        
+        save_food(name, calories, protein, carbs, fat)
+      else
+        {}
+      end
     end 
 
     def save_food(name,cal,pro,carbs,fat)
@@ -83,6 +87,7 @@ class Api::FoodsController < ApplicationController
         carbs: carbs,
         fat: fat
       )
+      food.save
       food
     end
 
