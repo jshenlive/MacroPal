@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :workout
+  has_many :meal
 
   # validates :first_name, presence: true
   # validates :last_name, presence: true

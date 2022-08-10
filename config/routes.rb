@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
 
+  resources :line_foods
   post '/login',    to: 'sessions#create'
   post '/logout',   to: 'sessions#destroy'
   get '/logout',   to: 'sessions#destroy'
