@@ -17,17 +17,17 @@ ActiveRecord::Schema.define(version: 2022_08_10_045444) do
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
-    t.integer "calories_burned_s"
-    t.integer "calories_burned_m"
-    t.integer "calories_burned_l"
-    t.integer "calories_burned_xl"
+    t.float "calories_burned_s"
+    t.float "calories_burned_m"
+    t.float "calories_burned_l"
+    t.float "calories_burned_xl"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
-    t.integer "calories"
+    t.float "calories"
     t.float "protein"
     t.float "carbs"
     t.float "fat"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2022_08_10_045444) do
   end
 
   create_table "line_exercises", force: :cascade do |t|
-    t.integer "exercise_duration"
-    t.integer "total_exercise_calories"
+    t.float "exercise_duration"
+    t.float "total_exercise_calories"
     t.bigint "exercise_id"
     t.bigint "workout_id"
     t.datetime "created_at", precision: 6, null: false
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2022_08_10_045444) do
   end
 
   create_table "line_foods", force: :cascade do |t|
-    t.integer "food_amount"
-    t.integer "total_food_calories"
+    t.float "food_amount"
+    t.float "total_food_calories"
     t.bigint "food_id", null: false
     t.bigint "meal_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 2022_08_10_045444) do
   create_table "meals", force: :cascade do |t|
     t.string "meal_type"
     t.date "date"
-    t.integer "food_weight"
-    t.integer "total_calories_gained"
+    t.float "food_weight"
+    t.float "total_calories_gained"
     t.bigint "user_id", null: false
     t.bigint "food_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2022_08_10_045444) do
     t.string "country"
     t.integer "age"
     t.date "birthday"
-    t.integer "weight_kg"
-    t.integer "height_cm"
+    t.float "weight_kg"
+    t.float "height_cm"
     t.string "avatar_url"
     t.string "password_digest"
     t.string "message"
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 2022_08_10_045444) do
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.integer "total_workout_calories"
-    t.integer "workout_duration"
+    t.float "total_workout_calories"
+    t.float "workout_duration"
     t.date "date"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false

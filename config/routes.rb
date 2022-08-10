@@ -44,13 +44,13 @@ Rails.application.routes.draw do
 
     resources :meals
     resources :foods
-    post '/food', to: "foods#get_food"
+    post '/get_food', to: "foods#get_food"
     resources :line_foods
 
     resource :food_carts, only: [:show] do
-      #/api/carts/add_exercise
+      #/api/food_carts/add_food
       post   :add_food
-      #/api/carts/remove_exercise
+      #/api/food_carts/remove_food
       post   :remove_food
     end
 

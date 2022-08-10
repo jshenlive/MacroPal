@@ -11,7 +11,7 @@ class Api::FoodCartsController < ApplicationController
 
     food_id = params[:food_id].to_s
     food_amount = params[:food_amount]
-
+  
     modify_food_cart(food_id, food_amount)
 
     puts "enhance_food_cart: "

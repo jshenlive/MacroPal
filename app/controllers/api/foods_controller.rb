@@ -75,16 +75,13 @@ class Api::FoodsController < ApplicationController
       if health
         url += "&health=#{health}"
       end
-      
-
-      puts url
 
       fetch = JSON.parse RestClient.get(url)
 
       fetch = fetch["hints"]
 
       if fetch.length == 1
-        food = parse_food(fetch)
+        food = parse_food(fetch,is_branded)
       elsif fetch.length > 1 
         list = []
         fetch.each do |item|
@@ -132,17 +129,17 @@ class Api::FoodsController < ApplicationController
 
     end
 
-    def save_food(name,cal,pro,carbs,fat)
-      food = Food.new(
-        name: name,
-        calories: cal,
-        protein: pro,
-        carbs: carbs,
-        fat: fat
-      )
-      food.save
-      food
-    end
+    # def save_food(name,cal,pro,carbs,fat)
+    #   food = Food.new(
+    #     name: name,
+    #     calories: cal,
+    #     protein: pro,
+    #     carbs: carbs,
+    #     fat: fat
+    #   )
+    #   food.save
+    #   food
+    # end
 
     # Only allow a list of trusted parameters through.
     def food_params
