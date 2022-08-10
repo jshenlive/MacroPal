@@ -47,7 +47,7 @@ export default function Exercise (props) {
   useEffect(() => {
 
     const loadExercises = async() => {
-      // async function to get the exercise data from rails
+      // async function to get the exercise data from rails 
       const response = await Axios.get('/api/exercises');
       // response.data is an array with objects of exercises
       setExercises(response.data)
