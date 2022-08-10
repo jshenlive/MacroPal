@@ -1,14 +1,9 @@
+import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { randNumGen } from "../helpers/helpers"
 import { AppUnits } from "../hooks/useAppData"
-import Axios from "axios";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
 import '../App.scss'
 
 export default function Exercise (props) {
@@ -129,7 +124,7 @@ export default function Exercise (props) {
   }
 
   const submitAllExercise = () => {
-    console.log('props-state-user', props.state)
+
         const userData = {
           id: props.state.user.data.user.id,
           date: new Date(),
@@ -171,7 +166,7 @@ export default function Exercise (props) {
                       onBlur={() => {
                         setTimeout(() => {
                           setSuggestions([])
-                        }, 100)
+                        }, 2000)
                       }}
                       value={query}
                       placeholder="Choose Your Activity"

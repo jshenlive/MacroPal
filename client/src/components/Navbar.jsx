@@ -1,9 +1,6 @@
-import React from 'react';
 import axios from 'axios';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import React from 'react';
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 //-- Nav Bar -- //
 export default function Fitpalnavbar(props) {

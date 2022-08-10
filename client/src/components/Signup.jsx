@@ -1,11 +1,7 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Navigate } from "react-router-dom";
-import axios from 'axios';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import '../App.scss'
 
 // -- Controlled component - React form -- //
