@@ -26,7 +26,11 @@ Rails.application.routes.draw do
     resources :exercises
 
     # /api/workouts
-    resources :workouts
+    resource :workouts
+    
+    get '/workouts/user/:user_id', to: "workouts#index"
+
+  
 
     # /api/carts
     resource :carts, only: [:show] do

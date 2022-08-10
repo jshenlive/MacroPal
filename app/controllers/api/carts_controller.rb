@@ -8,7 +8,6 @@ class Api::CartsController < ApplicationController
 
   # use case "button_to add_exercise_cart_path(exercise_id: @exercise.id, exercise_duration: user_input_duration) "
   def add_exercise
-
     exercise_id = params[:exercise_id].to_s
     exercise_duration = params[:exercise_duration].to_i
 
@@ -25,6 +24,8 @@ class Api::CartsController < ApplicationController
 
     # redirect_back fallback_location: root_path
   end
+
+
 
   private
 

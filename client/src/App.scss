@@ -1,3 +1,25 @@
+/* Import Bootstrap for Sass */
+@import "~bootstrap/scss/bootstrap";
+
+.header-body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 90vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 form{
         // height: 520px;
         // width: 400px;
@@ -10,6 +32,21 @@ form{
         border: 2px solid rgba(255,255,255,0.1);
         box-shadow: 0 0 40px rgba(8,7,16,0.6);
         padding: 50px 35px;
+}
+
+.login-text {
+  margin-bottom: 26px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.Signup-form {
+  margin-top: 32px;
+  margin-bottom: 62px;
+  background-color: rgba(255, 255, 255, 0.13);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 35px;
 }
 
 .index-footer {
@@ -47,4 +84,20 @@ form{
   font-size: 12px;
   color: black;
   display: block;
+}
+
+.footer {
+  color: aliceblue;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  padding: 50px 0;
+  border-top: 2px solid #435DB5;
+  background: radial-gradient(ellipse at bottom, #292D61 30%, #171941 80%);
 }

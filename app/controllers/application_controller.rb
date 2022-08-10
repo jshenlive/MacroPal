@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :enhanced_cart
 
+
   def enhanced_food_cart
     @enhanced_food_cart ||= Food.where(id: food_cart.keys).map {|food| { food:food, food_amount: food_cart[food.id.to_s] } }
   end
@@ -42,6 +43,18 @@ class ApplicationController < ActionController::Base
     p cookies[cookie]
     cookies[cookie]
   end
+
+  def empty_cart!
+    # empty hash means no products in cart :)
+    update_cart(:cart, {})
+  end
+  helper_method :empty_cart!
+
+  def empty_food_cart!
+    # empty hash means no products in cart :)
+    update_cart(:food_cart,{})
+  end
+  helper_method :empty_food_cart!
 
   # called from create_workout in workout controller
   def cart_total_calories_burned(weight_class)

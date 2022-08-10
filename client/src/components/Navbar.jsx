@@ -7,7 +7,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 //-- Nav Bar -- //
 export default function Fitpalnavbar(props) {
-console.log('props', props);
   const logout = () => {
     axios.post('/logout')
     .then(()=>
@@ -16,27 +15,26 @@ console.log('props', props);
     })
     .catch(error => console.log('api errors:', error))
   }
-  
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" >
       <Container>
-        <Navbar.Brand href="#home">FitPal</Navbar.Brand>
+        <Navbar.Brand href="/">FitPal</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
           {!props.state.isLoggedIn && 
             <>
-            <Nav.Link href="#features">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
 
             </>
           }
           {props.state.isLoggedIn && 
             <>
             <Nav.Link href="#features">Home</Nav.Link>
-            <Nav.Link href="#pricing">Admin</Nav.Link>
               <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href="/Workout">
                 Add Exercise
               </NavDropdown.Item>
 
@@ -62,12 +60,14 @@ console.log('props', props);
             </>
             }
 
-            {props.state.isLoggedIn && <Nav.Link 
-            eventKey={2}
-            onClick={logout}
-             >
+            {props.state.isLoggedIn && 
+            <>
+            <Nav.Link href="#pricing">Admin</Nav.Link>
+            <Nav.Link eventKey={2} onClick={logout}>
             Log out
-            </Nav.Link>}
+            </Nav.Link>
+            </>
+            }
 
           </Nav>
         </Navbar.Collapse>

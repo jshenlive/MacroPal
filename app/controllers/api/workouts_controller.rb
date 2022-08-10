@@ -1,7 +1,7 @@
 class Api::WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy]
 
-  # post /workouts
+  # get /workouts
   def index
     @workout = Workout.where(["user_id = :user_id",{user_id: params[:user_id]}])
     
@@ -53,11 +53,6 @@ class Api::WorkoutsController < ApplicationController
   end
 
   private
-
-    def empty_cart!
-      # empty hash means no products in cart :)
-      update_cart({})
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_workout

@@ -46,7 +46,11 @@ class SessionsController < ApplicationController
 
 
   def destroy
-    puts "destroying"
+    puts "destroying session and clearing cart"
+
+        empty_cart!
+        empty_food_cart!
+
         session[:user_id] = nil if session[:user_id]
         p session[:user_id]
         render json: {

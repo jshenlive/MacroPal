@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './Login.scss'
+import '../App.scss'
 import {Link} from 'react-router-dom'
 
 export default class Login extends Component {
@@ -37,8 +37,8 @@ export default class Login extends Component {
     
     axios.post('/login', {user}, {withCredentials: true})
     .then(response => {
-
-      if (response.status == 200) {
+      console.log('response-data-in-login', response.data)
+      if (response.status === 200) {
         this.props.handleLogin(response.data)
         this.setState({
           redirect: true
@@ -79,7 +79,7 @@ export default class Login extends Component {
           className="mb-2" 
           onSubmit={this.handleSubmit}
         >
-          <div className="loginText">
+          <div className="login-text">
             PLease log in to continue...
           </div>
             <Form.Group >
@@ -118,48 +118,3 @@ export default class Login extends Component {
      );
    }
 }
-
-
-
-// import React from 'react';
-// import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
-// import './Login.scss'
-
-// export default function BasicExample() {
-//   return (
-//     <Container fluid>
-//       <Row> </Row>
-//       <Row className="mt-5 mb-5">
-//         <Col></Col>
-//         <Col >
-//         <Form>
-//           <div className="loginText">
-//             PLease log in to continue...
-//           </div>
-//           <Form.Group className="mb-2" controlId="formBasicEmail">
-//             <Form.Label>Email address</Form.Label>
-//             <Form.Control type="email" placeholder="Enter email" />
-//             <Form.Text className="text-muted">
-//               We'll never share your email with anyone else.
-//             </Form.Text>
-//           </Form.Group>
-
-//           <Form.Group className="mb-2" controlId="formBasicPassword">
-//             <Form.Label>Password</Form.Label>
-//             <Form.Control type="password" placeholder="Password" />
-//           </Form.Group>
-//           <Button className="mt-2" variant="info" type="submit">
-//             Submit
-//           </Button>
-//         </Form>
-//         </Col>
-//         <Col></Col>
-//       </Row>
-//       <Row> </Row>
-//     </Container>
-//   );
-// }

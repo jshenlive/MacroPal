@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './Login.scss'
+import '../App.scss'
 
 // -- Controlled component - React form -- //
 export default class Signup extends Component {
@@ -53,7 +53,7 @@ handleChange = (event) => {
 axios.post('/api/users', {user}, {withCredentials: true})
     .then(response => {
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         this.props.handleLogin(response.data)
         this.setState({
           redirect: true
@@ -97,7 +97,7 @@ handleErrors = () => {
           <Form 
           autoComplete="off"  
           onSubmit={this.handleSubmit}
-          className="registerForm"
+          className="singup-form"
           >
             <div className="loginText">
               Sign up today!
