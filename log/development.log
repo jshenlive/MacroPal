@@ -12484,3 +12484,1392 @@ FOREIGN KEY ("user_id")
   [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3312665787932193105)[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:28:09 +0000
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 21ms (Views: 0.3ms | ActiveRecord: 4.4ms | Allocations: 5214)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:28:10 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 747)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:28:10 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 722)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:28:11 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 722)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:28:12 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 722)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:28:51 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:29:05 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:29:05 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:29:05 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:29:05 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:29:06 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:29:06 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:29:06 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:29:06 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "email"=>"", "password"=>"[FILTERED]"}}}
+[31mUnpermitted parameter: :email[0m
+[31mUnpermitted parameter: :email[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 706)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:31:36 +0000
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 2.4ms | Allocations: 5130)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:32:23 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 212ms (Views: 0.9ms | ActiveRecord: 2.0ms | Allocations: 8811)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:34:13 +0000
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 40ms (Views: 1.2ms | ActiveRecord: 5.5ms | Allocations: 13059)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:34:21 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 188ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 1169)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:35:29 +0000
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 377)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:35:51 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"Jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"Jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 17ms (Views: 0.3ms | ActiveRecord: 1.8ms | Allocations: 4925)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:36:02 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 207ms (Views: 2.5ms | ActiveRecord: 1.6ms | Allocations: 8832)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:36:16 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 8ms (Views: 1.2ms | ActiveRecord: 0.4ms | Allocations: 949)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:36:26 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.2ms | Allocations: 820)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:44:41 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.7ms | Allocations: 3409)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:44:43 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:44:53 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 803)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 21:48:10 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:48:10 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2412)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 21:48:56 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 21:48:59 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-09 21:49:03 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 97)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 21:49:03 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:49:03 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-09 21:49:04 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 21:49:04 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:49:04 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-09 21:49:05 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 21:49:05 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:49:05 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/login" for 10.0.2.2 at 2022-08-09 21:49:23 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 178ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 878)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-09 21:49:26 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 21:49:26 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 21:49:26 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 21:50:24 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 21:57:29 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"jack23", "email"=>"jack23@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"jack", "last_name"=>"st", "age"=>"26", "weight_kg"=>"86", "height_cm"=>"180"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "jack"], ["last_name", "st"], ["email", "jack23@gmail.com"], ["username", "jack23"], ["age", 26], ["weight_kg", 86], ["height_cm", 180], ["password_digest", "$2a$12$q2JgY.E/nLwhXQnY96oZKeYh14DsC0CUJcfChhQfR/Mp0ugH4FrVW"], ["created_at", "2022-08-09 21:57:29.628253"], ["updated_at", "2022-08-09 21:57:29.628253"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 192ms (Views: 0.4ms | ActiveRecord: 4.6ms | Allocations: 5811)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 21:59:46 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sarah", "email"=>"jack23@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"sarah", "last_name"=>"st", "age"=>"26", "weight_kg"=>"86", "height_cm"=>"180"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "sarah"], ["last_name", "st"], ["email", "jack23@gmail.com"], ["username", "sarah"], ["age", 26], ["weight_kg", 86], ["height_cm", 180], ["password_digest", "$2a$12$obv7jHAdlW2MKywT6CwsUeno/Ft7L7Z6KWOBidumC6uxdSfIZUXGm"], ["created_at", "2022-08-09 21:59:46.733562"], ["updated_at", "2022-08-09 21:59:46.733562"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 195ms (Views: 0.4ms | ActiveRecord: 2.8ms | Allocations: 12799)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:00:10 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 1769)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:00:37 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sarah23", "email"=>"sarah@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"sarah", "last_name"=>"sarahs", "age"=>"26", "weight_kg"=>"56", "height_cm"=>"180"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "sarah"], ["last_name", "sarahs"], ["email", "sarah@gmail.com"], ["username", "sarah23"], ["age", 26], ["weight_kg", 56], ["height_cm", 180], ["password_digest", "$2a$12$mBDlepw6l5LA/VFQVSi7b.mWHdqs/EV3vHlxhHTHjj7DgEDX9L9AG"], ["created_at", "2022-08-09 22:00:37.758901"], ["updated_at", "2022-08-09 22:00:37.758901"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 183ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2417)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:01:58 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 31ms (Views: 0.9ms | ActiveRecord: 4.0ms | Allocations: 12989)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:02:32 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"eh2", "email"=>"eh@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"eh", "last_name"=>"he", "age"=>"67", "weight_kg"=>"67", "height_cm"=>"180"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "eh"], ["last_name", "he"], ["email", "eh@gmail.com"], ["username", "eh2"], ["age", 67], ["weight_kg", 67], ["height_cm", 180], ["password_digest", "$2a$12$cXBvRRqZ5bEqk2N/pU/Lgem4t4BEmf8lClYlpv2cLWs69Q4E/4nPm"], ["created_at", "2022-08-09 22:02:32.853775"], ["updated_at", "2022-08-09 22:02:32.853775"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 181ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 3436)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:03:51 +0000
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 26ms (Views: 0.6ms | ActiveRecord: 4.1ms | Allocations: 12988)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:04:15 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"rt", "email"=>"rt@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"rt", "last_name"=>"rt", "age"=>"56", "weight_kg"=>"56", "height_cm"=>"180"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "rt"], ["last_name", "rt"], ["email", "rt@gmail.com"], ["username", "rt"], ["age", 56], ["weight_kg", 56], ["height_cm", 180], ["password_digest", "$2a$12$.xjgGSTUCdIqQoSrLUh5POpNwwERYAWuf2/YHuOzR51LvHXdCVmDq"], ["created_at", "2022-08-09 22:04:16.184360"], ["updated_at", "2022-08-09 22:04:16.184360"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 186ms (Views: 0.4ms | ActiveRecord: 0.9ms | Allocations: 3436)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:06:40 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 792)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:06:57 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"yh", "email"=>"yh@hn.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"yh", "last_name"=>"yh", "age"=>"56", "weight_kg"=>"56", "height_cm"=>"180"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "yh"], ["last_name", "yh"], ["email", "yh@hn.com"], ["username", "yh"], ["age", 56], ["weight_kg", 56], ["height_cm", 180], ["password_digest", "$2a$12$BBe3XAbag73pZdi6sCwiIuJU/uJ4Tq2p9n80vD698Pz0712DPlmxe"], ["created_at", "2022-08-09 22:06:57.449026"], ["updated_at", "2022-08-09 22:06:57.449026"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 184ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2329)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:13:54 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 5.7ms | Allocations: 3384)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:14:15 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"ddd", "email"=>"d@d.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dd", "last_name"=>"dd", "age"=>"55", "weight_kg"=>"23", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dd"], ["last_name", "dd"], ["email", "d@d.com"], ["username", "ddd"], ["age", 55], ["weight_kg", 23], ["height_cm", 160], ["password_digest", "$2a$12$5OUa8c4.2gHqefDxWwvBluZrBHNM17124d6r.90TuNB3IC.MJgJLG"], ["created_at", "2022-08-09 22:14:15.993193"], ["updated_at", "2022-08-09 22:14:15.993193"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 178ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2329)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:16:27 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 752)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:16:50 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"dd34", "email"=>"d@d.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"ddd", "last_name"=>"ddd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"180"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "ddd"], ["last_name", "ddd"], ["email", "d@d.com"], ["username", "dd34"], ["age", 45], ["weight_kg", 45], ["height_cm", 180], ["password_digest", "$2a$12$tTEAsDqeb0U7JdKIPJHjhOZsVxBWu0akcKcSy9o.3cTQ9ojJyrGIS"], ["created_at", "2022-08-09 22:16:50.264644"], ["updated_at", "2022-08-09 22:16:50.264644"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 189ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2313)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:20:18 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.5ms | Allocations: 752)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 22:20:18 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:20:18 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 6ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 771)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:20:18 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 6ms (Views: 1.3ms | ActiveRecord: 0.7ms | Allocations: 750)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 22:33:55 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:33:55 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 31ms (Views: 0.4ms | ActiveRecord: 19.7ms | Allocations: 11671)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:36:21 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 750)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:37:03 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"tg", "email"=>"tg@tg.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"tg", "last_name"=>"tg", "age"=>"34", "weight_kg"=>"34", "height_cm"=>"324"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "tg"], ["last_name", "tg"], ["email", "tg@tg.com"], ["username", "tg"], ["age", 34], ["weight_kg", 34], ["height_cm", 324], ["password_digest", "$2a$12$SH7w69vMK4.eH.0m50jqS.XmlNbcVh/Wb7L2oS5chY8zDfazPqUoK"], ["created_at", "2022-08-09 22:37:03.480527"], ["updated_at", "2022-08-09 22:37:03.480527"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 181ms (Views: 0.3ms | ActiveRecord: 1.1ms | Allocations: 2309)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:39:37 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 6ms (Views: 1.0ms | ActiveRecord: 0.4ms | Allocations: 750)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:39:59 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"ddd", "email"=>"d@d.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"ddd", "last_name"=>"ddd", "age"=>"3434", "weight_kg"=>"334", "height_cm"=>"343"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "ddd"], ["last_name", "ddd"], ["email", "d@d.com"], ["username", "ddd"], ["age", 3434], ["weight_kg", 334], ["height_cm", 343], ["password_digest", "$2a$12$Gs2.yQwLLEWZTzqJZ5vbvunhPnxEFwREpmO3tAfp2Lrf7189WvTsC"], ["created_at", "2022-08-09 22:40:00.015918"], ["updated_at", "2022-08-09 22:40:00.015918"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 182ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2308)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:45:10 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:45:32 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 750)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:05 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$0WyC13LkPGBKfpRyPRiY/u8CkwNebKmnqhvk1wQ3iFJI96Ns9jZyC"], ["created_at", "2022-08-09 22:46:05.415036"], ["updated_at", "2022-08-09 22:46:05.415036"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 181ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 2308)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:14 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$E8.j1janHYokWHdGDxigNe/pGKCgVRCgX8MoiQMRzhGmmBDvWW9T2"], ["created_at", "2022-08-09 22:46:14.968997"], ["updated_at", "2022-08-09 22:46:14.968997"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 181ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2308)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:15 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$JxIJWEpHQQOSLuh6Y2.lY.QvdYYcMJbYm934I6g4cawbX3wAq/aee"], ["created_at", "2022-08-09 22:46:15.260382"], ["updated_at", "2022-08-09 22:46:15.260382"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:15 +0000
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 185ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 2693)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$GFiXyTC12kqnUqUcJUIqqeFXbmdTDRSailGqidXOops6crML7JlNG"], ["created_at", "2022-08-09 22:46:15.460317"], ["updated_at", "2022-08-09 22:46:15.460317"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:15 +0000
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 189ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 2686)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$mgMlYRCK.hLO0F19Ocf9.OzuAb5WgGKLXzD8cBEwHRQyEPWij0cYa"], ["created_at", "2022-08-09 22:46:15.659511"], ["updated_at", "2022-08-09 22:46:15.659511"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:15 +0000
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 188ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 2685)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$VkBOcgEnDPx9B0CcRctpBug/NQR1C7LAPlqtSvwBOwCnh.ipy1hQi"], ["created_at", "2022-08-09 22:46:15.865747"], ["updated_at", "2022-08-09 22:46:15.865747"]]
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:15 +0000
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 191ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 2691)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$t9rQaYvhGshW.PzbutQCBuFSKGofqijhIFFh87/1RsawvdFa68I9G"], ["created_at", "2022-08-09 22:46:16.063057"], ["updated_at", "2022-08-09 22:46:16.063057"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:16 +0000
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 182ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 2685)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:16 +0000
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$3lV08K5RJbJc3BxW.YztI.sQcLf6IEj7PZApRDUHHurmd8fwMS0km"], ["created_at", "2022-08-09 22:46:16.264127"], ["updated_at", "2022-08-09 22:46:16.264127"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 187ms (Views: 0.3ms | ActiveRecord: 1.2ms | Allocations: 2686)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$mtA.eAvUrxBttEDBcpQ42.TIzQ.By4GIIaSHLATK9v645GbODQafq"], ["created_at", "2022-08-09 22:46:16.456915"], ["updated_at", "2022-08-09 22:46:16.456915"]]
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:16 +0000
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 182ms (Views: 0.3ms | ActiveRecord: 1.3ms | Allocations: 2685)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:16 +0000
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$CSO2Gs8mMIeg31aySMfqguZctbmaIS09ux2cgs/A/MAQuHxeDf0p6"], ["created_at", "2022-08-09 22:46:16.654897"], ["updated_at", "2022-08-09 22:46:16.654897"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 186ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2693)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$lHIMP9fch6BXy7EmtMh0HOmrzq3yh1FQcglZOSbzyeUCMu.TsDlrS"], ["created_at", "2022-08-09 22:46:16.856713"], ["updated_at", "2022-08-09 22:46:16.856713"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:16 +0000
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 189ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 2683)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$m4EQ6l3UZObKxHvN2/zmjuJoncQO3bb07lFr525HH8BcjxBx1Sndy"], ["created_at", "2022-08-09 22:46:17.061969"], ["updated_at", "2022-08-09 22:46:17.061969"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:17 +0000
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 188ms (Views: 0.4ms | ActiveRecord: 0.9ms | Allocations: 2685)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$iI8tR0RCQA.H5HZTqLfdz.2883P3lr6/oVcO1okg.9CjBPkZqs/M6"], ["created_at", "2022-08-09 22:46:17.264986"], ["updated_at", "2022-08-09 22:46:17.264986"]]
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:17 +0000
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 187ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 2689)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$NUYRgc/aPQUL.0OiLLQ3re5C2iSdtpPjQRTwhoFI436R23ZIfsjze"], ["created_at", "2022-08-09 22:46:17.461068"], ["updated_at", "2022-08-09 22:46:17.461068"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:17 +0000
+  [1m[36mTRANSACTION (5.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 192ms (Views: 0.4ms | ActiveRecord: 6.1ms | Allocations: 2686)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:17 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:17 +0000
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$vj5wZGcTf7q/W6Lv8roFnOLvd2BU0BOGISllFvU7IhjFfzl8gkWby"], ["created_at", "2022-08-09 22:46:17.676489"], ["updated_at", "2022-08-09 22:46:17.676489"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 195ms (Views: 0.4ms | ActiveRecord: 1.6ms | Allocations: 2731)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:17 +0000
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$JynrokAW.HWF5nQ9rXHoZu3x4o.9rlprQ/qUlcnvZXteqVcNYqZUK"], ["created_at", "2022-08-09 22:46:17.874438"], ["updated_at", "2022-08-09 22:46:17.874438"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 185ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 2771)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$qCDXWXw2JPf8bU19pdIp4u3bcMswiFje.nIRFmmYPL.XTXx/M1L.a"], ["created_at", "2022-08-09 22:46:18.070176"], ["updated_at", "2022-08-09 22:46:18.070176"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 191ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 2320)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$UmSD7QbGK371jPoh4ha.C.YGS/wFROCyogtCV3sqvcNzPcXVJBHwe"], ["created_at", "2022-08-09 22:46:18.266301"], ["updated_at", "2022-08-09 22:46:18.266301"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 188ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2309)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:19 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$kcmXFuneXXPkOmUF8qBzFelwbahT4mDg.HO2FpLPPS36soNzyamQu"], ["created_at", "2022-08-09 22:46:19.332287"], ["updated_at", "2022-08-09 22:46:19.332287"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:19 +0000
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 185ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 2689)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$SsgU.9Sc38vnum2CR/W/kuCnwFqZ890mHL/fYRjWIKnrlpQ9yy/Le"], ["created_at", "2022-08-09 22:46:19.532569"], ["updated_at", "2022-08-09 22:46:19.532569"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 189ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2308)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:28 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$D9/bPRBeBBFTEHBgbnww7.CAwKg34q1LxaC7AuK7BiZBSKspRsKLy"], ["created_at", "2022-08-09 22:46:28.568480"], ["updated_at", "2022-08-09 22:46:28.568480"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 182ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2308)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:28 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$VIEkanUzS7zCTrQBAEpRPurXe5bIYqOtbsmvpao.wsrTdhLMYNkPm"], ["created_at", "2022-08-09 22:46:28.769181"], ["updated_at", "2022-08-09 22:46:28.769181"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:28 +0000
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 187ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 2683)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:28 +0000
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$ZMhPgICk4.pIYYIXcGslwOXLgYEt0umDN/L5WNOBykhxmAiRh5uqO"], ["created_at", "2022-08-09 22:46:28.973474"], ["updated_at", "2022-08-09 22:46:28.973474"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 193ms (Views: 0.4ms | ActiveRecord: 1.5ms | Allocations: 2702)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$AP0rXa9nAP57/bTIO4PAL./7TDeAZx85DIXIMBnRVSiov5xbJRzta"], ["created_at", "2022-08-09 22:46:29.176245"], ["updated_at", "2022-08-09 22:46:29.176245"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:46:29 +0000
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 190ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 2685)
+
+
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"sdsdwsd", "email"=>"ki@g.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"dsdsds", "last_name"=>"sdsdsd", "age"=>"45", "weight_kg"=>"45", "height_cm"=>"160"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "dsdsds"], ["last_name", "sdsdsd"], ["email", "ki@g.com"], ["username", "sdsdwsd"], ["age", 45], ["weight_kg", 45], ["height_cm", 160], ["password_digest", "$2a$12$3v5ahtrlKDWMHdpAdIq2Q.Z11qaMgs7nzt0oVvzF2yvX55VN32o1a"], ["created_at", "2022-08-09 22:46:29.377971"], ["updated_at", "2022-08-09 22:46:29.377971"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 190ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2312)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:52:24 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 36], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 9ms (Views: 0.5ms | ActiveRecord: 2.9ms | Allocations: 3265)
+
+
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 22:52:44 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"aza", "email"=>"azaa@sx.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"azaz", "last_name"=>"azaz", "age"=>"54", "weight_kg"=>"445", "height_cm"=>"544545"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "azaz"], ["last_name", "azaz"], ["email", "azaa@sx.com"], ["username", "aza"], ["age", 54], ["weight_kg", 445], ["height_cm", 544545], ["password_digest", "$2a$12$DkA8kTtWA92KFNpgIUjcf.SSI1rlSltEmq8B7IMn1mmRnC0zoibfC"], ["created_at", "2022-08-09 22:52:44.275823"], ["updated_at", "2022-08-09 22:52:44.275823"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 183ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2312)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 22:52:44 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 22:58:19 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 22:58:19 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 19ms (Views: 0.6ms | ActiveRecord: 7.6ms | Allocations: 5143)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/signup" for 10.0.2.2 at 2022-08-09 22:59:12 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/signup"):
+  
+Started POST "/api/carts" for 10.0.2.2 at 2022-08-09 22:59:24 +0000
+  
+ActionController::RoutingError (No route matches [POST] "/api/carts"):
+  
+Started POST "/api/users" for 10.0.2.2 at 2022-08-09 23:11:07 +0000
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"ew", "email"=>"we@sd.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "first_name"=>"swswws", "last_name"=>"weew", "age"=>"4334", "weight_kg"=>"434", "height_cm"=>"4343"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "username", "age", "weight_kg", "height_cm", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["first_name", "swswws"], ["last_name", "weew"], ["email", "we@sd.com"], ["username", "ew"], ["age", 4334], ["weight_kg", 434], ["height_cm", 4343], ["password_digest", "$2a$12$VjRb3fw3QwHMIxHzVpAogeP3tDcdQyngzHjuav858UqA2yATgoeRi"], ["created_at", "2022-08-09 23:11:07.790957"], ["updated_at", "2022-08-09 23:11:07.790957"]]
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `create'
+Completed 200 OK in 186ms (Views: 0.3ms | ActiveRecord: 3.2ms | Allocations: 4652)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:11:07 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:12:23 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 187ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 1273)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:12:37 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 185ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 874)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:15:07 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 182ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:17:19 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:17:19 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 28ms (Views: 0.8ms | ActiveRecord: 3.4ms | Allocations: 13042)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:17:23 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 184ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 1164)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:17:25 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 181ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 890)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:19:20 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:19:20 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 3.4ms | Allocations: 2346)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:19:31 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 180ms (Views: 1.2ms | ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:21:58 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:21:58 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 7ms (Views: 0.6ms | ActiveRecord: 3.3ms | Allocations: 2345)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:22:03 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 179ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 874)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:24:35 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:24:35 +0000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 29ms (Views: 0.8ms | ActiveRecord: 4.7ms | Allocations: 13048)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:24:46 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 177ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 1164)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:26:01 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:26:01 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 813)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:26:08 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 182ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 874)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:28:39 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 5ms (Views: 0.8ms | ActiveRecord: 0.9ms | Allocations: 820)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:30:28 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 188ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 875)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:30:28 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/login" for 10.0.2.2 at 2022-08-09 23:30:45 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 180ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 890)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:30:45 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:39:34 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:39:34 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 13ms (Views: 0.8ms | ActiveRecord: 4.0ms | Allocations: 5022)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:41:19 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 803)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:42:56 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:42:56 +0000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 29ms (Views: 1.2ms | ActiveRecord: 3.9ms | Allocations: 13010)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:42:59 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 830)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:43:02 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 820)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-09 23:43:05 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 100)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:43:05 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-09 23:43:05 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 99)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-09 23:58:10 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:00:10 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:07:00 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:08:13 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:09:08 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | Allocations: 85)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:10:12 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:12:28 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 85)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:12:39 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:17:21 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:17:21 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 88)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:17:59 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | Allocations: 85)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 00:18:03 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 221ms (Views: 0.9ms | ActiveRecord: 5.3ms | Allocations: 3774)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:18:04 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:21:19 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:21:19 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 836)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 00:21:21 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:21:21 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:21:21 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:27:12 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:27:12 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 341)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:27:14 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 92)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 00:27:18 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 209ms (Views: 0.6ms | ActiveRecord: 2.2ms | Allocations: 13052)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:27:18 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 00:27:29 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 99)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:27:29 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:27:29 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:30:03 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:30:03 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:30:05 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:30:05 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:30:05 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:30:05 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 103)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:30:07 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 92)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 00:30:11 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 180ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 900)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:30:11 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:33:16 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:33:16 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:50:in `current_user'
+Completed 200 OK in 7ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 2482)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 00:33:19 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:33:19 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:33:19 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:35:16 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:35:16 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:35:22 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 00:35:28 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 181ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 873)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:35:28 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 00:36:22 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:36:22 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:36:22 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:36:23 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-10 00:36:26 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `authenticate_with_credentials'
+Completed 200 OK in 187ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 885)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:36:27 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
+Started POST "/logout" for 10.0.2.2 at 2022-08-10 00:36:31 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/instagram-icon.png" for 10.0.2.2 at 2022-08-10 00:36:31 +0000
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-10 00:36:31 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/instagram-icon.png"):
+  
