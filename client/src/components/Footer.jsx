@@ -13,10 +13,10 @@ export default function Footer () {
           <div>Resources</div>
           <div>About Us</div>
           <div>
-            <Image src="./instagram-icon.png" alt="Youtube"></Image>
-            <Image src="./instagram-icon.png" alt="Instagram"></Image>
-            <Image src="./instagram-icon.png" alt="Twitter"></Image>
-            <Image src="./instagram-icon.png" alt="Facebook"></Image>
+            <Image className="mx-2" src="/assets/media/images/youtube-icon.png" alt="Youtube"></Image>
+            <Image  className="mx-2" src="/assets/media/images/instagram-icon.png" alt="Instagram"></Image>
+            <Image  className="mx-2" src="/assets/media/images/twitter-icon.png" alt="Twitter"></Image>
+            <Image  className="mx-2" src="/assets/media/images/faceboon-icon.png" alt="Facebook"></Image>
           </div>
         </footer>
       </Row>

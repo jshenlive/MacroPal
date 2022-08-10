@@ -20,20 +20,19 @@ console.log('props', props);
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" >
       <Container>
-        <Navbar.Brand href="#home">FitPal</Navbar.Brand>
+        <Navbar.Brand href="/">FitPal</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
           {!props.state.isLoggedIn && 
             <>
-            <Nav.Link href="#features">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
 
             </>
           }
           {props.state.isLoggedIn && 
             <>
             <Nav.Link href="#features">Home</Nav.Link>
-            <Nav.Link href="#pricing">Admin</Nav.Link>
               <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
               <NavDropdown.Item href="/Workout">
@@ -62,12 +61,14 @@ console.log('props', props);
             </>
             }
 
-            {props.state.isLoggedIn && <Nav.Link 
-            eventKey={2}
-            onClick={logout}
-             >
+            {props.state.isLoggedIn && 
+            <>
+            <Nav.Link href="#pricing">Admin</Nav.Link>
+            <Nav.Link eventKey={2} onClick={logout}>
             Log out
-            </Nav.Link>}
+            </Nav.Link>
+            </>
+            }
 
           </Nav>
         </Navbar.Collapse>
