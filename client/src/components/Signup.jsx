@@ -53,7 +53,7 @@ handleChange = (event) => {
 axios.post('/api/users', {user}, {withCredentials: true})
     .then(response => {
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         this.props.handleLogin(response.data)
         this.setState({
           redirect: true

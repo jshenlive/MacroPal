@@ -7,7 +7,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 //-- Nav Bar -- //
 export default function Fitpalnavbar(props) {
-console.log('props', props);
   const logout = () => {
     axios.post('/logout')
     .then(()=>
