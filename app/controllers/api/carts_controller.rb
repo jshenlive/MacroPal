@@ -20,7 +20,7 @@ class Api::CartsController < ApplicationController
   end
 
   def remove_exercise
-    exercise_id = params[:product_id].to_s
+    exercise_id = params[:exercise_id].to_s
     modify_cart(exercise_id, -1)
 
     # redirect_back fallback_location: root_path
@@ -31,7 +31,7 @@ class Api::CartsController < ApplicationController
   def modify_cart(exercise_id, estimate_duration)
     cart[exercise_id] = estimate_duration
     cart.delete(exercise_id) if cart[exercise_id] <= 0
-    update_cart(cart)
+    update_cart(:cart,cart)
   end
 
 
