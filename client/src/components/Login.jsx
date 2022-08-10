@@ -37,7 +37,7 @@ export default class Login extends Component {
     
     axios.post('/login', {user}, {withCredentials: true})
     .then(response => {
-
+      console.log('response-data-in-login', response.data)
       if (response.status === 200) {
         this.props.handleLogin(response.data)
         this.setState({

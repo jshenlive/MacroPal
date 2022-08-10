@@ -15,7 +15,7 @@ export default function Fitpalnavbar(props) {
     })
     .catch(error => console.log('api errors:', error))
   }
-  
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" >
       <Container>

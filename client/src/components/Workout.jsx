@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { randNumGen } from "../helpers/helpers"
 import { AppUnits } from "../hooks/useAppData"
 import Axios from "axios";
@@ -10,22 +11,27 @@ import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import '../App.scss'
 
-export default function Exercise () {
+export default function Exercise (props) {
 
+  const [cart, setCart] = useState([]);
   const [exercises, setExercises] = useState([]);
   const [showResults, setShowResults] = useState(false);
-  const [showSummary, setshowSummary] = useState(false);
   const [query, setQuery] = useState("");
   const [queryItems, setQueryItems] = useState({});
   const [suggestions, setSuggestions] = useState([]);
   const [exerciseCalories, setExerciseCalories] = useState("");
   const [durations, setDurations] = useState("");
+  const [exerciseAdded, setEexerciseAdded] = useState(false);
+  const [exerciseListDisplay, setExerciseListDisplay] = useState(false);
   const {
     units,
     setUnits,
     setUnitFunction,
     calculateWeightInLbs,
   } = AppUnits();
+
+  //navigation function
+  const navigate = useNavigate();
 
   const exampleWeight = 67;
   
@@ -93,8 +99,8 @@ export default function Exercise () {
       setShowResults(true);
   };
 
-  const addExercise = async() => {
- // object with exercise information
+  const addExercise = () => {
+//  object with exercise information
     const exerciseData = {
       exercise_id: randNumGen,
       workout_id: queryItems.id,
@@ -105,23 +111,48 @@ export default function Exercise () {
     const reqData = {"exercise": exerciseData}
 
       // async function to post the exercise object to backend
-      const response = await Axios.post('/api/carts/add_exercise',   {"exercise_id": queryItems.id, "exercise_duration":durations})
+      return Axios.post('/api/carts/add_exercise',   {"exercise_id": queryItems.id, "exercise_duration":durations})
       .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
+
+        //get cart(list of exercises added) data after an exercise is added,set the state of cart
+        return Axios.get('/api/carts')
+        .then((response) => {
+          setCart(response.data)
+          setExerciseListDisplay(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      }).catch((error) => {
         console.log(error);
       });
-
-    setshowSummary(true);
   }
+
+  const submitAllExercise = () => {
+
+        const userData = {
+          id: props.state.user_id,
+          date: new Date(),
+        }
+
+          // async function to submit workout (cart) to rails
+          return Axios.post('/api/workouts',   {"user_id": userData.id, "date":userData.date})
+          .then((response) => {
+            
+            if (response.status === 200){
+                // 👇️ navigate to /
+                navigate('/WorkoutList');
+            }
+            
+          }).catch((error) => {
+            console.log(error);
+          });
+      }
+
       return (
         <Container fluid>
           <Row>
 
-            <Col>
-            </Col>
-            {!showSummary? 
             <Col>       
               <div className="workout-title mt-5">
                 Calculate How Many Calories You're Burning
@@ -214,59 +245,87 @@ export default function Exercise () {
             </Button>
             : null }
             <br/>
-            { showResults ? 
+ 
             <Row>
+            { showResults ? 
+              <>
+              <Row>
+
               <Col>
-                <div>Total Calories burned: {exerciseCalories}</div> 
+              <div>Calories burned:{exerciseCalories}</div>
+              <br/>
               </Col>
+              </Row>
+
+              <Row>
+              <h3>{query}!</h3>
+              <br/>
+              <p>
+              Regular cycling stimulates and improves your heart, lungs and circulation, reducing your risk of cardiovascular diseases. Cycling strengthens your heart muscles, lowers resting pulse and reduces blood fat levels.
+              </p>
+              </Row>
+
+              <Row>
+              {!exerciseListDisplay ? 
               <Col>
-                <Button 
+
+              <Button 
                   className="mt-2" 
                   variant="info" 
                   type="submit"
                   onClick={() => addExercise()}
                   >
-                    Add Exercise
+                    Submit
               </Button>
-              </Col>
-            </Row>
-            : null }
-            </Col>
-              :
-              <Col className="mt-5">
-                <Row>
-                  <div> Exercise Added!</div>
-                </Row>
-                <Row>
-                  <Col>
-                    <div> 
-                      <h3>{query}!</h3>
-                      <p>
-                      Regular cycling stimulates and improves your heart, lungs and circulation, reducing your risk of cardiovascular diseases. Cycling strengthens your heart muscles, lowers resting pulse and reduces blood fat levels.
-                      </p>
 
-                    </div>
-                    <Row>
-                      <div>Your Exercises Today</div>
+              </Col>
+              : 
+                    <Col>
                     <Button 
                     className="mt-2" 
                     variant="info" 
                     type="submit"
+                    onClick={() => addExercise()}
                     >
-                      View
+                      Add More 
                     </Button>
-                    </Row>
-                  </Col>
-
-                  <Col>
-
-                  </Col>
-                </Row>
-              </Col>
+                    </Col>
               }
+                    </Row>
+              </>
+            : null }
+            </Row>
+
+            </Col>
 
             <Col>
+            {exerciseListDisplay &&
+            <Row className="mt-5">
+            <h4>Summary of activities added:</h4>
+              {cart.map((exerciseItem, index) => (
+                <>
+                <br></br>
+                <div>{index + 1}: {exerciseItem.exercise.name}</div>
+                <div>Duration:{exerciseItem.exercise_duration}</div>
+                </>
+              ))}
 
+              <h4>Total Calories burned:</h4>
+
+              <Col>
+
+              <Button 
+                  className="mt-2" 
+                  variant="info" 
+                  type="submit"
+                  onClick={() => submitAllExercise()}
+                  >
+                    Submit All exercises
+              </Button>
+
+              </Col>
+            </Row>
+             }
             </Col>
 
           </Row>
