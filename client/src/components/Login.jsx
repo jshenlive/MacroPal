@@ -1,13 +1,21 @@
-
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Navigate } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import './Login.scss'
 import {Link} from 'react-router-dom'
-class Login extends Component {
+
+export default class Login extends Component {
+
   constructor(props) {
     super(props);
     this.state = { 
+      redirect: false,
       username: '',
-      email: '',
       password: '',
       errors: ''
      };
@@ -21,18 +29,20 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const {username, email, password} = this.state
+    const {username, password} = this.state
     let user = {
       username: username,
-      email: email,
       password: password
     }
     
-    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+    axios.post('/login', {user}, {withCredentials: true})
     .then(response => {
-      if (response.data.logged_in) {
+
+      if (response.status == 200) {
         this.props.handleLogin(response.data)
-        // this.redirect()
+        this.setState({
+          redirect: true
+        })
       } else {
         this.setState({
           errors: response.data.errors
@@ -41,10 +51,6 @@ class Login extends Component {
     })
     .catch(error => console.log('api errors:', error))
   };
-  
-  redirect = () => {
-    this.props.history.push('/')
-  }
   
   handleErrors = () => {
     return (
@@ -59,46 +65,59 @@ class Login extends Component {
   };
 
   render() {
-    const {username, email, password} = this.state
+    if (this.state.redirect) {
+      return <Navigate to="/" />
+    }
+    const {username,password} = this.state
     return (
-      <div>
-        <h1>Log In</h1>        
-          <form onSubmit={this.handleSubmit}>
-              <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-              />
-          <input
-            placeholder="email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="password"
-            type="password"
+    <Container fluid>
+      <Row> </Row>
+      <Row className="mt-5 mb-5">
+        <Col></Col>
+        <Col >
+        <Form
+          className="mb-2" 
+          onSubmit={this.handleSubmit}
+        >
+          <div className="loginText">
+            PLease log in to continue...
+          </div>
+            <Form.Group >
+            <Form.Label>Username</Form.Label>
+            <Form.Control 
+              type="text" 
+              name= "username"
+              placeholder="Username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            </Form.Group>
+
+            <Form.Group className="mb-2" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
             name="password"
+            type="password"
+            placeholder="Password" 
             value={password}
             onChange={this.handleChange}
-          />         
-<button placeholder="submit" type="submit">
-            Log In
-          </button>          
-          <div>
-            or <Link to='/signup'>sign up</Link>
-          </div>
-          
-         </form>
-      </div>
-    );
-  }
+            />
+            </Form.Group>
+            <Button className="mt-2" variant="info" type="submit">
+               Login
+            </Button>
+              <div>
+              or <Link to='/Signup'>sign up</Link>
+              </div>
+           </Form>
+           </Col>
+           <Col></Col>
+         </Row>
+         <Row> </Row>
+       </Container>
+     );
+   }
 }
-export default Login;
-
 
 
 
