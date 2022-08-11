@@ -31,13 +31,19 @@ export default function Fitpalnavbar(props) {
             <Nav.Link href="/">Home</Nav.Link>
               <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+              <NavDropdown.Divider />
+
               <NavDropdown.Item href="/Workout">
                 Add Exercise
               </NavDropdown.Item>
-
-              <NavDropdown.Item href="/food">Add Food</NavDropdown.Item>
+              <NavDropdown.Item href="/workoutlist">Workouts</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+
+              <NavDropdown.Item href="/meals">Add Food</NavDropdown.Item>
+              <NavDropdown.Item href="/diet">Diet</NavDropdown.Item>
+              <NavDropdown.Divider />
+
+              <NavDropdown.Item href="/summary">
                 Summary
               </NavDropdown.Item>
             </NavDropdown>
@@ -59,7 +65,7 @@ export default function Fitpalnavbar(props) {
 
             {props.state.isLoggedIn && 
             <>
-            <Nav.Link href="#pricing">Admin</Nav.Link>
+            <Nav.Link href="/admin">Admin</Nav.Link>
             <Nav.Link eventKey={2} onClick={logout}>
             Log out
             </Nav.Link>

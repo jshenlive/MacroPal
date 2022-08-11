@@ -10,14 +10,11 @@ export default function Exercise (props) {
 
   const [cart, setCart] = useState([]);
   const [exercises, setExercises] = useState([]);
-  const [showResults, setShowResults] = useState(false);
   const [query, setQuery] = useState("");
   const [queryItems, setQueryItems] = useState({});
   const [suggestions, setSuggestions] = useState([]);
   const [exerciseCalories, setExerciseCalories] = useState("");
   const [durations, setDurations] = useState("");
-  const [exerciseAdded, setEexerciseAdded] = useState(false);
-  const [exerciseListDisplay, setExerciseListDisplay] = useState(false);
   const [exerciseCaloriesBurned, setExerciseCaloriesBurned] = useState([]);
   const [caloriesTotal, setCaloriesTotal] = useState("");
 
@@ -27,6 +24,12 @@ export default function Exercise (props) {
     setUnitFunction,
     calculateWeightInLbs,
   } = AppUnits();
+
+    //navigation function
+    const navigate = useNavigate();
+
+  //Fetch user's weight
+    const userWeight = props.state.user.weight_kg;
 
   //Fetch list of exercises
   useEffect(() => {
@@ -47,19 +50,50 @@ export default function Exercise (props) {
         setExerciseCaloriesBurned((prev) => {
 
           const caloriesBurned = [...prev];
-          caloriesBurned.pop(exerciseCalories);
+          caloriesBurned.push(exerciseCalories);
           return caloriesBurned;
 
         });
-        
-  }, [exerciseCalories])
 
-  console.log('exerciseCaloriesBurned-outside-useEffect', exerciseCaloriesBurned)
+  }, [cart])
 
-  //navigation function
-  const navigate = useNavigate();
+  //Calculate Total calories burned
+  useEffect(() => {
 
-  const exampleWeight = 67;
+    const calculateTotalCalories = calculateTotalCaloriesBurned();
+    setCaloriesTotal(calculateTotalCalories);
+
+}, [exerciseCaloriesBurned])
+
+//calculation exercise calorie when user inputs duration
+useEffect(() => {
+
+    const calculateWorkoutCalories = () => {
+
+      const durationPerHour = (Number(durations)/60)
+  //if weight is less than 130 pounds
+      if (weight(userWeight) <= 130) {
+        const result = queryItems.calories_burned_s * durationPerHour;
+        setExerciseCalories(result.toFixed(2));
+      }
+      if (weight(userWeight) > 130 && weight(userWeight) <= 155) {
+        const result = queryItems.calories_burned_m * durationPerHour;
+        setExerciseCalories(result.toFixed(2));
+      }
+      if (weight(userWeight) > 155 && weight(userWeight) <= 180) {
+        const result = queryItems.calories_burned_l * durationPerHour;
+        setExerciseCalories(result.toFixed(2));
+      }
+      if (weight(userWeight) > 180) {
+        const result = queryItems.calories_burned_xl * durationPerHour;
+        setExerciseCalories(result.toFixed(2));
+      }
+
+    };
+    calculateWorkoutCalories();
+
+  }, [durations])
+
   
   const weight = function(exampleWeight) {
     if (units.name === "English") {
@@ -68,12 +102,15 @@ export default function Exercise (props) {
     if (units.name === "Metric") {
       return exampleWeight;
     }
-  }
+  };
 
+  //Choose your Activity Input change
   const onChangeHandler = (query) => {
+    
+    let matches = [];
 
-    let matches = []
     if (query.length > 0) {
+
       matches = exercises.filter( exercise => {
         //gi modifier sets case insensitivity
         const regex = new RegExp(`${query}`, "gi");
@@ -82,7 +119,19 @@ export default function Exercise (props) {
     }
     setSuggestions(matches)
     setQuery(query)
-  }
+  };
+//Input durations change handler
+  const onDurationInputChangeHandler = (event) => {
+
+    const regExp = /[a-zA-Z]/g;
+
+    if (!regExp.test(event.target.value)) {
+
+      setDurations(event.target.value)
+
+    }
+
+  };
 
   const onSuggestHandler = (query) => {
     setQuery(query.name);
@@ -90,32 +139,10 @@ export default function Exercise (props) {
     setSuggestions([]);
   };
 
-  const calculateWorkoutCalories = () => {
-
-    const durationPerHour = (Number(durations)/60)
-//if weight is less than 130 pounds
-    if (weight(exampleWeight) <= 130) {
-      const result = queryItems.calories_burned_s * durationPerHour;
-      setExerciseCalories(result.toFixed(2));
-    }
-    if (weight(exampleWeight) > 130 && weight(exampleWeight) <= 155) {
-      const result = queryItems.calories_burned_m * durationPerHour;
-      setExerciseCalories(result.toFixed(2));
-    }
-    if (weight(exampleWeight) > 155 && weight(exampleWeight) <= 180) {
-      const result = queryItems.calories_burned_l * durationPerHour;
-      setExerciseCalories(result.toFixed(2));
-    }
-    if (weight(exampleWeight) > 180) {
-      const result = queryItems.calories_burned_xl * durationPerHour;
-      setExerciseCalories(result.toFixed(2));
-    }
-      setShowResults(true);
-  };
 
   const addExercise = () => {
 
-    calculateWorkoutCalories();
+
 //  object with exercise information
     const exerciseData = {
       exercise_id: randNumGen,
@@ -146,26 +173,22 @@ export default function Exercise (props) {
       });
   }
 
-
   const submitAllExercise = () => {
 
         const userData = {
 
-          id: props.state.user.data.user.id,
+          id: props.state.user.id,
           date: new Date(),
         }
 
           // async function to submit workout (cart) to rails
           return Axios.post('/api/workouts',   {"user_id": userData.id, "date":userData.date})
           .then((response) => {
-            
-            if (response.status === 200){
-                // 👇️ navigate to /
+
                 navigate('/WorkoutList');
-            }
             
           }).catch((error) => {
-            console.log(error);
+            console.log('error', error);
           });
       }
   
@@ -173,14 +196,17 @@ export default function Exercise (props) {
   const calculateTotalCaloriesBurned = () => {
 
     let sum = 0;
-    const arr = exerciseCaloriesBurned.one;
+    const arr = exerciseCaloriesBurned.map(str => {
+      return Number(str);
+    });
     
     for (const value of arr) {
       sum += value;
     }
 
-  }
+    return sum;
 
+  }
 
       return (
         <Container fluid>
@@ -232,7 +258,7 @@ export default function Exercise (props) {
                       <Form.Control 
                       type="text"
                       name= "duration"
-                      onChange={event => setDurations(event.target.value)}
+                      onChange={event => onDurationInputChangeHandler(event)}
                       placeholder="Enter Duration"
                       />
                     </FloatingLabel>
@@ -242,7 +268,7 @@ export default function Exercise (props) {
                 <Form.Control 
                       type="text"
                       className="mt-2"
-                      placeholder={`Your Weight: ${weight(exampleWeight)} ${units.mass}`}
+                      placeholder={`Your Weight: ${weight(userWeight)} ${units.mass}`}
                       readOnly
                       />
                   <div key="inline-radio" className="mb-3">
@@ -268,36 +294,45 @@ export default function Exercise (props) {
                 </Col>
               </Row>
 
-            <Button 
-            className="mt-2" 
-            variant="info" 
-            type="submit"
-            onClick={() => addExercise()}
-            >
-              Add Exercise
-            </Button>
-
-            <br/>
- 
-            <Row>
-
-
               <Row>
 
-              <Col>
-              <div>Calories burned:{exerciseCalories}</div>
-              <br/>
-              </Col>
+                <Col>
+                  <Button 
+                  className="mt-2" 
+                  variant="info" 
+                  type="submit"
+                  onClick={() => addExercise()}
+                  >
+                    Add Exercise
+                  </Button>
+                </Col>
+
+                <Col>
+
+                <div>
+                Calories burned:  
+                  {(durations && query)? <span> {exerciseCalories}</span>
+                  :
+                  <span> 0</span>
+                   }
+                </div>
+                <br/>
+
+                </Col>
+
               </Row>
 
-              <Row>
+
+            <Row>
+              { (durations && queryItems && query ) ?
+              <Row className="mt-5">
               <h3>{query}!</h3>
               <br/>
               <p>
               Activity Summary Here
               </p>
               </Row>
-
+              : null }
 
 
             </Row>
@@ -305,22 +340,21 @@ export default function Exercise (props) {
             </Col>
 
             <Col>
-            {setExerciseListDisplay &&
+            { cart.length > 0?
             <Row className="mt-5">
-            <h4>Summary of activities added:</h4>
+            <h4 className="mb-2">Summary of activities added:</h4>
               {cart.map((exerciseItem, index) => (
-                <>
-                <br></br>
+                <div className="mt-2">
                 <div>{index + 1}: {exerciseItem.exercise.name}</div>
                 <div>Duration:{exerciseItem.exercise_duration}</div>
-                <div>Calories Burned:{exerciseCaloriesBurned}</div>
-                </>
+                <div>Calories Burned:{exerciseCaloriesBurned[index+1]}</div>
+                </div>
               ))}
 
-              <h4>Total Calories burned: {caloriesTotal}</h4>
+              <h4 className="mt-5">Total Calories burned: {caloriesTotal}</h4>
 
               <Col>
-
+                
               <Button 
                   className="mt-2" 
                   variant="info" 
@@ -329,10 +363,10 @@ export default function Exercise (props) {
                   >
                     Submit All exercises
               </Button>
-
               </Col>
             </Row>
-            }
+                : null }
+
             </Col>
 
           </Row>

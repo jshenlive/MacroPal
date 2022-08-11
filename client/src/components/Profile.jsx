@@ -77,7 +77,7 @@ export default function Profile(props) {
   
                     <Card.Title>Top section</Card.Title>
   
-                    <Card.Text>
+                    <Card.Text>User 
   
                     Biometric
   
@@ -93,11 +93,11 @@ export default function Profile(props) {
 
           <Row>
 
-            <Col xs={2} >
+            <Col xs={3}>
 
             <Card 
               bg="Secondary"
-              style={{ width: '18rem' }}
+              style={{ width: '20rem' }}
               key="Secondary"
               className="mb-2"
               text={"dark"}
@@ -137,7 +137,7 @@ export default function Profile(props) {
 
             </Col>
 
-            <Col xs={8} >
+            <Col>
 
             <Card >
               
