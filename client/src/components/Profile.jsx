@@ -11,7 +11,7 @@ export default function Profile(props) {
 
   if (props.state.user === undefined || props.state.user === {}) {
 
-    setTimeout(() => window.location.reload(false),1000);
+    setTimeout(() => window.location.reload(false),750);
 
     return(
       

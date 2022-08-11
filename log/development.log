@@ -26296,3 +26296,464 @@ Processing by Api::ExercisesController#index as HTML
 Completed 200 OK in 27ms (Views: 26.0ms | ActiveRecord: 0.5ms | Allocations: 25953)
 
 
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 08:59:23 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 27ms (Views: 0.8ms | ActiveRecord: 3.6ms | Allocations: 13545)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 08:59:31 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 194ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 1169)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 08:59:32 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 821)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 08:59:34 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 820)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 08:59:36 +0000
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-11 08:59:36 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mUser Load (20.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 23ms (Views: 0.5ms | ActiveRecord: 20.3ms | Allocations: 3247)
+
+
+  [1m[36mExercise Load (0.9ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 51ms (Views: 29.3ms | ActiveRecord: 2.7ms | Allocations: 32359)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-11 08:59:43 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>9, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>9, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 4ms (ActiveRecord: 0.2ms | Allocations: 1687)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-11 08:59:43 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 796)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-11 08:59:51 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>37, "exercise_duration"=>"231", "cart"=>{"exercise_id"=>37, "exercise_duration"=>"231"}}
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2)[0m  [["id", 9], ["id", 37]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 3ms (ActiveRecord: 0.4ms | Allocations: 929)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-11 08:59:51 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2)[0m  [["id", 9], ["id", 37]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 872)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-11 09:00:00 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>101, "exercise_duration"=>"eee", "cart"=>{"exercise_id"=>101, "exercise_duration"=>"eee"}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2)[0m  [["id", 9], ["id", 37]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 3ms (ActiveRecord: 0.3ms | Allocations: 893)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-11 09:00:00 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2)[0m  [["id", 9], ["id", 37]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 869)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-11 09:00:02 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>101, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>101, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3)[0m  [["id", 9], ["id", 37], ["id", 101]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 3ms (ActiveRecord: 0.3ms | Allocations: 984)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-11 09:00:02 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3)[0m  [["id", 9], ["id", 37], ["id", 101]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 996)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-11 09:00:56 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>8, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>8, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3, $4)[0m  [["id", 9], ["id", 37], ["id", 101], ["id", 8]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 4ms (ActiveRecord: 0.3ms | Allocations: 1077)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-11 09:00:56 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3, $4)[0m  [["id", 9], ["id", 37], ["id", 101], ["id", 8]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 1125)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:01:29 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Started GET "/api/exercises" for 10.0.2.2 at 2022-08-11 09:01:29 +0000
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 1047)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.5ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.5ms | Allocations: 25954)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-11 09:01:34 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>6, "exercise_duration"=>"", "cart"=>{"exercise_id"=>6, "exercise_duration"=>""}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3, $4)[0m  [["id", 9], ["id", 37], ["id", 101], ["id", 8]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 3ms (ActiveRecord: 0.3ms | Allocations: 1073)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-11 09:01:34 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3, $4)[0m  [["id", 9], ["id", 37], ["id", 101], ["id", 8]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 1123)
+
+
+Started POST "/api/carts/add_exercise" for 10.0.2.2 at 2022-08-11 09:01:47 +0000
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>6, "exercise_duration"=>"23", "cart"=>{"exercise_id"=>6, "exercise_duration"=>"23"}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3, $4, $5)[0m  [["id", 9], ["id", 37], ["id", 101], ["id", 8], ["id", 6]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 3ms (ActiveRecord: 0.3ms | Allocations: 1166)
+
+
+Started GET "/api/carts" for 10.0.2.2 at 2022-08-11 09:01:47 +0000
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3, $4, $5)[0m  [["id", 9], ["id", 37], ["id", 101], ["id", 8], ["id", 6]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 1251)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:02:20 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 222)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:20 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 91)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:21 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:02:22 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 176ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 891)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:23 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:02:25 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:25 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:25 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:02:26 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 182ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 874)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:28 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:02:29 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:29 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:30 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:02:32 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 184ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:33 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:02:38 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:38 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:38 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:02:39 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 187ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:40 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:02:42 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:42 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:43 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:02:44 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 179ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 874)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:45 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 804)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:02:56 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:56 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:57 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:02:58 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 181ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:02:59 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 803)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:06 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:03:07 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:07 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:08 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:03:08 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 177ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:09 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:15 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.6ms | Allocations: 803)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:03:15 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:15 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:16 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 89)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:03:17 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 184ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:18 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:24 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 803)
+
+
+Started POST "/logout" for 10.0.2.2 at 2022-08-11 09:03:24 +0000
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 216)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:24 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:25 +0000
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started POST "/login" for 10.0.2.2 at 2022-08-11 09:03:26 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"jojo", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "jojo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `authenticate_with_credentials'
+Completed 200 OK in 181ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 873)
+
+
+Started GET "/logged_in" for 10.0.2.2 at 2022-08-11 09:03:27 +0000
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 803)
+
+

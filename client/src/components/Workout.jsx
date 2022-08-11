@@ -281,7 +281,7 @@ export default function Exercise (props) {
  
             <Row>
 
-              <>
+
               <Row>
 
               <Col>
@@ -298,34 +298,7 @@ export default function Exercise (props) {
               </p>
               </Row>
 
-              <Row>
 
-              <Col>
-
-              <Button 
-                  className="mt-2" 
-                  variant="info" 
-                  type="submit"
-                  onClick={() => addExercise()}
-                  >
-                    Submit
-              </Button>
-
-              </Col>
-
-                    <Col>
-                    <Button 
-                    className="mt-2" 
-                    variant="info" 
-                    type="submit"
-                    onClick={() => addExercise()}
-                    >
-                      Add More 
-                    </Button>
-                    </Col>
-
-                    </Row>
-              </>
 
             </Row>
 
