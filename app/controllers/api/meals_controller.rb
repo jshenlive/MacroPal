@@ -39,17 +39,17 @@ class Api::MealsController < ApplicationController
   # PATCH/PUT /meals/1
   def update
     ##TODO
-    # if @meal.update(meal_params)
-    #   render json: @meal
-    # else
-    #   render json: @meal.errors, status: :unprocessable_entity
-    # end
+    if @meal.update(meal_params)
+      render json: @meal
+    else
+      render json: @meal.errors, status: :unprocessable_entity
+    end
   end
 
   # DELETE /meals/1
   def destroy
     ##TODO
-    # @meal.destroy
+    @meal.destroy
   end
 
   private
