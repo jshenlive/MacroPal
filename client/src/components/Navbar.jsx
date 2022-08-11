@@ -1,9 +1,6 @@
-import React from 'react';
 import axios from 'axios';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import React from 'react';
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 //-- Nav Bar -- //
 export default function Fitpalnavbar(props) {
@@ -31,16 +28,22 @@ export default function Fitpalnavbar(props) {
           }
           {props.state.isLoggedIn && 
             <>
-            <Nav.Link href="#features">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
               <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+              <NavDropdown.Divider />
+
               <NavDropdown.Item href="/Workout">
                 Add Exercise
               </NavDropdown.Item>
-
-              <NavDropdown.Item href="#action/3.3">Add Food</NavDropdown.Item>
+              <NavDropdown.Item href="/workoutlist">Workouts</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+
+              <NavDropdown.Item href="/meals">Add Food</NavDropdown.Item>
+              <NavDropdown.Item href="/diet">Diet</NavDropdown.Item>
+              <NavDropdown.Divider />
+
+              <NavDropdown.Item href="/summary">
                 Summary
               </NavDropdown.Item>
             </NavDropdown>
@@ -62,7 +65,7 @@ export default function Fitpalnavbar(props) {
 
             {props.state.isLoggedIn && 
             <>
-            <Nav.Link href="#pricing">Admin</Nav.Link>
+            <Nav.Link href="/admin">Admin</Nav.Link>
             <Nav.Link eventKey={2} onClick={logout}>
             Log out
             </Nav.Link>

@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
 import axios from 'axios'
+import React, { Component } from 'react';
 import { Navigate } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import '../App.scss'
 import {Link} from 'react-router-dom'
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import '../App.scss'
 
 export default class Login extends Component {
 
@@ -37,7 +33,7 @@ export default class Login extends Component {
     
     axios.post('/login', {user}, {withCredentials: true})
     .then(response => {
-      console.log('response-data-in-login', response.data)
+
       if (response.status === 200) {
         this.props.handleLogin(response.data)
         this.setState({
@@ -65,10 +61,14 @@ export default class Login extends Component {
   };
 
   render() {
+
+    console.log('state', this.state);
+
     if (this.state.redirect) {
-      return <Navigate to="/" />
+      return <Navigate to="/profile" />
     }
-    const {username,password} = this.state
+    const {username,password} = this.state;
+
     return (
     <Container fluid>
       <Row> </Row>
