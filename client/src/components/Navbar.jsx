@@ -28,14 +28,14 @@ export default function Fitpalnavbar(props) {
           }
           {props.state.isLoggedIn && 
             <>
-            <Nav.Link href="#features">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
               <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
               <NavDropdown.Item href="/Workout">
                 Add Exercise
               </NavDropdown.Item>
 
-              <NavDropdown.Item href="#action/3.3">Add Food</NavDropdown.Item>
+              <NavDropdown.Item href="/food">Add Food</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Summary

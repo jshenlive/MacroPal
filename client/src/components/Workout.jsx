@@ -25,6 +25,18 @@ export default function Exercise (props) {
     calculateWeightInLbs,
   } = AppUnits();
 
+  useEffect(() => {
+
+    const loadExercises = async() => {
+      // async function to get the exercise data from rails 
+      const response = await Axios.get('/api/exercises');
+      // response.data is an array with objects of exercises
+      setExercises(response.data)
+    }
+    loadExercises();
+
+  }, [])
+
   //navigation function
   const navigate = useNavigate();
 
@@ -38,18 +50,6 @@ export default function Exercise (props) {
       return exampleWeight;
     }
   }
-
-  useEffect(() => {
-
-    const loadExercises = async() => {
-      // async function to get the exercise data from rails 
-      const response = await Axios.get('/api/exercises');
-      // response.data is an array with objects of exercises
-      setExercises(response.data)
-    }
-    loadExercises();
-
-  }, [])
 
   const onChangeHandler = (query) => {
 
@@ -110,6 +110,7 @@ export default function Exercise (props) {
       .then((response) => {
 
         //get cart(list of exercises added) data after an exercise is added,set the state of cart
+        //in future rmove and add a state instead
         return Axios.get('/api/carts')
         .then((response) => {
           setCart(response.data)

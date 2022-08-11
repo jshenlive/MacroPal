@@ -27,14 +27,14 @@ class App extends Component {
     console.log('app-data', data)
     this.setState({
       isLoggedIn: true,
-      user: data,
+      user: data.user,
     })
   }
 
   handleLogout = () => {
     this.setState({
     isLoggedIn: false,
-    user: {}
+    user: {},
     })
   }
 
@@ -43,7 +43,7 @@ class App extends Component {
    {withCredentials: true})    
     .then(response => {
       if (response.data.logged_in) {
-        this.handleLogin(response)
+        this.handleLogin(response.data)
       } else {
         this.handleLogout()
       }
@@ -54,7 +54,7 @@ class App extends Component {
 
 
   render() {
-console.log(this.state)
+
     return (
       <>
       <Navbar state={this.state}/>
