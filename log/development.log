@@ -6767,3 +6767,305 @@ FOREIGN KEY ("user_id")
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
   [1m[36mExercise Create (0.2ms)[0m  [1m[32mINSERT INTO "exercises" ("name", "calories_burned_s", "calories_burned_m", "calories_burned_l", "calories_burned_xl", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Teach exercise classes (& participate)"], ["calories_burned_s", 384], ["calories_burned_m", 457], ["calories_burned_l", 531], ["calories_burned_xl", 605], ["created_at", "2022-08-10 19:27:21.110547"], ["updated_at", "2022-08-10 19:27:21.110547"]]
   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/logged_in" for 127.0.0.1 at 2022-08-10 17:43:10 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 29ms (Views: 1.2ms | ActiveRecord: 7.3ms | Allocations: 13540)
+
+
+Started GET "/logged_in" for 127.0.0.1 at 2022-08-10 17:44:31 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 831)
+
+
+Started GET "/api/exercises" for 127.0.0.1 at 2022-08-10 17:44:31 -0700
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (23.8ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 116ms (Views: 71.3ms | ActiveRecord: 40.8ms | Allocations: 31033)
+
+
+Started POST "/api/carts/add_exercise" for 127.0.0.1 at 2022-08-10 17:45:00 -0700
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>1, "exercise_duration"=>"30", "cart"=>{"exercise_id"=>1, "exercise_duration"=>"30"}}
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 4ms (ActiveRecord: 0.2ms | Allocations: 1713)
+
+
+Started GET "/api/carts" for 127.0.0.1 at 2022-08-10 17:45:00 -0700
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 814)
+
+
+Started POST "/api/carts/add_exercise" for 127.0.0.1 at 2022-08-10 17:45:11 -0700
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>1, "exercise_duration"=>"30", "cart"=>{"exercise_id"=>1, "exercise_duration"=>"30"}}
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 2ms (ActiveRecord: 0.2ms | Allocations: 798)
+
+
+Started GET "/api/carts" for 127.0.0.1 at 2022-08-10 17:45:11 -0700
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 743)
+
+
+Started POST "/api/carts/add_exercise" for 127.0.0.1 at 2022-08-10 17:45:34 -0700
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>8, "exercise_duration"=>"45", "cart"=>{"exercise_id"=>8, "exercise_duration"=>"45"}}
+  [1m[36mExercise Load (0.5ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2)[0m  [["id", 1], ["id", 8]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 2ms (ActiveRecord: 0.5ms | Allocations: 924)
+
+
+Started GET "/api/carts" for 127.0.0.1 at 2022-08-10 17:45:34 -0700
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2)[0m  [["id", 1], ["id", 8]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 870)
+
+
+Started POST "/api/carts/add_exercise" for 127.0.0.1 at 2022-08-10 17:45:58 -0700
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>125, "exercise_duration"=>"45", "cart"=>{"exercise_id"=>125, "exercise_duration"=>"45"}}
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3)[0m  [["id", 1], ["id", 8], ["id", 125]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 7ms (ActiveRecord: 0.3ms | Allocations: 982)
+
+
+Started GET "/api/carts" for 127.0.0.1 at 2022-08-10 17:45:58 -0700
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3)[0m  [["id", 1], ["id", 8], ["id", 125]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 0.2ms | Allocations: 996)
+
+
+Started POST "/api/workouts" for 127.0.0.1 at 2022-08-10 17:46:17 -0700
+Processing by Api::WorkoutsController#create as HTML
+  Parameters: {"user_id"=>1, "date"=>"2022-08-11T00:46:17.366Z", "workout"=>{"date"=>"2022-08-11T00:46:17.366Z", "user_id"=>1}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:71:in `create_workout'
+  [1m[36mExercise Load (0.4ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" IN ($1, $2, $3)[0m  [["id", 1], ["id", 8], ["id", 125]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mWorkout Create (2.0ms)[0m  [1m[32mINSERT INTO "workouts" ("total_workout_calories", "workout_duration", "date", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["total_workout_calories", 825], ["workout_duration", 120], ["date", "2022-08-11"], ["user_id", 1], ["created_at", "2022-08-11 00:46:17.442395"], ["updated_at", "2022-08-11 00:46:17.442395"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mLineExercise Create (4.1ms)[0m  [1m[32mINSERT INTO "line_exercises" ("exercise_duration", "total_exercise_calories", "exercise_id", "workout_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["exercise_duration", 30], ["total_exercise_calories", 240], ["exercise_id", 1], ["workout_id", 1], ["created_at", "2022-08-11 00:46:17.447717"], ["updated_at", "2022-08-11 00:46:17.447717"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mLineExercise Create (0.3ms)[0m  [1m[32mINSERT INTO "line_exercises" ("exercise_duration", "total_exercise_calories", "exercise_id", "workout_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["exercise_duration", 45], ["total_exercise_calories", 180], ["exercise_id", 8], ["workout_id", 1], ["created_at", "2022-08-11 00:46:17.453607"], ["updated_at", "2022-08-11 00:46:17.453607"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mLineExercise Create (0.3ms)[0m  [1m[32mINSERT INTO "line_exercises" ("exercise_duration", "total_exercise_calories", "exercise_id", "workout_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["exercise_duration", 45], ["total_exercise_calories", 405], ["exercise_id", 125], ["workout_id", 1], ["created_at", "2022-08-11 00:46:17.455394"], ["updated_at", "2022-08-11 00:46:17.455394"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+Completed 200 OK in 59ms (Views: 0.3ms | ActiveRecord: 13.2ms | Allocations: 19215)
+
+
+Started GET "/api/worksout/1" for 127.0.0.1 at 2022-08-10 17:46:48 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/worksout/1"):
+  
+Started GET "/api/workout/1" for 127.0.0.1 at 2022-08-10 17:46:57 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/workout/1"):
+  
+Started GET "/api/workouts/1" for 127.0.0.1 at 2022-08-10 17:46:58 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/workouts/1"):
+  
+Started GET "/api/workouts/user/1" for 127.0.0.1 at 2022-08-10 17:47:30 -0700
+Processing by Api::WorkoutsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mWorkout Load (0.3ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE (user_id = '1')[0m
+  ↳ app/controllers/api/workouts_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.4ms | ActiveRecord: 0.3ms | Allocations: 1096)
+
+
+Started GET "/api/workouts/1" for 127.0.0.1 at 2022-08-10 17:47:46 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/workouts/1"):
+  
+Started GET "/api/workouts/1" for 127.0.0.1 at 2022-08-10 17:48:22 -0700
+Processing by Api::WorkoutsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mWorkout Load (0.2ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mCACHE Workout Load (0.0ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mLineExercise Load (0.2ms)[0m  [1m[34mSELECT "line_exercises".* FROM "line_exercises" WHERE "line_exercises"."workout_id" = $1[0m  [["workout_id", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:15:in `map'
+  [1m[36mExercise Load (0.1ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+  [1m[36mExercise Load (0.1ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+  [1m[36mExercise Load (0.1ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 125], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+Completed 200 OK in 33ms (Views: 0.9ms | ActiveRecord: 6.7ms | Allocations: 18038)
+
+
+Started GET "/api/workouts/user/1" for 127.0.0.1 at 2022-08-10 17:49:38 -0700
+Processing by Api::WorkoutsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mWorkout Load (0.2ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE (user_id = '1')[0m
+  ↳ app/controllers/api/workouts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.2ms | Allocations: 858)
+
+
+Started GET "/logged_in" for 127.0.0.1 at 2022-08-10 17:49:54 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Started GET "/api/exercises" for 127.0.0.1 at 2022-08-10 17:49:54 -0700
+  [1m[36mUser Load (96.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:81:in `current_user'
+Completed 200 OK in 130ms (Views: 1.1ms | ActiveRecord: 103.8ms | Allocations: 12416)
+
+
+Processing by Api::ExercisesController#index as HTML
+  [1m[36mExercise Load (0.8ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises"[0m
+  ↳ app/controllers/api/exercises_controller.rb:8:in `index'
+Completed 200 OK in 52ms (Views: 50.7ms | ActiveRecord: 0.8ms | Allocations: 26223)
+
+
+Started POST "/api/carts/add_exercise" for 127.0.0.1 at 2022-08-10 17:49:59 -0700
+Processing by Api::CartsController#add_exercise as HTML
+  Parameters: {"exercise_id"=>1, "exercise_duration"=>"30", "cart"=>{"exercise_id"=>1, "exercise_duration"=>"30"}}
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+No template found for Api::CartsController#add_exercise, rendering head :no_content
+Completed 204 No Content in 2ms (ActiveRecord: 0.2ms | Allocations: 1042)
+
+
+Started GET "/api/carts" for 127.0.0.1 at 2022-08-10 17:49:59 -0700
+Processing by Api::CartsController#show as HTML
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 792)
+
+
+Started POST "/api/workouts" for 127.0.0.1 at 2022-08-10 17:50:00 -0700
+Processing by Api::WorkoutsController#create as HTML
+  Parameters: {"user_id"=>1, "date"=>"2022-08-11T00:50:00.394Z", "workout"=>{"date"=>"2022-08-11T00:50:00.394Z", "user_id"=>1}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:71:in `create_workout'
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `map'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mWorkout Create (0.4ms)[0m  [1m[32mINSERT INTO "workouts" ("total_workout_calories", "workout_duration", "date", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["total_workout_calories", 240], ["workout_duration", 30], ["date", "2022-08-11"], ["user_id", 1], ["created_at", "2022-08-11 00:50:00.411909"], ["updated_at", "2022-08-11 00:50:00.411909"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mLineExercise Create (0.4ms)[0m  [1m[32mINSERT INTO "line_exercises" ("exercise_duration", "total_exercise_calories", "exercise_id", "workout_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["exercise_duration", 30], ["total_exercise_calories", 240], ["exercise_id", 1], ["workout_id", 2], ["created_at", "2022-08-11 00:50:00.422294"], ["updated_at", "2022-08-11 00:50:00.422294"]]
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/workouts_controller.rb:96:in `create_workout'
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 7106)
+
+
+Started GET "/api/workouts/user/1" for 127.0.0.1 at 2022-08-10 17:50:03 -0700
+Processing by Api::WorkoutsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mWorkout Load (0.3ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE (user_id = '1')[0m
+  ↳ app/controllers/api/workouts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.3ms | Allocations: 930)
+
+
+Started GET "/api/workouts/1" for 127.0.0.1 at 2022-08-10 17:50:21 -0700
+Processing by Api::WorkoutsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mWorkout Load (0.2ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mCACHE Workout Load (0.0ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mLineExercise Load (0.3ms)[0m  [1m[34mSELECT "line_exercises".* FROM "line_exercises" WHERE "line_exercises"."workout_id" = $1[0m  [["workout_id", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:15:in `map'
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 125], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+Completed 200 OK in 8ms (Views: 1.2ms | ActiveRecord: 1.2ms | Allocations: 3564)
+
+
+Started GET "/api/workouts/2" for 127.0.0.1 at 2022-08-10 17:50:25 -0700
+Processing by Api::WorkoutsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mWorkout Load (0.2ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mCACHE Workout Load (0.0ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mLineExercise Load (0.4ms)[0m  [1m[34mSELECT "line_exercises".* FROM "line_exercises" WHERE "line_exercises"."workout_id" = $1[0m  [["workout_id", 2]]
+  ↳ app/controllers/api/workouts_controller.rb:15:in `map'
+  [1m[36mExercise Load (0.3ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+Completed 200 OK in 6ms (Views: 0.7ms | ActiveRecord: 0.9ms | Allocations: 2240)
+
+
+Started GET "/api/workouts/user/1" for 127.0.0.1 at 2022-08-10 17:50:49 -0700
+Processing by Api::WorkoutsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mWorkout Load (0.3ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE (user_id = '1')[0m
+  ↳ app/controllers/api/workouts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/api/workouts/1" for 127.0.0.1 at 2022-08-10 17:51:05 -0700
+Processing by Api::WorkoutsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mWorkout Load (0.2ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mCACHE Workout Load (0.0ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mLineExercise Load (0.2ms)[0m  [1m[34mSELECT "line_exercises".* FROM "line_exercises" WHERE "line_exercises"."workout_id" = $1[0m  [["workout_id", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:15:in `map'
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+  [1m[36mExercise Load (0.1ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 125], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+Completed 200 OK in 7ms (Views: 1.0ms | ActiveRecord: 0.9ms | Allocations: 3559)
+
+
+Started GET "/api/workouts/user/1" for 127.0.0.1 at 2022-08-10 17:51:11 -0700
+Processing by Api::WorkoutsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mWorkout Load (0.3ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE (user_id = '1')[0m
+  ↳ app/controllers/api/workouts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/api/workouts/1" for 127.0.0.1 at 2022-08-10 17:51:16 -0700
+Processing by Api::WorkoutsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mWorkout Load (0.3ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mCACHE Workout Load (0.0ms)[0m  [1m[34mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:59:in `set_workout'
+  [1m[36mLineExercise Load (0.2ms)[0m  [1m[34mSELECT "line_exercises".* FROM "line_exercises" WHERE "line_exercises"."workout_id" = $1[0m  [["workout_id", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:15:in `map'
+  [1m[36mExercise Load (0.1ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+  [1m[36mExercise Load (0.2ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+  [1m[36mExercise Load (0.1ms)[0m  [1m[34mSELECT "exercises".* FROM "exercises" WHERE "exercises"."id" = $1 LIMIT $2[0m  [["id", 125], ["LIMIT", 1]]
+  ↳ app/controllers/api/workouts_controller.rb:16:in `block in show'
+Completed 200 OK in 8ms (Views: 1.2ms | ActiveRecord: 1.0ms | Allocations: 3561)
+
+
