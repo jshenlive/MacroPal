@@ -1,16 +1,26 @@
 class Api::MealsController < ApplicationController
   before_action :set_meal, only: [:show, :update, :destroy]
 
-  # GET /meals
+  # GET /meals/users/:id
   def index
     @meals = Meal.where(["user_id = :user_id",{user_id: params[:user_id]})
 
     render json: @meals
   end
 
-  # GET /meals/1
+  # GET /meals/id
   def show
-    render json: @meal
+    @meal = set_meal
+    @line_food = LineFood.where(meal_id: @meal.id)
+    @food = @line_food.map { |item|
+      {food: Food.find(item.food_id), food_amount: item.food_amount, total_food_calories: item.total_food_calories}
+    }
+
+    #should render with the the previous 3 variables as keys into a json object
+    render :json => {:meal => @meal, 
+                                      :line_food => @line_food,
+                                      :food => @food }
+    
   end
 
   # POST /meals
@@ -28,16 +38,18 @@ class Api::MealsController < ApplicationController
 
   # PATCH/PUT /meals/1
   def update
-    if @meal.update(meal_params)
-      render json: @meal
-    else
-      render json: @meal.errors, status: :unprocessable_entity
-    end
+    ##TODO
+    # if @meal.update(meal_params)
+    #   render json: @meal
+    # else
+    #   render json: @meal.errors, status: :unprocessable_entity
+    # end
   end
 
   # DELETE /meals/1
   def destroy
-    @meal.destroy
+    ##TODO
+    # @meal.destroy
   end
 
   private
@@ -52,8 +64,8 @@ class Api::MealsController < ApplicationController
         user_id: params[:user_id],
         date: params[:date])
       
-      meal.total_calories = food_cart_total_calories(weight_class)
-      workout.meal_amount = food_cart_total_amount
+      meal.total_calories = food_cart_total_calories
+      meal.meal_amount = food_cart_total_amount
 
       enhanced_food_cart.each do |entry|
         food = entry[:food]
@@ -65,8 +77,8 @@ class Api::MealsController < ApplicationController
         )
       end
 
-      workout.save!
-      workout
+      meal.save!
+      meal
     end 
 
 

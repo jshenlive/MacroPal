@@ -1,14 +1,14 @@
 class Api::WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy]
 
-  # get /workouts
+  # get /workouts/users/:id
   def index
     @workout = Workout.where(["user_id = :user_id",{user_id: params[:user_id]}])
     
     render json: @workout
   end
 
-  # GET /workouts/1 (with workout id)
+  # GET /workouts/:id (with workout id)
   def show
     @workout = set_workout
     @line_exercises = LineExercise.where(workout_id: @workout.id)

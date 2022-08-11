@@ -52,7 +52,7 @@ class SessionsController < ApplicationController
         empty_food_cart!
 
         session[:user_id] = nil if session[:user_id]
-        p session[:user_id]
+        # p session[:user_id]
         render json: {
           status: 200,
           logged_out: true

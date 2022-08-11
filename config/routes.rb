@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   # get login => post login if success => 
 
   #/api/login
-
-
     # /api/data
     # get '/data', to: 'tests#index'
 
@@ -31,8 +29,6 @@ Rails.application.routes.draw do
     get '/workouts/user/:user_id', to: "workouts#index"
     get '/workouts/:id', to: "workouts#show"
 
-  
-
     # /api/carts
     resource :carts, only: [:show] do
       #/api/carts/add_exercise
@@ -44,6 +40,10 @@ Rails.application.routes.draw do
     resources :line_exercises
 
     resources :meals
+    get '/meals/user/:user_id', to: "meals#index"
+    get '/meals/:id', to: "meals#show"
+
+
     resources :foods
     post '/get_food', to: "foods#get_food"
     resources :line_foods
