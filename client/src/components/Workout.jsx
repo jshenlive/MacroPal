@@ -18,6 +18,9 @@ export default function Exercise (props) {
   const [durations, setDurations] = useState("");
   const [exerciseAdded, setEexerciseAdded] = useState(false);
   const [exerciseListDisplay, setExerciseListDisplay] = useState(false);
+  const [exerciseCaloriesBurned, setExerciseCaloriesBurned] = useState([]);
+  const [caloriesTotal, setCaloriesTotal] = useState("");
+
   const {
     units,
     setUnits,
@@ -25,6 +28,7 @@ export default function Exercise (props) {
     calculateWeightInLbs,
   } = AppUnits();
 
+  //Fetch list of exercises
   useEffect(() => {
 
     const loadExercises = async() => {
@@ -34,8 +38,23 @@ export default function Exercise (props) {
       setExercises(response.data)
     }
     loadExercises();
-
+    
   }, [])
+
+  //update the calories of exercises individually and overall
+  useEffect(() => {
+
+        setExerciseCaloriesBurned((prev) => {
+
+          const caloriesBurned = [...prev];
+          caloriesBurned.pop(exerciseCalories);
+          return caloriesBurned;
+
+        });
+        
+  }, [exerciseCalories])
+
+  console.log('exerciseCaloriesBurned-outside-useEffect', exerciseCaloriesBurned)
 
   //navigation function
   const navigate = useNavigate();
@@ -95,15 +114,14 @@ export default function Exercise (props) {
   };
 
   const addExercise = () => {
+
+    calculateWorkoutCalories();
 //  object with exercise information
     const exerciseData = {
       exercise_id: randNumGen,
       workout_id: queryItems.id,
-      total_exercise_calories: exerciseCalories,
       exercise_duration: durations,
     }
-//request body
-    const reqData = {"exercise": exerciseData}
 
       // async function to post the exercise object to backend
       return Axios.post('/api/carts/add_exercise',   {"exercise_id": queryItems.id, "exercise_duration":durations})
@@ -111,10 +129,14 @@ export default function Exercise (props) {
 
         //get cart(list of exercises added) data after an exercise is added,set the state of cart
         //in future rmove and add a state instead
+
         return Axios.get('/api/carts')
         .then((response) => {
-          setCart(response.data)
-          setExerciseListDisplay(true);
+        setCart(response.data);
+
+        // setExerciseListDisplay(true);
+          // window.location.reload(false);
+          //useEFFect> define dependency (cartstate--> do something)
         })
         .catch((error) => {
           console.log(error);
@@ -124,9 +146,11 @@ export default function Exercise (props) {
       });
   }
 
+
   const submitAllExercise = () => {
 
         const userData = {
+
           id: props.state.user.data.user.id,
           date: new Date(),
         }
@@ -144,6 +168,19 @@ export default function Exercise (props) {
             console.log(error);
           });
       }
+  
+      //🏅function to calculate total calories of all exercises🏅
+  const calculateTotalCaloriesBurned = () => {
+
+    let sum = 0;
+    const arr = exerciseCaloriesBurned.one;
+    
+    for (const value of arr) {
+      sum += value;
+    }
+
+  }
+
 
       return (
         <Container fluid>
@@ -230,20 +267,20 @@ export default function Exercise (props) {
                 </div>
                 </Col>
               </Row>
-            { !showResults ?
+
             <Button 
             className="mt-2" 
             variant="info" 
             type="submit"
-            onClick={() => calculateWorkoutCalories()}
+            onClick={() => addExercise()}
             >
-              Calculate
+              Add Exercise
             </Button>
-            : null }
+
             <br/>
  
             <Row>
-            { showResults ? 
+
               <>
               <Row>
 
@@ -257,12 +294,12 @@ export default function Exercise (props) {
               <h3>{query}!</h3>
               <br/>
               <p>
-              Regular cycling stimulates and improves your heart, lungs and circulation, reducing your risk of cardiovascular diseases. Cycling strengthens your heart muscles, lowers resting pulse and reduces blood fat levels.
+              Activity Summary Here
               </p>
               </Row>
 
               <Row>
-              {!exerciseListDisplay ? 
+
               <Col>
 
               <Button 
@@ -275,7 +312,7 @@ export default function Exercise (props) {
               </Button>
 
               </Col>
-              : 
+
                     <Col>
                     <Button 
                     className="mt-2" 
@@ -286,16 +323,16 @@ export default function Exercise (props) {
                       Add More 
                     </Button>
                     </Col>
-              }
+
                     </Row>
               </>
-            : null }
+
             </Row>
 
             </Col>
 
             <Col>
-            {exerciseListDisplay &&
+            {setExerciseListDisplay &&
             <Row className="mt-5">
             <h4>Summary of activities added:</h4>
               {cart.map((exerciseItem, index) => (
@@ -303,10 +340,11 @@ export default function Exercise (props) {
                 <br></br>
                 <div>{index + 1}: {exerciseItem.exercise.name}</div>
                 <div>Duration:{exerciseItem.exercise_duration}</div>
+                <div>Calories Burned:{exerciseCaloriesBurned}</div>
                 </>
               ))}
 
-              <h4>Total Calories burned:</h4>
+              <h4>Total Calories burned: {caloriesTotal}</h4>
 
               <Col>
 
@@ -321,7 +359,7 @@ export default function Exercise (props) {
 
               </Col>
             </Row>
-             }
+            }
             </Col>
 
           </Row>
