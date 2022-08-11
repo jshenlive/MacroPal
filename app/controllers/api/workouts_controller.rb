@@ -4,7 +4,6 @@ class Api::WorkoutsController < ApplicationController
   # get /workouts/users/:id
   def index
     @workout = Workout.where(["user_id = :user_id",{user_id: params[:user_id]}])
-    
     render json: @workout
   end
 
@@ -15,17 +14,14 @@ class Api::WorkoutsController < ApplicationController
     @exercises = @line_exercises.map { |item|
       {exercise: Exercise.find(item.exercise_id), exercise_duration: item.exercise_duration, total_exercise_calories: item.total_exercise_calories}
     }
-
     #should render with the the previous 3 variables as keys into a json object
     render :json => {:workout => @workout, 
                                       :line_exercises => @line_exercises,
                                       :exercises => @exercises }
-    
   end
 
   # POST /workouts/
   def create
-
     workout = create_workout()
 
     if workout.valid?
@@ -36,14 +32,6 @@ class Api::WorkoutsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /workouts/1 
-  def update
-    if @workout.update(workout_params)
-      render json: @workout
-    else
-      render json: @workout.errors, status: :unprocessable_entity
-    end
-  end
 
   # DELETE /workouts/1  
   def destroy
@@ -69,21 +57,11 @@ class Api::WorkoutsController < ApplicationController
         date: params[:date])
 
       user = User.find_by_id(params[:user_id])
-
-      # refracted into application_controller function
-      # weight_class = ""
-      # if  (0..70).include?(user.weight_kg)
-      #   weight_class = "calories_burned_s"
-      # elsif (71..81).include?(user.weight_kg)
-      #   weight_class = "calories_burned_m"
-      # elsif (82..93).include?(user.weight_kg)
-      #   weight_class = "calories_burned_l"
-      # else
-      #   weight_class = "calories_burned_xl" 
-      # end
-      
-      workout.total_workout_calories = cart_total_calories_burned(weight_class)
+    
+      workout.total_workout_calories = cart_total_calories_burned(weight_class(user.weight_kg))
       workout.workout_duration = cart_total_duration
+
+      weight_class = weight_class(user.weight_kg)
 
       enhanced_cart.each do |entry|
         exercise = entry[:exercise]
@@ -91,7 +69,7 @@ class Api::WorkoutsController < ApplicationController
         workout.line_exercises.new(
           exercise: exercise,
           exercise_duration: exercise_duration,
-          total_exercise_calories: exercise[weight_class(user)] / 60 * exercise_duration
+          total_exercise_calories: exercise[weight_class] / 60 * exercise_duration
         )
       end
 

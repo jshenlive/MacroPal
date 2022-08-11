@@ -73,13 +73,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :food_cart_total_amount
 
-  def weight_class(user)
+  def weight_class(user_weight)
     weight_class = ""
-    if  (0..70).include?(user.weight_kg)
+    if  (0..70).include?(user_weight)
       weight_class = "calories_burned_s"
-    elsif (71..81).include?(user.weight_kg)
+    elsif (71..81).include?(user_weight)
       weight_class = "calories_burned_m"
-    elsif (82..93).include?(user.weight_kg)
+    elsif (82..93).include?(user_weight)
       weight_class = "calories_burned_l"
     else
       weight_class = "calories_burned_xl" 

@@ -97,6 +97,6 @@ class Api::LineExercisesController < ApplicationController
 
       user = User.find_by_id(workout.user_id)
   
-      exercise[weight_class(user)] / 60 * exercise_duration
+      exercise[weight_class(user.weight_kg)] / 60 * exercise_duration
     end 
 end
