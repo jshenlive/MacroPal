@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     end
 
     resources :line_exercises
+    post '/add_line_exercise', to: 'line_exercises#add_line_exercise'
+    patch '/line_exercises/:id', to: 'line_exercises#update_duration' 
 
     resources :meals
     get '/meals/user/:user_id', to: "meals#index"

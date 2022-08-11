@@ -2,12 +2,18 @@ class Api::FoodsController < ApplicationController
   before_action :set_food, only: [:show, :update, :destroy]
 
   def get_food
-    food = Food.where("name LIKE ?","%"+params[:name].titleize+"%").where(category: params[:category].split('-').join(" ").capitalize)
+    
+    category = 'generic-foods'
+    if params[:category]
+      cateory = params[:category]
+    end
+
+    food = Food.where("name LIKE ?","%"+params[:name].titleize+"%").where(category: category.split('-').join(" ").capitalize)
 
     if food.length>0
       render json:food
     else
-      food = fetch_save(params[:name],params[:category],params[:health],params[:brand])
+      food = fetch_save(params[:name],category,params[:health],params[:brand])
 
       if food
         render json:food

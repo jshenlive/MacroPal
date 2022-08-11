@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   include ActionController::Helpers
 
   private 
-
-
   # cart will return a object with "exercise_id": "exercise_duration" key-value pairs ie @cart = {'1':'30','5':'60'} ==> exercise id 1 with 30 min, exercise id 5 with 60 min 
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
@@ -75,7 +73,19 @@ class ApplicationController < ActionController::Base
   end
   helper_method :food_cart_total_amount
 
-
+  def weight_class(user)
+    weight_class = ""
+    if  (0..70).include?(user.weight_kg)
+      weight_class = "calories_burned_s"
+    elsif (71..81).include?(user.weight_kg)
+      weight_class = "calories_burned_m"
+    elsif (82..93).include?(user.weight_kg)
+      weight_class = "calories_burned_l"
+    else
+      weight_class = "calories_burned_xl" 
+    end
+    weight_class
+  end
 
   ## For sessions:
 

@@ -36,9 +36,8 @@ class Api::WorkoutsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /workouts/1 ##TODO
+  # PATCH/PUT /workouts/1 
   def update
-    puts "not implemented yet"
     if @workout.update(workout_params)
       render json: @workout
     else
@@ -46,9 +45,10 @@ class Api::WorkoutsController < ApplicationController
     end
   end
 
-  # DELETE /workouts/1  ##TODO
+  # DELETE /workouts/1  
   def destroy
-    puts "not implemented yet"
+    @line_exercises = LineExercise.where(workout_id: @workout.id)
+    @line_exercises.map {|item| item.destory} 
     @workout.destroy
   end
 
@@ -69,16 +69,18 @@ class Api::WorkoutsController < ApplicationController
         date: params[:date])
 
       user = User.find_by_id(params[:user_id])
-      weight_class = ""
-      if  (0..70).include?(user.weight_kg)
-        weight_class = "calories_burned_s"
-      elsif (71..81).include?(user.weight_kg)
-        weight_class = "calories_burned_m"
-      elsif (82..93).include?(user.weight_kg)
-        weight_class = "calories_burned_l"
-      else
-        weight_class = "calories_burned_xl" 
-      end
+
+      # refracted into application_controller function
+      # weight_class = ""
+      # if  (0..70).include?(user.weight_kg)
+      #   weight_class = "calories_burned_s"
+      # elsif (71..81).include?(user.weight_kg)
+      #   weight_class = "calories_burned_m"
+      # elsif (82..93).include?(user.weight_kg)
+      #   weight_class = "calories_burned_l"
+      # else
+      #   weight_class = "calories_burned_xl" 
+      # end
       
       workout.total_workout_calories = cart_total_calories_burned(weight_class)
       workout.workout_duration = cart_total_duration
@@ -89,7 +91,7 @@ class Api::WorkoutsController < ApplicationController
         workout.line_exercises.new(
           exercise: exercise,
           exercise_duration: exercise_duration,
-          total_exercise_calories: exercise[weight_class] / 60 * exercise_duration
+          total_exercise_calories: exercise[weight_class(user)] / 60 * exercise_duration
         )
       end
 
