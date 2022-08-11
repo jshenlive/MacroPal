@@ -1,6 +1,5 @@
 import React from "react";
 import './loading.scss';
-import Spinner from 'react-bootstrap/Spinner';
 import { Container, Row, Col, Card, Figure, Badge, Button } from 'react-bootstrap';
 
 
@@ -25,9 +24,6 @@ export default function Profile(props) {
         <p className="loading">L</p>
       </div>
     </Container>
-      // <Spinner animation="border" role="status">
-      //   <span className="visually-hidden">Loading...</span>
-      // </Spinner>
     );
   }
  
@@ -54,7 +50,7 @@ export default function Profile(props) {
                       width={171}
                       height={180}
                       alt="171x180"
-                      src="https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png"
+                      src={props.state.user.avatar_url}
                     />
                   </Figure>
 
