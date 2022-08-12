@@ -41,7 +41,7 @@ export default function Fitpalnavbar(props) {
               <NavDropdown.Item href="/workoutlist">Workouts</NavDropdown.Item>
               <NavDropdown.Divider />
 
-              <NavDropdown.Item href="/meals">Add Food</NavDropdown.Item>
+              <NavDropdown.Item href="/workout">Add Food</NavDropdown.Item>
               <NavDropdown.Item href="/diet">Diet</NavDropdown.Item>
               <NavDropdown.Divider />
 

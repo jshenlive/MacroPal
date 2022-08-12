@@ -72,7 +72,7 @@ class App extends Component {
          <Route  exact path='/signup' element={<Signup handleLogin={this.handleLogin} />}/>
          <Route  exact path='/meals' element={<Meals/>}/>
          <Route  exact path='/diet' element={<Foodlist/>}/>
-         <Route  exact path='/workout' element={<Workout/>}/>
+         <Route  exact path='/workout' element={<Workout state={this.state}/>}/>
          <Route  exact path='/exercise' element={<Exercise/>}/>
          <Route  exact path='/WorkoutList' element={<WorkoutList  state={this.state}/>}/>
          <Route  exact path='/admin' element={<Controlpanel />}/>

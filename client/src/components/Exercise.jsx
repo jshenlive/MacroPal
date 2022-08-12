@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button, FloatingLabel, NavItem } from 'react
 
 export default function WorkoutEdit2 (props) {
 const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
+
 const [exerciseEdit, setExerciseEdit] = useState(false);
 const exercises = userWorkoutDetails.exercises;
 const lineExercise = userWorkoutDetails.line_exercises;
@@ -21,16 +22,28 @@ const lineExercise = userWorkoutDetails.line_exercises;
   }, [])
 
 
-
 ////// Delete Exercise ///////
-const deleteExercise = (exerciseId) => {
+  const deleteExercise = (exerciseId, index) => {
 
-  Axios.DELETE(`/api/line_exercises/${exerciseId}`).then (res => {
+    Axios.delete(`/api/line_exercises/${exerciseId}`).then (res => {
+      let newExercises = [...userWorkoutDetails.exercises]
+      newExercises.splice(index, 1)
 
-    
-  })
+      let newLineExercises = [...userWorkoutDetails.line_exercises]
+      newLineExercises.splice(index, 1)
 
-    }
+      const newuserWorkoutDetails = {
+        ...userWorkoutDetails,
+
+        exercises: newExercises,
+        line_exercises: newLineExercises,
+      }
+
+      setUserWorkoutDetails(newuserWorkoutDetails);
+
+    }).catch((error) => console.log(error))
+
+      }
 
 //////// Edit Exercise ///////
 const editExercise = (exerciseId) => {
@@ -44,50 +57,56 @@ const editExercise = (exerciseId) => {
 
     }
 
+    console.log('userWorkoutDetails', userWorkoutDetails);
 
   return (
  
       <Row>
         <h1 className="mb-5">List of exercises: </h1>
-      {exercises && exercises.map((item, index) => {
-        return (
-          <div key={index}>
+          {exercises && exercises.map((item, index) => {
+            return (
 
-            <div>
-            <h4>Name: </h4>{item.exercise.name}
-            </div>
-    
-            <div>
-            <h4>Duration: </h4>{item.exercise_duration}
-            </div>
-    
-            <div>
-            <h4>Total Exercise Calories: </h4>{item.total_exercise_calories}
-            </div>
-                  <div>
-                  <Button 
-                  className="mt-2" 
-                  variant="info" 
-                  type="submit"
-                  onClick={() => deleteExercise(lineExercise && lineExercise[index].id)}
-                  >
-                    Delete
-                  </Button>
-                  </div>
-                  <div>
-                  <Button 
-                  className="mt-2" 
-                  variant="info" 
-                  type="submit"
-                  onClick={() => editExercise(lineExercise && lineExercise[index].id)}
-                  >
-                    Edit
-                  </Button>
-                  </div>
-                  <hr></hr>
-          </div>
+              <div key={index}>
 
-        )
+                <div>
+                <h4>Name: </h4>{item.exercise.name}
+                </div>
+        
+                <div>
+                <h4>Duration: </h4>{item.exercise_duration}
+                </div>
+        
+                <div>
+                <h4>Total Exercise Calories: </h4>{item.total_exercise_calories}
+                </div>
+
+                      <div>
+                      <Button 
+                      className="mt-2" 
+                      variant="info" 
+                      type="submit"
+                      onClick={() => {lineExercise && deleteExercise(lineExercise[index].id, index)}}
+                      >
+                        Delete
+                      </Button>
+                      </div>
+
+
+                      <div>
+
+                      <Button 
+                      className="mt-2" 
+                      variant="info" 
+                      type="submit"
+                      onClick={() => {lineExercise && editExercise(lineExercise[index].id, index)}}
+                      >
+                        Edit
+                      </Button>
+                      </div>
+
+                      <hr></hr>
+              </div>
+            )
       })}
       </Row>
 

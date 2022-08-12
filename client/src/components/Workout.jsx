@@ -6,7 +6,7 @@ import { AppUnits } from "../hooks/useAppData"
 import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
 import '../App.scss'
 
-export default function WorkoutAdd (props) {
+export default function Workout (props) {
 
   const [cart, setCart] = useState([]);
   const [exercises, setExercises] = useState([]);
