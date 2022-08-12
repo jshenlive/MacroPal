@@ -11,7 +11,7 @@ puts "Seeding Data ..."
 
 # Helper functions
 def open_asset(file_name)
-  File.open(Rails.root.join('client', 'media','images','users' file_name))
+  File.open(Rails.root.join('client', 'media','images','users', file_name))
 end
 
 # Only run on development (local) instances not on production, etc.
