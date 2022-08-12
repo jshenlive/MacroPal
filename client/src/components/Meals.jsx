@@ -4,32 +4,56 @@ import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstra
 
 export default function Meals (props) {
 
+  const[query, setQuery] = useState({
+    name: "",
+    amount: 0,
+    category: "",
+    health: "",
+
+  })
+
   //food query input
   const [queryFoodName, setQueryFoodName] = useState("");
-  const [queryFoodAmount, setQueryFoodAmount] = useState(0);
+  const [queryFoodAmount, setQueryFoodAmount] = useState(100);
   const [queryCategory, setQueryCategory] = useState("");
   const [queryHealth, setQueryHealth] = useState("");
   const [queryMealType, setQueryMealType] = useState("");
-  
- 
+  const [queryResults, setQueryResults]= useState([])
+  const [isLoading, setIsLoading] = useState(false);
   // Axios.get("/api/workouts/1").then((response)=>{
-  //   console.log(response.data.exercises)
+  //   console.log(response.data.exercises[1])
   // })
+  
+
+  const fetchFood = async () => {
+    setIsLoading(true);
+
+    console.log(queryFoodName)
+
+    await Axios.post("/api/get_food",{"name": queryFoodName, "category": queryCategory, "health": queryHealth}).then((response)=>{
+      setQueryResults(response.data)
+      
+    }).then(setIsLoading(false))
+  }
 
   //to clear form input
   const reset = () => {
     setQueryFoodName("");
-    setQueryFoodAmount(0);
+    setQueryFoodAmount(100);
     setQueryCategory("");
     setQueryHealth("");
   }
 
-  const search = () => {
-
+  const search = () => {    
+    fetchFood(); 
+    reset();
   }
 
   const saveMeal = ()=>{
 
+  }
+
+  const showResults = ()=>{
   }
 
   const healthOption=()=>{
@@ -37,7 +61,9 @@ export default function Meals (props) {
       return (
         <>
         <label>Choose Optional Health-type:</label>
+        <br></br>
         <select name="selectList" id="selectList" onChange={(event)=> setQueryHealth(event.target.value)} >
+          <option value=""></option>
           <option value="vegan">Vegan</option>
           <option value="vegetarian">Vegetarian</option>
           <option value="tree-nut-free">Tree Nuts Free</option>
@@ -56,7 +82,33 @@ export default function Meals (props) {
 
   const searchResults = () => {
     return(
+    <>
     <h3>Search Results</h3> 
+    <br></br>
+    {isLoading && <h2>Loading...</h2>}
+    {console.log(queryResults)}
+    {queryResults.map(item=>{
+        return (
+          <div key={item.id}>
+            <h3>{item.name}</h3>
+            {}            
+            Calories: {item.calories}
+            Protein: {item.protein}
+            Carbs: {item.carbs}
+            Fats: {item.fat}
+
+            <select name="mealType" id="mealType" onChange={(event)=> setQueryCategory(event.target.value)} >
+              <option value="">Meal Type</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snack">Snacks</option>
+            </select>
+            <button>Add</button>
+          </div>
+        )
+      })}
+    </>
     )
   }
 
@@ -90,7 +142,7 @@ export default function Meals (props) {
           <form autoComplete="off" onSubmit={(event)=> event.preventDefault()}>
           <h3>Add Food Intake Here</h3>
             <label>Search Food name:</label>
-            
+            <br></br>
             <input
               name="foodName"
               type="text"
@@ -115,7 +167,7 @@ export default function Meals (props) {
   
 
             <label>Enter intake amount (in Grams):</label>
-            
+            <br></br>
             <input
               name="foodAmount"
               type="number"

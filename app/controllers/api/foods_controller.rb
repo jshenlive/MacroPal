@@ -4,7 +4,7 @@ class Api::FoodsController < ApplicationController
   def get_food
     
     category = 'generic-foods'
-    if params[:category]
+    if params[:category] != ""
       category = params[:category]
     end
 
@@ -78,7 +78,7 @@ class Api::FoodsController < ApplicationController
         end
       end
 
-      if health
+      if health != ""
         url += "&health=#{health}"
       end
 
