@@ -5,12 +5,12 @@ class Api::FoodsController < ApplicationController
     
     category = 'generic-foods'
     if params[:category]
-      cateory = params[:category]
+      category = params[:category]
     end
 
     food = Food.where("name LIKE ?","%"+params[:name].titleize+"%").where(category: category.split('-').join(" ").capitalize)
 
-    if food.length>0
+    if food.length>10
       render json:food
     else
       food = fetch_save(params[:name],category,params[:health],params[:brand])
@@ -82,16 +82,18 @@ class Api::FoodsController < ApplicationController
         url += "&health=#{health}"
       end
 
+      puts url
+
       fetch = JSON.parse RestClient.get(url)
 
       fetch = fetch["hints"]
 
       if fetch.length == 1
-        food = parse_food(fetch,is_branded)
+        food = parse_food(fetch,brand,is_branded)
       elsif fetch.length > 1 
         list = []
         fetch.each do |item|
-          list.append(parse_food(item, is_branded))
+          list.append(parse_food(item,brand,is_branded))
         end
         list
       else
@@ -111,7 +113,7 @@ class Api::FoodsController < ApplicationController
       # end
     end 
 
-    def parse_food(item,branded)
+    def parse_food(item,sbrand,branded)
       name = item["food"]['label']
       calories = item["food"]['nutrients']['ENERC_KCAL']
       pro = item["food"]['nutrients']["PROCNT"]
@@ -119,6 +121,7 @@ class Api::FoodsController < ApplicationController
       fat = item["food"]['nutrients']["FAT"]
       category = item["food"]["category"]
       brand = nil
+
       if branded
         brand = item["food"]["brand"]
       end
@@ -129,7 +132,7 @@ class Api::FoodsController < ApplicationController
         food
       else
         food = Food.new(name: name, calories: calories, protein: pro, fat: fat, carbs: carbs, category: category, brand:brand)
-        food.save      
+        food.save     
         food
       end
 

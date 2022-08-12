@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
     t.float "protein"
     t.float "carbs"
     t.float "fat"
+    t.string "category"
+    t.string "brand"
+    t.string "health"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
