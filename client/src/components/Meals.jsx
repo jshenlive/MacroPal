@@ -20,6 +20,9 @@ export default function Meals (props) {
   const [queryMealType, setQueryMealType] = useState("");
   const [queryResults, setQueryResults]= useState([])
   const [isLoading, setIsLoading] = useState(false);
+  const [itemsToShow,setItemsToShow] = useState(5)
+  
+  
   // Axios.get("/api/workouts/1").then((response)=>{
   //   console.log(response.data.exercises[1])
   // })
@@ -87,17 +90,17 @@ export default function Meals (props) {
     <br></br>
     {isLoading && <h2>Loading...</h2>}
     {console.log(queryResults)}
-    {queryResults.map(item=>{
+    {queryResults.slice(0, itemsToShow).map(item=>{
         return (
           <div key={item.id}>
             <h3>{item.name}</h3>
-            {}            
+                        
             Calories: {item.calories}
             Protein: {item.protein}
             Carbs: {item.carbs}
             Fats: {item.fat}
 
-            <select name="mealType" id="mealType" onChange={(event)=> setQueryCategory(event.target.value)} >
+            <select name="mealType" id="mealType" onChange={(event)=> setQueryMealType(event.target.value)} >
               <option value="">Meal Type</option>
               <option value="breakfast">Breakfast</option>
               <option value="lunch">Lunch</option>
@@ -132,6 +135,18 @@ export default function Meals (props) {
     )
   }
 
+  function showMore() {
+    setItemsToShow(prev=>prev+5)
+  }
+
+  function showMoreBtn(e) {
+
+    return (
+      <button style={{marginBottom:"120px"}} className="btn btn-primary" onClick={()=>showMore()}>
+      Show More
+      </button>
+      )
+  }
 
   return (
 
@@ -204,7 +219,13 @@ export default function Meals (props) {
     <Row>
       <form>     
         {searchResults()}
+        <p></p>
+        
       </form>
+    </Row>
+    <Row>
+    {(queryResults.length>5) && showMoreBtn()}
+      {/* <p style={{marginBottom:'120px'}}></p> */}
     </Row>
     </Container>
   );
