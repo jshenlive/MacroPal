@@ -141,7 +141,7 @@ useEffect(() => {
     setSuggestions([]);
   };
 
-
+///////////Add Exercise ////////////
   const addExercise = () => {
 
 
@@ -171,7 +171,7 @@ useEffect(() => {
         console.log(error);
       });
   }
-
+////////////////////////////////////
   const submitAllExercise = () => {
 
         const userData = {
