@@ -18,7 +18,7 @@ class Api::CartsController < ApplicationController
     # redirect_back fallback_location: root_path
   end
 
-  def remove_exercise
+  def remove_cart_exercise
     exercise_id = params[:exercise_id].to_s
     modify_cart(exercise_id, -1)
 
