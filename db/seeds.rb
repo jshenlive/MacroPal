@@ -29,7 +29,7 @@ u = User.create!({
   last_name: "Pinto",
   username: "jojo",
   email: "jopinto@hotmail.com",
-  avatar_url: open_asset('jojo.png'),
+  avatar_url: "/assets/media/images/users/jojo.png",
   age: 30,
   birthday: "1992-08-05",
   weight_kg: 70,

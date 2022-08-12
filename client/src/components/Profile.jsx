@@ -8,24 +8,24 @@ export default function Profile(props) {
 
   console.log('props.state.user', props.state.user);
 
-  if (props.state.user === undefined || props.state.user === {}) {
+  // if (props.state.user) {
 
-    setTimeout(() => window.location.reload(false),750);
+  //   setTimeout(() => window.location.reload(false),750);
 
-    return(
+  //   return(
       
-    <Container>
-      <div className="loading">
-        <p className="loading">F</p>
-        <p className="loading">I</p>
-        <p className="loading">T</p>
-        <p className="loading">P</p>
-        <p className="loading">A</p>
-        <p className="loading">L</p>
-      </div>
-    </Container>
-    );
-  }
+  //   <Container>
+  //     <div className="loading">
+  //       <p className="loading">F</p>
+  //       <p className="loading">I</p>
+  //       <p className="loading">T</p>
+  //       <p className="loading">P</p>
+  //       <p className="loading">A</p>
+  //       <p className="loading">L</p>
+  //     </div>
+  //   </Container>
+  //   );
+  // }
  
   return (
     <Container className="mt-5">
@@ -55,9 +55,9 @@ export default function Profile(props) {
                   </Figure>
 
                   <Card.Text>
-                  <h3>
+
                     <Badge bg="warning">New User</Badge>
-                  </h3>
+
                   </Card.Text>
 
                 </Card.Body>
@@ -100,7 +100,7 @@ export default function Profile(props) {
               >
                 <Card.Body>
                   <Card.Title>User Information</Card.Title>
-                  <Card.Text>
+
 
                     <Row>
                       
@@ -127,7 +127,7 @@ export default function Profile(props) {
 
                     </Row>
 
-                  </Card.Text>
+
                 </Card.Body>
               </Card>
 
