@@ -6,7 +6,7 @@ import { AppUnits } from "../hooks/useAppData"
 import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
 import '../App.scss'
 
-export default function Exercise (props) {
+export default function WorkoutAdd (props) {
 
   const [cart, setCart] = useState([]);
   const [exercises, setExercises] = useState([]);
@@ -38,6 +38,7 @@ export default function Exercise (props) {
       // async function to get the exercise data from rails 
       const response = await Axios.get('/api/exercises');
       // response.data is an array with objects of exercises
+      console.log('response.data', response);
       setExercises(response.data)
     }
     loadExercises();
@@ -61,7 +62,7 @@ export default function Exercise (props) {
   useEffect(() => {
 
     const calculateTotalCalories = calculateTotalCaloriesBurned();
-    setCaloriesTotal(calculateTotalCalories);
+    setCaloriesTotal(calculateTotalCalories.toFixed(2));
 
 }, [exerciseCaloriesBurned])
 
@@ -106,7 +107,8 @@ useEffect(() => {
 
   //Choose your Activity Input change
   const onChangeHandler = (query) => {
-    
+ 
+
     let matches = [];
 
     if (query.length > 0) {
@@ -161,9 +163,6 @@ useEffect(() => {
         .then((response) => {
         setCart(response.data);
 
-        // setExerciseListDisplay(true);
-          // window.location.reload(false);
-          //useEFFect> define dependency (cartstate--> do something)
         })
         .catch((error) => {
           console.log(error);
@@ -208,8 +207,11 @@ useEffect(() => {
 
   }
 
-      return (
-        <Container fluid>
+  console.log('suggestions', suggestions);
+console.log('query', query);
+
+ return (
+  <Container>
           <Row>
 
             <Col>       
@@ -370,7 +372,7 @@ useEffect(() => {
             </Col>
 
           </Row>
-        </Container>
-      );
+  </Container>
+ );
 
 }

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import Main from './components/Header';
 import Footer from './components/Footer';
+import Loading from './components/Loading';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Workout from './components/Workout';
-import Workoutlist from './components/Workoutlist';
 import Meals from './components/Meals';
 import Foodlist from './components/Foodlist';
 import Profile from './components/Profile';
@@ -66,15 +66,15 @@ class App extends Component {
       <BrowserRouter>
         <Routes>
          <Route  exact path='/' element={<Main/>}/>
-         <Route  exact path='/login' element={<Login handleLogin={this.handleLogin} />}/>
+         <Route  exact path='/login' element={<Login loginStatus={this.loginStatus} />}/>
          <Route  exact path='/signup' element={<Signup handleLogin={this.handleLogin} />}/>
-         <Route  exact path='/workout' element={<Workout state={this.state}/>}/>
          <Route  exact path='/meals' element={<Meals/>}/>
          <Route  exact path='/diet' element={<Foodlist/>}/>
-         <Route  exact path='/workoutlist' element={<Workoutlist/>}/>
+         <Route  exact path='/workout' element={<Workout state={this.state}/>}/>
          <Route  exact path='/admin' element={<Controlpanel />}/>
          <Route  exact path='/summary' element={<Summary />}/>
          <Route  exact path='/profile' element={<Profile state={this.state} />}/>
+         <Route  exact path='/loading' element={<Loading/>}/>
         </Routes>
       </BrowserRouter>
       <Footer />
