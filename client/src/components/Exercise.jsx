@@ -5,6 +5,8 @@ import { Container, Row, Col, Form, Button, FloatingLabel, NavItem } from 'react
 export default function WorkoutEdit2 (props) {
 const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
 const [exerciseEdit, setExerciseEdit] = useState(false);
+const exercises = userWorkoutDetails.exercises;
+const lineExercise = userWorkoutDetails.line_exercises;
 
 /////////// Get Exercise Info//////
 
@@ -18,18 +20,7 @@ const [exerciseEdit, setExerciseEdit] = useState(false);
 
   }, [])
 
-   console.log('userWorkoutDetails', userWorkoutDetails)
 
-const exercises = userWorkoutDetails.exercises;
-// console.log('exercises', exercises)
-
-let test = userWorkoutDetails.line_exercises;
-if (test) {
-  test = userWorkoutDetails.line_exercises[0]
-}
-console.log('test', test)
-
-/////////////////////////////////
 
 ////// Delete Exercise ///////
 const deleteExercise = (exerciseId) => {
@@ -55,7 +46,7 @@ const editExercise = (exerciseId) => {
 
 
   return (
-    <Container>
+ 
       <Row>
         <h1 className="mb-5">List of exercises: </h1>
       {exercises && exercises.map((item, index) => {
@@ -78,7 +69,7 @@ const editExercise = (exerciseId) => {
                   className="mt-2" 
                   variant="info" 
                   type="submit"
-                  onClick={() => deleteExercise(userWorkoutDetails.line_exercises[0].id)}
+                  onClick={() => deleteExercise(lineExercise && lineExercise[index].id)}
                   >
                     Delete
                   </Button>
@@ -88,7 +79,7 @@ const editExercise = (exerciseId) => {
                   className="mt-2" 
                   variant="info" 
                   type="submit"
-                  onClick={() => editExercise()}
+                  onClick={() => editExercise(lineExercise && lineExercise[index].id)}
                   >
                     Edit
                   </Button>
@@ -99,7 +90,7 @@ const editExercise = (exerciseId) => {
         )
       })}
       </Row>
-    </Container>
+
   );
 
 }

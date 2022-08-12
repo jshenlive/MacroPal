@@ -5,12 +5,12 @@ import Exercise from "./Exercise";
 
 export default function WorkoutList (props) {
 
-  console.log('props', props)
-
   const [userWorkoutData, setUserWorkoutData] = useState("");
 
+
+  //Get work out data for a user //
   useEffect(() => {
-    
+
     if (props.state.user.id) {
     Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
 
@@ -24,8 +24,8 @@ export default function WorkoutList (props) {
   return (
     <Container>
 
-      <Row className="mt-5">
-      <Col >
+      <Row className="mb-5">
+      <Col>
       <div>Workout Duration: {userWorkoutData.workout_duration} minutes</div>
       <div>Total Workout Calories: {userWorkoutData.total_workout_calories} </div>
       <div>Work out Created at {userWorkoutData.date} </div>
