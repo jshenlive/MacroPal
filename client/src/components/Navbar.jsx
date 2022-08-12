@@ -29,6 +29,7 @@ export default function Fitpalnavbar(props) {
           {props.state.isLoggedIn && 
             <>
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/addworkout">Add Workout</Nav.Link>
               <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
               <NavDropdown.Divider />
