@@ -17,8 +17,13 @@ class Api::UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
+
+    # puts Avatar.find(Avatar.pluck(:id).sample).url
+
+    @user.avatar_url = Avatar.find(Avatar.pluck(:id).sample).url
     
     if @user.save
+      puts @user.avatar_url
       session[:user_id] = @user.id
       render json: @user 
       #status: :created, location: @user
@@ -30,6 +35,7 @@ class Api::UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
+
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -51,4 +57,10 @@ class Api::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :is_admin, :username, :email, :city, :province, :country, :age, :birthday, :weight_kg, :height_cm, :avatar_url, :password, :password_confirmation)
     end
+
+    def random_avatar
+    
+    end
+
 end
+

@@ -29,7 +29,7 @@ u = User.create!({
   last_name: "Pinto",
   username: "jojo",
   email: "jopinto@hotmail.com",
-  avatar_url: open_asset('jojo.png'),
+  avatar_url: "https://i.ibb.co/Wgbkvvm/avataaars.png",
   age: 30,
   birthday: "1992-08-05",
   weight_kg: 70,
@@ -58,7 +58,15 @@ CSV.foreach(exercisesfile, headers: true) do |row|
   end
 end 
 
-puts "Add LineExercise"
+puts "Add avatars"
+
+avatar_file = Rails.root + 'db/seed_assets/avatars.csv'
+
+CSV.foreach(avatar_file, headers: true) do |row|
+  Avatar.find_or_create_by({url: row[0]}) do |t|
+    t.url = row[0].to_s
+  end
+end 
 
 # exercise=
 # exercise_duration = 30
