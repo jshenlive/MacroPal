@@ -111,7 +111,7 @@ const addAnotherExercise = () => {
 
                 <div>
                 <h4>Duration: </h4>
-                {exerciseEdit !== index && item.exercise_duration}
+                {exerciseEdit !== index && item.exercise_duration} {exerciseEdit !== index && <span>Minutes</span>}
                 </div>
                 {exerciseEdit === index &&
                 <Col>
@@ -134,7 +134,7 @@ const addAnotherExercise = () => {
 
                 {exerciseEdit !== index &&
                 <div>
-                <h4>Total Exercise Calories: </h4>{item.total_exercise_calories}
+                <h4>Total Exercise Calories: </h4>{item.total_exercise_calories} Calories
                 </div>
                 }
 

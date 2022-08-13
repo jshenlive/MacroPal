@@ -5,7 +5,6 @@ import { randNumGen } from "../helpers/helpers"
 import { AppUnits } from "../hooks/useAppData"
 import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
 import '../App.scss'
-import Exercise from './Exercise';
 
 export default function Workout (props) {
 
@@ -18,7 +17,6 @@ export default function Workout (props) {
   const [durations, setDurations] = useState("");
   const [exerciseCaloriesBurned, setExerciseCaloriesBurned] = useState([]);
   const [caloriesTotal, setCaloriesTotal] = useState("");
-
   const {
     units,
     setUnits,
@@ -172,15 +170,15 @@ useEffect(() => {
         console.log(error);
       });
   }
-////////////////////////////////////
+
+///////////Workout Submit///////////
+
   const submitAllExercise = () => {
 
         const userData = {
-
           id: props.state.user.id,
           date: new Date(),
         }
-
           // async function to submit workout (cart) to rails
           return Axios.post('/api/workouts',   {"user_id": userData.id, "date":userData.date})
           .then((response) => {
@@ -190,6 +188,8 @@ useEffect(() => {
           }).catch((error) => {
             console.log('error', error);
           });
+
+
       }
   
       //🏅function to calculate total calories of all exercises🏅
@@ -208,8 +208,6 @@ useEffect(() => {
 
   }
 
-  console.log('suggestions', suggestions);
-console.log('query', query);
 
  return (
   <Container>
