@@ -12,7 +12,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create meal" do
     assert_difference('Meal.count') do
-      post meals_url, params: { meal: { date: @meal.date, food_id: @meal.food_id, food_weight: @meal.food_weight, meal_type: @meal.meal_type, total_calories_gained: @meal.total_calories_gained, user_id: @meal.user_id } }, as: :json
+      # post meals_url, params: { meal: { date: @meal.date, food_id: @meal.food_id, food_weight: @meal.food_weight, meal_type: @meal.meal_type, total_calories_gained: @meal.total_calories_gained, user_id: @meal.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update meal" do
-    patch meal_url(@meal), params: { meal: { date: @meal.date, food_id: @meal.food_id, food_weight: @meal.food_weight, meal_type: @meal.meal_type, total_calories_gained: @meal.total_calories_gained, user_id: @meal.user_id } }, as: :json
+    # patch meal_url(@meal), params: { meal: { date: @meal.date, food_id: @meal.food_id, food_weight: @meal.food_weight, meal_type: @meal.meal_type, total_calories_gained: @meal.total_calories_gained, user_id: @meal.user_id } }, as: :json
     assert_response 200
   end
 

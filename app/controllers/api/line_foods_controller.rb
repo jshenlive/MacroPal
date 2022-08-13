@@ -18,8 +18,9 @@ class Api::LineFoodsController < ApplicationController
 
     meal_id = params[:meal_id]
     food_id = params[:food_id]
-    
+    food_amount = params[:food_amount]
 
+    
 
 
     @line_food = LineFood.new(line_food_params)

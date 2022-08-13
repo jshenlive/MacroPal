@@ -65,8 +65,8 @@ class Api::MealsController < ApplicationController
         user_id: params[:user_id],
         date: params[:date])
       
-      meal.total_calories_gained = food_cart_total_calories
-      meal.food_weight = food_cart_total_amount
+      meal.total_meal_calories = food_cart_total_calories
+      meal.total_meal_amount = food_cart_total_amount
 
       enhanced_food_cart.each do |entry|
         food = entry[:food]
@@ -93,6 +93,6 @@ class Api::MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:meal_type, :date, :food_weight, :total_calories_gained, :user_id, :food_id)
+      params.require(:meal).permit(:meal_type, :date, :total_meal_amount, :total_meal_calories, :user_id, :food_id)
     end
 end
