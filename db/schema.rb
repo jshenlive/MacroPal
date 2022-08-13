@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
 
   create_table "meals", force: :cascade do |t|
     t.date "date"
-    t.integer "food_weight"
-    t.integer "total_calories_gained"
+    t.integer "total_meal_amount"
+    t.integer "total_meal_calories"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -18,14 +18,26 @@ class Api::LineFoodsController < ApplicationController
 
     meal_id = params[:meal_id]
     food_id = params[:food_id]
-    
+    food_amount = params[:food_amount]
+    meal_type = params[:meal_type]
 
+    meal = Meal.find_by_id(meal_id)
 
+    total_food_calories = total_food_calories(meal,food_id, food_amount)
 
-    @line_food = LineFood.new(line_food_params)
+    line_food = LineFood.new(
+      meal_id: meal_id,
+      food_id: food_id,
+      food_amount: food_amount,
+      meal_type: meal_type
+      total_food_calories: total_food_calories
+    )
 
-    if @line_food.save
-      render json: @line_food, status: :created, location: @line_food
+    meal.total_meal_calories += total_food_calories
+    meal.total_meal_amount += food_amount
+
+    if line_food.save && meal.save
+      render json: line_exercise
     else
       render json: @line_food.errors, status: :unprocessable_entity
     end
@@ -55,4 +67,14 @@ class Api::LineFoodsController < ApplicationController
     def line_food_params
       params.require(:line_food).permit(:food_amount, :total_food_calories, :food_id, :meal_id)
     end
+
+    def total_food_calories(meal,food_id, food_amount)
+      
+      food = Food.find_by_id(food_id)
+
+      user = User.find_by_id(meal.user_id)
+  
+      food[:calories] * food_amount / 100
+    end 
+
 end

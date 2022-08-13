@@ -10,7 +10,7 @@ export default function Meals (props) {
   const [queryFoodAmount, setQueryFoodAmount] = useState(100);
   const [queryCategory, setQueryCategory] = useState("");
   const [queryHealth, setQueryHealth] = useState("");
-  const [queryMealType, setQueryMealType] = useState("snack");
+  const [queryMealType, setQueryMealType] = useState("breakfast ");
   const [queryResults, setQueryResults]= useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [itemsToShow,setItemsToShow] = useState(5)
@@ -89,7 +89,7 @@ export default function Meals (props) {
     setQueryFoodAmount(100);
     setQueryCategory("");
     setQueryHealth("");
-    setQueryMealType("snack")
+    setQueryMealType("breakfast")
   }
 
   const search = () => {    
@@ -99,14 +99,13 @@ export default function Meals (props) {
   const saveMeal = async ()=>{
     // console.log(props.state.user.id)
     await Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
-    .then()
+    .then(reset())
   }
 
 
   const menuDropDown = ()=>{
     return(
       <select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}} >
-      <option value="">Meal Type</option>
       <option value="breakfast">Breakfast</option>
       <option value="lunch">Lunch</option>
       <option value="dinner">Dinner</option>
