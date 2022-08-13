@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { randNumGen } from "../helpers/helpers"
 import { AppUnits } from "../hooks/useAppData"
-import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, FloatingLabel, Card } from 'react-bootstrap';
 import '../App.scss'
 
 export default function Workout (props) {
@@ -213,8 +213,10 @@ useEffect(() => {
   <Container>
           <Row>
 
+        <Card className="mt-5" style={{ width: '36rem' }}>
+          <Card.Body> 
             <Col>       
-              <div className="workout-title mt-5">
+              <div className="workout-title mt-1">
                 Calculate How Many Calories You're Burning
               </div>   
               <br/>
@@ -308,41 +310,31 @@ useEffect(() => {
                   </Button>
                 </Col>
 
-                <Col>
-
-                <div>
-                Calories burned:  
-                  {(durations && query)? <span> {exerciseCalories}</span>
-                  :
-                  <span> 0</span>
-                   }
-                </div>
-                <br/>
-
+                <Col className="mt-5">
+                  <div>
+                  Calories burned:  
+                    {(durations && query)? <span> {exerciseCalories}</span>
+                    :
+                    <span> 0</span>
+                    }
+                  </div>
+                  <br/>
                 </Col>
 
               </Row>
 
-
-            <Row>
-              { (durations && queryItems && query ) ?
-              <Row className="mt-5">
-              <h3>{query}!</h3>
-              <br/>
-              <p>
-              Activity Summary Here
-              </p>
-              </Row>
-              : null }
-
-
-            </Row>
-
             </Col>
 
+          </Card.Body>
+        </Card>          
+
+        { cart.length > 0?
+        <Card className="ms-5" style={{ width: '24rem' }}>
+          <Card.Body>
+
             <Col>
-            { cart.length > 0?
-            <Row className="mt-5">
+
+            <Row className="mt-2">
             <h4 className="mb-2">Summary of activities added:</h4>
               {cart.map((exerciseItem, index) => (
                 <div className="mt-2">
@@ -366,9 +358,12 @@ useEffect(() => {
               </Button>
               </Col>
             </Row>
-                : null }
 
             </Col>
+
+        </Card.Body>
+          </Card>
+                : null }
 
           </Row>
 
