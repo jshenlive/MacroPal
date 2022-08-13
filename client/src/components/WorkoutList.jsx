@@ -1,12 +1,17 @@
 import Axios from "axios";
 import React, { useState, useEffect, } from "react";
 import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import Exercise from "./Exercise";
+
 
 export default function WorkoutList (props) {
 
   const [userWorkoutData, setUserWorkoutData] = useState([]);
 
+  //this state contains selected day
+  const [date, setDate] = useState(null);
 
 ////Calculate date(Today)
 
@@ -47,7 +52,15 @@ const todayDate = year + "-" + month + "-" + day;
   console.log('userWorkoutData', userWorkoutData)
 
   return (
+
     <Container className="mt-3">
+
+    <DatePicker
+      selected={date}
+      onChange={(date) => setDate(date)}
+      maxDate={new Date()}
+      showDisabledMonthNavigation
+    />
 
       <Row className="mb-5">
       <Col>

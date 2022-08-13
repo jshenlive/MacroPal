@@ -336,6 +336,7 @@ useEffect(() => {
 
             <Row className="mt-2">
             <h4 className="mb-2">Summary of activities added:</h4>
+
               {cart.map((exerciseItem, index) => (
                 <div className="mt-2">
                 <div>{index + 1}: {exerciseItem.exercise.name}</div>
