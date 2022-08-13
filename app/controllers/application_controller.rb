@@ -70,8 +70,9 @@ class ApplicationController < ActionController::Base
   helper_method :cart_total_duration
   
   def food_cart_total_calories
-    enhanced_cart.map {|entry| entry[:food][:calories] / 100 * entry[:food_amount] }.sum
+    enhanced_food_cart.map {|entry| (entry[:food][:calories]* entry[:food_amount] / 100)  }.sum
   end
+  helper_method :food_cart_total_calories
   # called from create_workout in workout controller
   def food_cart_total_amount
     enhanced_food_cart.map {|entry| entry[:food_amount]}.sum

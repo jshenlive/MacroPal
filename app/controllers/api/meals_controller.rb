@@ -72,11 +72,17 @@ class Api::MealsController < ApplicationController
         food = entry[:food]
         food_amount = entry[:food_amount]
         food_type = entry[:food_type]
+
+        puts "food calories"
+        p food[:calories]
+
         meal.line_foods.new(
           food: food,
           food_amount: food_amount,
           meal_type: food_type,
-          total_food_calories: food.calories / 100 * food_amount.to_i
+
+          total_food_calories: (food[:calories]*food_amount/100)
+    
         )
       end
 
