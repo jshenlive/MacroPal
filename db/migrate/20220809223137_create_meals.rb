@@ -6,7 +6,7 @@ class CreateMeals < ActiveRecord::Migration[6.1]
       t.integer :food_weight
       t.integer :total_calories_gained
       t.references :user, null: false, foreign_key: true
-      t.references :food, null: false, foreign_key: true
+
 
       t.timestamps
     end
