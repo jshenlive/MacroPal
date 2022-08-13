@@ -8,7 +8,10 @@ export default function WorkoutSummary (props) {
   //states
   const [userWorkoutData, setUserWorkoutData] = useState("");
   const [periodWorkoutData, setPeriodWorkoutData] = useState("");
-  const [totalcalorieburn, setTotalcalorieburn] = useState("");
+  const [totalperiodData, setTotalperiodData] = useState({
+    totalCalorie: "",
+    totalhours: "",
+  });
 
 ////Calculate date(Today)
 
@@ -41,7 +44,7 @@ const todayDate = year + "-" + month + "-" + day;
   const getWorkoutDataLast7Days = () => {
 
     const last7Days = userWorkoutData.slice(-7)
-    setPeriodWorkoutData(last7Days)
+    setTotalperiodData(last7Days)
 
   }
   getWorkoutDataLast7Days()
@@ -52,18 +55,33 @@ const todayDate = year + "-" + month + "-" + day;
 useEffect(() => {
 const calculateTotalCalorieBurn = () => {
   
-  let totalCalorie = 0
-
+  let totalCalorie = 0;
+  let totalminutes = 0;
 
 
   for (let i = 0; i < periodWorkoutData.length; i++) {
 
     totalCalorie += periodWorkoutData[i].total_workout_calories
-
+    totalminutes += periodWorkoutData[i].totalhours
 
   }
-  setTotalcalorieburn(totalCalorie);
+
+  //Convert minutes into hours minutes
+  const hours = totalminutes/60;
+  const rhours = Math.floor(hours);
+  const minutes = (hours - rhours) * 60;
+  const rminutes = Math.round(minutes);
+  const hoursminutes = rhours + " hour(s) and " + rminutes + " minute(s).";
+
+  setTotalcalorieburn({
+    totalCalorie: totalCalorie,
+    totalhours: hoursminutes,
+  });
 }
+
+
+
+
 calculateTotalCalorieBurn()
 }, [periodWorkoutData]);
 
@@ -80,15 +98,15 @@ return (
 
               <h4>Date: {item.date} </h4>
               <div>Total Calories:  {item.total_workout_calories} </div>
-              <div>Total Minutes:  {item.workout_duration} </div>
+              <div>Total Minutes:  {item.totalhours} </div>
               <hr></hr>
 
               </div>
             )
       })}
 
-  <h1 className="mb-3">Total Calories burned: {totalcalorieburn} Calories</h1>
-  <h1 >Total Hour Working out: 8 Hours 36 Minutes</h1>
+  <h1 className="mb-3">Total Calories burned: {totalperiodData.totalCalorie} Calories</h1>
+  <h1 >Total Hour Working out: {totalperiodData.totalhours} Minutes</h1>
   </Container>
 );
 
