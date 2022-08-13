@@ -1,17 +1,20 @@
 import Axios from "axios";
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Container, Row, Col, Form, Button, FloatingLabel, NavItem } from 'react-bootstrap';
+import '../App.scss'
 
 export default function WorkoutEdit2 (props) {
 const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
 const [exerciseEdit, setExerciseEdit] = useState(-1);
 const exercises = userWorkoutDetails.exercises;
 const lineExercise = userWorkoutDetails.line_exercises;
+
 ////////// change to context API
 const [exercisesApi, setExercisesApi] = useState([]);
 const [query, setQuery] = useState("");
 const [suggestions, setSuggestions] = useState([]);
 const [queryItems, setQueryItems] = useState({});
+const [durations, setDurations] = useState("");
 ///////////////////////////////
 
 /////////// Get Exercise Info//////
@@ -51,16 +54,30 @@ const [queryItems, setQueryItems] = useState({});
       }
 
 //////// Edit Exercise ///////
-const editExercise = (exerciseId, index) => {
+const editExercise = (index) => {
 
-    setExerciseEdit(index)
-
-  // Axios.put(`/api/line_exercises/${exerciseId}`).then (res => {
-
-
-  // })
+  setExerciseEdit(index)
 
     }
+
+/////////Submit Button ////////////
+const submitExercise = (exerciseId, index) => {
+
+  //  object with exercise information
+  const exerciseData = {
+    workout_id: queryItems.id,
+    exercise_duration: durations,
+  }
+
+
+  Axios.put(`/api/line_exercises/${exerciseId}`,   {"exercise_id": queryItems.id, "exercise_duration":durations}).then (res => {
+
+    setExerciseEdit(-1)
+ 
+  }).catch(error => console.log(error))
+  //Ideally this part should rendere an error message on the page below the post
+
+    }    
 
 //////////////////Workout.jsx change to context API
 useEffect(() => {
@@ -98,12 +115,26 @@ const onSuggestHandler = (query) => {
   setQueryItems(query);
   setSuggestions([]);
 };
+
+//Input durations change handler
+const onDurationInputChangeHandler = (event) => {
+
+  const regExp = /[a-zA-Z]/g;
+
+  if (!regExp.test(event.target.value)) {
+
+    setDurations(event.target.value)
+
+  }
+
+};
+
 //////////////////////
 
   return (
- 
+    <Container className="mb-5">
       <Row>
-        <h1 className="mb-5">List of exercises: </h1>
+        <h1>List of exercises: </h1>
           {exercises && exercises.map((item, index) => {
             return (
 
@@ -162,6 +193,7 @@ const onSuggestHandler = (query) => {
                     <FloatingLabel
                     controlId="floatingInput"
                     label="Enter Duration (Minutes)"
+                    onChange={event => onDurationInputChangeHandler(event)}
                     className="mb-3"
                     >
                       <Form.Control 
@@ -179,6 +211,21 @@ const onSuggestHandler = (query) => {
                 <h4>Total Exercise Calories: </h4>{item.total_exercise_calories}
                 </div>
                 }
+
+                      {exerciseEdit === index &&
+                      <div>
+                      <Button 
+                      className="mt-2" 
+                      variant="info" 
+                      type="submit"
+                      onClick={() => {lineExercise && submitExercise(lineExercise[index].id, index)}}
+                      >
+                        Submit
+                      </Button>
+                      </div>
+                       }
+
+                      {exerciseEdit !== index &&
                       <div>
                       <Button 
                       className="mt-2" 
@@ -189,21 +236,22 @@ const onSuggestHandler = (query) => {
                         Delete
                       </Button>
                       </div>
+                       }
 
-
-                      <div>
                       {exerciseEdit !== index &&
+                      <div>
                       <Button 
                       className="mt-2" 
                       variant="info" 
                       type="submit"
-                      onClick={() => {lineExercise && editExercise(lineExercise[index].id, index)}}
+                      onClick={() => {lineExercise && editExercise(index)}}
                       >
                         Edit
                       </Button>
-                      }
                      </div> 
-                     
+
+                     }
+                     {exerciseEdit === index &&
                      <div>
                       <Button 
                       className="mt-2" 
@@ -214,14 +262,14 @@ const onSuggestHandler = (query) => {
                         Cancel
                       </Button>
                       </div>
-
+                     }
                       <hr></hr>
 
               </div>
             )
       })}
       </Row>
-
+      </Container>
   );
 
 }
