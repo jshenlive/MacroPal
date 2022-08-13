@@ -4,10 +4,15 @@ import { Container, Row, Col, Form, Button, FloatingLabel, NavItem } from 'react
 
 export default function WorkoutEdit2 (props) {
 const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
-
-const [exerciseEdit, setExerciseEdit] = useState(false);
+const [exerciseEdit, setExerciseEdit] = useState(true);
 const exercises = userWorkoutDetails.exercises;
 const lineExercise = userWorkoutDetails.line_exercises;
+////////// change to context API
+const [exercisesApi, setExercisesApi] = useState([]);
+const [query, setQuery] = useState("");
+const [suggestions, setSuggestions] = useState([]);
+const [queryItems, setQueryItems] = useState({});
+///////////////////////////////
 
 /////////// Get Exercise Info//////
 
@@ -57,7 +62,43 @@ const editExercise = (exerciseId) => {
 
     }
 
-    console.log('userWorkoutDetails', userWorkoutDetails);
+//////////////////Workout.jsx change to context API
+useEffect(() => {
+
+  const loadExercises = async() => {
+    // async function to get the exercise data from rails 
+    const response = await Axios.get('/api/exercises');
+    // response.data is an array with objects of exercises
+    console.log('response.data', response);
+    setExercisesApi(response.data)
+  }
+  loadExercises();
+  
+}, [])
+
+const onChangeHandler = (query) => {
+ 
+
+  let matches = [];
+
+  if (query.length > 0) {
+
+    matches = exercisesApi.filter( exercise => {
+      //gi modifier sets case insensitivity
+      const regex = new RegExp(`${query}`, "gi");
+      return exercise.name.match(regex)
+    })
+  }
+  setSuggestions(matches)
+  setQuery(query)
+};
+
+const onSuggestHandler = (query) => {
+  setQuery(query.name);
+  setQueryItems(query);
+  setSuggestions([]);
+};
+//////////////////////
 
   return (
  
@@ -68,9 +109,48 @@ const editExercise = (exerciseId) => {
 
               <div key={index}>
 
+                <h4 >Name: </h4>
+
+                {!exerciseEdit &&
                 <div>
-                <h4 >Name: </h4>{item.exercise.name}
+                  {item.exercise.name}
                 </div>
+                }
+
+                {exerciseEdit &&
+                <div>
+                  <Form.Group className="mt-2">
+                    <FloatingLabel
+                    controlId="floatingInput"
+                    label="Choose Your Activity"
+                    className="mb-3"
+                    >
+                      <Form.Control 
+                      type="text"
+                      name= "activitiesQuery"
+                      onChange={event => onChangeHandler(event.target.value)}
+                      onBlur={() => {
+                        setTimeout(() => {
+                          setSuggestions([])
+                        }, 2000)
+                      }}
+                      value={query}
+                      placeholder="Choose Your Activity"
+                      />
+                          {suggestions && suggestions.map((suggestion, index) =>
+                            <div 
+                            key={index} 
+                            className="query-suggestions"
+                            onClick={() => onSuggestHandler(suggestion)}
+                            >
+                              {suggestion.name}
+                            </div>
+                          )}
+
+                    </FloatingLabel>
+                  </Form.Group>
+                </div>
+                }
 
                 <div>
                 <h4>Duration: </h4>
@@ -93,10 +173,12 @@ const editExercise = (exerciseId) => {
                   </Form.Group>
                 </Col>
                 }
+
+                {!exerciseEdit &&
                 <div>
                 <h4>Total Exercise Calories: </h4>{item.total_exercise_calories}
                 </div>
-
+                }
                       <div>
                       <Button 
                       className="mt-2" 
@@ -110,7 +192,7 @@ const editExercise = (exerciseId) => {
 
 
                       <div>
-
+                      {!exerciseEdit &&
                       <Button 
                       className="mt-2" 
                       variant="info" 
@@ -119,6 +201,7 @@ const editExercise = (exerciseId) => {
                       >
                         Edit
                       </Button>
+                      }
                       </div>
 
                       <hr></hr>

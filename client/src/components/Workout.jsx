@@ -5,6 +5,7 @@ import { randNumGen } from "../helpers/helpers"
 import { AppUnits } from "../hooks/useAppData"
 import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
 import '../App.scss'
+import Exercise from './Exercise';
 
 export default function Workout (props) {
 
@@ -372,6 +373,7 @@ console.log('query', query);
             </Col>
 
           </Row>
+
   </Container>
  );
 
