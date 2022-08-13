@@ -30,6 +30,7 @@ export default function Fitpalnavbar(props) {
             <>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/addworkout">Add Workout</Nav.Link>
+            <Nav.Link href="/workoutList">Today exercises</Nav.Link>
             <Nav.Link href="/workoutsummary">Workout Summary</Nav.Link>
               <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
