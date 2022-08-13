@@ -69,13 +69,30 @@ const editExercise = (exerciseId) => {
               <div key={index}>
 
                 <div>
-                <h4>Name: </h4>{item.exercise.name}
+                <h4 >Name: </h4>{item.exercise.name}
                 </div>
-        
+
                 <div>
-                <h4>Duration: </h4>{item.exercise_duration}
+                <h4>Duration: </h4>
+                {!exerciseEdit && item.exercise_duration}
                 </div>
-        
+                {exerciseEdit &&
+                <Col>
+                  <Form.Group className="mt-2">
+                    <FloatingLabel
+                    controlId="floatingInput"
+                    label="Enter Duration (Minutes)"
+                    className="mb-3"
+                    >
+                      <Form.Control 
+                      type="text"
+                      name= "duration"
+                      placeholder="Enter Duration"
+                      />
+                    </FloatingLabel>
+                  </Form.Group>
+                </Col>
+                }
                 <div>
                 <h4>Total Exercise Calories: </h4>{item.total_exercise_calories}
                 </div>
@@ -105,6 +122,7 @@ const editExercise = (exerciseId) => {
                       </div>
 
                       <hr></hr>
+
               </div>
             )
       })}
