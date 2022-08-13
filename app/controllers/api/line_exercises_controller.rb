@@ -13,7 +13,7 @@ class Api::LineExercisesController < ApplicationController
   #   render json: @line_exercise
   # end
 
-  # POST /line_exercises
+  # POST - create new line exercise
   def add_line_exercise
     # puts line_exercise_params
     workout_id = params[:workout_id]
