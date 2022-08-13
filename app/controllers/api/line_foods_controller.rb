@@ -1,20 +1,27 @@
 class Api::LineFoodsController < ApplicationController
   before_action :set_line_food, only: [:show, :update, :destroy]
 
-  # GET /line_foods
-  def index
-    @line_foods = LineFood.all
+  # # GET /line_foods
+  # def index
+  #   @line_foods = LineFood.all
 
-    render json: @line_foods
-  end
+  #   render json: @line_foods
+  # end
 
-  # GET /line_foods/1
-  def show
-    render json: @line_food
-  end
+  # # GET /line_foods/1
+  # def show
+  #   render json: @line_food
+  # end
 
-  # POST /line_foods
-  def create
+  # POST - create new line food
+  def add_line_food
+
+    meal_id = params[:meal_id]
+    food_id = params[:food_id]
+    
+
+
+
     @line_food = LineFood.new(line_food_params)
 
     if @line_food.save

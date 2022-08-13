@@ -40,17 +40,21 @@ Rails.application.routes.draw do
 
     resources :line_exercises
     post '/add_line_exercise', to: 'line_exercises#add_line_exercise'
-    patch '/line_exercises/:id', to: 'line_exercises#update_duration' 
+    patch '/line_exercises/:id', to: 'line_exercises#update'
 
     resources :meals
     get '/meals/user/:user_id', to: "meals#index"
     get '/meals/:id', to: "meals#show"
-    
+
 
 
     resources :foods
     post '/get_food', to: "foods#get_food"
+    
     resources :line_foods
+    post '/add_line_food', to: 'line_foods#add_line_food'
+    patch '/line_foods/:id', to: 'line_foods#update' 
+
 
     resource :food_carts, only: [:show] do
       #/api/food_carts/add_food

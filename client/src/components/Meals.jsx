@@ -10,12 +10,12 @@ export default function Meals (props) {
   const [queryFoodAmount, setQueryFoodAmount] = useState(100);
   const [queryCategory, setQueryCategory] = useState("");
   const [queryHealth, setQueryHealth] = useState("");
-  const [queryMealType, setQueryMealType] = useState("");
+  const [queryMealType, setQueryMealType] = useState("snack");
   const [queryResults, setQueryResults]= useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [itemsToShow,setItemsToShow] = useState(5)
   const [cart, setCart] = useState([])
-  const [foodType, setFoodType] = useState([])
+  // const [foodType, setFoodType] = useState([])
   const [typeNotSelected, setTypeNotSelected] = useState(true)
   const [totalCartCalories, setTotalCartCalories] = useState(0)
   // Axios.get("/api/workouts/1").then((response)=>{
@@ -30,10 +30,8 @@ export default function Meals (props) {
         totals += item.food.calories / 100 *item.food_amount
         // console.log(item.food.calories))
       )
-
       setCart(response.data);
       setTotalCartCalories(totals);
-
     })
   },[]) 
 
@@ -91,6 +89,7 @@ export default function Meals (props) {
     setQueryFoodAmount(100);
     setQueryCategory("");
     setQueryHealth("");
+    setQueryMealType("snack")
   }
 
   const search = () => {    
@@ -99,15 +98,10 @@ export default function Meals (props) {
 
   const saveMeal = async ()=>{
     // console.log(props.state.user.id)
-
     await Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
     .then()
-  
-    
   }
 
-  const showResults = ()=>{
-  }
 
   const menuDropDown = ()=>{
     return(
@@ -188,10 +182,6 @@ export default function Meals (props) {
 
   const daySummary = () => {
     let titled1, titled2, titled3, titled4 = false;
-    
-    // let titled2 = false;
-    // let titled3 = false;
-    // let titled4 = false;
     console.log(cart)
     return(
     <>
@@ -199,7 +189,6 @@ export default function Meals (props) {
     
     
     {cart.map(item=>{
-
 
 
         let itemCalories = item.food.calories / 100 * item.food_amount
@@ -232,6 +221,7 @@ export default function Meals (props) {
             {item.food_amount} grams of {item.food.name}
             <br></br>
             Calories: {Math.round(itemCalories)} kCal
+
             </div>
             </>
           )
@@ -312,7 +302,7 @@ export default function Meals (props) {
           <h3>Create Meal Plans:</h3>
             <label>Select Meal Type</label>
             <br></br>
-            {typeNotSelected ? menuDropDown(): queryMealType}
+            {menuDropDown()}
             <p></p>
             <label>Search Food name:</label>
             <br></br>
@@ -351,16 +341,16 @@ export default function Meals (props) {
             
             <p></p>
             <Row>
-            <Col>
-            <Button onClick={() => reset()}>
-              Reset
-            </Button>
-            </Col>
-            <Col>
-            <Button onClick={() => search()}>
-              Search
-            </Button>
-            </Col>
+              <Col>
+                <Button onClick={() => reset()}>
+                  Reset
+                </Button>
+              </Col>
+              <Col>
+                <Button onClick={() => search()}>
+                  Search
+                </Button>
+              </Col>
             </Row>
       
           </form>
