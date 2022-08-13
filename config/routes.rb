@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     resources :meals
     get '/meals/user/:user_id', to: "meals#index"
     get '/meals/:id', to: "meals#show"
+    
 
 
     resources :foods

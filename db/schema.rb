@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
   end
 
   create_table "line_foods", force: :cascade do |t|
+    t.string "meal_type"
     t.integer "food_amount"
     t.integer "total_food_calories"
     t.bigint "food_id", null: false
@@ -67,15 +68,14 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
   end
 
   create_table "meals", force: :cascade do |t|
-    t.string "meal_type"
+    # t.string "meal_type"
     t.date "date"
     t.integer "food_weight"
     t.integer "total_calories_gained"
     t.bigint "user_id", null: false
-    t.bigint "food_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["food_id"], name: "index_meals_on_food_id"
+
     t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
   add_foreign_key "line_exercises", "workouts"
   add_foreign_key "line_foods", "foods"
   add_foreign_key "line_foods", "meals"
-  add_foreign_key "meals", "foods"
+
   add_foreign_key "meals", "users"
   add_foreign_key "workouts", "users"
 end

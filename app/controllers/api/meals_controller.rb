@@ -3,7 +3,7 @@ class Api::MealsController < ApplicationController
 
   # GET /meals/users/:id
   def index
-    @meals = Meal.where(["user_id = :user_id",{user_id: params[:user_id]})
+    @meals = Meal.where(["user_id = :user_id",{user_id: params[:user_id]}])
 
     render json: @meals
   end
@@ -61,20 +61,22 @@ class Api::MealsController < ApplicationController
 
     def create_meal
       meal = Meal.new(
-        meal_type: params[:meal_type],
+        # meal_type: params[:meal_type],
         user_id: params[:user_id],
         date: params[:date])
       
-      meal.total_calories = food_cart_total_calories
-      meal.meal_amount = food_cart_total_amount
+      meal.total_calories_gained = food_cart_total_calories
+      meal.food_weight = food_cart_total_amount
 
       enhanced_food_cart.each do |entry|
         food = entry[:food]
         food_amount = entry[:food_amount]
+        food_type = entry[:food_type]
         meal.line_foods.new(
           food: food,
           food_amount: food_amount,
-          total_food_calories: food[calories] / 100 * food_amount
+          meal_type: food_type,
+          total_food_calories: food.calories / 100 * food_amount.to_i
         )
       end
 

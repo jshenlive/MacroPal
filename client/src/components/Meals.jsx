@@ -17,6 +17,7 @@ export default function Meals (props) {
   const [cart, setCart] = useState([])
   const [foodType, setFoodType] = useState([])
   const [typeNotSelected, setTypeNotSelected] = useState(true)
+  const [totalCartCalories, setTotalCartCalories] = useState(0)
   // Axios.get("/api/workouts/1").then((response)=>{
   //   console.log(response.data.exercises[1])
   // })
@@ -24,9 +25,19 @@ export default function Meals (props) {
   useEffect(()=>{
     Axios.get('/api/food_carts')
     .then((response) => {
+      let totals = 0
+      response.data.forEach(item=>
+        totals += item.food.calories / 100 *item.food_amount
+        // console.log(item.food.calories))
+      )
+
       setCart(response.data);
+      setTotalCartCalories(totals);
+
     })
   },[]) 
+
+
 
   const fetchFood = async () => {
     setIsLoading(true);
@@ -55,6 +66,12 @@ export default function Meals (props) {
         .then((response) => {
           console.log(response.data)
           setCart(response.data);
+          let totals = 0
+          response.data.forEach(item=>
+            totals += item.food.calories / 100 *item.food_amount
+            // console.log(item.food.calories))
+          )
+          setTotalCartCalories(totals);
 
         })
         .catch((error) => {
@@ -81,11 +98,12 @@ export default function Meals (props) {
   }
 
   const saveMeal = async ()=>{
-    await Axios.post("/api/meals",{"name": queryFoodName, "category": queryCategory, "health": queryHealth}).then((response)=>{
-      setQueryResults(response.data)  
-    }).then(setIsLoading(false))
-    
+    // console.log(props.state.user.id)
 
+    await Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
+    .then()
+  
+    
   }
 
   const showResults = ()=>{
@@ -133,21 +151,30 @@ export default function Meals (props) {
 
     <br></br>
     {isLoading && <h2>Loading...</h2>}
-    {console.log(queryResults)}
+    {/* {console.log(queryResults)} */}
     {queryResults.slice(0, itemsToShow).map(item=>{
         return (
           <div key={item.id}>
             <h3>{item.name}</h3>
-                        
-            Calories: {item.calories}
-            Protein: {item.protein}
-            Carbs: {item.carbs}
-            Fats: {item.fat}
-
+            <Row>  
+              <Col>       
+            Calories: {(item.calories / 100 * queryFoodAmount)}
+            </Col> 
+            <Col> 
+            Protein: {(item.protein / 100 * queryFoodAmount).toFixed(2)}
+            </Col> 
+             <Col> 
+            Carbs: {(item.carbs / 100 * queryFoodAmount).toFixed(2)}
+            </Col> 
+            <Col> 
+            Fats: {(item.fat / 100 * queryFoodAmount).toFixed(2)}
+            </Col> 
+            <Col> 
             {/* {menuDropDown()} */}
 
             <Button onClick={(e)=>addFood(e)} value={item.id}>Add to meal</Button>
-
+            </Col> 
+            </Row>
           </div>
         )
       })}
@@ -155,18 +182,27 @@ export default function Meals (props) {
     )
   }
 
+  
+
+
+
   const daySummary = () => {
     let titled1, titled2, titled3, titled4 = false;
     
     // let titled2 = false;
     // let titled3 = false;
     // let titled4 = false;
-
+    console.log(cart)
     return(
     <>
     <h3>Currently Added</h3>
     
+    
     {cart.map(item=>{
+
+
+
+        let itemCalories = item.food.calories / 100 * item.food_amount
 
         if( item.food_type === "breakfast") {
           let title = ""
@@ -174,13 +210,13 @@ export default function Meals (props) {
             titled1 = true;
             title = item.food_type
           }
-        return (
+          return (
           <>
             <h5>{capitalize(title)}</h5>
           <div key={item.food.id}>
             {item.food_amount} grams of {item.food.name}
             <br></br>
-            Calories: {item.food.calories / 100 * item.food_amount}
+            Calories: {Math.round(itemCalories)} kCal
           </div>
           </>
         )} else if( item.food_type === "lunch"){
@@ -195,28 +231,28 @@ export default function Meals (props) {
             <div key={item.food.id}>
             {item.food_amount} grams of {item.food.name}
             <br></br>
-            Calories: {item.food.calories / 100 * item.food_amount}
+            Calories: {Math.round(itemCalories)} kCal
             </div>
             </>
           )
-      } else if( item.food_type === "dinner"){
+        } else if( item.food_type === "dinner"){
 
           let title = ""
           if(!titled3){
             titled3 = true;
             title = item.food_type
           }
-        return (
+          return (
           <>
             <h5>{capitalize(title)}</h5>
           <div key={item.food.id}>
           {item.food_amount} grams of {item.food.name}
             <br></br>
-            Calories: {item.food.calories / 100 * item.food_amount}
+            Calories: {Math.round(itemCalories)} kCal
           </div>
           </>
         )
-        } else if( item.food_type ==="snack"){
+        } else{
 
           let title = ""
           if(!titled4){
@@ -229,16 +265,16 @@ export default function Meals (props) {
           <div key={item.food.id}>
           {item.food_amount} grams of {item.food.name}
             <br></br>
-            Calories: {item.food.calories / 100 * item.food_amount}
+            Calories: {Math.round(itemCalories)} kCal
           </div>
           </>
-        )
-        }
+        )}
+        
       }
     )}
 
     <p></p>
-    <h5>Total calories intake:</h5>
+    <h5>Total calories intake: {Math.round(totalCartCalories)}</h5>
     <p></p>
     <Button onClick={() => saveMeal()}>
               Save Meal Plan
@@ -247,35 +283,7 @@ export default function Meals (props) {
     )
   }
 
-  const showCart = () =>{
-    
-      cart.map(item=>{
-        return (
-          <div key={item.food.id}>
-            {item.food.name} with {item.food_amount} grams
-            Calories: {item.food.calories / 100 * item.food_amount}
-          </div>
-
-        )
-        // return (
-        //   <div key={item.id}>
-        //     <h3>{item.name}</h3>
-                        
-        //     Calories: {item.calories}
-        //     Protein: {item.protein}
-        //     Carbs: {item.carbs}
-        //     Fats: {item.fat}
-
-        //     {menuDropDown()}
-
-        //     <Button onClick={(e)=>addFood(e)} value={item.id}>Add to meal</Button>
-
-        //   </div>
-        // )
-      })
-    
-  }
-
+  
   function showMore() {
     setItemsToShow(prev=>prev+5)
   }
@@ -288,6 +296,7 @@ export default function Meals (props) {
       </button>
       )
   }
+
 
   function capitalize(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
