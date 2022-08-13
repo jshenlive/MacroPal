@@ -8,6 +8,7 @@ export default function WorkoutSummary (props) {
   //states
   const [userWorkoutData, setUserWorkoutData] = useState("");
   const [periodWorkoutData, setPeriodWorkoutData] = useState("");
+  const [totalcalorieburn, setTotalcalorieburn] = useState("");
 
 ////Calculate date(Today)
 
@@ -33,7 +34,6 @@ const todayDate = year + "-" + month + "-" + day;
 
   }, [props.state]);
 
-  console.log('userWorkoutData', userWorkoutData);
 
 
   /////get workout data for last 7 days
@@ -46,6 +46,26 @@ const todayDate = year + "-" + month + "-" + day;
   }
   getWorkoutDataLast7Days()
 }, [userWorkoutData]);
+
+//Calculate total calorie burn for the period
+
+useEffect(() => {
+const calculateTotalCalorieBurn = () => {
+  
+  let totalCalorie = 0
+
+
+
+  for (let i = 0; i < periodWorkoutData.length; i++) {
+
+    totalCalorie += periodWorkoutData[i].total_workout_calories
+
+
+  }
+  setTotalcalorieburn(totalCalorie);
+}
+calculateTotalCalorieBurn()
+}, [periodWorkoutData]);
 
 
 return (
@@ -67,7 +87,7 @@ return (
             )
       })}
 
-  <h1 className="mb-3">Total Calories burned: 2560 Calories</h1>
+  <h1 className="mb-3">Total Calories burned: {totalcalorieburn} Calories</h1>
   <h1 >Total Hour Working out: 8 Hours 36 Minutes</h1>
   </Container>
 );
