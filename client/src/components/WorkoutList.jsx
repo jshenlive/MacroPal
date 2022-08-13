@@ -5,7 +5,24 @@ import Exercise from "./Exercise";
 
 export default function WorkoutList (props) {
 
-  const [userWorkoutData, setUserWorkoutData] = useState("");
+  const [userWorkoutData, setUserWorkoutData] = useState([]);
+
+
+////Calculate date(Today)
+
+let dateObj = new Date();
+
+let month = dateObj.getUTCMonth() + 1; //months from 1-12
+if (month < 10) {
+  month = '0' + month
+}
+let day = dateObj.getUTCDate();
+let year = dateObj.getUTCFullYear();
+const todayDate = year + "-" + month + "-" + day;
+
+
+////////
+
 
 
   //Get work out data for a user //
@@ -14,12 +31,20 @@ export default function WorkoutList (props) {
     if (props.state.user.id) {
     Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
 
-      setUserWorkoutData(res.data[0]);
+      res.data.map((item) => {
+
+        if (item.date === todayDate) {
+
+          setUserWorkoutData(item);
+        }
+      })
+
     })
   }
 
   }, [props.state]);
 
+  console.log('userWorkoutData', userWorkoutData)
 
   return (
     <Container className="mt-3">
