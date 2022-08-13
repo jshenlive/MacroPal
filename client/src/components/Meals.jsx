@@ -99,7 +99,7 @@ export default function Meals (props) {
   const saveMeal = async ()=>{
     // console.log(props.state.user.id)
     await Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
-    .then(res => console.log("successful meal plan save", res));
+    .then(reset())
   }
 
 
@@ -297,75 +297,69 @@ export default function Meals (props) {
       <p></p>
       <Row>
         <Col>
-            <form autoComplete="off" onSubmit={(event)=> event.preventDefault()}>
-            <h3>Create Meal Plans:</h3>
+          <form autoComplete="off" onSubmit={(event)=> event.preventDefault()}>
+          <h3>Create Meal Plans:</h3>
+            <label>Select Meal Type</label>
+            <br></br>
+            {menuDropDown()}
+            <p></p>
+            <label>Search Food name:</label>
+            <br></br>
+            <input
+              name="foodName"
+              type="text"
+              placeholder="ie. apple pie..."
+              value={queryFoodName}
+              onChange={(event)=> setQueryFoodName(event.target.value)}
+            />
+            <p></p>
 
+            <label>Choose Food Category:</label>
+            <br></br>
+            <select name="selectList" id="selectList" onChange={(event)=> setQueryCategory(event.target.value)} >
+              <option value="generic-foods">Generic foods</option>
+              <option value="generic-meals">Generic meals</option>
+              <option value="packaged-foods">Packaged foods</option>
+              <option value="fast-foods">Fast foods</option>
+            </select>
 
+            <p></p>
 
+            {healthOption()}
+  
 
-              <label>Select Meal Type</label>
-              <br></br>
-              {menuDropDown()}
-              <p></p>
-              <label>Search Food name:</label>
-              <br></br>
-              <input
-                name="foodName"
-                type="text"
-                placeholder="ie. apple pie..."
-                value={queryFoodName}
-                onChange={(event)=> setQueryFoodName(event.target.value)}
-              />
-              <p></p>
-
-              <label>Choose Food Category:</label>
-              <br></br>
-              <select name="selectList" id="selectList" onChange={(event)=> setQueryCategory(event.target.value)} >
-                <option value="generic-foods">Generic foods</option>
-                <option value="generic-meals">Generic meals</option>
-                <option value="packaged-foods">Packaged foods</option>
-                <option value="fast-foods">Fast foods</option>
-              </select>
-
-              <p></p>
-
-              {healthOption()}
-    
-
-              <label>Enter intake amount (in Grams):</label>
-              <br></br>
-              <input
-                name="foodAmount"
-                type="number"
-                placeholder="in grams..."
-                value={queryFoodAmount}
-                onChange={(event)=> setQueryFoodAmount(event.target.value)}
-              />
-              
-              <p></p>
-              <Row>
-                <Col>
-                  <Button onClick={() => reset()}>
-                    Reset
-                  </Button>
-                </Col>
-                <Col>
-                  <Button onClick={() => search()}>
-                    Search
-                  </Button>
-                </Col>
-              </Row>
-        
-            </form>
-        </Col>
-
+            <label>Enter intake amount (in Grams):</label>
+            <br></br>
+            <input
+              name="foodAmount"
+              type="number"
+              placeholder="in grams..."
+              value={queryFoodAmount}
+              onChange={(event)=> setQueryFoodAmount(event.target.value)}
+            />
+            
+            <p></p>
+            <Row>
+              <Col>
+                <Button onClick={() => reset()}>
+                  Reset
+                </Button>
+              </Col>
+              <Col>
+                <Button onClick={() => search()}>
+                  Search
+                </Button>
+              </Col>
+            </Row>
+      
+          </form>
+      </Col>
       <Col>
         <form>     
           {daySummary()}
         </form>
 
       </Col>
-
     </Row>
     <p></p>
     <p></p>

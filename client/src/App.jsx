@@ -78,7 +78,7 @@ class App extends Component {
          <Route  exact path='/addworkout' element={<AddWorkout state={this.state}/>}/>
          <Route  exact path='/exercise' element={<Exercise/>}/>
          <Route  exact path='/workoutList' element={<WorkoutList  state={this.state}/>}/>
-         <Route  exact path='/WorkoutSummary' element={<WorkoutSummary  state={this.state}/>}/>
+         <Route  exact path='/WorkoutSummary' element={<WorkoutSummary state={this.state}/>}/>
          <Route  exact path='/admin' element={<Controlpanel />}/>
          <Route  exact path='/summary' element={<Summary />}/>
          <Route  exact path='/profile' element={<Profile state={this.state} />}/>
