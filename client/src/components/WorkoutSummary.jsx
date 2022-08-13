@@ -50,7 +50,7 @@ const todayDate = year + "-" + month + "-" + day;
 
   }
   getWorkoutDataLastnDays()
-}, [userWorkoutData]);
+}, [period]);
 
 //Calculate total calorie burn for the period
 
@@ -91,6 +91,7 @@ const pickPeriod = (data) => {
   setperiod(data);
 }
 
+console.log('period', period)
 
 return (
   <Container className="container-margins">
@@ -111,7 +112,7 @@ return (
       </Form.Select>
     </>
 
-  {periodWorkoutData && periodWorkoutData.map((item, index) => {
+  {periodWorkoutData && period && periodWorkoutData.map((item, index) => {
 
             return (
 
@@ -123,6 +124,7 @@ return (
               <hr></hr>
 
               </div>
+
             )
       })}
 
