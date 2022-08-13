@@ -6,16 +6,10 @@ import '../App.scss'
 export default function WorkoutEdit2 (props) {
 const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
 const [exerciseEdit, setExerciseEdit] = useState(-1);
+const [durations, setDurations] = useState("");
 const exercises = userWorkoutDetails.exercises;
 const lineExercise = userWorkoutDetails.line_exercises;
 
-////////// change to context API
-const [exercisesApi, setExercisesApi] = useState([]);
-const [query, setQuery] = useState("");
-const [suggestions, setSuggestions] = useState([]);
-const [queryItems, setQueryItems] = useState({});
-const [durations, setDurations] = useState("");
-///////////////////////////////
 
 /////////// Get Exercise Info//////
 
@@ -63,14 +57,7 @@ const editExercise = (index) => {
 /////////Submit Button ////////////
 const submitExercise = (exerciseId, index) => {
 
-  //  object with exercise information
-  const exerciseData = {
-    workout_id: queryItems.id,
-    exercise_duration: durations,
-  }
-
-
-  Axios.put(`/api/line_exercises/${exerciseId}`,   {"exercise_id": queryItems.id, "exercise_duration":durations}).then (res => {
+  Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": props.workoutId, "exercise_id": index, "exercise_duration":durations}).then (res => {
 
     setExerciseEdit(-1)
  
@@ -78,43 +65,6 @@ const submitExercise = (exerciseId, index) => {
   //Ideally this part should rendere an error message on the page below the post
 
     }    
-
-//////////////////Workout.jsx change to context API
-useEffect(() => {
-
-  const loadExercises = async() => {
-    // async function to get the exercise data from rails 
-    const response = await Axios.get('/api/exercises');
-    // response.data is an array with objects of exercises
-    console.log('response.data', response);
-    setExercisesApi(response.data)
-  }
-  loadExercises();
-  
-}, [])
-
-const onChangeHandler = (query) => {
- 
-
-  let matches = [];
-
-  if (query.length > 0) {
-
-    matches = exercisesApi.filter( exercise => {
-      //gi modifier sets case insensitivity
-      const regex = new RegExp(`${query}`, "gi");
-      return exercise.name.match(regex)
-    })
-  }
-  setSuggestions(matches)
-  setQuery(query)
-};
-
-const onSuggestHandler = (query) => {
-  setQuery(query.name);
-  setQueryItems(query);
-  setSuggestions([]);
-};
 
 //Input durations change handler
 const onDurationInputChangeHandler = (event) => {
@@ -129,7 +79,6 @@ const onDurationInputChangeHandler = (event) => {
 
 };
 
-//////////////////////
 
   return (
     <Container className="mb-5">
@@ -142,46 +91,10 @@ const onDurationInputChangeHandler = (event) => {
 
                 <h4 >Name: </h4>
 
-                {exerciseEdit !== index &&
+
                 <div>
                   {item.exercise.name}
                 </div>
-                }
-
-                {exerciseEdit === index &&
-                <div>
-                  <Form.Group className="mt-2">
-                    <FloatingLabel
-                    controlId="floatingInput"
-                    label="Choose Your Activity"
-                    className="mb-3"
-                    >
-                      <Form.Control 
-                      type="text"
-                      name= "activitiesQuery"
-                      onChange={event => onChangeHandler(event.target.value)}
-                      onBlur={() => {
-                        setTimeout(() => {
-                          setSuggestions([])
-                        }, 2000)
-                      }}
-                      value={query}
-                      placeholder="Choose Your Activity"
-                      />
-                          {suggestions && suggestions.map((suggestion, index) =>
-                            <div 
-                            key={index} 
-                            className="query-suggestions"
-                            onClick={() => onSuggestHandler(suggestion)}
-                            >
-                              {suggestion.name}
-                            </div>
-                          )}
-
-                    </FloatingLabel>
-                  </Form.Group>
-                </div>
-                }
 
                 <div>
                 <h4>Duration: </h4>
