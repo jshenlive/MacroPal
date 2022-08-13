@@ -13,9 +13,11 @@ const navigate = useNavigate();
 const lineExercise = userWorkoutDetails.line_exercises;
 
 useEffect(() => {
+
   setexercises(userWorkoutDetails.exercises);
+
 }, [userWorkoutDetails])
-console.log('exercises', exercises)
+
 
 /////////// Get Exercise Info//////
 
@@ -64,8 +66,18 @@ const editExercise = (index) => {
 const submitExercise = (exerciseId, index) => {
 
   return Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": props.workoutId, "exercise_id": index, "exercise_duration":durations})
-  .then (res => {
-    setExerciseEdit(-1);
+  .then (() => {
+
+    //Later change this part to update exercise to reflect changes to the exercise
+    Axios.get(`/api/workouts/${props.workoutId}`).then (res => {
+
+      setUserWorkoutDetails(res.data)
+    //////
+      setExerciseEdit(-1);
+
+    });
+
+
   }).catch(error => console.log(error));
   //Ideally this part should rendere an error message on the page below the post
 
