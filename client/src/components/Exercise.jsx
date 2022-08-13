@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useState, useEffect, useLayoutEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button, FloatingLabel, NavItem } from 'react-bootstrap';
 import '../App.scss'
 
@@ -7,9 +8,14 @@ export default function WorkoutEdit2 (props) {
 const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
 const [exerciseEdit, setExerciseEdit] = useState(-1);
 const [durations, setDurations] = useState("");
-const exercises = userWorkoutDetails.exercises;
+const [exercises, setexercises] = useState([]);
+const navigate = useNavigate();
 const lineExercise = userWorkoutDetails.line_exercises;
 
+useEffect(() => {
+  setexercises(userWorkoutDetails.exercises);
+}, [userWorkoutDetails])
+console.log('exercises', exercises)
 
 /////////// Get Exercise Info//////
 
@@ -57,11 +63,10 @@ const editExercise = (index) => {
 /////////Submit Button ////////////
 const submitExercise = (exerciseId, index) => {
 
-  Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": props.workoutId, "exercise_id": index, "exercise_duration":durations}).then (res => {
-
-    setExerciseEdit(-1)
- 
-  }).catch(error => console.log(error))
+  return Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": props.workoutId, "exercise_id": index, "exercise_duration":durations})
+  .then (res => {
+    setExerciseEdit(-1);
+  }).catch(error => console.log(error));
   //Ideally this part should rendere an error message on the page below the post
 
     }    
@@ -78,6 +83,14 @@ const onDurationInputChangeHandler = (event) => {
   }
 
 };
+
+//Navigate to Another Page
+
+const addAnotherExercise = () => {
+
+  navigate('/Workout');
+
+}
 
 
   return (
@@ -181,6 +194,16 @@ const onDurationInputChangeHandler = (event) => {
               </div>
             )
       })}
+            <div>
+            <Button 
+            className="mb-5" 
+            variant="info" 
+            type="submit"
+            onClick={() => {addAnotherExercise()}}
+            >
+              Add Exercise
+            </Button>
+            </div>
       </Row>
       </Container>
   );
