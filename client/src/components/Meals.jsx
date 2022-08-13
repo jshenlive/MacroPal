@@ -4,13 +4,6 @@ import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstra
 
 export default function Meals (props) {
 
-  const[query, setQuery] = useState({
-    name: "",
-    amount: 0,
-    category: "",
-    health: "",
-
-  })
 
   //food query input
   const [queryFoodName, setQueryFoodName] = useState("");
@@ -21,12 +14,19 @@ export default function Meals (props) {
   const [queryResults, setQueryResults]= useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [itemsToShow,setItemsToShow] = useState(5)
-  
-  
+  const [cart, setCart] = useState([])
+  const [foodType, setFoodType] = useState([])
+  const [typeNotSelected, setTypeNotSelected] = useState(true)
   // Axios.get("/api/workouts/1").then((response)=>{
   //   console.log(response.data.exercises[1])
   // })
   
+  useEffect(()=>{
+    Axios.get('/api/food_carts')
+    .then((response) => {
+      setCart(response.data);
+    })
+  },[]) 
 
   const fetchFood = async () => {
     setIsLoading(true);
@@ -34,13 +34,42 @@ export default function Meals (props) {
     console.log(queryFoodName)
 
     await Axios.post("/api/get_food",{"name": queryFoodName, "category": queryCategory, "health": queryHealth}).then((response)=>{
-      setQueryResults(response.data)
-      
+      setTypeNotSelected(false)
+      setQueryResults(response.data)  
     }).then(setIsLoading(false))
+
   }
+
+  const addFood = (e) => {
+    const food_id = e.target.value
+    
+
+      // async function to post the exercise object to backend
+      return Axios.post('/api/food_carts/add_food', {"food_id": food_id, "food_amount": queryFoodAmount, "meal_type": queryMealType })
+      .then((response) => {
+
+        //get cart(list of exercises added) data after an exercise is added,set the state of cart
+        //in future rmove and add a state instead
+
+        return Axios.get('/api/food_carts')
+        .then((response) => {
+          console.log(response.data)
+          setCart(response.data);
+
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
+
+
 
   //to clear form input
   const reset = () => {
+    setTypeNotSelected(true)
     setQueryFoodName("");
     setQueryFoodAmount(100);
     setQueryCategory("");
@@ -49,14 +78,28 @@ export default function Meals (props) {
 
   const search = () => {    
     fetchFood(); 
-    reset();
   }
 
-  const saveMeal = ()=>{
+  const saveMeal = async ()=>{
+    await Axios.post("/api/meals",{"name": queryFoodName, "category": queryCategory, "health": queryHealth}).then((response)=>{
+      setQueryResults(response.data)  
+    }).then(setIsLoading(false))
+    
 
   }
 
   const showResults = ()=>{
+  }
+
+  const menuDropDown = ()=>{
+    return(
+      <select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}} >
+      <option value="">Meal Type</option>
+      <option value="breakfast">Breakfast</option>
+      <option value="lunch">Lunch</option>
+      <option value="dinner">Dinner</option>
+      <option value="snack">Snacks</option>
+      </select>)
   }
 
   const healthOption=()=>{
@@ -86,7 +129,8 @@ export default function Meals (props) {
   const searchResults = () => {
     return(
     <>
-    <h3>Search Results</h3> 
+    <h3>Search Results { queryResults.length > 0 && ('for "'+ queryFoodName +'" with '+ queryFoodAmount + " grams")}</h3> 
+
     <br></br>
     {isLoading && <h2>Loading...</h2>}
     {console.log(queryResults)}
@@ -100,14 +144,10 @@ export default function Meals (props) {
             Carbs: {item.carbs}
             Fats: {item.fat}
 
-            <select name="mealType" id="mealType" onChange={(event)=> setQueryMealType(event.target.value)} >
-              <option value="">Meal Type</option>
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-              <option value="snack">Snacks</option>
-            </select>
-            <button>Add</button>
+            {/* {menuDropDown()} */}
+
+            <Button onClick={(e)=>addFood(e)} value={item.id}>Add to meal</Button>
+
           </div>
         )
       })}
@@ -116,15 +156,87 @@ export default function Meals (props) {
   }
 
   const daySummary = () => {
+    let titled1, titled2, titled3, titled4 = false;
+    
+    // let titled2 = false;
+    // let titled3 = false;
+    // let titled4 = false;
+
     return(
     <>
-    <h3>Day Summary</h3>
-    <ul>
-      <li>Breakfast            <p></p></li>
-      <li>Lunch            <p></p></li>
-      <li>Dinner            <p></p></li>
-      <li>Snacks            <p></p></li>
-    </ul> 
+    <h3>Currently Added</h3>
+    
+    {cart.map(item=>{
+
+        if( item.food_type === "breakfast") {
+          let title = ""
+          if(!titled1){
+            titled1 = true;
+            title = item.food_type
+          }
+        return (
+          <>
+            <h5>{capitalize(title)}</h5>
+          <div key={item.food.id}>
+            {item.food_amount} grams of {item.food.name}
+            <br></br>
+            Calories: {item.food.calories / 100 * item.food_amount}
+          </div>
+          </>
+        )} else if( item.food_type === "lunch"){
+            let title = ""
+            if(!titled2){
+              titled2 = true;
+              title = item.food_type
+            }
+          return (
+            <>
+            <h5>{capitalize(title)}</h5>
+            <div key={item.food.id}>
+            {item.food_amount} grams of {item.food.name}
+            <br></br>
+            Calories: {item.food.calories / 100 * item.food_amount}
+            </div>
+            </>
+          )
+      } else if( item.food_type === "dinner"){
+
+          let title = ""
+          if(!titled3){
+            titled3 = true;
+            title = item.food_type
+          }
+        return (
+          <>
+            <h5>{capitalize(title)}</h5>
+          <div key={item.food.id}>
+          {item.food_amount} grams of {item.food.name}
+            <br></br>
+            Calories: {item.food.calories / 100 * item.food_amount}
+          </div>
+          </>
+        )
+        } else if( item.food_type ==="snack"){
+
+          let title = ""
+          if(!titled4){
+            titled4 = true;
+            title = item.food_type
+          }
+        return (
+          <>
+            <h5>{capitalize(title)}</h5>
+          <div key={item.food.id}>
+          {item.food_amount} grams of {item.food.name}
+            <br></br>
+            Calories: {item.food.calories / 100 * item.food_amount}
+          </div>
+          </>
+        )
+        }
+      }
+    )}
+
     <p></p>
     <h5>Total calories intake:</h5>
     <p></p>
@@ -133,6 +245,35 @@ export default function Meals (props) {
     </Button>
     </>
     )
+  }
+
+  const showCart = () =>{
+    
+      cart.map(item=>{
+        return (
+          <div key={item.food.id}>
+            {item.food.name} with {item.food_amount} grams
+            Calories: {item.food.calories / 100 * item.food_amount}
+          </div>
+
+        )
+        // return (
+        //   <div key={item.id}>
+        //     <h3>{item.name}</h3>
+                        
+        //     Calories: {item.calories}
+        //     Protein: {item.protein}
+        //     Carbs: {item.carbs}
+        //     Fats: {item.fat}
+
+        //     {menuDropDown()}
+
+        //     <Button onClick={(e)=>addFood(e)} value={item.id}>Add to meal</Button>
+
+        //   </div>
+        // )
+      })
+    
   }
 
   function showMore() {
@@ -148,6 +289,10 @@ export default function Meals (props) {
       )
   }
 
+  function capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
 
     <Container>
@@ -155,7 +300,11 @@ export default function Meals (props) {
       <Row>
         <Col>
           <form autoComplete="off" onSubmit={(event)=> event.preventDefault()}>
-          <h3>Add Food Intake Here</h3>
+          <h3>Create Meal Plans:</h3>
+            <label>Select Meal Type</label>
+            <br></br>
+            {typeNotSelected ? menuDropDown(): queryMealType}
+            <p></p>
             <label>Search Food name:</label>
             <br></br>
             <input

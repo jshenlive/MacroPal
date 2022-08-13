@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :food_cart
 
+  def food_type
+    @food_type ||= cookies[:food_type].present? ? JSON.parse(cookies[:food_type]) : {}
+  end
+  helper_method :food_type
+
   # a collection of cart items used for displaying in the views and creating workout and calculating cart totals 
   def enhanced_cart
     @enhanced_cart ||= Exercise.where(id: cart.keys).map {|exercise| { exercise:exercise, exercise_duration: cart[exercise.id.to_s] } }
@@ -25,7 +30,7 @@ class ApplicationController < ActionController::Base
 
 
   def enhanced_food_cart
-    @enhanced_food_cart ||= Food.where(id: food_cart.keys).map {|food| { food:food, food_amount: food_cart[food.id.to_s] } }
+    @enhanced_food_cart ||= Food.where(id: food_cart.keys).map {|food| { food:food, food_amount: food_cart[food.id.to_s], food_type: food_type[food.id.to_s] }}
   end
   helper_method :enhanced_food_cart
  
