@@ -99,7 +99,7 @@ export default function Meals (props) {
   const saveMeal = async ()=>{
     // console.log(props.state.user.id)
     await Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
-    .then(reset())
+    .then(res => console.log("successful meal plan save", res));
   }
 
 
