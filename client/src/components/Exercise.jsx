@@ -4,7 +4,7 @@ import { Container, Row, Col, Form, Button, FloatingLabel, NavItem } from 'react
 
 export default function WorkoutEdit2 (props) {
 const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
-const [exerciseEdit, setExerciseEdit] = useState(true);
+const [exerciseEdit, setExerciseEdit] = useState(-1);
 const exercises = userWorkoutDetails.exercises;
 const lineExercise = userWorkoutDetails.line_exercises;
 ////////// change to context API
@@ -51,14 +51,14 @@ const [queryItems, setQueryItems] = useState({});
       }
 
 //////// Edit Exercise ///////
-const editExercise = (exerciseId) => {
+const editExercise = (exerciseId, index) => {
 
-    setExerciseEdit(true)
+    setExerciseEdit(index)
 
-  Axios.get(`/api/line_exercises/${exerciseId}`).then (res => {
+  // Axios.put(`/api/line_exercises/${exerciseId}`).then (res => {
 
 
-  })
+  // })
 
     }
 
@@ -111,13 +111,13 @@ const onSuggestHandler = (query) => {
 
                 <h4 >Name: </h4>
 
-                {!exerciseEdit &&
+                {exerciseEdit !== index &&
                 <div>
                   {item.exercise.name}
                 </div>
                 }
 
-                {exerciseEdit &&
+                {exerciseEdit === index &&
                 <div>
                   <Form.Group className="mt-2">
                     <FloatingLabel
@@ -154,9 +154,9 @@ const onSuggestHandler = (query) => {
 
                 <div>
                 <h4>Duration: </h4>
-                {!exerciseEdit && item.exercise_duration}
+                {exerciseEdit !== index && item.exercise_duration}
                 </div>
-                {exerciseEdit &&
+                {exerciseEdit === index &&
                 <Col>
                   <Form.Group className="mt-2">
                     <FloatingLabel
@@ -174,7 +174,7 @@ const onSuggestHandler = (query) => {
                 </Col>
                 }
 
-                {!exerciseEdit &&
+                {exerciseEdit !== index &&
                 <div>
                 <h4>Total Exercise Calories: </h4>{item.total_exercise_calories}
                 </div>
@@ -192,7 +192,7 @@ const onSuggestHandler = (query) => {
 
 
                       <div>
-                      {!exerciseEdit &&
+                      {exerciseEdit !== index &&
                       <Button 
                       className="mt-2" 
                       variant="info" 
@@ -202,6 +202,17 @@ const onSuggestHandler = (query) => {
                         Edit
                       </Button>
                       }
+                     </div> 
+                     
+                     <div>
+                      <Button 
+                      className="mt-2" 
+                      variant="info" 
+                      type="submit"
+                      onClick={() => {lineExercise && setExerciseEdit(-1)}}
+                      >
+                        Cancel
+                      </Button>
                       </div>
 
                       <hr></hr>
