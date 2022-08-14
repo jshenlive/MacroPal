@@ -303,7 +303,7 @@ export default function Meals (props) {
               type="number"
               placeholder="in grams..."
               value={queryFoodAmount}
-              onChange={(event)=> setQueryFoodAmount(event.target.value)}
+              onChange={(event)=> setQueryFoodAmount(parseInt(event.target.value))}
             />
             
             <p></p>
