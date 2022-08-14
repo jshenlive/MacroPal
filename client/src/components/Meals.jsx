@@ -25,37 +25,6 @@ export default function Meals (props) {
   // })
 
   let navigate = useNavigate()
-  
-  useEffect(()=>{
-    Axios.get('/api/food_carts')
-    .then((response) => {
-      let totals = 0
-      
-      response.data.sort((a,b)=>{
-        let fa = a.food_type
-        let fb = b.food_type
-
-        
-        if (fa < fb) {
-        return -1;
-    }
-    if (fa > fb) {
-        return 1;
-    }
-    return 0;})
-      
-      console.log("response data", response.data)
-
-      response.data.forEach(item =>
-        totals += item.food.calories *item.food_amount / 100
-        // console.log(item.food.calories))
-      )
-      setCart(response.data);
-      setTotalCartCalories(totals);
-    })
-  },[]) 
-
-
 
   const fetchFood = async () => {
     setIsLoading(true);
@@ -69,18 +38,8 @@ export default function Meals (props) {
 
   }
 
-  const addFood = (e) => {
-    const food_id = e.target.value
-    
-
-      // async function to post the exercise object to backend
-      return Axios.post('/api/food_carts/add_food', {"food_id": food_id, "food_amount": queryFoodAmount, "meal_type": queryMealType })
-      .then((response) => {
-
-        //get cart(list of exercises added) data after an exercise is added,set the state of cart
-        //in future rmove and add a state instead
-
-        return Axios.get('/api/food_carts')
+  const fetchCart = () => {
+    Axios.get('/api/food_carts')
         .then((response) => {
           console.log("after add food",response.data)
 
@@ -88,14 +47,13 @@ export default function Meals (props) {
             let fa = a.food_type
             let fb = b.food_type
 
-            
             if (fa < fb) {
             return -1;
-        }
-        if (fa > fb) {
-            return 1;
-        }
-        return 0;})
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;})
           console.log("data",data)
 
           setCart(response.data);
@@ -105,17 +63,39 @@ export default function Meals (props) {
             // console.log(item.food.calories))
           )
           setTotalCartCalories(totals);
-
         })
         .catch((error) => {
           console.log(error);
         })
+  }
+
+  const saveMeal = ()=>{
+    // console.log(props.state.user.id)
+    Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
+    .then(()=>
+      navigate('/meal-list')
+    ).catch((e)=>{
+      console.log(e)
+    })
+  }
+  
+  useEffect(()=>{
+    fetchCart()
+  },[]) 
+
+
+  const addFood = (e) => {
+    const food_id = e.target.value  
+      // async function to post the exercise object to backend
+      return Axios.post('/api/food_carts/add_food', {"food_id": food_id, "food_amount": queryFoodAmount, "meal_type": queryMealType })
+      .then((response) => {
+        //get cart(list of exercises added) data after an exercise is added,set the state of cart
+        //in future rmove and add a state instead
+        return fetchCart()
       }).catch((error) => {
         console.log(error);
       });
   }
-
-
 
   //to clear form input
   const reset = () => {
@@ -127,26 +107,9 @@ export default function Meals (props) {
     setQueryMealType("breakfast")
   }
 
-  const search = () => {    
-    fetchFood(); 
-  }
-
-  const saveMeal = ()=>{
-
-    // console.log(props.state.user.id)
-    Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
-    .then(()=>
-      navigate('/Foodlist')
-    ).catch((e)=>{
-      console.log(e)
-    })
-  }
-
-
   const menuDropDown = ()=>{
     return(
       <select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}} >
-      {/* <option value="">Meal Type</option> */}
       <option value="1breakfast">Breakfast</option>
       <option value="2lunch">Lunch</option>
       <option value="3dinner">Dinner</option>
@@ -179,22 +142,16 @@ export default function Meals (props) {
   }
 
   const searchResults = () => {
-
     let is_branded = false;
-
     if (queryCategory === "packaged-foods" || queryCategory === "fast-foods")
       is_branded = true;
 
-    
-
-
     return(
-    <>
+    <form>
     <h3>Search Results { queryResults.length > 0 && ('for "'+ queryFoodName +'" with '+ queryFoodAmount + " grams")}</h3> 
 
     <br></br>
     {isLoading && <h2>Loading...</h2>}
-    {/* {console.log(queryResults)} */}
     {queryResults.slice(0, itemsToShow).map(item=>{
         return (
           <div key={item.id+1}>
@@ -222,29 +179,27 @@ export default function Meals (props) {
           </div>
         )
       })}
-    </>
+    </form>
     )
   }
 
-  
-
-
 
   const daySummary = () => {
-    let titled1, titled2, titled3, titled4 = false;
-    // console.log(cart)
+    const titled = {titled1:false, titled2:false, titled3:false, titled4: false}
+    
     return(
-    <>
+    <form>
     <h3>Currently Added</h3>
-    
-    
+
     {cart.map(item=>{
-
-
         let itemCalories = item.food.calories / 100 * item.food_amount
 
-        const showItem = (title)=>{
-          title = title.slice(1)
+        const showItem = (titledid)=>{
+          let title = ""
+          if(!titled[titledid]){
+            titled[titledid] = true;
+            title = item.food_type.slice(1)
+          }
           return(
             <Fragment key={item.food.id}>
             <h5>{capitalize(title)}</h5>
@@ -258,43 +213,20 @@ export default function Meals (props) {
         }
 
         if( item.food_type === "1breakfast") {
-          let title = ""
-          if(!titled1){
-            titled1 = true;
-            title = item.food_type
-          }
+          return showItem("titled1")
+        } else if( item.food_type === "2lunch"){
           return (
-          showItem(title)
-        )} else if( item.food_type === "2lunch"){
-            let title = ""
-            if(!titled2){
-              titled2 = true;
-              title = item.food_type
-            }
-          return (
-            showItem(title)
+            showItem("titled2")
           )
         } else if( item.food_type === "3dinner"){
-
-          let title = ""
-          if(!titled3){
-            titled3 = true;
-            title = item.food_type
-          }
           return (
-            showItem(title)
+            showItem("titled3")
         )
         } else if(item.food_type ==="4snack"){
-          let title = ""
-          if(!titled4){
-            titled4 = true;
-            title = item.food_type
-          }
         return (
-          showItem(title)
-        )}
-        else{
-          return {}
+          showItem("titled4")
+        )} else {
+          return "Something went wrong"
         }
       }
     )}
@@ -305,20 +237,23 @@ export default function Meals (props) {
     <Button onClick={() => saveMeal()}>
               Save Meal Plan
     </Button>
-    </>
+    </form>
     )
   }
 
-  
-  function showMore() {
-    setItemsToShow(prev=>prev+5)
+
+  function showMoreBtn() {
+    return (
+      <button style={{marginBottom:"120px"}} className="btn btn-primary" onClick={()=>setItemsToShow(prev=>prev+5)}>
+      Show More
+      </button>
+      )
   }
 
-  function showMoreBtn(e) {
-
+  function showLessBtn() {
     return (
-      <button style={{marginBottom:"120px"}} className="btn btn-primary" onClick={()=>showMore()}>
-      Show More
+      <button style={{marginBottom:"120px"}} className="btn btn-primary" onClick={()=>setItemsToShow(5)}>
+      Show Less
       </button>
       )
   }
@@ -329,7 +264,6 @@ export default function Meals (props) {
   }
 
   return (
-
     <Container>
       <p></p>
       <Row>
@@ -384,7 +318,7 @@ export default function Meals (props) {
                 </Button>
               </Col>
               <Col>
-                <Button onClick={() => search()}>
+                <Button onClick={() => fetchFood()}>
                   Search
                 </Button>
               </Col>
@@ -393,26 +327,26 @@ export default function Meals (props) {
           </form>
       </Col>
       <Col>
-        <form>     
-          {daySummary()}
-        </form>
-
+          {cart.length>0 && daySummary()}
       </Col>
     </Row>
     <p></p>
     <p></p>
     <Row>
-      <form>     
-        {searchResults()}
-        <p></p>
-        
-      </form>
+
+        {(queryResults.length>0) && searchResults()}
+
     </Row>
     <Row>
-    {(queryResults.length>5) && showMoreBtn()}
-      {/* <p style={{marginBottom:'120px'}}></p> */}
+    {(queryResults.length>5) && itemsToShow<queryResults.length && showMoreBtn()}
+    {(queryResults.length>5) &&itemsToShow>=queryResults.length && showLessBtn()}
+
     </Row>
+    {/* <Row>
+    <p style={{marginBottom:"100px"}}> </p>
+    </Row> */}
     </Container>
+    
   );
   
 }
