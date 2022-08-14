@@ -9,7 +9,8 @@ export default function MealList (props) {
   //this state contains selected day
 const [startDate, setStartDate] = useState(null);
 const [userMealsId, setUserMealsId] = useState([]);
-const [meal, setMeal] = useState([]);
+const [mealData, setMealData] = useState([]);
+const [breakfastInfo, setBreakfastInfo] = useState({});
 
 
 
@@ -46,7 +47,7 @@ useEffect(() => {
 }, [props.state]);
 
 
-/////////////////Date selected////////////////
+/////////////////Date selected - Return Meal ID////////////////
   useEffect(() => {
 
     if (props.state.user.id) {
@@ -69,17 +70,13 @@ useEffect(() => {
   }
 
   }, [startDate]);
-console.log(userMealsId, 'serMealData');
 /////////////////////////////////////////////
 
 /////////////////GET DATA DETAILS MEAL////////////////
 useEffect(() => {
 
   const mealArray = [];
-
   userMealsId.map(item => {
-
-    console.log('item', item)
 
     Axios.get(`/api/meals/${item}`).then((res) => {
 
@@ -89,16 +86,64 @@ useEffect(() => {
 
   });
 
-  setMeal(mealArray)
+  setMealData(mealArray);
 
 }, [userMealsId])
-
+console.log('meal', mealData)
 /////////////////////////////////////////////
+// Prepare Breakfast Items
+///////////////////////////// ///////////////
+useEffect(() => {
 
+  
+  let breakfastInfoArray = [];
+  let mealInformation = {
+    name: "",
+    brand: "",
+    health: "",
+    category: "",
+    carbs: "",
+    fat: "",
+    protein: "",
+    food_amount: "",
+    total_food_calories: "",
+    meal_type: "",
+  }
 
-// if (item.line_food.meal_type === "1breakfast") {
+  mealData.map((item) => {
 
-// }
+    item.line_food.forEach((element, index) => {
+
+      if (element.meal_type === "1breakfast") {
+
+          mealInformation = {
+          name: item.food[index].food.name,
+          brand: item.food[index].food.brand,
+          health: item.food[index].food.health,
+          category: item.food[index].food.category,
+          carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+          fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+          protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+          food_amount: element.food_amount,
+          total_food_calories: element.total_food_calories,
+          meal_type: element.meal_type.slice(1),
+        }
+        
+        breakfastInfoArray.push(mealInformation);
+
+      }
+
+    })
+
+  })
+
+  setBreakfastInfo(breakfastInfoArray);
+
+  //when passing array as dependency, if length is 0. stringify array to make it work
+}, [JSON.stringify(mealData)])
+
+console.log('BreakfastInfo', breakfastInfo)
+
 
 // if (item.line_food.meal_type === "2lunch") {
 
@@ -126,7 +171,7 @@ useEffect(() => {
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-          maxDate={new Date()}
+          // maxDate={new Date()}
           showDisabledMonthNavigation
           className="mb-3"
           inline
