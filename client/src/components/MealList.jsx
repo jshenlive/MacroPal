@@ -8,7 +8,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 export default function MealList (props) {
   //this state contains selected day
 const [startDate, setStartDate] = useState(null);
-const [userMealData, setUserMealData] = useState({});
+const [userMealData, setUserMealData] = useState([]);
 
 ////Calculate date(Today)
 let dateObj = new Date()
@@ -19,7 +19,6 @@ if (month < 10) {
 let day = dateObj.getUTCDate();
 let year = dateObj.getUTCFullYear();
 const todayDate = year + "-" + month + "-" + day;
-console.log('todayDate', todayDate)
 ////////////////////////
 
 // Get Meal data for a specific user and date////////////////
@@ -30,7 +29,6 @@ useEffect(() => {
   Axios.get(`/api/meals/user/${props.state.user.id}`).then ( res => {
 
     res.data.map((item) => {
-      console.log('item', item)
 
       if (item.date === todayDate) {
 
@@ -43,18 +41,23 @@ useEffect(() => {
 
 }, [props.state]);
 
+console.log('userMealData', userMealData)
 /////////////////Date selected////////////////
   useEffect(() => {
 
     if (props.state.user.id) {
     Axios.get(`/api/meals/user/${props.state.user.id}`).then ( res => {
 
+      let mealDataArray = [];
+
       res.data.map((item) => {
 
         if (item.date === startDate.toISOString().substring(0, 10)) {
 
-          setUserMealData(item);
+          mealDataArray.push(item)
+
         }
+        setUserMealData(mealDataArray);
       });
 
     })
