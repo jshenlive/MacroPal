@@ -10,8 +10,10 @@ export default function MealList (props) {
 const [startDate, setStartDate] = useState(null);
 const [userMealsId, setUserMealsId] = useState([]);
 const [mealData, setMealData] = useState([]);
-const [breakfastInfo, setBreakfastInfo] = useState({});
-
+const [breakfastInfo, setBreakfastInfo] = useState([]);
+const [lunchInfo, setLunchInfo] = useState([]);
+const [dinnerInfo, setDinnerInfo] = useState([]);
+const [snackInfo, setSnackInfo] = useState([]);
 
 
 // Get Meal data for a specific user and date////////////////
@@ -23,7 +25,7 @@ useEffect(() => {
 
     let fetchedMealData = [];
 
-    ////Calculate date(Today)
+////Calculate date(Today)
     let dateObj = new Date()
     let month = dateObj.getUTCMonth() + 1; //months from 1-12
     if (month < 10) {
@@ -89,7 +91,8 @@ useEffect(() => {
   setMealData(mealArray);
 
 }, [userMealsId])
-console.log('meal', mealData)
+
+
 /////////////////////////////////////////////
 // Prepare Breakfast Items
 ///////////////////////////// ///////////////
@@ -142,22 +145,164 @@ useEffect(() => {
   //when passing array as dependency, if length is 0. stringify array to make it work
 }, [JSON.stringify(mealData)])
 
-console.log('BreakfastInfo', breakfastInfo)
+/////////////////////////////////////////////
+// Prepare Lunch Items
+///////////////////////////// ///////////////
+useEffect(() => {
 
+  
+  let lunchInfoArray = [];
+  let mealInformation = {
+    name: "",
+    brand: "",
+    health: "",
+    category: "",
+    carbs: "",
+    fat: "",
+    protein: "",
+    food_amount: "",
+    total_food_calories: "",
+    meal_type: "",
+  }
 
-// if (item.line_food.meal_type === "2lunch") {
+  mealData.map((item) => {
 
-// }
+    item.line_food.forEach((element, index) => {
 
-// if (item.line_food.meal_type === "3dinner") {
+      if (element.meal_type === "2lunch") {
 
-// }
+          mealInformation = {
+          name: item.food[index].food.name,
+          brand: item.food[index].food.brand,
+          health: item.food[index].food.health,
+          category: item.food[index].food.category,
+          carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+          fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+          protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+          food_amount: element.food_amount,
+          total_food_calories: element.total_food_calories,
+          meal_type: element.meal_type.slice(1),
+        }
+        
+        lunchInfoArray.push(mealInformation);
 
-// if (item.line_food.meal_type === "4snack") {
+      }
 
-// }
+    })
 
+  })
 
+  setLunchInfo(lunchInfoArray);
+
+  //when passing array as dependency, if length is 0. stringify array to make it work
+}, [JSON.stringify(mealData)])
+
+/////////////////////////////////////////////
+// Prepare Dinner Items
+///////////////////////////// ///////////////
+useEffect(() => {
+
+  
+  let dinnerInfoArray = [];
+  let mealInformation = {
+    name: "",
+    brand: "",
+    health: "",
+    category: "",
+    carbs: "",
+    fat: "",
+    protein: "",
+    food_amount: "",
+    total_food_calories: "",
+    meal_type: "",
+  }
+
+  mealData.map((item) => {
+
+    item.line_food.forEach((element, index) => {
+
+      if (element.meal_type === "3dinner") {
+
+          mealInformation = {
+          name: item.food[index].food.name,
+          brand: item.food[index].food.brand,
+          health: item.food[index].food.health,
+          category: item.food[index].food.category,
+          carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+          fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+          protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+          food_amount: element.food_amount,
+          total_food_calories: element.total_food_calories,
+          meal_type: element.meal_type.slice(1),
+        }
+        
+        dinnerInfoArray.push(mealInformation);
+
+      }
+
+    })
+
+  })
+
+  setDinnerInfo(dinnerInfoArray);
+
+  //when passing array as dependency, if length is 0. stringify array to make it work
+}, [JSON.stringify(mealData)])
+
+/////////////////////////////////////////////
+// Prepare Snack Items
+///////////////////////////// ///////////////
+useEffect(() => {
+
+  
+  let snackInfoArray = [];
+  let mealInformation = {
+    name: "",
+    brand: "",
+    health: "",
+    category: "",
+    carbs: "",
+    fat: "",
+    protein: "",
+    food_amount: "",
+    total_food_calories: "",
+    meal_type: "",
+  }
+
+  mealData.map((item) => {
+
+    item.line_food.forEach((element, index) => {
+
+      if (element.meal_type === "4snack") {
+
+          mealInformation = {
+          name: item.food[index].food.name,
+          brand: item.food[index].food.brand,
+          health: item.food[index].food.health,
+          category: item.food[index].food.category,
+          carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+          fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+          protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+          food_amount: element.food_amount,
+          total_food_calories: element.total_food_calories,
+          meal_type: element.meal_type.slice(1),
+        }
+        
+        snackInfoArray.push(mealInformation);
+
+      }
+
+    })
+
+  })
+
+  setSnackInfo(snackInfoArray);
+
+  //when passing array as dependency, if length is 0. stringify array to make it work
+}, [JSON.stringify(mealData)])
+
+console.log('mealData', mealData)
+console.log('lunchInfo', lunchInfo)
 
   return (
     <Container className="mt-5">
@@ -179,19 +324,23 @@ console.log('BreakfastInfo', breakfastInfo)
       </Col>
       
       <Col>
-
-        <Card className="mb-2">
+      <Card className="card text-black bg-warning mb-2">
         <Card.Header>Breakfast</Card.Header>
-        <Card.Body>This is some text within a card body.</Card.Body>
-        </Card>
+      {breakfastInfo.length !== 0 && breakfastInfo.map((item) => {
+        return (
+          <div>{item.name}</div>
+          )
+        })
+      }
+      </Card>
 
-        <Card className="mb-2">
+        <Card className="card text-black bg-info mb-2">
         <Card.Header >Lunch</Card.Header>
         <Card.Body>This is some text within a card body.</Card.Body>
         </Card>
 
 
-        <Card className="mb-2">
+        <Card className="card text-black bg-primary mb-2">
         <Card.Header>Dinner</Card.Header>
         <Card.Body>This is some text within a card body.</Card.Body>
         </Card>
