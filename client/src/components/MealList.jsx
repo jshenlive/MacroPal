@@ -116,7 +116,7 @@ useEffect(() => {
     }
 
     mealData.forEach(item => {
-      console.log('item', item)
+  
       item.line_food.forEach((element, index) => {
 
         if (element.meal_type === "1breakfast") {
@@ -176,7 +176,7 @@ useEffect(() => {
 
       item.line_food.forEach((element, index) => {
   
-        if (element.meal_type === "1lunch") {
+        if (element.meal_type === "2lunch") {
   
             mealInformation = {
             name: item.food[index].food.name,
@@ -233,7 +233,7 @@ useEffect(() => {
 
       item.line_food.forEach((element, index) => {
   
-        if (element.meal_type === "1dinner") {
+        if (element.meal_type === "3dinner") {
   
             mealInformation = {
             name: item.food[index].food.name,
@@ -290,7 +290,7 @@ useEffect(() => {
 
       item.line_food.forEach((element, index) => {
   
-        if (element.meal_type === "1snack") {
+        if (element.meal_type === "4snack") {
   
             mealInformation = {
             name: item.food[index].food.name,
@@ -320,7 +320,7 @@ useEffect(() => {
   
   }, [mealData])
 
-console.log("breakfastInfo.length", breakfastInfo)
+
   return (
     <Container className="mt-5">
 
@@ -344,17 +344,30 @@ console.log("breakfastInfo.length", breakfastInfo)
       <Col>
       <Card className="card text-black bg-warning mb-2">
         <Card.Header>Breakfast</Card.Header>
-      {breakfastInfo.length !== 0 && breakfastInfo.map((item) => {
+        <Card.Body>
+      {breakfastInfo.length !== 0 && breakfastInfo.map((item, index) => {
         return (
+          <div key={index}>
           <div>{item.name}</div>
+          </div>
           )
         })
       }
+      </Card.Body>
       </Card>
 
         <Card className="card text-black bg-info mb-2">
         <Card.Header >Lunch</Card.Header>
-        <Card.Body>This is some text within a card body.</Card.Body>
+        <Card.Body>
+        {lunchInfo.length !== 0 && lunchInfo.map((item, index) => {
+        return (
+          <div key={index}>
+          <div>{item.name}</div>
+          </div>
+          )
+        })
+        }
+        </Card.Body>
         </Card>
 
 
