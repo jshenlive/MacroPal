@@ -24,6 +24,8 @@ export default function Meals (props) {
   //   console.log(response.data.exercises[1])
   // })
 
+  console.log(props)
+
   let navigate = useNavigate()
 
   const fetchFood = async () => {
