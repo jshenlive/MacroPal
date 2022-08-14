@@ -28,6 +28,8 @@ useEffect(() => {
 ////Calculate date(Today)
     let dateObj = new Date()
     let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    
+    
     if (month < 10) {
       month = '0' + month
     }
@@ -36,7 +38,6 @@ useEffect(() => {
     const todayDate = year + "-" + month + "-" + day;
 
     res.data.map((item) => {
-
       if (item.date === todayDate) {
         fetchedMealData.push(item.id);
       }
