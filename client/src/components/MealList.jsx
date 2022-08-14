@@ -61,13 +61,15 @@ useEffect(() => {
           mealDataArray.push(item)
 
         }
-        setUserMealData(mealDataArray);
       });
+
+      setUserMealData(mealDataArray);
 
     })
   }
 
   }, [startDate]);
+
 /////////////////////////////////////////////
 
 /////////////////GET Data DAY MEAL////////////////
