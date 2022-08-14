@@ -9,6 +9,7 @@ export default function MealList (props) {
   //this state contains selected day
 const [startDate, setStartDate] = useState(null);
 const [userMealData, setUserMealData] = useState([]);
+const [test, setTest] = useState([]);
 
 ////Calculate date(Today)
 let dateObj = new Date()
@@ -46,7 +47,7 @@ console.log('userMealData', userMealData)
   useEffect(() => {
 
     if (props.state.user.id) {
-    Axios.get(`/api/meals/user/${props.state.user.id}`).then ( res => {
+    Axios.get(`/api/meals/user/${props.state.user.id}`).then( res => {
 
       let mealDataArray = [];
 
@@ -66,7 +67,26 @@ console.log('userMealData', userMealData)
   }, [startDate]);
 /////////////////////////////////////////////
 
-  console.log('userMealData', userMealData);
+/////////////////GET Data DAY MEAL////////////////
+useEffect(() => {
+
+  const testarray = [];
+
+  userMealData.map(item => {
+
+    console.log('item.id', item.id)
+    testarray.push(item.id);
+    // Axios.get(`/api/meals/${}`)
+
+  })
+
+  setTest(testarray);
+
+}, [userMealData])
+/////////////////////////////////////////////
+
+  console.log('test', test);
+
 
   return (
     <Container className="mt-5">
