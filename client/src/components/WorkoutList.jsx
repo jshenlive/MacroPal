@@ -52,7 +52,7 @@ Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
 
       res.data.map((item) => {
 
-        if (item.date === startDate.toISOString().substring(0, 10)) {
+        if (startDate && item.date === startDate.toISOString().substring(0, 10)) {
 
           setUserWorkoutData(item);
         }

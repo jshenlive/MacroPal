@@ -9,7 +9,7 @@ export default function MealList (props) {
   //this state contains selected day
 const [startDate, setStartDate] = useState(null);
 const [userMealsId, setUserMealsId] = useState([]);
-const [mealData, setMealData] = useState([]);
+// const [mealData, setMealData] = useState([]);
 const [breakfastInfo, setBreakfastInfo] = useState([]);
 const [lunchInfo, setLunchInfo] = useState([]);
 const [dinnerInfo, setDinnerInfo] = useState([]);
@@ -60,7 +60,7 @@ useEffect(() => {
 
       res.data.map((item) => {
 
-        if (item.date === startDate.toISOString().substring(0, 10)) {
+        if (startDate && item.date === startDate.toISOString().substring(0, 10)) {
 
           mealDataArray.push(item.id)
 
@@ -75,83 +75,62 @@ useEffect(() => {
   }, [startDate]);
 /////////////////////////////////////////////
 
-/////////////////GET DATA DETAILS MEAL////////////////
+/////////////////GET MEAL DETAILS-CATEGORIZE////////////////
 useEffect(() => {
 
   const mealArray = [];
-  userMealsId.map(item => {
 
-    Axios.get(`/api/meals/${item}`).then((res) => {
+  const breakfastData = (data) => {
 
-      mealArray.push(res.data);
-
-    });
-
-  });
-
-  setMealData(mealArray);
-
-}, [userMealsId])
-
-
-/////////////////////////////////////////////
-// Prepare Breakfast Items
-///////////////////////////// ///////////////
-useEffect(() => {
-
+    const mealData = data;
+    let breakfastInfoArray = [];
+    let mealInformation = {
+      name: "",
+      brand: "",
+      health: "",
+      category: "",
+      carbs: "",
+      fat: "",
+      protein: "",
+      food_amount: "",
+      total_food_calories: "",
+      meal_type: "",
+    }
   
-  let breakfastInfoArray = [];
-  let mealInformation = {
-    name: "",
-    brand: "",
-    health: "",
-    category: "",
-    carbs: "",
-    fat: "",
-    protein: "",
-    food_amount: "",
-    total_food_calories: "",
-    meal_type: "",
-  }
-
-  mealData.map((item) => {
-
-    item.line_food.forEach((element, index) => {
-
-      if (element.meal_type === "1breakfast") {
-
-          mealInformation = {
-          name: item.food[index].food.name,
-          brand: item.food[index].food.brand,
-          health: item.food[index].food.health,
-          category: item.food[index].food.category,
-          carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-          fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-          protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-          food_amount: element.food_amount,
-          total_food_calories: element.total_food_calories,
-          meal_type: element.meal_type.slice(1),
+    mealData.map((item) => {
+      console.log('item', item)
+      item.line_food.forEach((element, index) => {
+  
+        if (element.meal_type === "1breakfast") {
+  
+            mealInformation = {
+            name: item.food[index].food.name,
+            brand: item.food[index].food.brand,
+            health: item.food[index].food.health,
+            category: item.food[index].food.category,
+            carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+            fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+            protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+            food_amount: element.food_amount,
+            total_food_calories: element.total_food_calories,
+            meal_type: element.meal_type.slice(1),
+          }
+          
+          breakfastInfoArray.push(mealInformation);
+  
         }
-        
-        breakfastInfoArray.push(mealInformation);
-
-      }
-
-    })
-
-  })
-
-  setBreakfastInfo(breakfastInfoArray);
-
-  //when passing array as dependency, if length is 0. stringify array to make it work
-}, [JSON.stringify(mealData)])
-
-/////////////////////////////////////////////
-// Prepare Lunch Items
-///////////////////////////// ///////////////
-useEffect(() => {
-
   
+      })
+  
+    })
+  
+    setBreakfastInfo(breakfastInfoArray);
+
+  };
+  
+  const luncData = (data) => {
+
+  const mealData = data
   let lunchInfoArray = [];
   let mealInformation = {
     name: "",
@@ -195,15 +174,11 @@ useEffect(() => {
 
   setLunchInfo(lunchInfoArray);
 
-  //when passing array as dependency, if length is 0. stringify array to make it work
-}, [JSON.stringify(mealData)])
+  };
 
-/////////////////////////////////////////////
-// Prepare Dinner Items
-///////////////////////////// ///////////////
-useEffect(() => {
+  const dinnerData = (data) => {
 
-  
+  const mealData = data
   let dinnerInfoArray = [];
   let mealInformation = {
     name: "",
@@ -247,62 +222,285 @@ useEffect(() => {
 
   setDinnerInfo(dinnerInfoArray);
 
-  //when passing array as dependency, if length is 0. stringify array to make it work
-}, [JSON.stringify(mealData)])
+  };
+
+  const snackData = (data) => {
+
+    const mealData = data
+    let snackInfoArray = [];
+    let mealInformation = {
+      name: "",
+      brand: "",
+      health: "",
+      category: "",
+      carbs: "",
+      fat: "",
+      protein: "",
+      food_amount: "",
+      total_food_calories: "",
+      meal_type: "",
+    }
+  
+    mealData.map((item) => {
+  
+      item.line_food.forEach((element, index) => {
+  
+        if (element.meal_type === "4snack") {
+  
+            mealInformation = {
+            name: item.food[index].food.name,
+            brand: item.food[index].food.brand,
+            health: item.food[index].food.health,
+            category: item.food[index].food.category,
+            carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+            fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+            protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+            food_amount: element.food_amount,
+            total_food_calories: element.total_food_calories,
+            meal_type: element.meal_type.slice(1),
+          }
+          
+          snackInfoArray.push(mealInformation);
+  
+        }
+  
+      })
+  
+    })
+  
+    setSnackInfo(snackInfoArray);
+
+  };
+
+  userMealsId.map(item => {
+
+    Axios.get(`/api/meals/${item}`).then((res) => {
+
+      mealArray.push(res.data);
+
+    });
+
+  });
+
+  console.log('mealArray', mealArray);
+    breakfastData(mealArray);
+    luncData(mealArray);
+    dinnerData(mealArray);
+    snackData(mealArray);
+
+
+}, [userMealsId])
+
+
+/////////////////////////////////////////////
+// Prepare Breakfast Items
+///////////////////////////// ///////////////
+// useEffect(() => {
+
+  
+//   let breakfastInfoArray = [];
+//   let mealInformation = {
+//     name: "",
+//     brand: "",
+//     health: "",
+//     category: "",
+//     carbs: "",
+//     fat: "",
+//     protein: "",
+//     food_amount: "",
+//     total_food_calories: "",
+//     meal_type: "",
+//   }
+
+//   mealData.map((item) => {
+
+//     item.line_food.forEach((element, index) => {
+
+//       if (element.meal_type === "1breakfast") {
+
+//           mealInformation = {
+//           name: item.food[index].food.name,
+//           brand: item.food[index].food.brand,
+//           health: item.food[index].food.health,
+//           category: item.food[index].food.category,
+//           carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+//           fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+//           protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+//           food_amount: element.food_amount,
+//           total_food_calories: element.total_food_calories,
+//           meal_type: element.meal_type.slice(1),
+//         }
+        
+//         breakfastInfoArray.push(mealInformation);
+
+//       }
+
+//     })
+
+//   })
+
+//   setBreakfastInfo(breakfastInfoArray);
+
+//   //when passing array as dependency, if length is 0. stringify array to make it work
+// }, [JSON.stringify(mealData)])
+
+/////////////////////////////////////////////
+// Prepare Lunch Items
+///////////////////////////// ///////////////
+// useEffect(() => {
+
+  
+//   let lunchInfoArray = [];
+//   let mealInformation = {
+//     name: "",
+//     brand: "",
+//     health: "",
+//     category: "",
+//     carbs: "",
+//     fat: "",
+//     protein: "",
+//     food_amount: "",
+//     total_food_calories: "",
+//     meal_type: "",
+//   }
+
+//   mealData.map((item) => {
+
+//     item.line_food.forEach((element, index) => {
+
+//       if (element.meal_type === "2lunch") {
+
+//           mealInformation = {
+//           name: item.food[index].food.name,
+//           brand: item.food[index].food.brand,
+//           health: item.food[index].food.health,
+//           category: item.food[index].food.category,
+//           carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+//           fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+//           protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+//           food_amount: element.food_amount,
+//           total_food_calories: element.total_food_calories,
+//           meal_type: element.meal_type.slice(1),
+//         }
+        
+//         lunchInfoArray.push(mealInformation);
+
+//       }
+
+//     })
+
+//   })
+
+//   setLunchInfo(lunchInfoArray);
+
+//   //when passing array as dependency, if length is 0. stringify array to make it work
+// }, [JSON.stringify(mealData)])
+
+/////////////////////////////////////////////
+// Prepare Dinner Items
+///////////////////////////// ///////////////
+// useEffect(() => {
+
+  
+//   let dinnerInfoArray = [];
+//   let mealInformation = {
+//     name: "",
+//     brand: "",
+//     health: "",
+//     category: "",
+//     carbs: "",
+//     fat: "",
+//     protein: "",
+//     food_amount: "",
+//     total_food_calories: "",
+//     meal_type: "",
+//   }
+
+//   mealData.map((item) => {
+
+//     item.line_food.forEach((element, index) => {
+
+//       if (element.meal_type === "3dinner") {
+
+//           mealInformation = {
+//           name: item.food[index].food.name,
+//           brand: item.food[index].food.brand,
+//           health: item.food[index].food.health,
+//           category: item.food[index].food.category,
+//           carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+//           fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+//           protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+//           food_amount: element.food_amount,
+//           total_food_calories: element.total_food_calories,
+//           meal_type: element.meal_type.slice(1),
+//         }
+        
+//         dinnerInfoArray.push(mealInformation);
+
+//       }
+
+//     })
+
+//   })
+
+//   setDinnerInfo(dinnerInfoArray);
+
+//   //when passing array as dependency, if length is 0. stringify array to make it work
+// }, [JSON.stringify(mealData)])
 
 /////////////////////////////////////////////
 // Prepare Snack Items
 ///////////////////////////// ///////////////
-useEffect(() => {
+// useEffect(() => {
 
   
-  let snackInfoArray = [];
-  let mealInformation = {
-    name: "",
-    brand: "",
-    health: "",
-    category: "",
-    carbs: "",
-    fat: "",
-    protein: "",
-    food_amount: "",
-    total_food_calories: "",
-    meal_type: "",
-  }
+//   let snackInfoArray = [];
+//   let mealInformation = {
+//     name: "",
+//     brand: "",
+//     health: "",
+//     category: "",
+//     carbs: "",
+//     fat: "",
+//     protein: "",
+//     food_amount: "",
+//     total_food_calories: "",
+//     meal_type: "",
+//   }
 
-  mealData.map((item) => {
+//   mealData.map((item) => {
 
-    item.line_food.forEach((element, index) => {
+//     item.line_food.forEach((element, index) => {
 
-      if (element.meal_type === "4snack") {
+//       if (element.meal_type === "4snack") {
 
-          mealInformation = {
-          name: item.food[index].food.name,
-          brand: item.food[index].food.brand,
-          health: item.food[index].food.health,
-          category: item.food[index].food.category,
-          carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-          fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-          protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-          food_amount: element.food_amount,
-          total_food_calories: element.total_food_calories,
-          meal_type: element.meal_type.slice(1),
-        }
+//           mealInformation = {
+//           name: item.food[index].food.name,
+//           brand: item.food[index].food.brand,
+//           health: item.food[index].food.health,
+//           category: item.food[index].food.category,
+//           carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+//           fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+//           protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+//           food_amount: element.food_amount,
+//           total_food_calories: element.total_food_calories,
+//           meal_type: element.meal_type.slice(1),
+//         }
         
-        snackInfoArray.push(mealInformation);
+//         snackInfoArray.push(mealInformation);
 
-      }
+//       }
 
-    })
+//     })
 
-  })
+//   })
 
-  setSnackInfo(snackInfoArray);
+//   setSnackInfo(snackInfoArray);
 
-  //when passing array as dependency, if length is 0. stringify array to make it work
-}, [JSON.stringify(mealData)])
+//   //when passing array as dependency, if length is 0. stringify array to make it work
+// }, [JSON.stringify(mealData)])
 
-console.log('mealData', mealData)
+
 console.log('lunchInfo', lunchInfo)
 
   return (
