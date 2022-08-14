@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
@@ -11,14 +11,13 @@ export default function WorkoutList (props) {
 
   const [userWorkoutData, setUserWorkoutData] = useState([]);
   const navigate = useNavigate();
-
 //this state contains selected day
 const [startDate, setStartDate] = useState(null);
 
-////Calculate date(Today)
+////Fetch Today workout data on mount
+useEffect(() => {
 
 let dateObj = new Date();
-
 let month = dateObj.getUTCMonth() + 1; //months from 1-12
 if (month < 10) {
   month = '0' + month
@@ -26,6 +25,24 @@ if (month < 10) {
 let day = dateObj.getUTCDate();
 let year = dateObj.getUTCFullYear();
 const todayDate = year + "-" + month + "-" + day;
+
+Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
+  
+
+  res.data.map((item) => {
+    console.log('item', item);
+    if (item.date === todayDate) {
+
+      setUserWorkoutData(item);
+    }
+  })
+
+})
+
+}, [props.state]);
+
+
+
 
   //Get work out data for a specific user and date//
   useEffect(() => {
@@ -75,7 +92,7 @@ const addAnotherExercise = () => {
     />
     <Row>
 
-     <Col>
+
      <Button 
       variant="info" 
       type="submit"
@@ -83,7 +100,7 @@ const addAnotherExercise = () => {
        >
         Add Exercise
       </Button>
-      </Col>
+  
 
   </Row>
     </Col>
@@ -93,7 +110,7 @@ const addAnotherExercise = () => {
     {userWorkoutData.id &&
       <>
 
-      <Card className="mb-5 text-center">
+      <Card className="mb-2 text-center">
       <Card.Header>Summary</Card.Header>
       <Card.Body>
 

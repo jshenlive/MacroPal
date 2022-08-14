@@ -100,27 +100,17 @@ const onDurationInputChangeHandler = (event) => {
 
 
   return (
-    <Container className="mb-5">
+    <Container className="mb-2">
+
       <Row>
 
-      <div>
- 
           {exercises && exercises.map((item, index) => {
             return (
 
               <div key={index}>
 
-                <h4 >Name: </h4>
+                <div >{item.exercise.name}, for the duration of {exerciseEdit !== index && item.exercise_duration} {exerciseEdit !== index && <span>Minutes</span>}</div>
 
-
-                <div>
-                  {item.exercise.name}
-                </div>
-
-                <div>
-                <h4>Duration: </h4>
-                {exerciseEdit !== index && item.exercise_duration} {exerciseEdit !== index && <span>Minutes</span>}
-                </div>
                 {exerciseEdit === index &&
                 <Col>
                   <Form.Group className="mt-2">
@@ -140,14 +130,12 @@ const onDurationInputChangeHandler = (event) => {
                 </Col>
                 }
 
-                {exerciseEdit !== index &&
                 <div>
-                <h4>Total Exercise Calories: </h4>{item.total_exercise_calories} Calories
-                </div>
+
+                {exerciseEdit !== index && <span>Total: {item.total_exercise_calories} Calories</span>
                 }
 
                       {exerciseEdit === index &&
-                      <div>
                       <Button 
                       className="mt-2" 
                       variant="info" 
@@ -156,37 +144,39 @@ const onDurationInputChangeHandler = (event) => {
                       >
                         Submit
                       </Button>
-                      </div>
+                      
                        }
 
                       {exerciseEdit !== index &&
-                      <div>
+                      
                       <Button 
-                      className="mt-2" 
+                      className="mr-5" 
                       variant="info" 
                       type="submit"
                       onClick={() => {lineExercise && deleteExercise(lineExercise[index].id, index)}}
                       >
                         Delete
                       </Button>
-                      </div>
+                      
                        }
-
+        
                       {exerciseEdit !== index &&
-                      <div>
+                      
                       <Button 
-                      className="mt-2" 
+                      className="mr-5" 
                       variant="info" 
                       type="submit"
                       onClick={() => {lineExercise && editExercise(index)}}
                       >
                         Edit
                       </Button>
-                     </div> 
+                     
 
                      }
+
+                     
                      {exerciseEdit === index &&
-                     <div>
+                     
                       <Button 
                       className="mt-2" 
                       variant="info" 
@@ -195,15 +185,16 @@ const onDurationInputChangeHandler = (event) => {
                       >
                         Cancel
                       </Button>
-                      </div>
+                      
                      }
-
+                    </div>
               </div>
             )
       })}
 
-      </div>
+      
       </Row>
+      
       </Container>
   );
 
