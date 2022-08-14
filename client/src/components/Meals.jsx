@@ -1,6 +1,8 @@
 import Axios from "axios";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Navigate } from "react-router";
 
 export default function Meals (props) {
 
@@ -10,7 +12,7 @@ export default function Meals (props) {
   const [queryFoodAmount, setQueryFoodAmount] = useState(100);
   const [queryCategory, setQueryCategory] = useState("");
   const [queryHealth, setQueryHealth] = useState("");
-  const [queryMealType, setQueryMealType] = useState("breakfast ");
+  const [queryMealType, setQueryMealType] = useState("1breakfast");
   const [queryResults, setQueryResults]= useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [itemsToShow,setItemsToShow] = useState(5)
@@ -21,13 +23,31 @@ export default function Meals (props) {
   // Axios.get("/api/workouts/1").then((response)=>{
   //   console.log(response.data.exercises[1])
   // })
+
+  let navigate = useNavigate()
   
   useEffect(()=>{
     Axios.get('/api/food_carts')
     .then((response) => {
       let totals = 0
-      response.data.forEach(item=>
-        totals += item.food.calories / 100 *item.food_amount
+      
+      response.data.sort((a,b)=>{
+        let fa = a.food_type
+        let fb = b.food_type
+
+        
+        if (fa < fb) {
+        return -1;
+    }
+    if (fa > fb) {
+        return 1;
+    }
+    return 0;})
+      
+      console.log("response data", response.data)
+
+      response.data.forEach(item =>
+        totals += item.food.calories *item.food_amount / 100
         // console.log(item.food.calories))
       )
       setCart(response.data);
@@ -62,11 +82,26 @@ export default function Meals (props) {
 
         return Axios.get('/api/food_carts')
         .then((response) => {
-          console.log(response.data)
+          console.log("after add food",response.data)
+
+          let data = response.data.sort((a,b)=>{
+            let fa = a.food_type
+            let fb = b.food_type
+
+            
+            if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;})
+          console.log("data",data)
+
           setCart(response.data);
           let totals = 0
           response.data.forEach(item=>
-            totals += item.food.calories / 100 *item.food_amount
+            totals += item.food.calories*item.food_amount / 100 
             // console.log(item.food.calories))
           )
           setTotalCartCalories(totals);
@@ -96,20 +131,26 @@ export default function Meals (props) {
     fetchFood(); 
   }
 
-  const saveMeal = async ()=>{
+  const saveMeal = ()=>{
+
     // console.log(props.state.user.id)
-    await Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
-    .then(reset())
+    Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
+    .then(()=>
+      navigate('/Foodlist')
+    ).catch((e)=>{
+      console.log(e)
+    })
   }
 
 
   const menuDropDown = ()=>{
     return(
       <select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}} >
-      <option value="breakfast">Breakfast</option>
-      <option value="lunch">Lunch</option>
-      <option value="dinner">Dinner</option>
-      <option value="snack">Snacks</option>
+      {/* <option value="">Meal Type</option> */}
+      <option value="1breakfast">Breakfast</option>
+      <option value="2lunch">Lunch</option>
+      <option value="3dinner">Dinner</option>
+      <option value="4snack">Snacks</option>
       </select>)
   }
 
@@ -138,6 +179,15 @@ export default function Meals (props) {
   }
 
   const searchResults = () => {
+
+    let is_branded = false;
+
+    if (queryCategory === "packaged-foods" || queryCategory === "fast-foods")
+      is_branded = true;
+
+    
+
+
     return(
     <>
     <h3>Search Results { queryResults.length > 0 && ('for "'+ queryFoodName +'" with '+ queryFoodAmount + " grams")}</h3> 
@@ -147,11 +197,12 @@ export default function Meals (props) {
     {/* {console.log(queryResults)} */}
     {queryResults.slice(0, itemsToShow).map(item=>{
         return (
-          <div key={item.id}>
-            <h3>{item.name}</h3>
+          <div key={item.id+1}>
+            <h4>{item.name}</h4>
             <Row>  
+            {is_branded && <Col>{"Brand: " + item.brand + ""}</Col>}
               <Col>       
-            Calories: {(item.calories / 100 * queryFoodAmount)}
+            Calories: {Math.round(item.calories / 100 * queryFoodAmount)}
             </Col> 
             <Col> 
             Protein: {(item.protein / 100 * queryFoodAmount).toFixed(2)}
@@ -181,7 +232,7 @@ export default function Meals (props) {
 
   const daySummary = () => {
     let titled1, titled2, titled3, titled4 = false;
-    console.log(cart)
+    // console.log(cart)
     return(
     <>
     <h3>Currently Added</h3>
@@ -192,39 +243,38 @@ export default function Meals (props) {
 
         let itemCalories = item.food.calories / 100 * item.food_amount
 
-        if( item.food_type === "breakfast") {
+        const showItem = (title)=>{
+          title = title.slice(1)
+          return(
+            <Fragment key={item.food.id}>
+            <h5>{capitalize(title)}</h5>
+          <div >
+            {item.food_amount} grams of {item.food.name}
+            <br></br>
+            Calories: {Math.round(itemCalories)} kCal
+          </div>
+          </Fragment>
+          )
+        }
+
+        if( item.food_type === "1breakfast") {
           let title = ""
           if(!titled1){
             titled1 = true;
             title = item.food_type
           }
           return (
-          <>
-            <h5>{capitalize(title)}</h5>
-          <div key={item.food.id}>
-            {item.food_amount} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-          </div>
-          </>
-        )} else if( item.food_type === "lunch"){
+          showItem(title)
+        )} else if( item.food_type === "2lunch"){
             let title = ""
             if(!titled2){
               titled2 = true;
               title = item.food_type
             }
           return (
-            <>
-            <h5>{capitalize(title)}</h5>
-            <div key={item.food.id}>
-            {item.food_amount} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-
-            </div>
-            </>
+            showItem(title)
           )
-        } else if( item.food_type === "dinner"){
+        } else if( item.food_type === "3dinner"){
 
           let title = ""
           if(!titled3){
@@ -232,33 +282,20 @@ export default function Meals (props) {
             title = item.food_type
           }
           return (
-          <>
-            <h5>{capitalize(title)}</h5>
-          <div key={item.food.id}>
-          {item.food_amount} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-          </div>
-          </>
+            showItem(title)
         )
-        } else{
-
+        } else if(item.food_type ==="4snack"){
           let title = ""
           if(!titled4){
             titled4 = true;
             title = item.food_type
           }
         return (
-          <>
-            <h5>{capitalize(title)}</h5>
-          <div key={item.food.id}>
-          {item.food_amount} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-          </div>
-          </>
+          showItem(title)
         )}
-        
+        else{
+          return {}
+        }
       }
     )}
 
@@ -311,6 +348,7 @@ export default function Meals (props) {
               placeholder="ie. apple pie..."
               value={queryFoodName}
               onChange={(event)=> setQueryFoodName(event.target.value)}
+              onFocus={(event)=> setQueryResults([])}
             />
             <p></p>
 
