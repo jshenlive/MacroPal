@@ -76,7 +76,7 @@ useEffect(() => {
   }, [startDate]);
 /////////////////////////////////////////////
 
-/////////////////GET MEAL DETAILS////////////////
+/////////////////GET MEAL DATA////////////////
 useEffect(() => {
 
   function fetchData() {
@@ -87,13 +87,12 @@ useEffect(() => {
         ...prev, res.data 
       ]))
     })
-
   });
 
 }
   fetchData();
   
-}, [props.userMealsId])
+}, [userMealsId])
 
 
 /////////////////////////////////////////////
@@ -115,11 +114,11 @@ useEffect(() => {
       total_food_calories: "",
       meal_type: "",
     }
-  
+
     mealData.forEach(item => {
-  
+      console.log('item', item)
       item.line_food.forEach((element, index) => {
-  
+
         if (element.meal_type === "1breakfast") {
   
             mealInformation = {
@@ -134,7 +133,7 @@ useEffect(() => {
             total_food_calories: element.total_food_calories,
             meal_type: element.meal_type.slice(1),
           }
-          
+
           setBreakfastInfo((prev) => ([
             ...prev, mealInformation 
           ]));
@@ -321,7 +320,7 @@ useEffect(() => {
   
   }, [mealData])
 
-
+console.log("breakfastInfo.length", breakfastInfo)
   return (
     <Container className="mt-5">
 
