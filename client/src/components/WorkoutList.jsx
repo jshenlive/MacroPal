@@ -78,10 +78,10 @@ const addAnotherExercise = () => {
 
     <Row>
 
-      <Col xs={3}>
-    <h4 className="mb-1">Find summary of your activities</h4>
-
-    <div className="mb-1">Please select a date to view</div>
+    <Card className="mt-5" style={{ width: '20rem' }}>
+      <Card.Body> 
+      <Col>
+    <h5 className="mb-1">Physical Activity Summary</h5>
     <DatePicker
       selected={startDate}
       onChange={(date) => setStartDate(date)}
@@ -91,8 +91,7 @@ const addAnotherExercise = () => {
       inline
     />
     <Row>
-
-
+    <div className="mb-1">Please select a date to view</div>
      <Button 
       variant="info" 
       type="submit"
@@ -101,9 +100,11 @@ const addAnotherExercise = () => {
         Add Exercise
       </Button>
   
-
   </Row>
     </Col>
+
+     </Card.Body>
+    </Card>      
 
     <Col>
 

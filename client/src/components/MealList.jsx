@@ -11,16 +11,7 @@ const [startDate, setStartDate] = useState(null);
 const [userMealData, setUserMealData] = useState([]);
 const [test, setTest] = useState([]);
 
-////Calculate date(Today)
-let dateObj = new Date()
-let month = dateObj.getUTCMonth() + 1; //months from 1-12
-if (month < 10) {
-  month = '0' + month
-}
-let day = dateObj.getUTCDate();
-let year = dateObj.getUTCFullYear();
-const todayDate = year + "-" + month + "-" + day;
-////////////////////////
+
 
 // Get Meal data for a specific user and date////////////////
 ///////////////Initial stage when no date is selected////////
@@ -29,20 +20,32 @@ useEffect(() => {
   if (props.state.user.id && startDate === null) {
   Axios.get(`/api/meals/user/${props.state.user.id}`).then ( res => {
 
+    let fetchedMealData = [];
+
+    ////Calculate date(Today)
+    let dateObj = new Date()
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    if (month < 10) {
+      month = '0' + month
+    }
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
+    const todayDate = year + "-" + month + "-" + day;
+
     res.data.map((item) => {
 
       if (item.date === todayDate) {
-
-        setUserMealData(item);
+        fetchedMealData.push(item);
       }
     });
-
+    
+    setUserMealData(fetchedMealData);
   })
 }
 
 }, [props.state]);
 
-console.log('userMealData', userMealData)
+
 /////////////////Date selected////////////////
   useEffect(() => {
 
