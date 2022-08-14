@@ -86,8 +86,6 @@ breakfastData();
 
 }, [mealData])
 
-  console.log('breakfastInfoheeeeeeeeey', breakfastInfo.length)
-
   return (
     <Container className="mt-5">
 
