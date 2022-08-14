@@ -8,8 +8,8 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 export default function MealList (props) {
   //this state contains selected day
 const [startDate, setStartDate] = useState(null);
-const [userMealData, setUserMealData] = useState([]);
-const [test, setTest] = useState([]);
+const [userMealsId, setUserMealsId] = useState([]);
+const [meal, setMeal] = useState([]);
 
 
 
@@ -35,11 +35,11 @@ useEffect(() => {
     res.data.map((item) => {
 
       if (item.date === todayDate) {
-        fetchedMealData.push(item);
+        fetchedMealData.push(item.id);
       }
     });
     
-    setUserMealData(fetchedMealData);
+    setUserMealsId(fetchedMealData);
   })
 }
 
@@ -58,39 +58,60 @@ useEffect(() => {
 
         if (item.date === startDate.toISOString().substring(0, 10)) {
 
-          mealDataArray.push(item)
+          mealDataArray.push(item.id)
 
         }
       });
 
-      setUserMealData(mealDataArray);
+      setUserMealsId(mealDataArray);
 
     })
   }
 
   }, [startDate]);
-
+console.log(userMealsId, 'serMealData');
 /////////////////////////////////////////////
 
-/////////////////GET Data DAY MEAL////////////////
+/////////////////GET DATA DETAILS MEAL////////////////
 useEffect(() => {
 
-  const testarray = [];
+  const mealArray = [];
 
-  userMealData.map(item => {
+  userMealsId.map(item => {
 
-    console.log('item.id', item.id)
-    testarray.push(item.id);
-    // Axios.get(`/api/meals/${}`)
+    console.log('item', item)
 
-  })
+    Axios.get(`/api/meals/${item}`).then((res) => {
 
-  setTest(testarray);
+      mealArray.push(res.data);
 
-}, [userMealData])
+    });
+
+  });
+
+  setMeal(mealArray)
+
+}, [userMealsId])
+
 /////////////////////////////////////////////
 
-  console.log('test', test);
+
+// if (item.line_food.meal_type === "1breakfast") {
+
+// }
+
+// if (item.line_food.meal_type === "2lunch") {
+
+// }
+
+// if (item.line_food.meal_type === "3dinner") {
+
+// }
+
+// if (item.line_food.meal_type === "4snack") {
+
+// }
+
 
 
   return (
