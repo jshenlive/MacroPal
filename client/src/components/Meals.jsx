@@ -115,8 +115,7 @@ export default function Meals (props) {
 
   const menuDropDown = ()=>{
     return(
-      <select name="mealType" id="mealType" onChange={(event)=>
-      {setQueryMealType(event.target.value)}} >
+      <select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}} >
       <option value="breakfast">Breakfast</option>
       <option value="lunch">Lunch</option>
       <option value="dinner">Dinner</option>
@@ -202,7 +201,7 @@ export default function Meals (props) {
 
   const daySummary = () => {
     let titled1, titled2, titled3, titled4 = false;
-    console.log(cart)
+    // console.log(cart)
     return(
     <>
     <h3>Currently Added</h3>
