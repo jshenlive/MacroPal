@@ -12,7 +12,7 @@ export default function Meals (props) {
   const [queryFoodAmount, setQueryFoodAmount] = useState(100);
   const [queryCategory, setQueryCategory] = useState("");
   const [queryHealth, setQueryHealth] = useState("");
-  const [queryMealType, setQueryMealType] = useState("breakfast ");
+  const [queryMealType, setQueryMealType] = useState("1breakfast");
   const [queryResults, setQueryResults]= useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [itemsToShow,setItemsToShow] = useState(5)
@@ -30,7 +30,22 @@ export default function Meals (props) {
     Axios.get('/api/food_carts')
     .then((response) => {
       let totals = 0
+      
+      response.data.sort((a,b)=>{
+        let fa = a.food_type
+        let fb = b.food_type
+
+        
+        if (fa < fb) {
+        return -1;
+    }
+    if (fa > fb) {
+        return 1;
+    }
+    return 0;})
+      
       console.log("response data", response.data)
+
       response.data.forEach(item =>
         totals += item.food.calories *item.food_amount / 100
         // console.log(item.food.calories))
@@ -67,7 +82,22 @@ export default function Meals (props) {
 
         return Axios.get('/api/food_carts')
         .then((response) => {
-          console.log(response.data)
+          console.log("after add food",response.data)
+
+          let data = response.data.sort((a,b)=>{
+            let fa = a.food_type
+            let fb = b.food_type
+
+            
+            if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;})
+          console.log("data",data)
+
           setCart(response.data);
           let totals = 0
           response.data.forEach(item=>
@@ -116,10 +146,11 @@ export default function Meals (props) {
   const menuDropDown = ()=>{
     return(
       <select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}} >
-      <option value="breakfast">Breakfast</option>
-      <option value="lunch">Lunch</option>
-      <option value="dinner">Dinner</option>
-      <option value="snack">Snacks</option>
+      {/* <option value="">Meal Type</option> */}
+      <option value="1breakfast">Breakfast</option>
+      <option value="2lunch">Lunch</option>
+      <option value="3dinner">Dinner</option>
+      <option value="4snack">Snacks</option>
       </select>)
   }
 
@@ -213,6 +244,7 @@ export default function Meals (props) {
         let itemCalories = item.food.calories / 100 * item.food_amount
 
         const showItem = (title)=>{
+          title = title.slice(1)
           return(
             <Fragment key={item.food.id}>
             <h5>{capitalize(title)}</h5>
@@ -225,7 +257,7 @@ export default function Meals (props) {
           )
         }
 
-        if( item.food_type === "breakfast") {
+        if( item.food_type === "1breakfast") {
           let title = ""
           if(!titled1){
             titled1 = true;
@@ -233,7 +265,7 @@ export default function Meals (props) {
           }
           return (
           showItem(title)
-        )} else if( item.food_type === "lunch"){
+        )} else if( item.food_type === "2lunch"){
             let title = ""
             if(!titled2){
               titled2 = true;
@@ -242,7 +274,7 @@ export default function Meals (props) {
           return (
             showItem(title)
           )
-        } else if( item.food_type === "dinner"){
+        } else if( item.food_type === "3dinner"){
 
           let title = ""
           if(!titled3){
@@ -252,7 +284,7 @@ export default function Meals (props) {
           return (
             showItem(title)
         )
-        } else if(item.food_type ==="snack"){
+        } else if(item.food_type ==="4snack"){
           let title = ""
           if(!titled4){
             titled4 = true;
