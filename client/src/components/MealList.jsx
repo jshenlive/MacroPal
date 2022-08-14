@@ -3,6 +3,7 @@ import React, { useState, useEffect, } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import Breakfast from './Breakfast';
 
 
 export default function MealList (props) {
@@ -10,10 +11,10 @@ export default function MealList (props) {
 const [startDate, setStartDate] = useState(null);
 const [userMealsId, setUserMealsId] = useState([]);
 // const [mealData, setMealData] = useState([]);
-const [breakfastInfo, setBreakfastInfo] = useState([]);
-const [lunchInfo, setLunchInfo] = useState([]);
-const [dinnerInfo, setDinnerInfo] = useState([]);
-const [snackInfo, setSnackInfo] = useState([]);
+// const [breakfastInfo, setBreakfastInfo] = useState([]);
+// const [lunchInfo, setLunchInfo] = useState([]);
+// const [dinnerInfo, setDinnerInfo] = useState([]);
+// const [snackInfo, setSnackInfo] = useState([]);
 
 
 // Get Meal data for a specific user and date////////////////
@@ -76,220 +77,220 @@ useEffect(() => {
 /////////////////////////////////////////////
 
 /////////////////GET MEAL DETAILS-CATEGORIZE////////////////
-useEffect(() => {
+// useEffect(() => {
 
-  const mealArray = [];
+//   const mealArray = [];
 
-  const breakfastData = (data) => {
+//   const breakfastData = (data) => {
 
-    const mealData = data;
-    let breakfastInfoArray = [];
-    let mealInformation = {
-      name: "",
-      brand: "",
-      health: "",
-      category: "",
-      carbs: "",
-      fat: "",
-      protein: "",
-      food_amount: "",
-      total_food_calories: "",
-      meal_type: "",
-    }
+//     const mealData = data;
+//     let breakfastInfoArray = [];
+//     let mealInformation = {
+//       name: "",
+//       brand: "",
+//       health: "",
+//       category: "",
+//       carbs: "",
+//       fat: "",
+//       protein: "",
+//       food_amount: "",
+//       total_food_calories: "",
+//       meal_type: "",
+//     }
   
-    mealData.map((item) => {
-      console.log('item', item)
-      item.line_food.forEach((element, index) => {
+//     mealData.map(item => {
+//       console.log('data', item)
+//       item.line_food.forEach((element, index) => {
   
-        if (element.meal_type === "1breakfast") {
+//         if (element.meal_type === "1breakfast") {
   
-            mealInformation = {
-            name: item.food[index].food.name,
-            brand: item.food[index].food.brand,
-            health: item.food[index].food.health,
-            category: item.food[index].food.category,
-            carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-            fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-            protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-            food_amount: element.food_amount,
-            total_food_calories: element.total_food_calories,
-            meal_type: element.meal_type.slice(1),
-          }
+//             mealInformation = {
+//             name: item.food[index].food.name,
+//             brand: item.food[index].food.brand,
+//             health: item.food[index].food.health,
+//             category: item.food[index].food.category,
+//             carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+//             fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+//             protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+//             food_amount: element.food_amount,
+//             total_food_calories: element.total_food_calories,
+//             meal_type: element.meal_type.slice(1),
+//           }
           
-          breakfastInfoArray.push(mealInformation);
+//           breakfastInfoArray.push(mealInformation);
   
-        }
+//         }
   
-      })
+//       })
   
-    })
+//     })
   
-    setBreakfastInfo(breakfastInfoArray);
+//     setBreakfastInfo(breakfastInfoArray);
 
-  };
+//   };
   
-  const luncData = (data) => {
+//   const luncData = (data) => {
 
-  const mealData = data
-  let lunchInfoArray = [];
-  let mealInformation = {
-    name: "",
-    brand: "",
-    health: "",
-    category: "",
-    carbs: "",
-    fat: "",
-    protein: "",
-    food_amount: "",
-    total_food_calories: "",
-    meal_type: "",
-  }
+//   const mealData = data
+//   let lunchInfoArray = [];
+//   let mealInformation = {
+//     name: "",
+//     brand: "",
+//     health: "",
+//     category: "",
+//     carbs: "",
+//     fat: "",
+//     protein: "",
+//     food_amount: "",
+//     total_food_calories: "",
+//     meal_type: "",
+//   }
 
-  mealData.map((item) => {
+//   mealData.map((item) => {
 
-    item.line_food.forEach((element, index) => {
+//     item.line_food.forEach((element, index) => {
 
-      if (element.meal_type === "2lunch") {
+//       if (element.meal_type === "2lunch") {
 
-          mealInformation = {
-          name: item.food[index].food.name,
-          brand: item.food[index].food.brand,
-          health: item.food[index].food.health,
-          category: item.food[index].food.category,
-          carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-          fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-          protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-          food_amount: element.food_amount,
-          total_food_calories: element.total_food_calories,
-          meal_type: element.meal_type.slice(1),
-        }
+//           mealInformation = {
+//           name: item.food[index].food.name,
+//           brand: item.food[index].food.brand,
+//           health: item.food[index].food.health,
+//           category: item.food[index].food.category,
+//           carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+//           fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+//           protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+//           food_amount: element.food_amount,
+//           total_food_calories: element.total_food_calories,
+//           meal_type: element.meal_type.slice(1),
+//         }
         
-        lunchInfoArray.push(mealInformation);
+//         lunchInfoArray.push(mealInformation);
 
-      }
+//       }
 
-    })
+//     })
 
-  })
+//   })
 
-  setLunchInfo(lunchInfoArray);
+//   setLunchInfo(lunchInfoArray);
 
-  };
+//   };
 
-  const dinnerData = (data) => {
+//   const dinnerData = (data) => {
 
-  const mealData = data
-  let dinnerInfoArray = [];
-  let mealInformation = {
-    name: "",
-    brand: "",
-    health: "",
-    category: "",
-    carbs: "",
-    fat: "",
-    protein: "",
-    food_amount: "",
-    total_food_calories: "",
-    meal_type: "",
-  }
+//   const mealData = data
+//   let dinnerInfoArray = [];
+//   let mealInformation = {
+//     name: "",
+//     brand: "",
+//     health: "",
+//     category: "",
+//     carbs: "",
+//     fat: "",
+//     protein: "",
+//     food_amount: "",
+//     total_food_calories: "",
+//     meal_type: "",
+//   }
 
-  mealData.map((item) => {
+//   mealData.map((item) => {
 
-    item.line_food.forEach((element, index) => {
+//     item.line_food.forEach((element, index) => {
 
-      if (element.meal_type === "3dinner") {
+//       if (element.meal_type === "3dinner") {
 
-          mealInformation = {
-          name: item.food[index].food.name,
-          brand: item.food[index].food.brand,
-          health: item.food[index].food.health,
-          category: item.food[index].food.category,
-          carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-          fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-          protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-          food_amount: element.food_amount,
-          total_food_calories: element.total_food_calories,
-          meal_type: element.meal_type.slice(1),
-        }
+//           mealInformation = {
+//           name: item.food[index].food.name,
+//           brand: item.food[index].food.brand,
+//           health: item.food[index].food.health,
+//           category: item.food[index].food.category,
+//           carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+//           fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+//           protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+//           food_amount: element.food_amount,
+//           total_food_calories: element.total_food_calories,
+//           meal_type: element.meal_type.slice(1),
+//         }
         
-        dinnerInfoArray.push(mealInformation);
+//         dinnerInfoArray.push(mealInformation);
 
-      }
+//       }
 
-    })
+//     })
 
-  })
+//   })
 
-  setDinnerInfo(dinnerInfoArray);
+//   setDinnerInfo(dinnerInfoArray);
 
-  };
+//   };
 
-  const snackData = (data) => {
+//   const snackData = (data) => {
 
-    const mealData = data
-    let snackInfoArray = [];
-    let mealInformation = {
-      name: "",
-      brand: "",
-      health: "",
-      category: "",
-      carbs: "",
-      fat: "",
-      protein: "",
-      food_amount: "",
-      total_food_calories: "",
-      meal_type: "",
-    }
+//     const mealData = data
+//     let snackInfoArray = [];
+//     let mealInformation = {
+//       name: "",
+//       brand: "",
+//       health: "",
+//       category: "",
+//       carbs: "",
+//       fat: "",
+//       protein: "",
+//       food_amount: "",
+//       total_food_calories: "",
+//       meal_type: "",
+//     }
   
-    mealData.map((item) => {
+//     mealData.map((item) => {
   
-      item.line_food.forEach((element, index) => {
+//       item.line_food.forEach((element, index) => {
   
-        if (element.meal_type === "4snack") {
+//         if (element.meal_type === "4snack") {
   
-            mealInformation = {
-            name: item.food[index].food.name,
-            brand: item.food[index].food.brand,
-            health: item.food[index].food.health,
-            category: item.food[index].food.category,
-            carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-            fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-            protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-            food_amount: element.food_amount,
-            total_food_calories: element.total_food_calories,
-            meal_type: element.meal_type.slice(1),
-          }
+//             mealInformation = {
+//             name: item.food[index].food.name,
+//             brand: item.food[index].food.brand,
+//             health: item.food[index].food.health,
+//             category: item.food[index].food.category,
+//             carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+//             fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+//             protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+//             food_amount: element.food_amount,
+//             total_food_calories: element.total_food_calories,
+//             meal_type: element.meal_type.slice(1),
+//           }
           
-          snackInfoArray.push(mealInformation);
+//           snackInfoArray.push(mealInformation);
   
-        }
+//         }
   
-      })
+//       })
   
-    })
+//     })
   
-    setSnackInfo(snackInfoArray);
+//     setSnackInfo(snackInfoArray);
 
-  };
+//   };
 
-  userMealsId.map(item => {
+//   userMealsId.map(item => {
 
-    Axios.get(`/api/meals/${item}`).then((res) => {
+//     Axios.get(`/api/meals/${item}`).then((res) => {
 
-      mealArray.push(res.data);
+//       mealArray.push(res.data);
 
-    });
+//     });
 
-  });
+//   });
 
-  console.log('mealArray', mealArray);
-    breakfastData(mealArray);
-    luncData(mealArray);
-    dinnerData(mealArray);
-    snackData(mealArray);
+//   console.log('mealArray', mealArray);
+//     breakfastData(mealArray);
+//     luncData(mealArray);
+//     dinnerData(mealArray);
+//     snackData(mealArray);
 
 
-}, [userMealsId])
+// }, [userMealsId])
 
 
 /////////////////////////////////////////////
@@ -501,7 +502,7 @@ useEffect(() => {
 // }, [JSON.stringify(mealData)])
 
 
-console.log('lunchInfo', lunchInfo)
+// console.log('lunchInfo', lunchInfo)
 
   return (
     <Container className="mt-5">
@@ -521,7 +522,8 @@ console.log('lunchInfo', lunchInfo)
           inline
         />
       </Col>
-      
+      <Breakfast userMealsId={userMealsId} />
+{/*       
       <Col>
       <Card className="card text-black bg-warning mb-2">
         <Card.Header>Breakfast</Card.Header>
@@ -550,7 +552,7 @@ console.log('lunchInfo', lunchInfo)
         <Card.Body>This is some text within a card body.</Card.Body>
         </Card>
 
-      </Col>
+      </Col> */}
 
       </Row>
 

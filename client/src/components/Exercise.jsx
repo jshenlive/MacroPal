@@ -146,7 +146,7 @@ const onDurationInputChangeHandler = (event) => {
                       </Button>
                       
                        }
-
+                      <Col className="mb-2">
                       {exerciseEdit !== index &&
                       
                       <Button 
@@ -159,7 +159,8 @@ const onDurationInputChangeHandler = (event) => {
                       </Button>
                       
                        }
-        
+                      </Col>
+                      <Col>
                       {exerciseEdit !== index &&
                       
                       <Button 
@@ -171,9 +172,8 @@ const onDurationInputChangeHandler = (event) => {
                         Edit
                       </Button>
                      
-
                      }
-
+                      </Col>
                      
                      {exerciseEdit === index &&
                      
