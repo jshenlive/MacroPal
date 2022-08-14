@@ -31,9 +31,8 @@ export default function Meals (props) {
     .then((response) => {
       let totals = 0
       console.log("response data", response.data)
-      response.data.forEach(item=>
-        
-        totals += item.food.calories / 100 *item.food_amount
+      response.data.forEach(item =>
+        totals += item.food.calories *item.food_amount / 100
         // console.log(item.food.calories))
       )
       setCart(response.data);
@@ -72,7 +71,7 @@ export default function Meals (props) {
           setCart(response.data);
           let totals = 0
           response.data.forEach(item=>
-            totals += item.food.calories / 100 *item.food_amount
+            totals += item.food.calories*item.food_amount / 100 
             // console.log(item.food.calories))
           )
           setTotalCartCalories(totals);
@@ -117,8 +116,7 @@ export default function Meals (props) {
   const menuDropDown = ()=>{
     return(
       <select name="mealType" id="mealType" onChange={(event)=>
-      {console.log(event.target.value)
-        setQueryMealType(event.target.value)}} >
+      {setQueryMealType(event.target.value)}} >
       <option value="breakfast">Breakfast</option>
       <option value="lunch">Lunch</option>
       <option value="dinner">Dinner</option>
