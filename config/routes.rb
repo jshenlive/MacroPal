@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
     get '/workouts/user/:user_id', to: "workouts#index"
     get '/workouts/:id', to: "workouts#show"
+    post '/workouts/get_with_date', to: "workouts#get_with_date"
 
     # /api/carts
     resource :carts, only: [:show] do
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
     resources :meals
     get '/meals/user/:user_id', to: "meals#index"
     get '/meals/:id', to: "meals#show"
+    post '/meals/get_with_date', to: "meals#get_with_date"
 
 
 

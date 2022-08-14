@@ -71,8 +71,12 @@ export default function Meals (props) {
   }
 
   const saveMeal = ()=>{
+
+    const date = new Date();
+    const currDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+
     // console.log(props.state.user.id)
-    Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
+    Axios.post("/api/meals",{"user_id": props.state.user.id, "date": currDate})
     .then(()=>
       navigate('/meal-list')
     ).catch((e)=>{

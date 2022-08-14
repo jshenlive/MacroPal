@@ -32,6 +32,8 @@ u = User.create!({
   avatar_url: "https://i.ibb.co/Wgbkvvm/avataaars.png",
   age: 30,
   birthday: "1992-08-05",
+  gender: "male",
+  goal: "active",
   weight_kg: 70,
   height_cm: 175,
   city: 'Vancouver',

@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
     t.string "city"
     t.string "province"
     t.string "country"
+    t.string "goal"
+    t.string "gender"
     t.integer "age"
     t.date "birthday"
     t.integer "weight_kg"

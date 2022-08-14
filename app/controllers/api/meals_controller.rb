@@ -33,7 +33,15 @@ class Api::MealsController < ApplicationController
     else
       render json: meal.errors, status: :unprocessable_entity
     end
+  end
 
+  # post /get_with_date
+  def get_with_date
+    puts "we hare"
+    meal = Meal.where(user_id: params[:user_id])
+    meal = meal.where(date: params[:date])
+
+    render json: meal
   end
 
   # PATCH/PUT /meals/1
