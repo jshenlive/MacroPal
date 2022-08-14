@@ -1,6 +1,8 @@
 import Axios from "axios";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Navigate } from "react-router";
 
 export default function Meals (props) {
 
@@ -21,12 +23,16 @@ export default function Meals (props) {
   // Axios.get("/api/workouts/1").then((response)=>{
   //   console.log(response.data.exercises[1])
   // })
+
+  let navigate = useNavigate()
   
   useEffect(()=>{
     Axios.get('/api/food_carts')
     .then((response) => {
       let totals = 0
+      console.log("response data", response.data)
       response.data.forEach(item=>
+        
         totals += item.food.calories / 100 *item.food_amount
         // console.log(item.food.calories))
       )
@@ -96,16 +102,23 @@ export default function Meals (props) {
     fetchFood(); 
   }
 
-  const saveMeal = async ()=>{
+  const saveMeal = ()=>{
+
     // console.log(props.state.user.id)
-    await Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
-    .then(reset())
+    Axios.post("/api/meals",{"user_id": props.state.user.id, "date": new Date()})
+    .then(()=>
+      navigate('/Foodlist')
+    ).catch((e)=>{
+      console.log(e)
+    })
   }
 
 
   const menuDropDown = ()=>{
     return(
-      <select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}} >
+      <select name="mealType" id="mealType" onChange={(event)=>
+      {console.log(event.target.value)
+        setQueryMealType(event.target.value)}} >
       <option value="breakfast">Breakfast</option>
       <option value="lunch">Lunch</option>
       <option value="dinner">Dinner</option>
@@ -138,6 +151,15 @@ export default function Meals (props) {
   }
 
   const searchResults = () => {
+
+    let is_branded = false;
+
+    if (queryCategory === "packaged-foods" || queryCategory === "fast-foods")
+      is_branded = true;
+
+    
+
+
     return(
     <>
     <h3>Search Results { queryResults.length > 0 && ('for "'+ queryFoodName +'" with '+ queryFoodAmount + " grams")}</h3> 
@@ -147,11 +169,12 @@ export default function Meals (props) {
     {/* {console.log(queryResults)} */}
     {queryResults.slice(0, itemsToShow).map(item=>{
         return (
-          <div key={item.id}>
-            <h3>{item.name}</h3>
+          <div key={item.id+1}>
+            <h4>{item.name}</h4>
             <Row>  
+            {is_branded && <Col>{"Brand: " + item.brand + ""}</Col>}
               <Col>       
-            Calories: {(item.calories / 100 * queryFoodAmount)}
+            Calories: {Math.round(item.calories / 100 * queryFoodAmount)}
             </Col> 
             <Col> 
             Protein: {(item.protein / 100 * queryFoodAmount).toFixed(2)}
@@ -192,6 +215,19 @@ export default function Meals (props) {
 
         let itemCalories = item.food.calories / 100 * item.food_amount
 
+        const showItem = (title)=>{
+          return(
+            <Fragment key={item.food.id}>
+            <h5>{capitalize(title)}</h5>
+          <div >
+            {item.food_amount} grams of {item.food.name}
+            <br></br>
+            Calories: {Math.round(itemCalories)} kCal
+          </div>
+          </Fragment>
+          )
+        }
+
         if( item.food_type === "breakfast") {
           let title = ""
           if(!titled1){
@@ -199,14 +235,7 @@ export default function Meals (props) {
             title = item.food_type
           }
           return (
-          <>
-            <h5>{capitalize(title)}</h5>
-          <div key={item.food.id}>
-            {item.food_amount} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-          </div>
-          </>
+          showItem(title)
         )} else if( item.food_type === "lunch"){
             let title = ""
             if(!titled2){
@@ -214,15 +243,7 @@ export default function Meals (props) {
               title = item.food_type
             }
           return (
-            <>
-            <h5>{capitalize(title)}</h5>
-            <div key={item.food.id}>
-            {item.food_amount} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-
-            </div>
-            </>
+            showItem(title)
           )
         } else if( item.food_type === "dinner"){
 
@@ -232,33 +253,20 @@ export default function Meals (props) {
             title = item.food_type
           }
           return (
-          <>
-            <h5>{capitalize(title)}</h5>
-          <div key={item.food.id}>
-          {item.food_amount} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-          </div>
-          </>
+            showItem(title)
         )
-        } else{
-
+        } else if(item.food_type ==="snack"){
           let title = ""
           if(!titled4){
             titled4 = true;
             title = item.food_type
           }
         return (
-          <>
-            <h5>{capitalize(title)}</h5>
-          <div key={item.food.id}>
-          {item.food_amount} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-          </div>
-          </>
+          showItem(title)
         )}
-        
+        else{
+          return {}
+        }
       }
     )}
 
@@ -311,6 +319,7 @@ export default function Meals (props) {
               placeholder="ie. apple pie..."
               value={queryFoodName}
               onChange={(event)=> setQueryFoodName(event.target.value)}
+              onFocus={(event)=> setQueryResults([])}
             />
             <p></p>
 
