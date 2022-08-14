@@ -29,7 +29,7 @@ useEffect(() => {
 
     });
 
-  }, [])
+  }, [props.workoutId])
 
 
 ////// Delete Exercise ///////
@@ -100,7 +100,7 @@ const onDurationInputChangeHandler = (event) => {
 
 const addAnotherExercise = () => {
 
-  navigate('/Workout');
+  navigate('/addWorkout');
 
 }
 

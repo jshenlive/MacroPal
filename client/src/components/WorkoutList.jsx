@@ -10,8 +10,10 @@ export default function WorkoutList (props) {
 
   const [userWorkoutData, setUserWorkoutData] = useState([]);
 
-  //this state contains selected day
-  const [date, setDate] = useState(null);
+//this state contains selected day
+const [startDate, setStartDate] = useState(null);
+const [selectedDate, setSelectedDate] = useState(todayDate);
+
 
 ////Calculate date(Today)
 
@@ -25,11 +27,6 @@ let day = dateObj.getUTCDate();
 let year = dateObj.getUTCFullYear();
 const todayDate = year + "-" + month + "-" + day;
 
-
-////////
-
-
-
   //Get work out data for a user //
   useEffect(() => {
 
@@ -38,30 +35,39 @@ const todayDate = year + "-" + month + "-" + day;
 
       res.data.map((item) => {
 
-        if (item.date === todayDate) {
+        if (item.date === startDate.toISOString().substring(0, 10)) {
 
           setUserWorkoutData(item);
         }
       })
 
+
+
     })
   }
 
-  }, [props.state]);
+  }, [startDate]);
 
-  console.log('userWorkoutData', userWorkoutData)
+  console.log('userWorkoutData.id', userWorkoutData.id)
 
   return (
 
     <Container className="mt-3">
 
+    <Row>
+    <h4 className="mb-1">Find summary of your activities</h4>
+
+    <div className="mb-1">Please select a date to view</div>
     <DatePicker
-      selected={date}
-      onChange={(date) => setDate(date)}
+      selected={startDate}
+      onChange={(date) => setStartDate(date)}
       maxDate={new Date()}
       showDisabledMonthNavigation
+      className="mb-3"
     />
+    </Row>
 
+    {userWorkoutData.id &&
       <Row className="mb-5">
       <Col>
       <div>Workout Duration: {userWorkoutData.workout_duration} minutes</div>
@@ -72,7 +78,7 @@ const todayDate = year + "-" + month + "-" + day;
       <hr></hr>
       {userWorkoutData.id && <Exercise workoutId={userWorkoutData.id} />}
       </Row>
-
+    }
     </Container>
   );
 
