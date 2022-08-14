@@ -12,8 +12,6 @@ export default function WorkoutList (props) {
 
 //this state contains selected day
 const [startDate, setStartDate] = useState(null);
-const [selectedDate, setSelectedDate] = useState(todayDate);
-
 
 ////Calculate date(Today)
 
@@ -27,7 +25,7 @@ let day = dateObj.getUTCDate();
 let year = dateObj.getUTCFullYear();
 const todayDate = year + "-" + month + "-" + day;
 
-  //Get work out data for a user //
+  //Get work out data for a specific user and date//
   useEffect(() => {
 
     if (props.state.user.id) {
@@ -41,12 +39,11 @@ const todayDate = year + "-" + month + "-" + day;
         }
       })
 
-
-
     })
   }
 
   }, [startDate]);
+  //////////////////////////////////////////////
 
   console.log('userWorkoutData.id', userWorkoutData.id)
 
@@ -64,6 +61,7 @@ const todayDate = year + "-" + month + "-" + day;
       maxDate={new Date()}
       showDisabledMonthNavigation
       className="mb-3"
+      inline
     />
     </Row>
 
