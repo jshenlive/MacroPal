@@ -18,7 +18,7 @@ export default function Meals (props) {
   const [itemsToShow,setItemsToShow] = useState(5)
   const [cart, setCart] = useState([])
   // const [foodType, setFoodType] = useState([])
-  const [typeNotSelected, setTypeNotSelected] = useState(true)
+  // const [typeNotSelected, setTypeNotSelected] = useState(true)
   const [totalCartCalories, setTotalCartCalories] = useState(0)
   // Axios.get("/api/workouts/1").then((response)=>{
   //   console.log(response.data.exercises[1])
@@ -32,7 +32,6 @@ export default function Meals (props) {
     console.log(queryFoodName)
 
     await Axios.post("/api/get_food",{"name": queryFoodName, "category": queryCategory, "health": queryHealth}).then((response)=>{
-      setTypeNotSelected(false)
       setQueryResults(response.data)  
     }).then(setIsLoading(false))
 
@@ -99,7 +98,6 @@ export default function Meals (props) {
 
   //to clear form input
   const reset = () => {
-    setTypeNotSelected(true)
     setQueryFoodName("");
     setQueryFoodAmount(100);
     setQueryCategory("");
@@ -171,8 +169,6 @@ export default function Meals (props) {
             Fats: {(item.fat / 100 * queryFoodAmount).toFixed(2)}
             </Col> 
             <Col> 
-            {/* {menuDropDown()} */}
-
             <Button onClick={(e)=>addFood(e)} value={item.id}>Add to meal</Button>
             </Col> 
             </Row>
