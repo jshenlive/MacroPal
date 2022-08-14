@@ -104,7 +104,7 @@ export default function Profile(props) {
         <br></br>
         Total meal calories: {item.total_meal_calories} (Kcal)
         <br></br>
-  
+        <p></p>
         </Fragment>
       )
     })
@@ -123,6 +123,7 @@ export default function Profile(props) {
         <br></br>
         Total calories burned: {item.total_workout_calories} (Kcal)
         <br></br>
+        <p></p>
   
         </Fragment>
       )
@@ -193,15 +194,9 @@ export default function Profile(props) {
 
   return (
     <Container className="mt-5">
-      <Row>
-        <Col xs={5}>
-          <Card
-            bg="Secondary"
-            style={{ width: profile_width }}
-            key="user-info"
-            className="mb-2"
-            text={"dark"}
-          >
+      <Row >
+        <Col sm={4}>
+          <Card>
             <Card.Body>
               <Card.Title> Welcome, 
                 &nbsp;
@@ -227,35 +222,33 @@ export default function Profile(props) {
             </Card.Body>
 
           </Card>
-          <Card
-            bg="Secondary"
-            style={{ width: profile_width }}
-            key="Secondary"
-            className="mb-2"
-            text={"dark"}
-          >
+          <Card>
             <Card.Body>
               <Card.Title>Earned Badges</Card.Title>
               Daily_Maximizer_icon, Weekly_Warrior_icon....
             </Card.Body>
           </Card>
-        </Col>
-
-        <Col >
           <Card>
             <Card.Body>
+              <Card.Title>Weekly Graph</Card.Title>
+              Graph?
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col sm={8}>
+          <Card className="text-center">
+            <Card.Body>
               <Card.Title> 
-                <center>
-                  <h3>Activity Summary</h3>
-                  <Button onClick={()=>console.log("hello")}>Yesterday</Button> 
+
+                <h3>Activity Summary</h3>
+                  {/* <Button onClick={()=>console.log("hello")}>Yesterday</Button> 
                   &emsp;
                   <Button onClick={()=>console.log("hello")}>Today</Button>  
                   &emsp; 
-                  <Button onClick={()=>console.log("hello")}>Week So Far</Button> 
-           
-                </center>
+                  <Button onClick={()=>console.log("hello")}>Week So Far</Button>  */}
+
               </Card.Title>
-              <br></br>
               <Card.Text>
                 Total Calories Intake: {totalCaloriesIntake()}
                 <br></br>
@@ -271,27 +264,20 @@ export default function Profile(props) {
             </Card.Body>
           </Card>
 
-          <Card>
+          <Card className="text-center">
             <Card.Body>
-            <center>
                 <Card.Title>
                   <h3>Workout Summary</h3>
                 </Card.Title>
-              </center>
-
               <Card.Text>{showWorkout()}</Card.Text>
             </Card.Body>
           </Card>
 
-          <Card>
+          <Card className="text-center">
             <Card.Body>
-              <center>
                 <Card.Title>
                   <h3>Meal Summary</h3>
                 </Card.Title>
-              </center>
-
-
               <Card.Text>{showMeal()}</Card.Text>
             </Card.Body>
           </Card>
@@ -299,31 +285,7 @@ export default function Profile(props) {
         </Col>        
       </Row>
 
-      
-
-      <Row>
-        <Col xs={5}>
-          <Card
-            bg="Secondary"
-            style={{ width: profile_width }}
-            key="Secondary"
-            className="mb-2"
-            text={"dark"}
-          >
-            
-          </Card>
-        </Col>
-
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>below section</Card.Title>
-
-              <Card.Text>Biometric</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+      <p style={{marginBottom: "120px"}}></p>
     </Container>
   );
 }
