@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Form, Button, FloatingLabel, NavItem } from 'react-bootstrap';
+
+import { Container, Row, Col, Form, Button, FloatingLabel, Card } from 'react-bootstrap';
 import '../App.scss'
 
 export default function WorkoutEdit2 (props) {
@@ -9,7 +9,7 @@ const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
 const [exerciseEdit, setExerciseEdit] = useState(-1);
 const [durations, setDurations] = useState("");
 const [exercises, setexercises] = useState([]);
-const navigate = useNavigate();
+
 const lineExercise = userWorkoutDetails.line_exercises;
 
 useEffect(() => {
@@ -96,19 +96,15 @@ const onDurationInputChangeHandler = (event) => {
 
 };
 
-//Navigate to Another Page
 
-const addAnotherExercise = () => {
-
-  navigate('/addWorkout');
-
-}
 
 
   return (
     <Container className="mb-5">
       <Row>
-        <h1>List of exercises: </h1>
+
+      <div>
+ 
           {exercises && exercises.map((item, index) => {
             return (
 
@@ -201,21 +197,12 @@ const addAnotherExercise = () => {
                       </Button>
                       </div>
                      }
-                      <hr></hr>
 
               </div>
             )
       })}
-            <div>
-            <Button 
-            className="mb-5" 
-            variant="info" 
-            type="submit"
-            onClick={() => {addAnotherExercise()}}
-            >
-              Add Exercise
-            </Button>
-            </div>
+
+      </div>
       </Row>
       </Container>
   );

@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useState, useEffect, } from "react";
-import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Exercise from "./Exercise";
@@ -9,6 +10,7 @@ import Exercise from "./Exercise";
 export default function WorkoutList (props) {
 
   const [userWorkoutData, setUserWorkoutData] = useState([]);
+  const navigate = useNavigate();
 
 //this state contains selected day
 const [startDate, setStartDate] = useState(null);
@@ -45,13 +47,21 @@ const todayDate = year + "-" + month + "-" + day;
   }, [startDate]);
   //////////////////////////////////////////////
 
-  console.log('userWorkoutData.id', userWorkoutData.id)
+//Navigate to Another Page
+
+const addAnotherExercise = () => {
+
+  navigate('/addWorkout');
+
+}
 
   return (
 
     <Container className="mt-3">
 
     <Row>
+
+      <Col xs={3}>
     <h4 className="mb-1">Find summary of your activities</h4>
 
     <div className="mb-1">Please select a date to view</div>
@@ -63,20 +73,54 @@ const todayDate = year + "-" + month + "-" + day;
       className="mb-3"
       inline
     />
-    </Row>
+    <Row>
+
+     <Col>
+     <Button 
+      variant="info" 
+      type="submit"
+      onClick={() => {addAnotherExercise()}}
+       >
+        Add Exercise
+      </Button>
+      </Col>
+
+  </Row>
+    </Col>
+
+    <Col>
 
     {userWorkoutData.id &&
-      <Row className="mb-5">
+      <>
+
+      <Card className="mb-5 text-center">
+      <Card.Header>Summary</Card.Header>
+      <Card.Body>
+
       <Col>
       <div>Workout Duration: {userWorkoutData.workout_duration} minutes</div>
       <div>Total Workout Calories: {userWorkoutData.total_workout_calories} </div>
       <div>Work out Created at {userWorkoutData.date} </div>
       <div>Last updated: {userWorkoutData.updated_at} </div>
       </Col>
-      <hr></hr>
-      {userWorkoutData.id && <Exercise workoutId={userWorkoutData.id} />}
-      </Row>
+
+      </Card.Body>
+      </Card>
+
+      {userWorkoutData.id && 
+      <Card>
+      <Card.Header>List of exercises:</Card.Header>
+      <Card.Body>
+      <Exercise workoutId={userWorkoutData.id} />
+      </Card.Body>
+      </Card>
+      }
+      </>
     }
+    </Col>
+
+    </Row>
+
     </Container>
   );
 
