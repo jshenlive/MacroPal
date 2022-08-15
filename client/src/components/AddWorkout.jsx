@@ -210,7 +210,7 @@ useEffect(() => {
 
 
  return (
-  <Container>
+  <Container className="container-margins">
           <Row>
 
         <Card className="mt-5" style={{ width: '36rem' }}>

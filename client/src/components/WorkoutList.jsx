@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Exercise from "./Exercise";
+import '../App.scss'
 
 
 export default function WorkoutList (props) {
@@ -64,7 +65,7 @@ Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
 
   return (
 
-    <Container className="mt-3">
+    <Container className="container-margins">
 
     <Row>
 

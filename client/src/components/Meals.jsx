@@ -2,6 +2,7 @@ import Axios from "axios";
 import React, {useState, useEffect, Fragment} from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
+import '../App.scss'
 import { Navigate } from "react-router";
 
 export default function Meals (props) {
@@ -260,7 +261,7 @@ export default function Meals (props) {
   }
 
   return (
-    <Container>
+    <Container className="container-margins">
       <p></p>
       <Row>
         <Col>

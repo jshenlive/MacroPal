@@ -31,13 +31,13 @@ export default function Fitpalnavbar(props) {
             <Nav.Link href="/">Home</Nav.Link>
 
             <NavDropdown title="Meals" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/meals">Manage Meals</NavDropdown.Item>
+              <NavDropdown.Item href="/meals">Add</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/meal-list">Summary</NavDropdown.Item>
+              <NavDropdown.Item href="/meal-list">Manage</NavDropdown.Item>
             </NavDropdown>
 
             <NavDropdown title="Workouts" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/addworkout">Manage Workouts</NavDropdown.Item>
+              <NavDropdown.Item href="/addworkout">Manage</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/workoutList">Summary</NavDropdown.Item>
             </NavDropdown>

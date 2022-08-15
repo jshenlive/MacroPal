@@ -81,13 +81,14 @@ useEffect(() => {
   }, [startDate]);
 /////////////////////////////////////////////
 
-/////////////////GET MEAL DATA////////////////
+/////////////////GET MEAL DATA/////////////////////
 useEffect(() => {
 
     if(mealData.length === 0) {
 
       userMealsId.forEach(item => {
         Axios.get(`/api/meals/${item}`).then((res) => {
+          console.log('res-data-inside mealdata use effect', res.data);
             setMealData((prev) => ([...prev, res.data]))
         })
     });
@@ -119,7 +120,7 @@ useEffect(() => {
     }
 
     if (mealData.length > 0) {
-
+      setBreakfastInfo([]);
       mealData.forEach(item => {
   
         item.line_food.forEach((element, index) => {
@@ -470,8 +471,9 @@ const deleteMealItem = (foodId, index) => {
       </Col>
 
       </Col>
-  
-      
+
+    
+
       <Col>
 
 
@@ -705,7 +707,7 @@ const deleteMealItem = (foodId, index) => {
 
 
       </Col>
-
+        
       </Row>
 
     </Container>
