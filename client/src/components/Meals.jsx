@@ -17,6 +17,7 @@ export default function Meals (props) {
   const [isLoading, setIsLoading] = useState(false);
   const [itemsToShow,setItemsToShow] = useState(5)
   const [cart, setCart] = useState([])
+  const [mealSaved, setMealSaved] = useState(false)
   // const [foodType, setFoodType] = useState([])
   // const [typeNotSelected, setTypeNotSelected] = useState(true)
   const [totalCartCalories, setTotalCartCalories] = useState(0)
@@ -35,6 +36,7 @@ export default function Meals (props) {
 
     await Axios.post("/api/get_food",{"name": queryFoodName, "category": queryCategory, "health": queryHealth}).then((response)=>{
       setQueryResults(response.data)  
+      console.log(queryResults)
     }).then(setIsLoading(false))
 
   }
@@ -78,7 +80,7 @@ export default function Meals (props) {
     // console.log(props.state.user.id)
     Axios.post("/api/meals",{"user_id": props.state.user.id, "date": currDate})
     .then(()=>
-      navigate('/meal-list')
+      setMealSaved(true)
     ).catch((e)=>{
       console.log(e)
     })
@@ -86,7 +88,8 @@ export default function Meals (props) {
   
   useEffect(()=>{
     fetchCart()
-  },[]) 
+  },[mealSaved]) 
+
 
 
   const addFood = (e) => {
@@ -243,6 +246,20 @@ export default function Meals (props) {
     )
   }
 
+  const setContinue = () => {
+    return(
+      <>
+      <form>
+      <h4>Meal Plan Saved Successful!</h4>
+      <Button onClick={()=>reset()}>Add More</Button>
+      <Button onClick={()=>navigate("/meal-list")}>Meals Summary</Button>
+      <Button onClick={()=>navigate("/profile")}>Profile</Button>
+
+      </form>
+      
+      </>
+    )
+  }
 
   function showMoreBtn() {
     return (
@@ -330,6 +347,7 @@ export default function Meals (props) {
       </Col>
       <Col>
           {cart.length>0 && daySummary()}
+          {mealSaved && setContinue()}
       </Col>
     </Row>
     <p></p>
@@ -337,6 +355,7 @@ export default function Meals (props) {
     <Row>
 
         {(queryResults.length>0) && searchResults()}
+        
 
     </Row>
     <Row>

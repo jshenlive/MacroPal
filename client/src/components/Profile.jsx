@@ -1,5 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import "./loading.scss";
+// import Button from "react-bootstrap/Button";
+import Modal from 'react-bootstrap/Modal'
 import {
   Container,
   Row,
@@ -39,21 +41,57 @@ export default function Profile(props) {
   const userLoseWeightFast = userLoseWeight * 0.65
 
 
-  const [isEmail,setIsEmail] = useState(false)
+  const suggestedExercise = {"initial":1, "hiking":157, "walking":170, "jogging":50,"running":43, "cycling":5, "swimming":196}
+
+  const [isMore,setIsMore] = useState(false)
   const [mealData, setMealData] = useState([])
   const [workoutData, setWorkoutData] = useState([])
   const [queryDate, setQueryDate] = useState(currDate)
+  const [suggestion, setSuggestion] = useState("initial")
+  const [suggestedDuration, setSuggestedDuration] = useState(0)
+  const [isCalculated, setIsCalculate] = useState(false)
 
-
+  const [modalShow, setModalShow] = React.useState(false);
+  // const [isOpen, setIsSeen] = useState(false)
 
 
   console.log(currDate)
   console.log(prevDate)
   console.log(currDayOf)
 
+  function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Modal heading
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>Centered Modal</h4>
+          <p>
+            {props.content}
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 
   //goals constants
 
+  useEffect(()=>{
+    if (mealData.length>0 && workoutData.length>0){
+      setIsCalculate(true)
+    }
+  },[mealData,workoutData])
   
 
   useEffect(()=>{
@@ -83,6 +121,20 @@ export default function Profile(props) {
         return accumulator + item.total_meal_calories
       },0)
   }
+
+  useEffect(()=>{
+    Axios.get(`/api/exercises/${suggestedExercise[suggestion]}`)
+    .then((res)=>{
+      let exercise = res.data
+      console.log("exercise",exercise)
+      let caloriesPerHour = exercise[props.state.user.weight_class]
+  
+      setSuggestedDuration(Math.round(totalCalories()/caloriesPerHour*60))
+    })
+    .catch((e)=>{
+      console.log(e)
+    })
+  },[suggestion])
   
 
   const totalCaloriesBurned = () => {
@@ -91,20 +143,36 @@ export default function Profile(props) {
     },0)
   }
 
+  const totalCalories = ()=> totalCaloriesIntake()-Math.round(userBasic) - totalCaloriesBurned()
+
   const showMeal = () =>{
     console.log(mealData)
     
     return mealData.map((item,index)=>{
+      
       return(
         <Fragment key={index + 100}>
-       
-        Meal #{index+1}
+
+        
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+      Meal {index+1}
+      </Button>
+
+      <MyVerticallyCenteredModal
+        content = "TODO TODO"
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+
+
+        
+        
         <br></br>
         Total meal weight: {item.total_meal_amount} (grams)
         <br></br>
         Total meal calories: {item.total_meal_calories} (Kcal)
         <br></br>
-        <p></p>
+        <br></br>
         </Fragment>
       )
     })
@@ -123,27 +191,88 @@ export default function Profile(props) {
         <br></br>
         Total calories burned: {item.total_workout_calories} (Kcal)
         <br></br>
-        <p></p>
+        <br></br>
   
         </Fragment>
       )
     })
   }
 
-  const setEmail = () => {
-    if (isEmail){
-      setIsEmail(false)
+  const showSummary = () =>{
+    return (
+      <Card.Text>
+      Total Calories Intake: {totalCaloriesIntake()}
+      <br></br>
+      Your BMR: {Math.round(userBasic)}
+      <br></br>
+      Total Calories Burned: {totalCaloriesBurned()}
+      <br></br>
+      {totalCalories()> 0 ? "Excess Calories Gained: ": "Excess Calories Burned: "} {totalCalories()} Kcal
+      <br></br>
+      
+      {totalCalories()>0 ? showSuggestion() : "Good Job Today!"}
+
+    </Card.Text>
+    )
+  }
+
+  const showPlanSummary = () =>{
+    return(
+      <>
+        <Card className="text-center">
+          <Card.Body>
+            <Card.Title>
+              <h3>Workout Summary</h3>
+            </Card.Title>
+            <Card.Text>{showWorkout()}</Card.Text>
+          </Card.Body>
+        </Card>
+
+        <Card className="text-center">
+          <Card.Body>
+              <Card.Title>
+                <h3>Meal Summary</h3>
+              </Card.Title>
+            <Card.Text>{showMeal()}</Card.Text>
+          </Card.Body>
+        </Card>
+      </>
+    )
+  }
+
+  const setActivity = () => {
+    return (
+      <>
+      Complete <a href="/addworkout">workout</a> or <a href="/meals"> meals</a> to show summary
+      </>
+    )
+  }
+
+
+  const setMore = () => {
+    if (isMore){
+      setIsMore(false)
     }else{
-      setIsEmail(true)
+      setIsMore(true)
     }
   }
 
-  const showEmail = () => {
-    if (isEmail){
+  const showMore = () => {
+    if (isMore){
     return(
       <>
         <span>
           Email: {props.state.user && props.state.user.email}
+        </span>
+        <br />
+        <span>City: {props.state.user && props.state.user.city}</span>
+        <br />
+        <span>
+          Province: {props.state.user && props.state.user.province}
+        </span>
+        <br />
+        <span>
+          Country: {props.state.user && props.state.user.country}
         </span>
         <br />
       </>)
@@ -164,31 +293,57 @@ export default function Profile(props) {
         <span>Age: {props.state.user && props.state.user.age}</span>
         <br />
         <span>
-          Weight: {props.state.user && props.state.user.weight_kg}
+          Weight: {props.state.user && props.state.user.weight_kg } kg
         </span>
         <br />
         <span>
-          Height: {props.state.user && props.state.user.height_cm}
+          Height: {props.state.user && props.state.user.height_cm} cm
         </span>
         <br />
-        <span>City: {props.state.user && props.state.user.city}</span>
-        <br />
-        <span>
-          Province: {props.state.user && props.state.user.province}
-        </span>
-        <br />
-        <span>
-          Country: {props.state.user && props.state.user.country}
-        </span>
-        <br />
-        {isEmail && showEmail()}
-        <Button className="mt-2" variant="outline-info" onClick={()=>setEmail()}>
-        {isEmail ? "Hide Email" : "Show Email"}
-      </Button>
+        {isMore && showMore()}
+        <Button className="mt-2" variant="outline-info" onClick={()=>setMore()}>
+        {isMore ? "Hide Info" : "Show More"}
+        </Button>
+        &emsp;
         <Button className="mt-2" variant="outline-info">
         Edit Info
       </Button>
     </>
+    )
+  }
+
+
+  const menuDropDown = ()=>{
+    return(
+      <select name="suggestion" id="suggestion" onChange={(event)=>{setSuggestion(event.target.value)}} >
+        <option value=""></option>
+        <option value="walking">Walk</option>
+        <option value="jogging">Jog</option>
+        <option value="running">Run</option>
+        <option value="cycling">Cycling</option>
+        <option value="swimming">Swim</option>
+        <option value="hiking">Hike</option>
+      </select>
+      )
+  }
+  
+
+  const fetchSuggestion = ()=>{
+
+
+  }
+
+  const showSuggestion = ()=>{
+    return (
+      <>
+      Suggestions: &nbsp;
+      {menuDropDown()}
+
+      <br></br>
+      {suggestion!== "initial" ? `Try ${suggestion} for ${suggestedDuration} minutes to hit your goal today!` : ""}
+      </>
+      
+
     )
   }
 
@@ -249,38 +404,10 @@ export default function Profile(props) {
                   <Button onClick={()=>console.log("hello")}>Week So Far</Button>  */}
 
               </Card.Title>
-              <Card.Text>
-                Total Calories Intake: {totalCaloriesIntake()}
-                <br></br>
-                Your BMR: {Math.round(userBasic)}
-                <br></br>
-                Total Calories Burned: {totalCaloriesBurned()}
-                <br></br>
-                Total Gain/Burned: {totalCaloriesIntake()-Math.round(userBasic) - totalCaloriesBurned()}
-                <br></br>
-
-
-              </Card.Text>
+             {isCalculated ? showSummary() : setActivity()}
             </Card.Body>
           </Card>
-
-          <Card className="text-center">
-            <Card.Body>
-                <Card.Title>
-                  <h3>Workout Summary</h3>
-                </Card.Title>
-              <Card.Text>{showWorkout()}</Card.Text>
-            </Card.Body>
-          </Card>
-
-          <Card className="text-center">
-            <Card.Body>
-                <Card.Title>
-                  <h3>Meal Summary</h3>
-                </Card.Title>
-              <Card.Text>{showMeal()}</Card.Text>
-            </Card.Body>
-          </Card>
+          {isCalculated && showPlanSummary() }
 
         </Col>        
       </Row>
