@@ -9,7 +9,8 @@ export default function Meals (props) {
 
   //food query input
   const [queryFoodName, setQueryFoodName] = useState("");
-  const [queryFoodAmount, setQueryFoodAmount] = useState(100);
+  const [queryFoodAmount, setQueryFoodAmount] = useState(1);
+  const [actualFoodAmount, setActualQueryFoodAmount] = useState(0);
   const [queryCategory, setQueryCategory] = useState("");
   const [queryHealth, setQueryHealth] = useState("");
   const [queryMealType, setQueryMealType] = useState("1breakfast");
@@ -19,6 +20,7 @@ export default function Meals (props) {
   const [cart, setCart] = useState([])
   const [mealSaved, setMealSaved] = useState(false)
   // const [foodType, setFoodType] = useState([])
+  const [amountOption, setAmountOption] = useState("servings")
   // const [typeNotSelected, setTypeNotSelected] = useState(true)
   const [totalCartCalories, setTotalCartCalories] = useState(0)
   // Axios.get("/api/workouts/1").then((response)=>{
@@ -34,9 +36,9 @@ export default function Meals (props) {
 
     console.log(queryFoodName)
 
-    await Axios.post("/api/get_food",{"name": queryFoodName, "category": queryCategory, "health": queryHealth}).then((response)=>{
+    await Axios.post("/api/get_food",{"name": queryFoodName, "category": queryCategory, "amount_type":amountOption, "health": queryHealth}).then((response)=>{
       setQueryResults(response.data)  
-      console.log(queryResults)
+      console.log("search results",queryResults)
     }).then(setIsLoading(false))
 
   }
@@ -90,12 +92,26 @@ export default function Meals (props) {
     fetchCart()
   },[mealSaved]) 
 
+  useEffect(()=>{
+    if(amountOption === "servings"){
+      setQueryFoodAmount(1)
+    }else if (amountOption === "whole"){
+      setQueryFoodAmount(1)
+    }else{
+      setQueryFoodAmount(100)
+    }
+  },[amountOption])
 
+  const addFood = (id,amount) => {
+    const food_id = id
+    const food_amount = amount
+    console.log("food_id", food_id)
+    console.log("food_amount", food_amount)
 
-  const addFood = (e) => {
-    const food_id = e.target.value  
+    
+
       // async function to post the exercise object to backend
-      return Axios.post('/api/food_carts/add_food', {"food_id": food_id, "food_amount": queryFoodAmount, "meal_type": queryMealType })
+      return Axios.post('/api/food_carts/add_food', {"food_id": food_id, "food_amount": food_amount, "meal_type": queryMealType })
       .then((response) => {
         //get cart(list of exercises added) data after an exercise is added,set the state of cart
         //in future rmove and add a state instead
@@ -110,8 +126,8 @@ export default function Meals (props) {
     setQueryResults([]);
     setMealSaved(false);
     setQueryFoodName("");
-    setQueryFoodAmount(100);
-    setQueryCategory("generic-foods");
+    setQueryFoodAmount(1);
+    setQueryCategory("");
     setQueryHealth("");
     setQueryMealType("1breakfast")
   }
@@ -130,10 +146,10 @@ export default function Meals (props) {
     if (queryCategory === "generic-meals") {
       return (
         <>
-        <label>Choose Optional Health-type:</label>
+        <label>Choose Health-type:</label>
         <br></br>
-        <select name="selectList" id="selectList" onChange={(event)=> setQueryHealth(event.target.value)} >
-          <option value=""></option>
+        <select name="healthList" id="healthList" onChange={(event)=> setQueryHealth(event.target.value)} >
+          <option value="">Optional</option>
           <option value="vegan">Vegan</option>
           <option value="vegetarian">Vegetarian</option>
           <option value="tree-nut-free">Tree Nuts Free</option>
@@ -150,37 +166,96 @@ export default function Meals (props) {
     }
   }
 
+  const foodAmountOption = ()=>{
+
+    // if(amountOption === "grams"){
+
+    return(
+      <>
+        <input
+          
+          name="foodAmount"
+          type="number"
+          placeholder="in Grams..."
+          value={queryFoodAmount}
+          onChange={(event)=> setQueryFoodAmount(parseInt(event.target.value))}
+        />
+        
+        <p></p>
+      </>
+    )
+  // }
+    // else{
+    //   return(
+    //     <>
+    //     <input
+          
+    //       name="foodAmount"
+    //       type="number"
+    //       placeholder="in Servings..."
+    //       value={queryFoodAmount}
+    //       onChange={(event)=> setQueryFoodAmount(parseInt(event.target.value))}
+    //     />
+        
+    //     <p></p>
+    //   </>
+
+    //   )
+    // }
+  }
+
   const searchResults = () => {
     let is_branded = false;
     if (queryCategory === "packaged-foods" || queryCategory === "fast-foods")
       is_branded = true;
 
+    
+    let amountType = "" 
+    if (amountOption === "whole"){
+      amountType = " Whole"
+    } else if (amountOption === "servings"){
+      amountType = " Servings"
+    } else {
+      amountType = " grams"
+    }
+
     return(
     <form>
-    <h3>Search Results { queryResults.length > 0 && ('for "'+ queryFoodName +'" with '+ queryFoodAmount + " grams")}</h3> 
+    <h3>Search Results { queryResults.length > 0 && ('for "'+ queryFoodName +'" with '+ queryFoodAmount + amountType)}</h3> 
 
     <br></br>
     {isLoading && <h2>Loading...</h2>}
     {queryResults.slice(0, itemsToShow).map(item=>{
+
+      console.log("item in search", item)
+
+
+        let amount = 0
+        if (amountOption === "whole" || amountOption === "servings"){
+           amount = item.grams_per_serving * queryFoodAmount
+        } else {
+          amount = queryFoodAmount
+        }
+        
         return (
           <div key={item.id+1}>
-            <h4>{item.name}</h4>
+            <h5>{item.name}</h5>
             <Row>  
             {is_branded && <Col>{"Brand: " + item.brand + ""}</Col>}
               <Col>       
-            Calories: {Math.round(item.calories / 100 * queryFoodAmount)}
+            Calories: {Math.round(item.calories / 100 * amount)}
             </Col> 
             <Col> 
-            Protein: {(item.protein / 100 * queryFoodAmount).toFixed(2)}
+            Protein: {(item.protein / 100 * amount).toFixed(2)}
             </Col> 
              <Col> 
-            Carbs: {(item.carbs / 100 * queryFoodAmount).toFixed(2)}
+            Carbs: {(item.carbs / 100 * amount).toFixed(2)}
             </Col> 
             <Col> 
-            Fats: {(item.fat / 100 * queryFoodAmount).toFixed(2)}
+            Fats: {(item.fat / 100 * amount).toFixed(2)}
             </Col> 
             <Col> 
-            <Button onClick={(e)=>addFood(e)} value={item.id}>Add to meal</Button>
+            <Button onClick={()=>addFood(item.id,amount)} >Add to meal</Button>
             </Col> 
             </Row>
           </div>
@@ -310,6 +385,7 @@ export default function Meals (props) {
             <label>Choose Food Category:</label>
             <br></br>
             <select name="selectList" id="selectList" onChange={(event)=> setQueryCategory(event.target.value)} >
+              <option value="">Optional</option>
               <option value="generic-foods">Generic foods</option>
               <option value="generic-meals">Generic meals</option>
               <option value="packaged-foods">Packaged foods</option>
@@ -319,19 +395,18 @@ export default function Meals (props) {
             <p></p>
 
             {healthOption()}
-  
 
-            <label>Enter intake amount (in Grams):</label>
-            <br></br>
-            <input
-              name="foodAmount"
-              type="number"
-              placeholder="in grams..."
-              value={queryFoodAmount}
-              onChange={(event)=> setQueryFoodAmount(parseInt(event.target.value))}
-            />
+            Choose intake &nbsp;
             
-            <p></p>
+            <select name="amountList" id="amountList" onChange={(event)=>setAmountOption(event.target.value)}>
+            <option value="servings">per Servings</option>
+            <option value="grams">per Grams</option>
+            <option value="whole">per Whole</option>
+            </select>
+            <br></br>
+            
+            {foodAmountOption()}
+
             <Row>
               <Col>
                 <Button onClick={() => reset()}>
