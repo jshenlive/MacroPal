@@ -39,7 +39,7 @@ export default function Fitpalnavbar(props) {
             <NavDropdown title="Workouts" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/addworkout">Manage Workouts</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/workoutList">Workout Summary</NavDropdown.Item>
+              <NavDropdown.Item href="/workoutList">Summary</NavDropdown.Item>
             </NavDropdown>
 
             <Nav.Link href="/workoutsummary">Review</Nav.Link>
