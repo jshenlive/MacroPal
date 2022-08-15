@@ -78,19 +78,16 @@ useEffect(() => {
 /////////////////GET MEAL DATA////////////////
 useEffect(() => {
 
-  function fetchData() {
+    if(mealData.length === 0) {
 
-    userMealsId.forEach(item => {
-    Axios.get(`/api/meals/${item}`).then((res) => {
-      setMealData((prev) => ([
-        ...prev, res.data 
-      ]))
-    })
-  });
+      userMealsId.forEach(item => {
+        Axios.get(`/api/meals/${item}`).then((res) => {
+            setMealData((prev) => ([...prev, res.data]))
+        })
+    });
 
-}
-  fetchData();
-  
+    }
+
 }, [userMealsId])
 
 console.log('mealdata', mealData);
@@ -115,38 +112,39 @@ useEffect(() => {
       id: "",
     }
 
-    mealData.forEach(item => {
-  
-      item.line_food.forEach((element, index) => {
+    if (mealData.length > 0) {
 
-        if (element.meal_type === "1breakfast") {
+      mealData.forEach(item => {
   
-            mealInformation = {
-            name: item.food[index].food.name,
-            brand: item.food[index].food.brand,
-            health: item.food[index].food.health,
-            category: item.food[index].food.category,
-            carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-            fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-            protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-            food_amount: element.food_amount,
-            total_food_calories: element.total_food_calories,
-            meal_type: element.meal_type.slice(1),
-            id: element.id,
+        item.line_food.forEach((element, index) => {
+  
+          if (element.meal_type === "1breakfast") {
+    
+              mealInformation = {
+              name: item.food[index].food.name,
+              brand: item.food[index].food.brand,
+              health: item.food[index].food.health,
+              category: item.food[index].food.category,
+              carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+              fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+              protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+              food_amount: element.food_amount,
+              total_food_calories: element.total_food_calories,
+              meal_type: element.meal_type.slice(1),
+              id: element.id,
+            }
+  
+            setBreakfastInfo((prev) => ([
+              ...prev, mealInformation 
+            ]));
+    
           }
-
-          setBreakfastInfo((prev) => ([
-            ...prev, mealInformation 
-          ]));
-  
-        }
-  
+    
+        })
+    
       })
-  
-    })
-  
-  
-  
+
+    }
   
   };
   breakfastData();
@@ -174,6 +172,8 @@ useEffect(() => {
       id: "",
     }
   
+    if (mealData.length > 0) {
+
     mealData.forEach(item => {
 
       item.line_food.forEach((element, index) => {
@@ -204,7 +204,7 @@ useEffect(() => {
   
     })
   
-  
+    }
   
   
   };
@@ -233,6 +233,8 @@ useEffect(() => {
       id: "",
     }
   
+  if (mealData.length > 0) {
+
     mealData.forEach(item => {
 
       item.line_food.forEach((element, index) => {
@@ -263,8 +265,7 @@ useEffect(() => {
   
     })
   
-  
-  
+  }
   
   };
   dinnerData();
@@ -292,6 +293,8 @@ useEffect(() => {
       id: "",
     }
   
+  if (mealData.length > 0) {
+
     mealData.forEach(item => {
 
       item.line_food.forEach((element, index) => {
@@ -321,6 +324,8 @@ useEffect(() => {
       })
   
     })
+
+  }
   
   };
   snackData();
@@ -390,6 +395,29 @@ const deleteMealItem = (foodId, index) => {
 
     }
 
+////////////////////////////////////////////////
+// Fix BUG - Filter data for repetition
+///////////////////////////// /////////////////
+// useEffect(() => {
+
+//   const uniqueIds = [];
+
+// const mealDataFixed = breakfastInfo.filter(element => {
+//   const isDuplicate = uniqueIds.includes(element.id);
+
+//   if (!isDuplicate) {
+//     uniqueIds.push(element.id);
+
+//     return true;
+//   }
+
+//   return false;
+// });
+
+// setBreakfastInfo(mealDataFixed);
+
+// }, [])
+
   return (
     <Container className="mt-5  text-center">
 
@@ -449,12 +477,12 @@ const deleteMealItem = (foodId, index) => {
         </Row>
           }
 
-        <div className="app-section">
+        <div className="mb-3 app-section">
       {breakfastInfo.length !== 0 && breakfastInfo.map((item, index) => {
         return (
-          <div key={index}>
+          <div className="food-items" key={index}>
           <Row>
-          <Col xs={11}>
+          <Col xs={9}>
           <span>{item.name}</span>
           <span>Carbs:{item.carbs} g</span>
           <span>Protein:{item.protein} g</span>
@@ -464,7 +492,6 @@ const deleteMealItem = (foodId, index) => {
           </Col>
 
           <Col>
-
                       <Button 
                       className="mr-5" 
                       variant="info" 
@@ -473,7 +500,6 @@ const deleteMealItem = (foodId, index) => {
                       >
                         Delete
                       </Button>
-
           </Col>
           </Row>
           <hr></hr>
