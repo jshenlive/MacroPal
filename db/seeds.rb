@@ -117,7 +117,7 @@ l2 = LineExercise.create!({
 })
 
 f1 = Food.create!({
-  id:1,
+
   calories:45,
   carbs:10.4,
   protein: 0.7,
@@ -126,7 +126,7 @@ f1 = Food.create!({
   name: "Orange Juice"
 })
 f2 = Food.create!({
-  id: 2,
+
   calories: 153,
   carbs: 3.48266,
   protein: 10.006,
@@ -135,7 +135,7 @@ f2 = Food.create!({
   name: "Chicken Caesar"
 })
 f3 = Food.create!({
-  id:3,
+
   calories: 245,
   carbs: 26.65,
   protein: 10.4315,
@@ -144,7 +144,7 @@ f3 = Food.create!({
   name: "Egg Toast"
 })
 f4 = Food.create!({
-  id:4,
+
   calories: 228,
   carbs: 0,
   protein: 20,
@@ -153,7 +153,7 @@ f4 = Food.create!({
   name: "t Bone Steak"
 })
 f5 = Food.create!({
-  id:5,
+
   calories: 150,
   carbs: 23.96,
   protein: 2.34,
