@@ -325,8 +325,7 @@ console.log('breakfastInfo', breakfastInfo)
 ////////////////////////////////////////////////
 // Calculate Total Calories, Macros [Breakfast]
 ///////////////////////////// /////////////////
-
-const totalCalMac = () => {
+const totalCalMac = (mealset) => {
 
   let totalCalMacObj = {
     calories: 0,
@@ -335,7 +334,7 @@ const totalCalMac = () => {
     fat: 0,
   }
 
-  const totalCalMacCalculated = breakfastInfo.reduce((accum, current) => {
+  const totalCalMacCalculated = mealset.reduce((accum, current) => {
     Object.entries(current).forEach(([key, value]) => {
 
       if (key === "carbs" || key === "fat" || key === "protein"  || key === "total_food_calories") {
@@ -346,10 +345,12 @@ const totalCalMac = () => {
     return {...accum}
   }, {});
 
-  console.log('totalCalMacCalculated', totalCalMacCalculated);
+  return totalCalMacCalculated;
 }
-totalCalMac();
-
+const breakfastTotalCalMac = totalCalMac(breakfastInfo);
+const lunchTotalCalMac = totalCalMac(lunchInfo);
+const dinnerTotalCalMac = totalCalMac(dinnerInfo);
+const snackTotalCalMac = totalCalMac(snackInfo);
 
 
   return (
@@ -376,6 +377,14 @@ totalCalMac();
       <Card className="card mb-2">
         <Card.Header>Breakfast</Card.Header>
         <Card.Body>
+          {breakfastInfo.length !== 0 &&
+          <>
+          <h5>Calories: {(breakfastTotalCalMac.total_food_calories).toFixed(2)}</h5>
+          <h5>Carbs: {(breakfastTotalCalMac.carbs).toFixed(2)}</h5>
+          <h5>Fat: {(breakfastTotalCalMac.fat).toFixed(2)}</h5>
+          <h5>Protein: {(breakfastTotalCalMac.protein).toFixed(2)}</h5>
+          </>
+          }
       {breakfastInfo.length !== 0 && breakfastInfo.map((item, index) => {
         return (
           <div key={index}>
