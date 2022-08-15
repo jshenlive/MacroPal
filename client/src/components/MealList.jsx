@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useState, useEffect, } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import '../Totals-meals.css'
 
 
@@ -93,7 +93,7 @@ useEffect(() => {
   
 }, [userMealsId])
 
-
+console.log('mealdata', mealData);
 /////////////////////////////////////////////
 // Prepare Breakfast Items
 ///////////////////////////// ///////////////
@@ -112,6 +112,7 @@ useEffect(() => {
       food_amount: "",
       total_food_calories: "",
       meal_type: "",
+      id: "",
     }
 
     mealData.forEach(item => {
@@ -131,6 +132,7 @@ useEffect(() => {
             food_amount: element.food_amount,
             total_food_calories: element.total_food_calories,
             meal_type: element.meal_type.slice(1),
+            id: element.id,
           }
 
           setBreakfastInfo((prev) => ([
@@ -150,7 +152,7 @@ useEffect(() => {
   breakfastData();
   
   }, [mealData])
-
+console.log('reakfastInfo', breakfastInfo);
 /////////////////////////////////////////////
 // Prepare Lunch Items
 ///////////////////////////// ///////////////
@@ -169,6 +171,7 @@ useEffect(() => {
       food_amount: "",
       total_food_calories: "",
       meal_type: "",
+      id: "",
     }
   
     mealData.forEach(item => {
@@ -188,6 +191,7 @@ useEffect(() => {
             food_amount: element.food_amount,
             total_food_calories: element.total_food_calories,
             meal_type: element.meal_type.slice(1),
+            id: element.id,
           }
           
           setLunchInfo((prev) => ([
@@ -226,6 +230,7 @@ useEffect(() => {
       food_amount: "",
       total_food_calories: "",
       meal_type: "",
+      id: "",
     }
   
     mealData.forEach(item => {
@@ -245,6 +250,7 @@ useEffect(() => {
             food_amount: element.food_amount,
             total_food_calories: element.total_food_calories,
             meal_type: element.meal_type.slice(1),
+            id: element.id,
           }
           
           setDinnerInfo((prev) => ([
@@ -283,6 +289,7 @@ useEffect(() => {
       food_amount: "",
       total_food_calories: "",
       meal_type: "",
+      id: "",
     }
   
     mealData.forEach(item => {
@@ -302,6 +309,7 @@ useEffect(() => {
             food_amount: element.food_amount,
             total_food_calories: element.total_food_calories,
             meal_type: element.meal_type.slice(1),
+            id: element.id,
           }
           
           setSnackInfo((prev) => ([
@@ -364,6 +372,23 @@ const dinnerTotalCalMac = totalSetCalMac(dinnerInfo);
 const snackTotalCalMac = totalSetCalMac(snackInfo);
 const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinnerTotalCalMac, snackTotalCalMac);
 
+
+////// Delete Meal Item ///////
+const deleteMealItem = (foodId, index) => {
+
+
+  Axios.delete(`/api/line_foods/${foodId}`).then (() => {
+
+    let newFoodItems = [...breakfastInfo]
+    newFoodItems.splice(index, 1)
+
+    const newbreakfastInfo = newFoodItems;
+
+    setBreakfastInfo(newbreakfastInfo);
+
+  }).catch((error) => console.log(error))
+
+    }
 
   return (
     <Container className="mt-5  text-center">
@@ -439,7 +464,16 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
           </Col>
 
           <Col>
-          Delete
+
+                      <Button 
+                      className="mr-5" 
+                      variant="info" 
+                      type="submit"
+                      onClick={() => {deleteMealItem(item.id, index)}}
+                      >
+                        Delete
+                      </Button>
+
           </Col>
           </Row>
           <hr></hr>
