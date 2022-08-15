@@ -320,6 +320,37 @@ useEffect(() => {
   
   }, [mealData])
 
+console.log('breakfastInfo', breakfastInfo)
+
+////////////////////////////////////////////////
+// Calculate Total Calories, Macros [Breakfast]
+///////////////////////////// /////////////////
+
+const totalCalMac = () => {
+
+  let totalCalMacObj = {
+    calories: 0,
+    carbs: 0,
+    protein: 0,
+    fat: 0,
+  }
+
+  const totalCalMacCalculated = breakfastInfo.reduce((accum, current) => {
+    Object.entries(current).forEach(([key, value]) => {
+
+      if (key === "carbs" || key === "fat" || key === "protein"  || key === "total_food_calories") {
+      accum[key] = (accum[key] + value) || value;
+      }
+
+    })
+    return {...accum}
+  }, {});
+
+  console.log('totalCalMacCalculated', totalCalMacCalculated);
+}
+totalCalMac();
+
+
 
   return (
     <Container className="mt-5">
@@ -342,14 +373,23 @@ useEffect(() => {
   
       
       <Col>
-      <Card className="card text-black bg-warning mb-2">
+      <Card className="card mb-2">
         <Card.Header>Breakfast</Card.Header>
         <Card.Body>
       {breakfastInfo.length !== 0 && breakfastInfo.map((item, index) => {
         return (
           <div key={index}>
-          <div>{item.name}</div>
+          <div>name:{item.name}</div>
+          <div>carbs:{item.carbs}</div>
+          <div>protein:{item.protein}</div>
+          <div>fat:{item.fat}</div>
+          <div>food_amount:{item.food_amount}</div>
+          <div>total_food_calories:{item.total_food_calories}</div>
+          {item.brand && <div>brand:{item.brand}</div>}
+          {item.health && <div>health:{item.health}</div>}
+          <hr></hr>
           </div>
+
           )
         })
       }
@@ -359,14 +399,6 @@ useEffect(() => {
         <Card className="card text-black bg-info mb-2">
         <Card.Header >Lunch</Card.Header>
         <Card.Body>
-        {lunchInfo.length !== 0 && lunchInfo.map((item, index) => {
-        return (
-          <div key={index}>
-          <div>{item.name}</div>
-          </div>
-          )
-        })
-        }
         </Card.Body>
         </Card>
 
