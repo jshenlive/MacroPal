@@ -425,7 +425,7 @@ const deleteMealItem = (foodId, index) => {
 // }, [])
 
   return (
-    <Container className="mt-5  text-center">
+    <Container className="container-margins  text-center">
 
       <Row className="mb-5">
 
@@ -474,6 +474,10 @@ const deleteMealItem = (foodId, index) => {
       
       <Col>
 
+
+
+
+
       {breakfastInfo.length !== 0 &&
       <Row  className="app-header">
          <div className="app-header-bar">
@@ -491,8 +495,8 @@ const deleteMealItem = (foodId, index) => {
           <img className="post-attached" src="/assets/media/images/clip-post-attached.png"></img>
           </div>
           </Col>
-        </Row>
-          }
+      </Row>
+      }
 
         <div className="mb-3 app-section">
       {breakfastInfo.length !== 0 && breakfastInfo.map((item, index) => {
@@ -524,23 +528,181 @@ const deleteMealItem = (foodId, index) => {
         })
       }
         </div>
-        <Card className="card mb-2">
-        <Card.Header >Lunch</Card.Header>
-        <Card.Body>
-        </Card.Body>
-        </Card>
 
 
-        <Card className="card mb-2">
-        <Card.Header>Dinner</Card.Header>
-        <Card.Body>This is some text within a card body.</Card.Body>
-        </Card>
 
 
-        <Card className="mb-2">
-        <Card.Header>Snacks</Card.Header>
-        <Card.Body>This is some text within a card body.</Card.Body>
-        </Card>
+      
+
+
+{lunchInfo.length !== 0 &&
+<Row  className="app-header">
+   <div className="app-header-bar">
+    Lunch
+  </div>
+
+  <Col xs={9} className="header-bar-text mt-2">
+    <span className="animate-charcter">Calories: {(lunchTotalCalMac.total_food_calories).toFixed(2)}</span>
+    <span className="animate-charcter">Carbs: {(lunchTotalCalMac.carbs).toFixed(2)}</span>
+    <span className="animate-charcter">Fat: {(lunchTotalCalMac.fat).toFixed(2)}</span>
+    <span className="animate-charcter">Protein: {(lunchTotalCalMac.protein).toFixed(2)}</span>
+    </Col>
+    <Col className="mt-2">
+    <div className="attached-fixed">
+    <img className="post-attached" src="/assets/media/images/clip-post-attached.png"></img>
+    </div>
+    </Col>
+</Row>
+}
+
+  <div className="mb-3 app-section">
+{lunchInfo.length !== 0 && lunchInfo.map((item, index) => {
+  return (
+    <div className="food-items" key={index}>
+    <Row>
+    <Col className="item-display" xs={9}>
+    <span>{item.name}</span>
+    <span>Carbs:{item.carbs} g</span>
+    <span>Protein:{item.protein} g</span>
+    <span>Fat:{item.fat} g</span>
+    <span>Amount: {item.food_amount}</span>
+    <span>Consumed: {item.total_food_calories} Cal</span>
+    </Col>
+
+    <Col>
+                <Button 
+                className="mr-5" 
+                variant="info" 
+                type="submit"
+                onClick={() => {deleteMealItem(item.id, index)}}
+                >
+                  Delete
+                </Button>
+    </Col>
+    </Row>
+    </div>
+    )
+  })
+}
+  </div>
+
+
+
+
+
+
+ 
+
+{dinnerInfo.length !== 0 &&
+<Row  className="app-header">
+   <div className="app-header-bar">
+    Dinner
+  </div>
+
+  <Col xs={9} className="header-bar-text mt-2">
+    <span className="animate-charcter">Calories: {(dinnerTotalCalMac.total_food_calories).toFixed(2)}</span>
+    <span className="animate-charcter">Carbs: {(dinnerTotalCalMac.carbs).toFixed(2)}</span>
+    <span className="animate-charcter">Fat: {(dinnerTotalCalMac.fat).toFixed(2)}</span>
+    <span className="animate-charcter">Protein: {(dinnerTotalCalMac.protein).toFixed(2)}</span>
+    </Col>
+    <Col className="mt-2">
+    <div className="attached-fixed">
+    <img className="post-attached" src="/assets/media/images/clip-post-attached.png"></img>
+    </div>
+    </Col>
+</Row>
+}
+
+  <div className="mb-3 app-section">
+{dinnerInfo.length !== 0 && dinnerInfo.map((item, index) => {
+  return (
+    <div className="food-items" key={index}>
+    <Row>
+    <Col className="item-display" xs={9}>
+    <span>{item.name}</span>
+    <span>Carbs:{item.carbs} g</span>
+    <span>Protein:{item.protein} g</span>
+    <span>Fat:{item.fat} g</span>
+    <span>Amount: {item.food_amount}</span>
+    <span>Consumed: {item.total_food_calories} Cal</span>
+    </Col>
+
+    <Col>
+                <Button 
+                className="mr-5" 
+                variant="info" 
+                type="submit"
+                onClick={() => {deleteMealItem(item.id, index)}}
+                >
+                  Delete
+                </Button>
+    </Col>
+    </Row>
+    </div>
+    )
+  })
+}
+  </div>
+
+
+
+
+
+
+
+    {snackInfo.length !== 0 &&
+    <Row  className="app-header">
+      <div className="app-header-bar">
+        Snack
+      </div>
+
+      <Col xs={9} className="header-bar-text mt-2">
+        <span className="animate-charcter">Calories: {(snackTotalCalMac.total_food_calories).toFixed(2)}</span>
+        <span className="animate-charcter">Carbs: {(snackTotalCalMac.carbs).toFixed(2)}</span>
+        <span className="animate-charcter">Fat: {(snackTotalCalMac.fat).toFixed(2)}</span>
+        <span className="animate-charcter">Protein: {(snackTotalCalMac.protein).toFixed(2)}</span>
+        </Col>
+        <Col className="mt-2">
+        <div className="attached-fixed">
+        <img className="post-attached" src="/assets/media/images/clip-post-attached.png"></img>
+        </div>
+        </Col>
+    </Row>
+    }
+
+      <div className="mb-3 app-section">
+    {snackInfo.length !== 0 && snackInfo.map((item, index) => {
+      return (
+        <div className="food-items" key={index}>
+        <Row>
+        <Col className="item-display" xs={9}>
+        <span>{item.name}</span>
+        <span>Carbs:{item.carbs} g</span>
+        <span>Protein:{item.protein} g</span>
+        <span>Fat:{item.fat} g</span>
+        <span>Amount: {item.food_amount}</span>
+        <span>Consumed: {item.total_food_calories} Cal</span>
+        </Col>
+
+        <Col>
+                    <Button 
+                    className="mr-5" 
+                    variant="info" 
+                    type="submit"
+                    onClick={() => {deleteMealItem(item.id, index)}}
+                    >
+                      Delete
+                    </Button>
+        </Col>
+        </Row>
+        </div>
+        )
+      })
+    }
+      </div>
+
+ 
+
 
       </Col>
 
