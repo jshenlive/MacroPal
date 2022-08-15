@@ -85,7 +85,7 @@ class Api::MealsController < ApplicationController
         p food[:calories]
 
         meal.line_foods.new(
-          name: entry[:food][:name],
+          name: food[:name],
           food: food,
           food_amount: food_amount,
           meal_type: food_type,
@@ -102,6 +102,6 @@ class Api::MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:meal_type, :date, :total_meal_amount, :total_meal_calories, :user_id, :food_id)
+      params.require(:meal).permit(:name, :meal_type, :date, :total_meal_amount, :total_meal_calories, :user_id, :food_id)
     end
 end

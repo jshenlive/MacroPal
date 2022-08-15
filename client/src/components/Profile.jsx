@@ -133,7 +133,7 @@ export default function Profile(props) {
   },[mealModalIndex])
 
   useEffect(()=>{
-    Axios.get(`/api/workouts/${mealModalIndex}`)
+    Axios.get(`/api/workouts/${workoutModalIndex}`)
     .then((res)=>{
       console.log(res.data)
       setWorkoutModalData(res.data)
@@ -147,7 +147,7 @@ export default function Profile(props) {
   const showLineFood = () => {
     const titled = {titled1:false, titled2:false, titled3:false, titled4: false}
 
-    if(mealModalData!={}){
+    if(mealModalData.line_food){
     mealModalData.line_food.sort((a,b)=>{
       let fa = a.meal_type
       let fb = b.meal_type
@@ -159,7 +159,7 @@ export default function Profile(props) {
           return 1;
       }
       return 0;})
-    }
+    
     
     return mealModalData.line_food.map(item=>{
 
@@ -198,10 +198,16 @@ export default function Profile(props) {
           return "Something went wrong"
         }
       }
-    )
+    )}
   }
 
   const showLineExercise = () => {
+
+    if(workoutModalData.line_exercises){
+      return("something")
+
+    }
+
     // console.log(workoutModalData)
     // return workoutModalData.line_exercises.map((item)=>{
     //   return(
