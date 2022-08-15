@@ -3,7 +3,7 @@ import React, { useState, useEffect, } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import Breakfast from './Breakfast';
+import '../Heading.css'
 
 
 export default function MealList (props) {
@@ -15,7 +15,6 @@ const [breakfastInfo, setBreakfastInfo] = useState([]);
 const [lunchInfo, setLunchInfo] = useState([]);
 const [dinnerInfo, setDinnerInfo] = useState([]);
 const [snackInfo, setSnackInfo] = useState([]);
-
 
 // Get Meal data for a specific user and date////////////////
 ///////////////Initial stage when no date is selected////////
@@ -367,9 +366,9 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
 
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5  text-center">
 
-      <Row className="mb-5 text-center">
+      <Row className="mb-5">
 
       <Col xs={3}>
           <h4 className="mb-1">Summary of your Meals</h4>
@@ -378,7 +377,7 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-          // maxDate={new Date()}
+          maxDate={new Date()}
           showDisabledMonthNavigation
           className="mb-3"
           inline
@@ -386,10 +385,18 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
 
       <Card className="card mt-2">
         <Card.Body>
-          <div>Total Cal Today: {totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</div>
-          <div>Carbs: {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</div>
-          <div>Fat: {totalCalMac.fat && (totalCalMac.fat).toFixed(2)}</div>
-          <div>Protein: {totalCalMac.protein && (totalCalMac.protein).toFixed(2)}</div>
+        <div className="thirteen mb-2">
+          <h1 className="heading">Calories: {totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</h1>
+        </div>
+        <div className="thirteen mb-2">
+          <h1 className="heading">Carbs: {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</h1>
+        </div>
+        <div className="thirteen mb-2">
+          <h1 className="heading">Fat {totalCalMac.fat && (totalCalMac.fat).toFixed(2)} g</h1>
+        </div>
+        <div className="thirteen mb-2">
+          <h1 className="heading">Protein {totalCalMac.protein && (totalCalMac.protein).toFixed(2)} g</h1>
+        </div>
         </Card.Body>
       </Card>
 
@@ -397,17 +404,28 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
   
       
       <Col>
-      <Card className="card mb-2">
-        <Card.Header>Breakfast</Card.Header>
-        <Card.Body>
-          {breakfastInfo.length !== 0 &&
-          <>
-          <h5>Calories: {(breakfastTotalCalMac.total_food_calories).toFixed(2)}</h5>
-          <h5>Carbs: {(breakfastTotalCalMac.carbs).toFixed(2)}</h5>
-          <h5>Fat: {(breakfastTotalCalMac.fat).toFixed(2)}</h5>
-          <h5>Protein: {(breakfastTotalCalMac.protein).toFixed(2)}</h5>
-          </>
+
+      {breakfastInfo.length !== 0 &&
+      <Row  className="app-header">
+         <div className="app-header-bar">
+          Breakfast
+        </div>
+
+        <Col xs={9} className="header-bar-text mt-2">
+          <span className="animate-charcter">Calories: {(breakfastTotalCalMac.total_food_calories).toFixed(2)}</span>
+          <span className="animate-charcter">Carbs: {(breakfastTotalCalMac.carbs).toFixed(2)}</span>
+          <span className="animate-charcter">Fat: {(breakfastTotalCalMac.fat).toFixed(2)}</span>
+          <span className="animate-charcter">Protein: {(breakfastTotalCalMac.protein).toFixed(2)}</span>
+          </Col>
+          <Col className="mt-2">
+          <div className="attached-fixed">
+          <img className="post-attached" src="/assets/media/images/clip-post-attached.png"></img>
+          </div>
+          </Col>
+        </Row>
           }
+
+        <div className="app-section">
       {breakfastInfo.length !== 0 && breakfastInfo.map((item, index) => {
         return (
           <div key={index}>
@@ -421,13 +439,10 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
           {item.health && <div>health:{item.health}</div>}
           <hr></hr>
           </div>
-
           )
         })
       }
-      </Card.Body>
-      </Card>
-
+        </div>
         <Card className="card mb-2">
         <Card.Header >Lunch</Card.Header>
         <Card.Body>
