@@ -3,7 +3,7 @@ import React, { useState, useEffect, } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import '../Heading.css'
+import '../Totals-meals.css'
 
 
 export default function MealList (props) {
@@ -385,17 +385,16 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
 
       <Card className="card mt-2">
         <Card.Body>
-        <div className="thirteen mb-2">
-          <h1 className="heading">Calories: {totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</h1>
+          <h3>Todays Totals</h3>
+        <div>
+          <h5>Calories: {totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</h5>
+          <h5 className="heading">Carbs: {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</h5>
         </div>
-        <div className="thirteen mb-2">
-          <h1 className="heading">Carbs: {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</h1>
+        <div>
+          <h5 className="heading">Fat {totalCalMac.fat && (totalCalMac.fat).toFixed(2)} g</h5>
         </div>
-        <div className="thirteen mb-2">
-          <h1 className="heading">Fat {totalCalMac.fat && (totalCalMac.fat).toFixed(2)} g</h1>
-        </div>
-        <div className="thirteen mb-2">
-          <h1 className="heading">Protein {totalCalMac.protein && (totalCalMac.protein).toFixed(2)} g</h1>
+        <div>
+          <h5 className="heading">Protein {totalCalMac.protein && (totalCalMac.protein).toFixed(2)} g</h5>
         </div>
         </Card.Body>
       </Card>
@@ -429,14 +428,20 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
       {breakfastInfo.length !== 0 && breakfastInfo.map((item, index) => {
         return (
           <div key={index}>
-          <div>name:{item.name}</div>
-          <div>carbs:{item.carbs}</div>
-          <div>protein:{item.protein}</div>
-          <div>fat:{item.fat}</div>
-          <div>food_amount:{item.food_amount}</div>
-          <div>total_food_calories:{item.total_food_calories}</div>
-          {item.brand && <div>brand:{item.brand}</div>}
-          {item.health && <div>health:{item.health}</div>}
+          <Row>
+          <Col xs={11}>
+          <span>{item.name}</span>
+          <span>Carbs:{item.carbs} g</span>
+          <span>Protein:{item.protein} g</span>
+          <span>Fat:{item.fat} g</span>
+          <span>Amount: {item.food_amount}</span>
+          <span>Consumed: {item.total_food_calories} Cal</span>
+          </Col>
+
+          <Col>
+          Delete
+          </Col>
+          </Row>
           <hr></hr>
           </div>
           )
