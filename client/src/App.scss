@@ -168,6 +168,18 @@ form{
   box-shadow: 0 0 40px rgba(8,7,16,0.6);
 }
 
+.item-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #001f54;
+}
+
+item-display-title {
+  color: #ff9505 !important;
+}
+
 
 .post-attached {
   position: absolute;
@@ -180,8 +192,29 @@ form{
   position: relative;
 }
 
+.food-items {
+  padding-left: 46px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #001f54;
+  }
+  
 .food-items:first-child {
   padding-top: 32px;
+  }
+
+  .food-items:last-child {
+    border-bottom: none;
+    padding-bottom: 16px;
+  }
+
+  .background-img {
+  color: white;
+  background-image: url("/assets/media/images/overview-box.jpg");
+  }
+
+  .calendar-header {
+    color: white;
   }
 
 // Animated Text

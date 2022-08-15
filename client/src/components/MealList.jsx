@@ -1,9 +1,9 @@
 import Axios from "axios";
 import React, { useState, useEffect, } from "react";
 import DatePicker from "react-datepicker";
+import { useNavigate } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import '../Totals-meals.css'
 
 
 export default function MealList (props) {
@@ -15,6 +15,12 @@ const [breakfastInfo, setBreakfastInfo] = useState([]);
 const [lunchInfo, setLunchInfo] = useState([]);
 const [dinnerInfo, setDinnerInfo] = useState([]);
 const [snackInfo, setSnackInfo] = useState([]);
+
+    //navigation function
+    const navigate = useNavigate();
+    const navigateToAddMeal = () => {
+      navigate('/meals');
+    }
 
 // Get Meal data for a specific user and date////////////////
 ///////////////Initial stage when no date is selected////////
@@ -424,9 +430,9 @@ const deleteMealItem = (foodId, index) => {
       <Row className="mb-5">
 
       <Col xs={3}>
-          <h4 className="mb-1">Summary of your Meals</h4>
+          <h4 className="calendar-header mb-1">Summary of your Meals</h4>
 
-        <div className="mb-1">Please select a date to view</div>
+        <div className="calendar-header mb-1">Please select a date to view</div>
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
@@ -436,12 +442,12 @@ const deleteMealItem = (foodId, index) => {
           inline
         />
 
-      <Card className="card mt-2">
+      <Card className="background-img card mt-2">
         <Card.Body>
-          <h3>Todays Totals</h3>
+          <h3>Overview</h3>
         <div>
-          <h5>Calories: {totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</h5>
-          <h5 className="heading">Carbs: {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</h5>
+          <h5><span>Calories</span> {totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</h5>
+          <h5 className="heading">Carbs {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</h5>
         </div>
         <div>
           <h5 className="heading">Fat {totalCalMac.fat && (totalCalMac.fat).toFixed(2)} g</h5>
@@ -451,6 +457,17 @@ const deleteMealItem = (foodId, index) => {
         </div>
         </Card.Body>
       </Card>
+
+      <Col className="mt-3">
+        <Button 
+        className="mr-5" 
+        variant="info" 
+        type="submit"
+        onClick={() => {navigateToAddMeal()}}
+        >
+          Add a meal
+        </Button>
+      </Col>
 
       </Col>
   
@@ -482,7 +499,7 @@ const deleteMealItem = (foodId, index) => {
         return (
           <div className="food-items" key={index}>
           <Row>
-          <Col xs={9}>
+          <Col className="item-display" xs={9}>
           <span>{item.name}</span>
           <span>Carbs:{item.carbs} g</span>
           <span>Protein:{item.protein} g</span>
@@ -502,7 +519,6 @@ const deleteMealItem = (foodId, index) => {
                       </Button>
           </Col>
           </Row>
-          <hr></hr>
           </div>
           )
         })
