@@ -428,14 +428,14 @@ const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinn
       </Card.Body>
       </Card>
 
-        <Card className="card text-black bg-info mb-2">
+        <Card className="card mb-2">
         <Card.Header >Lunch</Card.Header>
         <Card.Body>
         </Card.Body>
         </Card>
 
 
-        <Card className="card text-black bg-primary mb-2">
+        <Card className="card mb-2">
         <Card.Header>Dinner</Card.Header>
         <Card.Body>This is some text within a card body.</Card.Body>
         </Card>
