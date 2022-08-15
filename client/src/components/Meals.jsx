@@ -93,6 +93,7 @@ export default function Meals (props) {
   },[mealSaved]) 
 
   useEffect(()=>{
+    setQueryResults([])
     if(amountOption === "servings"){
       setQueryFoodAmount(1)
     }else if (amountOption === "whole"){
@@ -214,14 +215,18 @@ export default function Meals (props) {
     if (amountOption === "whole"){
       amountType = " Whole"
     } else if (amountOption === "servings"){
-      amountType = " Servings"
-    } else {
-      amountType = " grams"
+      amountType = " Serving"
+      if (queryFoodAmount>1)
+        amountType += "s"
+    } else {      
+      amountType = " gram"
+      if (queryFoodAmount>1)
+        amountType += "s"
     }
 
     return(
     <form>
-    <h3>Search Results { queryResults.length > 0 && ('for "'+ queryFoodName +'" with '+ queryFoodAmount + amountType)}</h3> 
+    <h3>Search Results { queryResults.length > 0 && ("for "+queryFoodAmount + " "+ amountType +" of "+ capitalize(queryFoodName))}</h3> 
 
     <br></br>
     {isLoading && <h2>Loading...</h2>}
