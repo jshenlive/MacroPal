@@ -113,7 +113,7 @@ export default function Meals (props) {
     setQueryFoodAmount(100);
     setQueryCategory("generic-foods");
     setQueryHealth("");
-    setQueryMealType("breakfast")
+    setQueryMealType("1breakfast")
   }
 
   const menuDropDown = ()=>{

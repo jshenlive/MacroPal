@@ -31,9 +31,9 @@ export default function Profile(props) {
   const height_cm = props.state.user.height_cm
   const age = props.state.user.age
   
-  const WBMR = 655.1 + (9.53 * weight_kg) + (1.85 * height_cm) - (4.676 * age)
+  const WBMR = (655.1 + (9.53 * weight_kg) + (1.85 * height_cm) - (4.676 * age))*1.2
 
-  const MBMR = 66.5 + (13.75 * weight_kg) + (5.003* height_cm) - (6.75*age) 
+  const MBMR = (66.5 + (13.75 * weight_kg) + (5.003* height_cm) - (6.75*age)) *1.2
 
   const userBasic = (props.state.user.gender === "male" ? MBMR : WBMR)
 
@@ -160,7 +160,7 @@ export default function Profile(props) {
       }
       return 0;})
     
-    
+ 
     return mealModalData.line_food.map(item=>{
 
         const showItem = (titledid)=>{
@@ -168,12 +168,12 @@ export default function Profile(props) {
           if(!titled[titledid]){
             titled[titledid] = true;
             title = item.meal_type.slice(1)
-          }
+          }          
           return(
             <Fragment key={item.id}>
-            <h5>{capitalize(title)}</h5>
+            <h5><u>{capitalize(title)}</u></h5>
           <div >
-            {item.food_amount} grams of {item.name}
+            <b>{item.food_amount} grams of {item.name}</b>
             <br></br>
             Calories: {Math.round(item.total_food_calories)} kCal
           </div>
@@ -204,19 +204,18 @@ export default function Profile(props) {
   const showLineExercise = () => {
 
     if(workoutModalData.line_exercises){
-      return("something")
-
-    }
-
-    // console.log(workoutModalData)
-    // return workoutModalData.line_exercises.map((item)=>{
-    //   return(
-    //     <>
-    //     item.name for item.exercise_duration 
-    //     </>
-    //   )
-    // })
-     
+      return (workoutModalData.line_exercises.map((item)=>{
+          return(
+            <>
+             <b>{item.name} for {item.exercise_duration} minutes</b>
+             <br></br> 
+             Calories burned: {item.total_exercise_calories} kCal
+             <br></br>
+             </>
+           )
+         })
+      )     
+    }     
   }
 
   function capitalize(str){
@@ -317,7 +316,7 @@ export default function Profile(props) {
         <br></br>
         Total meal weight: {item.total_meal_amount} (grams)
         <br></br>
-        Total meal calories: {item.total_meal_calories} (Kcal)
+        Total meal calories: {item.total_meal_calories} (kCal)
         <br></br>
         <br></br>
         </Fragment>
@@ -328,6 +327,7 @@ export default function Profile(props) {
   const showWorkout = () =>{
     console.log(workoutData)
     
+    // if(workoutData.length>0)
     return workoutData.map((item,index)=>{
       return(
         <Fragment key={index + 1000}>
@@ -344,9 +344,8 @@ export default function Profile(props) {
         <br></br>
         Total workout duration: {item.workout_duration} (minutes)
         <br></br>
-        Total calories burned: {item.total_workout_calories} (Kcal)
-        <br></br>
-        <br></br>
+        Total calories burned: {item.total_workout_calories} (kCal)
+        <br></br>    
   
         </Fragment>
       )
@@ -365,7 +364,7 @@ export default function Profile(props) {
       {totalCalories()> 0 ? "Excess Calories Gained: ": "Excess Calories Burned: "} {totalCalories()} Kcal
       <br></br>
       
-      {totalCalories()>0 ? showSuggestion() : "Good Job Today!"}
+      {totalCalories()>0 ? (showYesterday? "🥔Did not maintain weight yesterday, work harder today!🥔" : showSuggestion()) : (showYesterday ? "🔥Well done hitting you goals yesterday!🔥" : "🔥Good Job hitting your goals today!🔥")}
 
     </Card.Text>
     )
