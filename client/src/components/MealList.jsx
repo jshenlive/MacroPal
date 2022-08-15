@@ -320,19 +320,30 @@ useEffect(() => {
   
   }, [mealData])
 
-console.log('breakfastInfo', breakfastInfo)
-
 ////////////////////////////////////////////////
 // Calculate Total Calories, Macros [Breakfast]
 ///////////////////////////// /////////////////
-const totalCalMac = (mealset) => {
+const totalCalMacFunc = (breakfast, lunch, dinner, snack) => {
 
-  let totalCalMacObj = {
-    calories: 0,
-    carbs: 0,
-    protein: 0,
-    fat: 0,
-  }
+  let totalCalMacArr = [];
+  totalCalMacArr.push(breakfast, lunch, dinner, snack);
+
+  const totalCalMacCalculated = totalCalMacArr.reduce((accum, current) => {
+    Object.entries(current).forEach(([key, value]) => {
+
+      if (key === "carbs" || key === "fat" || key === "protein"  || key === "total_food_calories") {
+      accum[key] = (accum[key] + value) || value;
+      }
+
+    })
+    return {...accum}
+  }, {});
+
+  return totalCalMacCalculated;
+
+}
+
+const totalSetCalMac = (mealset) => {
 
   const totalCalMacCalculated = mealset.reduce((accum, current) => {
     Object.entries(current).forEach(([key, value]) => {
@@ -347,10 +358,12 @@ const totalCalMac = (mealset) => {
 
   return totalCalMacCalculated;
 }
-const breakfastTotalCalMac = totalCalMac(breakfastInfo);
-const lunchTotalCalMac = totalCalMac(lunchInfo);
-const dinnerTotalCalMac = totalCalMac(dinnerInfo);
-const snackTotalCalMac = totalCalMac(snackInfo);
+
+const breakfastTotalCalMac = totalSetCalMac(breakfastInfo);
+const lunchTotalCalMac = totalSetCalMac(lunchInfo);
+const dinnerTotalCalMac = totalSetCalMac(dinnerInfo);
+const snackTotalCalMac = totalSetCalMac(snackInfo);
+const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinnerTotalCalMac, snackTotalCalMac);
 
 
   return (
@@ -370,6 +383,16 @@ const snackTotalCalMac = totalCalMac(snackInfo);
           className="mb-3"
           inline
         />
+
+      <Card className="card mt-2">
+        <Card.Body>
+          <div>Total Cal Today: {totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</div>
+          <div>Carbs: {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</div>
+          <div>Fat: {totalCalMac.fat && (totalCalMac.fat).toFixed(2)}</div>
+          <div>Protein: {totalCalMac.protein && (totalCalMac.protein).toFixed(2)}</div>
+        </Card.Body>
+      </Card>
+
       </Col>
   
       
