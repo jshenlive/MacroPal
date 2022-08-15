@@ -85,6 +85,7 @@ class Api::MealsController < ApplicationController
         p food[:calories]
 
         meal.line_foods.new(
+          name: entry[:food][:name],
           food: food,
           food_amount: food_amount,
           meal_type: food_type,

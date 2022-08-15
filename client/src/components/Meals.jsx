@@ -107,9 +107,11 @@ export default function Meals (props) {
 
   //to clear form input
   const reset = () => {
+    setQueryResults([]);
+    setMealSaved(false);
     setQueryFoodName("");
     setQueryFoodAmount(100);
-    setQueryCategory("");
+    setQueryCategory("generic-foods");
     setQueryHealth("");
     setQueryMealType("breakfast")
   }
@@ -363,9 +365,9 @@ export default function Meals (props) {
     {(queryResults.length>5) &&itemsToShow>=queryResults.length && showLessBtn()}
 
     </Row>
-    {/* <Row>
+    <Row>
     <p style={{marginBottom:"100px"}}> </p>
-    </Row> */}
+    </Row> 
     </Container>
     
   );

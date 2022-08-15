@@ -51,7 +51,15 @@ export default function Profile(props) {
   const [suggestedDuration, setSuggestedDuration] = useState(0)
   const [isCalculated, setIsCalculate] = useState(false)
 
-  const [modalShow, setModalShow] = React.useState(false);
+  const [showYesterday, setShowYesterday] = useState(false)
+
+  const [modalShow, setModalShow] = useState(false);
+  const [mealModalIndex,setMealModalIndex] = useState(1)
+  const [mealModalData,setMealModalData] = useState([])
+
+  const [workoutModalShow, setWorkoutModalShow] = useState(false);
+  const [workoutModalIndex,setWorkoutModalIndex] = useState(1)
+  const [workoutModalData,setWorkoutModalData] = useState([])
   // const [isOpen, setIsSeen] = useState(false)
 
 
@@ -59,31 +67,7 @@ export default function Profile(props) {
   console.log(prevDate)
   console.log(currDayOf)
 
-  function MyVerticallyCenteredModal(props) {
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            {props.content}
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
+
 
   //goals constants
 
@@ -137,10 +121,172 @@ export default function Profile(props) {
   },[suggestion])
   
 
+  useEffect(()=>{
+    Axios.get(`/api/meals/${mealModalIndex}`)
+    .then((res)=>{
+      console.log(res.data)
+      setMealModalData(res.data)
+    })
+    .catch((e)=>{
+      console.log(e)
+    })
+  },[mealModalIndex])
+
+  useEffect(()=>{
+    Axios.get(`/api/workouts/${mealModalIndex}`)
+    .then((res)=>{
+      console.log(res.data)
+      setWorkoutModalData(res.data)
+    })
+    .catch((e)=>{
+      console.log(e)
+    })
+
+  }, [workoutModalIndex])
+
+  const showLineFood = () => {
+    const titled = {titled1:false, titled2:false, titled3:false, titled4: false}
+
+    if(mealModalData){
+    mealModalData.line_food.sort((a,b)=>{
+      let fa = a.meal_type
+      let fb = b.meal_type
+
+      if (fa < fb) {
+      return -1;
+      }
+      if (fa > fb) {
+          return 1;
+      }
+      return 0;})
+    }
+    
+    return mealModalData.line_food.map(item=>{
+
+        const showItem = (titledid)=>{
+          let title = ""
+          if(!titled[titledid]){
+            titled[titledid] = true;
+            title = item.meal_type.slice(1)
+          }
+          return(
+            <Fragment key={item.id}>
+            <h5>{capitalize(title)}</h5>
+          <div >
+            {item.food_amount} grams of {item.name}
+            <br></br>
+            Calories: {Math.round(item.total_food_calories)} kCal
+          </div>
+          </Fragment>
+          )
+        }
+
+        if( item.meal_type === "1breakfast") {
+          return showItem("titled1")
+        } else if( item.meal_type === "2lunch"){
+          return (
+            showItem("titled2")
+          )
+        } else if( item.meal_type === "3dinner"){
+          return (
+            showItem("titled3")
+        )
+        } else if(item.meal_type ==="4snack"){
+        return (
+          showItem("titled4")
+        )} else {
+          return "Something went wrong"
+        }
+      }
+    )
+  }
+
+  const showLineExercise = () => {
+    // console.log(workoutModalData)
+    // return workoutModalData.line_exercises.map((item)=>{
+    //   return(
+    //     <>
+    //     item.name for item.exercise_duration 
+    //     </>
+    //   )
+    // })
+     
+  }
+
+  function capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  function MealModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="meal-Modal">
+            Meal {mealModalIndex}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            <ul>
+              {showLineFood()}
+            </ul>
+            {console.log(mealModalData)}
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  function WorkoutModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="workout-modal">
+            Workout {workoutModalIndex}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+    
+            <ul>
+              {showLineExercise()}
+            </ul>
+            {console.log(workoutModalData)}
+     
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
   const totalCaloriesBurned = () => {
     return workoutData.reduce((accumulator,item)=>{
       return accumulator + item.total_workout_calories
     },0)
+  }
+
+  const mealClick = (data) =>{
+    setMealModalIndex(data.id)
+    setModalShow(true)
+  }
+
+  const workoutClick=(data)=>{
+    setWorkoutModalIndex(data.id)
+    setWorkoutModalShow(true)
   }
 
   const totalCalories = ()=> totalCaloriesIntake()-Math.round(userBasic) - totalCaloriesBurned()
@@ -152,21 +298,16 @@ export default function Profile(props) {
       
       return(
         <Fragment key={index + 100}>
-
         
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button variant="primary" onClick={() => mealClick(item)}>
       Meal {index+1}
       </Button>
 
-      <MyVerticallyCenteredModal
-        content = "TODO TODO"
+      <MealModal       
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
 
-
-        
-        
         <br></br>
         Total meal weight: {item.total_meal_amount} (grams)
         <br></br>
@@ -183,9 +324,17 @@ export default function Profile(props) {
     
     return workoutData.map((item,index)=>{
       return(
-        <Fragment key={index + 100}>
+        <Fragment key={index + 1000}>
        
-        Workout #{index+1}
+       <Button variant="primary" onClick={() => workoutClick(item)}>
+      Workout {index+1}
+      </Button>
+
+      <WorkoutModal       
+        show={workoutModalShow}
+        onHide={() => setWorkoutModalShow(false)}
+      />
+
         <br></br>
         Total workout duration: {item.workout_duration} (minutes)
         <br></br>
@@ -241,11 +390,18 @@ export default function Profile(props) {
   }
 
   const setActivity = () => {
+    if (!showYesterday){
     return (
       <>
       Complete <a href="/addworkout">workout</a> or <a href="/meals"> meals</a> to show summary
       </>
-    )
+    )}else {
+      return(
+        <>
+        No Summary for Yesterday
+        </>
+      )
+    }
   }
 
 
@@ -327,6 +483,18 @@ export default function Profile(props) {
       )
   }
   
+  const fetchPrev = ()=>{
+    setShowYesterday(true)
+    setIsCalculate(false)
+    setQueryDate(prevDate)
+  }
+
+  const fetchCurr = ()=>{
+    setShowYesterday(false)
+    setIsCalculate(false)
+    setQueryDate(currDate)
+  }
+
 
   const fetchSuggestion = ()=>{
 
@@ -397,11 +565,11 @@ export default function Profile(props) {
               <Card.Title> 
 
                 <h3>Activity Summary</h3>
-                  {/* <Button onClick={()=>console.log("hello")}>Yesterday</Button> 
+                 <Button onClick={()=>fetchPrev()}>Yesterday</Button> 
                   &emsp;
-                  <Button onClick={()=>console.log("hello")}>Today</Button>  
+                  <Button onClick={()=>fetchCurr()}>Today</Button>  
                   &emsp; 
-                  <Button onClick={()=>console.log("hello")}>Week So Far</Button>  */}
+                  {/* <Button onClick={()=>console.log("hello")}>Week So Far</Button>  */}
 
               </Card.Title>
              {isCalculated ? showSummary() : setActivity()}

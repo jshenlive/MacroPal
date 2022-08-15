@@ -35,6 +35,7 @@ u = User.create!({
   gender: "male",
   goal: "active",
   weight_kg: 70,
+  weight_class: "calories_burned_s",
   height_cm: 175,
   city: 'Vancouver',
   province: 'BC',
