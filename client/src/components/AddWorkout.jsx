@@ -173,6 +173,10 @@ useEffect(() => {
       });
   }
 
+  // NOTE: made changed date variable
+  // Sync date with how dates are added to meals
+  // Was showing a day earlier then current date using old format
+  // Possibly due to timezone
   const date = new Date();
   const currDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
 ///////////Workout Submit///////////
