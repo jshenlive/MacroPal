@@ -55,7 +55,7 @@ export default function Profile(props) {
 
   const [modalShow, setModalShow] = useState(false);
   const [mealModalIndex,setMealModalIndex] = useState(1)
-  const [mealModalData,setMealModalData] = useState([])
+  const [mealModalData,setMealModalData] = useState({})
 
   const [workoutModalShow, setWorkoutModalShow] = useState(false);
   const [workoutModalIndex,setWorkoutModalIndex] = useState(1)
@@ -147,7 +147,7 @@ export default function Profile(props) {
   const showLineFood = () => {
     const titled = {titled1:false, titled2:false, titled3:false, titled4: false}
 
-    if(mealModalData){
+    if(mealModalData!={}){
     mealModalData.line_food.sort((a,b)=>{
       let fa = a.meal_type
       let fb = b.meal_type

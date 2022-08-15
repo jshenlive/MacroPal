@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-
+import '../App.scss'
 //-- Nav Bar -- //
 export default function Fitpalnavbar(props) {
   const logout = () => {
@@ -29,29 +29,20 @@ export default function Fitpalnavbar(props) {
           {props.state.isLoggedIn && 
             <>
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/addworkout">Add Workout</Nav.Link>
-            <Nav.Link href="/meals">Add Meals</Nav.Link>
-            <Nav.Link href="/meal-list">Meals</Nav.Link>
-            <Nav.Link href="/workoutList">Exercise Summary</Nav.Link>
-            <Nav.Link href="/workoutsummary">Workout Summary</Nav.Link>
-              <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-              <NavDropdown.Divider />
 
-              <NavDropdown.Item href="/AddWorkout">
-                Add Exercise
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/workoutlist">Workouts</NavDropdown.Item>
+            <NavDropdown title="Meals" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="/meals">Manage Meals</NavDropdown.Item>
               <NavDropdown.Divider />
-
-              <NavDropdown.Item href="/workout">Add Food</NavDropdown.Item>
-              <NavDropdown.Item href="/diet">Diet</NavDropdown.Item>
-              <NavDropdown.Divider />
-
-              <NavDropdown.Item href="/summary">
-                Summary
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/meal-list">Summary</NavDropdown.Item>
             </NavDropdown>
+
+            <NavDropdown title="Workouts" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="/addworkout">Manage Workouts</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/workoutList">Summary</NavDropdown.Item>
+            </NavDropdown>
+
+            <Nav.Link href="/workoutsummary">Review</Nav.Link>
             </>
           }
           </Nav>
@@ -70,7 +61,8 @@ export default function Fitpalnavbar(props) {
 
             {props.state.isLoggedIn && 
             <>
-            <Nav.Link href="/admin">Admin</Nav.Link>
+            <a className="navbar-brand">{props.state.user.first_name}, You're a <span className='couch-potato'>Couch</span> <span className='fit-potato'>Fit!</span> Pot ATO! 🥔</a>
+            <Nav.Link href="/profile">Profile</Nav.Link>
             <Nav.Link eventKey={2} onClick={logout}>
             Log out
             </Nav.Link>

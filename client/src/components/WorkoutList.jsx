@@ -1,7 +1,6 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Exercise from "./Exercise";
@@ -10,7 +9,6 @@ import Exercise from "./Exercise";
 export default function WorkoutList (props) {
 
   const [userWorkoutData, setUserWorkoutData] = useState([]);
-  const navigate = useNavigate();
 //this state contains selected day
 const [startDate, setStartDate] = useState(null);
 
@@ -52,7 +50,7 @@ Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
 
       res.data.map((item) => {
 
-        if (item.date === startDate.toISOString().substring(0, 10)) {
+        if (startDate && item.date === startDate.toISOString().substring(0, 10)) {
 
           setUserWorkoutData(item);
         }
@@ -64,24 +62,17 @@ Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
   }, [startDate]);
   //////////////////////////////////////////////
 
-//Navigate to Another Page
-
-const addAnotherExercise = () => {
-
-  navigate('/addWorkout');
-
-}
-
   return (
 
     <Container className="mt-3">
 
     <Row>
 
-    <Card className="mt-5" style={{ width: '20rem' }}>
-      <Card.Body> 
-      <Col>
-    <h5 className="mb-1">Physical Activity Summary</h5>
+    <Col className="d-flex justify-content-center" xs={3} >
+
+    <Card className="border-light mb-2 text-center">
+      <Card.Body>
+
     <DatePicker
       selected={startDate}
       onChange={(date) => setStartDate(date)}
@@ -90,21 +81,11 @@ const addAnotherExercise = () => {
       className="mb-3"
       inline
     />
-    <Row>
-    <div className="mb-1">Please select a date to view</div>
-     <Button 
-      variant="info" 
-      type="submit"
-      onClick={() => {addAnotherExercise()}}
-       >
-        Add Exercise
-      </Button>
-  
-  </Row>
-    </Col>
+        <div className="mb-1 text-center">Please select a date</div>
+      </Card.Body>
+    </Card>
 
-     </Card.Body>
-    </Card>      
+    </Col>
 
     <Col>
 

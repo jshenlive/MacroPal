@@ -29,8 +29,8 @@ class Api::LineFoodsController < ApplicationController
       meal_id: meal_id,
       food_id: food_id,
       food_amount: food_amount,
-      meal_type: meal_type
-      total_food_calories: total_food_calories
+      meal_type: meal_type,
+      total_food_calories: total_food_calories,
     )
 
     meal.total_meal_calories += total_food_calories
