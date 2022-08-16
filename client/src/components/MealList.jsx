@@ -34,7 +34,7 @@ console.log('mealData', mealData)
 // Get Meal data for a specific user and date////////////////
 ///////////////Initial stage when no date is selected////////
 useEffect(() => {
-console.log('lunchInfooooooooooooooooooo', lunchInfo)
+
   if (props.state.user.id && startDate === null) {
   Axios.get(`/api/meals/user/${props.state.user.id}`).then ( res => {
 

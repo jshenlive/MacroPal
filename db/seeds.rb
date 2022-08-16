@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
+require 'Date'
 
 puts "Seeding Data ..."
 
@@ -32,7 +33,10 @@ u = User.create!({
   avatar_url: "https://i.ibb.co/Wgbkvvm/avataaars.png",
   age: 30,
   birthday: "1992-08-05",
+  gender: "male",
+  goal: "active",
   weight_kg: 70,
+  weight_class: "calories_burned_s",
   height_cm: 175,
   city: 'Vancouver',
   province: 'BC',
@@ -85,7 +89,139 @@ CSV.foreach(workouts_file, headers: true) do |row|
   end
 end 
 
-puts "Workouts for Jojo Added"
+puts "Adding Yesterday Workouts and Meals for Jojo"
+
+date = Date.yesterday()
+
+w = Workout.create!({
+  user_id: 1,
+  date: date,
+  workout_duration: 110,
+  total_workout_calories: 684
+})
+
+l1 = LineExercise.create!({
+  workout_id: 1,
+  exercise_id: 170,
+  total_exercise_calories: 65,
+  exercise_duration: 20,
+  name: "Walking 3.0 mph, moderate"
+})
+
+l2 = LineExercise.create!({
+  workout_id: 1,
+  exercise_id: 133,
+  total_exercise_calories: 619,
+  exercise_duration: 90,
+  name: "Playing tennis"
+})
+
+f1 = Food.create!({
+
+  calories:45,
+  carbs:10.4,
+  protein: 0.7,
+  fat: 0.2,
+  category:"Generic foods",
+  name: "Orange Juice"
+})
+f2 = Food.create!({
+
+  calories: 153,
+  carbs: 3.48266,
+  protein: 10.006,
+  fat: 11.1369,
+  category:"Generic meals",
+  name: "Chicken Caesar"
+})
+f3 = Food.create!({
+
+  calories: 245,
+  carbs: 26.65,
+  protein: 10.4315,
+  fat: 10.7826,
+  category:"Generic meals",
+  name: "Egg Toast"
+})
+f4 = Food.create!({
+
+  calories: 228,
+  carbs: 0,
+  protein: 20,
+  fat: 15.83,
+  category:"Generic foods",
+  name: "t Bone Steak"
+})
+f5 = Food.create!({
+
+  calories: 150,
+  carbs: 23.96,
+  protein: 2.34,
+  fat: 4.99,
+  category:"Generic foods",
+  name: "French Fries"
+})
+
+
+m1 = Meal.create!({
+  user_id: 1,
+  date: date,
+  total_meal_calories: 1259,
+  total_meal_amount: 850
+})
+m2 = Meal.create!({
+  user_id: 1,
+  date: date,
+  total_meal_calories: 1365,
+  total_meal_amount: 650
+})
+
+lm1 = LineFood.create!({
+  name: "Orange Juice",
+  meal_type: "1breakfast",
+  food_amount: 250,
+  total_food_calories: 112,
+  food_id: 1,
+  meal_id: 1
+})
+
+lm2 = LineFood.create!({
+  name: "Egg Toast",
+  meal_type: "1breakfast",
+  food_amount: 250,
+  total_food_calories: 612,
+  food_id: 2,
+  meal_id: 1  
+})
+
+lm3 = LineFood.create!({
+  name: "Chicken Caesar",
+  meal_type: "2lunch",
+  food_amount: 350,
+  total_food_calories: 535,
+  food_id: 3,
+  meal_id: 1  
+})
+
+lm4 = LineFood.create!({
+  name: "t Bone Steak",
+  meal_type: "3dinner",
+  food_amount: 500,
+  total_food_calories: 1140,
+  food_id: 4,
+  meal_id: 2  
+})
+
+lm5 = LineFood.create!({
+  name: "French Fries",
+  meal_type: "3dinner",
+  food_amount: 150,
+  total_food_calories: 225,
+  food_id: 5,
+  meal_id: 2  
+})
+
+puts "Yesterday Data ADDED"
 
 # exercise=
 # exercise_duration = 30

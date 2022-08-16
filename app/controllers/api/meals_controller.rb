@@ -33,7 +33,15 @@ class Api::MealsController < ApplicationController
     else
       render json: meal.errors, status: :unprocessable_entity
     end
+  end
 
+  # post /get_with_date
+  def get_with_date
+    puts "we hare"
+    meal = Meal.where(user_id: params[:user_id])
+    meal = meal.where(date: params[:date])
+
+    render json: meal
   end
 
   # PATCH/PUT /meals/1
@@ -77,6 +85,7 @@ class Api::MealsController < ApplicationController
         p food[:calories]
 
         meal.line_foods.new(
+          name: food[:name],
           food: food,
           food_amount: food_amount,
           meal_type: food_type,
@@ -93,6 +102,6 @@ class Api::MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:meal_type, :date, :total_meal_amount, :total_meal_calories, :user_id, :food_id)
+      params.require(:meal).permit(:name, :meal_type, :date, :total_meal_amount, :total_meal_calories, :user_id, :food_id)
     end
 end

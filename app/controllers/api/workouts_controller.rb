@@ -20,6 +20,13 @@ class Api::WorkoutsController < ApplicationController
                                       :exercises => @exercises }
   end
 
+  def get_with_date
+    workout = Workout.where(user_id: params[:user_id])
+    workout = workout.where(date: params[:date])
+
+    render json: workout
+  end
+
   # POST /workouts/
   def create
     workout = create_workout()
@@ -67,6 +74,7 @@ class Api::WorkoutsController < ApplicationController
         exercise = entry[:exercise]
         exercise_duration = entry[:exercise_duration]
         workout.line_exercises.new(
+          name: exercise[:name],
           exercise: exercise,
           exercise_duration: exercise_duration,
           total_exercise_calories: exercise[weight_class] / 60 * exercise_duration

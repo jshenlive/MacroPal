@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
   end
 
   create_table "line_exercises", force: :cascade do |t|
+    t.string "name"
     t.integer "exercise_duration"
     t.integer "total_exercise_calories"
     t.bigint "exercise_id"
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
   end
 
   create_table "line_foods", force: :cascade do |t|
+    t.string "name"
     t.string "meal_type"
     t.integer "food_amount"
     t.integer "total_food_calories"
@@ -86,9 +88,12 @@ ActiveRecord::Schema.define(version: 2022_08_12_032711) do
     t.string "city"
     t.string "province"
     t.string "country"
+    t.string "goal"
+    t.string "gender"
     t.integer "age"
     t.date "birthday"
     t.integer "weight_kg"
+    t.string "weight_class"
     t.integer "height_cm"
     t.string "avatar_url"
     t.string "password_digest"

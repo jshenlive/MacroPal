@@ -21,7 +21,7 @@ class Api::UsersController < ApplicationController
     # puts Avatar.find(Avatar.pluck(:id).sample).url
 
     @user.avatar_url = Avatar.find(Avatar.pluck(:id).sample).url
-    
+    @user.weight_class = weight_class(params[:weight_kg])
     if @user.save
       puts @user.avatar_url
       session[:user_id] = @user.id
