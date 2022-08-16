@@ -8,7 +8,7 @@ import '../App.scss'
 
 
 export default function MealList (props) {
-  //this state contains selected day
+  //this state contains selected day//
 const [startDate, setStartDate] = useState(null);
 const [userMealsId, setUserMealsId] = useState([]);
 const [mealData, setMealData] = useState([]);
