@@ -80,7 +80,7 @@ form {
   background-color: #e7c6ff; /* Grey background color */
   padding: 12px; /* Add some padding */
   text-decoration: none; /* Remove default text underline */
-  font-size: 12px; /* Increase the font-size */
+  font-size: 18px; /* Increase the font-size */
   color: black; /* Add a black text color */
   display: block; /* Make it into a block element to fill the whole list */
 }
@@ -92,9 +92,21 @@ form {
   background-color: #ffd6ff;
   padding: 12px;
   text-decoration: none;
-  font-size: 12px;
-  color: black;
+  font-size: 24px;
+  color: rgb(0, 0, 0);
   display: block;
+}
+
+.query-border {
+  margin:4px, 4px;
+  padding:4px;
+  width: 640px;
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:center;
+  font-weight: bold;
+  position: absolute;
 }
 
 .footer {
@@ -190,10 +202,26 @@ item-display-title {
 }
 
 .circle-heading-workout {
-  margin-top: 60px;
-  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
   color: white;
 }
+
+.circle-heading-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  margin: auto;
+}
+
+// .circle-heading-text:first-child {
+//   margin-top: 42px;
+// }
+
 .info-text {
   font-weight: bold;
   font-size: 28px !important;
@@ -290,9 +318,9 @@ item-display-title {
 // headSHot styles
 .headshot {
 	flex-shrink: 0;
-	margin: 20px;
-	height: calc(150px + 6vw);
-	width: calc(150px + 6vw);
+	margin: 30px;
+	height: calc(96px + 6vw);
+	width: calc(96px + 6vw);
 	border: calc(8px + 0.2vw) solid transparent;
 	background-origin: border-box;
 	background-clip: content-box, border-box;

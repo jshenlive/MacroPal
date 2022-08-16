@@ -17,6 +17,7 @@ export default function Workout (props) {
   const [durations, setDurations] = useState("");
   const [exerciseCaloriesBurned, setExerciseCaloriesBurned] = useState([]);
   const [caloriesTotal, setCaloriesTotal] = useState("");
+  const [searchDisplay, setSearchDisplay] = useState(false);
   const {
     units,
     setUnits,
@@ -107,7 +108,7 @@ useEffect(() => {
 
   //Choose your Activity Input change
   const onChangeHandler = (query) => {
- 
+    setSearchDisplay(true);
     let matches = [];
 
     if (query.length > 0) {
@@ -255,7 +256,9 @@ useEffect(() => {
                       value={query}
                       placeholder="Choose Your Activity"
                       />
-                          {suggestions && suggestions.map((suggestion, index) =>
+                       {suggestions && searchDisplay &&
+                      <div className="query-border">
+                          {suggestions.map((suggestion, index) =>
                             <div 
                             key={index} 
                             className="query-suggestions"
@@ -264,7 +267,8 @@ useEffect(() => {
                               {suggestion.name}
                             </div>
                           )}
-
+                      </div>
+                        }
                     </FloatingLabel>
                   </Form.Group>
         
@@ -349,7 +353,7 @@ useEffect(() => {
         
           <Col className="app-section" xs={10}>
 
-            <Row className="mt-2">
+          <Row>
             <div className="app-header-bar mb-2">Summary of activities added:</div>
 
             <Col>
@@ -360,21 +364,28 @@ useEffect(() => {
               ))}
             </Col>
 
-            <Col className="headshot circle-heading-workout" xs={4}>
-          <Card className="headshot headshot-2 card mt-2">
+              <Col className="text-center" xs={4}>
+            <div  className="circle-heading-workout">
+              <div className="headshot headshot-2 card mt-2">
+                <div className="circle-heading-text">
+                <div >Total</div>
+                <div>{caloriesTotal}</div>
+                <div> Kcal</div>
+                </div>
+              </div>
+            </div>
             <Card.Body>
-            <h4 className="mt-4 font-bold">Total Calories burned: {caloriesTotal}</h4>
-              <Button 
-                  className="font-bold mb-3" 
-                  variant="info" 
-                  type="submit"
-                  onClick={() => submitAllExercise()}
-                  >
-                    Submit All exercises
-              </Button>
-              </Card.Body>
-          </Card>
-            </Col>
+                <Button 
+                    className="font-bold mb-3" 
+                    variant="info" 
+                    type="submit"
+                    onClick={() => submitAllExercise()}
+                    >
+                      Submit All exercises
+                </Button>
+                </Card.Body>
+              </Col>
+
           </Row>
 
           </Col>

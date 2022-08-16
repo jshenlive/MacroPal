@@ -75,71 +75,8 @@ export default function MealList (props) {
     },0)
   }
 
-  return (
-    <Container className="mt-5">
-
-      <Row className="mb-5 text-center">
-      <Col>
-
-      <Card className="headshot headshot-2 card mt-2">
-        <Card.Body>
-        Total day calories intake: {totalCaloriesIntake()}
-        <br></br>
-        Total day meal amount: {totalMealWeight()} grams
-      </Card.Body>
-      </Card>
-
-      { mealData.length > 0 &&
-      <Col className="mt-3">
-        <Button 
-        className="mr-5" 
-        variant="info" 
-        type="submit"
-        onClick={() => {navigateToAddMeal()}}
-        >
-          Add a meal
-        </Button>
-      </Col>
-      }
-      </Col>
-
-
-      {breakfastInfo.length === 0 && lunchInfo.length === 0 && dinnerInfo.length === 0 &&
-      <Col xs={9}>
-
-        <div className="app-section">
-          <div>
-
-          </div>
-        </div>
-
-      </Col>
-      }
-
-
-      <Card className="mb-2">
-      <Card.Header >Lunch</Card.Header>
-      <Card.Body>This is some text within a card body.</Card.Body>
-      </Card>
-
-
-      <Card className="mb-2">
-      <Card.Header>Dinner</Card.Header>
-      <Card.Body>This is some text within a card body.</Card.Body>
-      </Card>
-
-
-      <Card className="mb-2">
-      <Card.Header>Snacks</Card.Header>
-      <Card.Body>This is some text within a card body.</Card.Body>
-      </Card>
-
-
-      </Col>
-
-      </Row>
-
-    </Container>
-  );
+  return(
+    <div></div>
+  )
 
 }
