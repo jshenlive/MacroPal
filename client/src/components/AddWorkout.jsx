@@ -218,7 +218,7 @@ useEffect(() => {
 
 
  return (
-  <Container>
+  <Container className="container-margins">
           <Row>
 
         <Card className="mt-5" style={{ width: '36rem' }}>
@@ -228,7 +228,9 @@ useEffect(() => {
                 Calculate How Many Calories You're Burning
               </div>   
               <br/>
-                  <Form.Group className="mt-2">
+                  <Form.Group
+                   className="mt-2"
+                  >
                     <FloatingLabel
                     controlId="floatingInput"
                     label="Choose Your Activity"

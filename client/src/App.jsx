@@ -11,10 +11,8 @@ import WorkoutSummary from './components/WorkoutSummary';
 import Exercise from './components/Exercise';
 import Meals from './components/Meals';
 import MealList from './components/MealList';
-import Foodlist from './components/Foodlist';
 import Profile from './components/Profile';
 import Summary from './components/Summary';
-import Controlpanel from './components/Controlpanel';
 import axios from 'axios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.scss';
@@ -78,7 +76,6 @@ class App extends Component {
          <Route  exact path='/exercise' element={<Exercise/>}/>
          <Route  exact path='/workoutList' element={<WorkoutList  state={this.state}/>}/>
          <Route  exact path='/WorkoutSummary' element={<WorkoutSummary state={this.state}/>}/>
-         <Route  exact path='/admin' element={<Controlpanel />}/>
          <Route  exact path='/summary' element={<Summary />}/>
          <Route  exact path='/profile' element={<Profile state={this.state} />}/>
          <Route  exact path='/loading' element={<Loading/>}/>
