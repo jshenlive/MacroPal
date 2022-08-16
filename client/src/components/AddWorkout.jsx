@@ -333,13 +333,8 @@ useEffect(() => {
 
         </Col>
 
-        {suggestions.length === 0?
-          <Col xs={10}>
-          <div className="query-border-empty">
-          <div className="query-selected">{query}</div>
-          </div>
-          </Col>
-          :
+        {suggestions.length > 0 &&
+
           <Col xs={10}>
           <div className="query-border">
               {suggestions.map((suggestion, index) =>
