@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
+<<<<<<< HEAD
+=======
+# require 'Date'
+>>>>>>> 08a3164bd8034405d4675dc2bad2fc7b4402ac4e
 
 puts "Seeding Data ..."
 

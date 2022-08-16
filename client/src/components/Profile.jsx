@@ -63,12 +63,6 @@ export default function Profile(props) {
   // const [isOpen, setIsSeen] = useState(false)
 
 
-  console.log(currDate)
-  console.log(prevDate)
-  console.log(currDayOf)
-
-
-
   //goals constants
 
   useEffect(()=>{
