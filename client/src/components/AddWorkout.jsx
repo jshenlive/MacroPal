@@ -220,7 +220,9 @@ useEffect(() => {
                 Calculate How Many Calories You're Burning
               </div>   
               <br/>
-                  <Form.Group className="mt-2">
+                  <Form.Group
+                   className="mt-2"
+                  >
                     <FloatingLabel
                     controlId="floatingInput"
                     label="Choose Your Activity"

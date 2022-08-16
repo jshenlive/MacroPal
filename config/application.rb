@@ -42,6 +42,8 @@ config.middleware.use ActionDispatch::Session::CookieStore
 
 config.middleware.use config.session_store, config.session_options
 
+config.time_zone = 'Pacific Time (US & Canada)'
+
 
   end
 end

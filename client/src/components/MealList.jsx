@@ -16,6 +16,12 @@ const [breakfastInfo, setBreakfastInfo] = useState([]);
 const [lunchInfo, setLunchInfo] = useState([]);
 const [dinnerInfo, setDinnerInfo] = useState([]);
 const [snackInfo, setSnackInfo] = useState([]);
+const [totalCalMac, setTotalCalMac] = useState([]);
+const [breakfastTotalCalMac, setBreakfastTotalCalMac] = useState([]);
+const [lunchTotalCalMac, setLunchTotalCalMac] = useState([]);
+const [dinnerTotalCalMac, setDinnerTotalCalMac] = useState([]);
+const [snackTotalCalMac, setSnackTotalCalMac] = useState([]);
+
 
     //navigation function
     const navigate = useNavigate();
@@ -26,7 +32,7 @@ const [snackInfo, setSnackInfo] = useState([]);
 // Get Meal data for a specific user and date////////////////
 ///////////////Initial stage when no date is selected////////
 useEffect(() => {
-
+console.log('startDate', startDate)
   if (props.state.user.id && startDate === null) {
   Axios.get(`/api/meals/user/${props.state.user.id}`).then ( res => {
 
@@ -43,9 +49,11 @@ useEffect(() => {
     let day = dateObj.getDate();
     let year = dateObj.getFullYear();
     const todayDate = year + "-" + month + "-" + day;
-console.log('todayDate', todayDate);
+
     res.data.map((item) => {
-      if (item.date === todayDate) {
+//get date from Database,convert to yyyy-mm-dd string
+      const todaydateconverted = item.created_at.slice(0, 10);
+      if (todaydateconverted === todayDate) {
         fetchedMealData.push(item.id);
       }
     });
@@ -340,49 +348,61 @@ useEffect(() => {
   }, [mealData])
 
 ////////////////////////////////////////////////
-// Calculate Total Calories, Macros [Breakfast]
+// Calculate Total Calories, Macros 
 ///////////////////////////// /////////////////
-const totalCalMacFunc = (breakfast, lunch, dinner, snack) => {
+useEffect(() => {
+  const totalCalMacFunc = (breakfast, lunch, dinner, snack) => {
 
-  let totalCalMacArr = [];
-  totalCalMacArr.push(breakfast, lunch, dinner, snack);
+    let totalCalMacArr = [];
+    totalCalMacArr.push(breakfast, lunch, dinner, snack);
+  
+    const totalCalMacCalculated = totalCalMacArr.reduce((accum, current) => {
+      Object.entries(current).forEach(([key, value]) => {
+  
+        if (key === "carbs" || key === "fat" || key === "protein"  || key === "total_food_calories") {
+        accum[key] = (accum[key] + value) || value;
+        }
+  
+      })
+      return {...accum}
+    }, {});
+  
+  
+    return totalCalMacCalculated;
+  
+  }
+  
+  const totalSetCalMac = (mealset) => {
+  console.log('mealset', mealset)
+    const totalCalMacCalculated = mealset.reduce((accum, current) => {
+      Object.entries(current).forEach(([key, value]) => {
+  
+        if (key === "carbs" || key === "fat" || key === "protein"  || key === "total_food_calories") {
+        accum[key] = (accum[key] + value) || value;
+        }
+  
+      })
+      return {...accum}
+    }, {});
+  
+    return totalCalMacCalculated;
+  }
 
-  const totalCalMacCalculated = totalCalMacArr.reduce((accum, current) => {
-    Object.entries(current).forEach(([key, value]) => {
+  const breakfastTotalCalMac = totalSetCalMac(breakfastInfo);
+  const lunchTotalCalMac = totalSetCalMac(lunchInfo);
+  const dinnerTotalCalMac = totalSetCalMac(dinnerInfo);
+  const snackTotalCalMac = totalSetCalMac(snackInfo);
+  const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinnerTotalCalMac, snackTotalCalMac);
+  setBreakfastTotalCalMac(breakfastTotalCalMac);
+  setLunchTotalCalMac(lunchTotalCalMac);
+  setDinnerTotalCalMac(dinnerTotalCalMac);
+  setSnackTotalCalMac(snackTotalCalMac);
+  setTotalCalMac(totalCalMac);
 
-      if (key === "carbs" || key === "fat" || key === "protein"  || key === "total_food_calories") {
-      accum[key] = (accum[key] + value) || value;
-      }
+}, [breakfastInfo])
 
-    })
-    return {...accum}
-  }, {});
 
-  return totalCalMacCalculated;
 
-}
-
-const totalSetCalMac = (mealset) => {
-
-  const totalCalMacCalculated = mealset.reduce((accum, current) => {
-    Object.entries(current).forEach(([key, value]) => {
-
-      if (key === "carbs" || key === "fat" || key === "protein"  || key === "total_food_calories") {
-      accum[key] = (accum[key] + value) || value;
-      }
-
-    })
-    return {...accum}
-  }, {});
-
-  return totalCalMacCalculated;
-}
-
-const breakfastTotalCalMac = totalSetCalMac(breakfastInfo);
-const lunchTotalCalMac = totalSetCalMac(lunchInfo);
-const dinnerTotalCalMac = totalSetCalMac(dinnerInfo);
-const snackTotalCalMac = totalSetCalMac(snackInfo);
-const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinnerTotalCalMac, snackTotalCalMac);
 
 
 ////// Delete Meal Item ///////
@@ -451,18 +471,18 @@ const deleteMealItem = (foodId, index) => {
       </Col>
 
 
+      {breakfastInfo.length === 0 && lunchInfo.length === 0 && dinnerInfo.length === 0 &&
       <Col xs={9}>
 
         <div className="app-section">
           <div>
 
           </div>
-
-
         </div>
 
       </Col>
-    
+      }
+
 
       <Col>
 
