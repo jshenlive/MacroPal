@@ -17,7 +17,6 @@ export default function Workout (props) {
   const [durations, setDurations] = useState("");
   const [exerciseCaloriesBurned, setExerciseCaloriesBurned] = useState([]);
   const [caloriesTotal, setCaloriesTotal] = useState("");
-  const [searchDisplay, setSearchDisplay] = useState(false);
   const {
     units,
     setUnits,
@@ -108,7 +107,7 @@ useEffect(() => {
 
   //Choose your Activity Input change
   const onChangeHandler = (query) => {
-    setSearchDisplay(true);
+
     let matches = [];
 
     if (query.length > 0) {
@@ -119,6 +118,7 @@ useEffect(() => {
         return exercise.name.match(regex)
       })
     }
+
     setSuggestions(matches)
     setQuery(query)
   };
@@ -136,6 +136,7 @@ useEffect(() => {
   };
 
   const onSuggestHandler = (query) => {
+
     setQuery(query.name);
     setQueryItems(query);
     setSuggestions([]);
@@ -227,7 +228,7 @@ useEffect(() => {
     <Row className="justify-content-md-center">
     
     
-        <Col className="app-section" xs={10}>
+        <Col className="app-section-top" xs={10}>
 
               <div className="app-header-bar">
                 Calculate How Many Calories You're Burning
@@ -244,31 +245,14 @@ useEffect(() => {
                     >
                       <Form.Control 
                       type="text"
-                      autocomplete="off"
+                      autoComplete="off"
                       name= "activitiesQuery"
                       onFocus={()=> resetFormInput()}
                       onChange={event => onChangeHandler(event.target.value)}
-                      onBlur={() => {
-                        setTimeout(() => {
-                          setSuggestions([])
-                        }, 2000)
-                      }}
                       value={query}
                       placeholder="Choose Your Activity"
                       />
-                       {suggestions && searchDisplay &&
-                      <div className="query-border">
-                          {suggestions.map((suggestion, index) =>
-                            <div 
-                            key={index} 
-                            className="query-suggestions"
-                            onClick={() => onSuggestHandler(suggestion)}
-                            >
-                              {suggestion.name}
-                            </div>
-                          )}
-                      </div>
-                        }
+
                     </FloatingLabel>
                   </Form.Group>
         
@@ -285,7 +269,7 @@ useEffect(() => {
                       type="text"
                       value={durations}
                       name= "duration"
-                      autocomplete="off"
+                      autoComplete="off"
                       onChange={event => onDurationInputChangeHandler(event)}
                       placeholder="Enter Duration"
                       />
@@ -349,9 +333,31 @@ useEffect(() => {
 
         </Col>
 
+        {suggestions.length === 0?
+          <Col xs={10}>
+          <div className="query-border-empty">
+          <div className="query-selected">{query}</div>
+          </div>
+          </Col>
+          :
+          <Col xs={10}>
+          <div className="query-border">
+              {suggestions.map((suggestion, index) =>
+                <div 
+                key={index} 
+                className="query-suggestions"
+                onClick={() => onSuggestHandler(suggestion)}
+                >
+                    {suggestion.name}
+                </div>
+              )}
+          </div>
+          </Col>
+          }
+             
         { cart.length > 0 ?
         
-          <Col className="app-section" xs={10}>
+          <Col className="app-section-summary" xs={8}>
 
           <Row>
             <div className="app-header-bar mb-2">Summary of activities added:</div>
@@ -390,8 +396,9 @@ useEffect(() => {
 
           </Col>
           : null }
-    </Row>
 
+    </Row>
+  
   </Container>
  );
 

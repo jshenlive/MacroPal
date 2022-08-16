@@ -97,16 +97,51 @@ form {
   display: block;
 }
 
-.query-border {
-  margin:4px, 4px;
+.query-selected {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #cfc3db 0%,
+    #cac9a9 29%,
+    #ffd500 67%,
+    #eeeeee 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 20px;
+}
+
+
+.query-border-empty {
+  margin: 0 auto;
   padding:4px;
-  width: 640px;
-  height: 300px;
+  width: 100%;
+  height: 210px;
   overflow-x: hidden;
   overflow-y: auto;
   text-align:center;
   font-weight: bold;
-  position: absolute;
+  display: block;
+}
+
+.query-border {
+  margin: 0 auto;
+  padding:4px;
+  width: 100%;
+  height: 210px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:center;
+  font-weight: bold;
+  display: block;
 }
 
 .footer {
@@ -164,6 +199,16 @@ form {
   font-weight: bold;
 }
 
+.app-section-top {
+  background-color: rgba(255,255,255,0.83);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  margin-bottom: 1px;
+  z-index: 10;
+}
+
 .app-section {
   background-color: rgba(255,255,255,0.83);
   border: 2px solid rgba(255,255,255,0.1);
@@ -171,6 +216,17 @@ form {
   border-bottom-left-radius: 10px;
   box-shadow: 0 0 40px rgba(8,7,16,0.6);
   margin-bottom: 32px;
+}
+
+.app-section-summary {
+  background-color: rgba(255,255,255,0.83);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  z-index: 10;
+  margin-top: 330px;
+  position: absolute;
 }
 
 .item-display {
