@@ -69,30 +69,52 @@ Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
 
     <Row>
 
-    <Col className="d-flex justify-content-center" xs={3} >
+    <Col className="calendar-header " xs={3}>
 
-    <Card className="border-light mb-2 text-center">
-      <Card.Body>
 
-    <DatePicker
-      selected={startDate}
-      onChange={(date) => setStartDate(date)}
-      maxDate={new Date()}
-      showDisabledMonthNavigation
-      className="mb-3"
-      inline
-    />
-        <div className="mb-1 text-center">Please select a date</div>
-      </Card.Body>
-    </Card>
+        <DatePicker
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          maxDate={new Date()}
+          showDisabledMonthNavigation
+          className="mb-3"
+          inline
+        />
+        <div className="mb-1">Please select a date</div>
 
+      {/* /* <Card className="background-img card mt-2">
+        <Card.Body>
+          <h3>Overview</h3>
+        <div>
+          <h5><span>Calories</span></h5>
+          <h5 className="heading">Carbs</h5>
+        </div>
+        <div>
+          <h5 className="heading">Fat</h5>
+        </div>
+        <div>
+          <h5 className="heading">Protein g</h5>
+        </div>
+        </Card.Body>
+      </Card>  */}
+
+
+      {/* <Col className="mt-3">
+        <Button 
+        className="mr-5" 
+        variant="info" 
+        type="submit"
+        onClick={() => {navigateToAddMeal()}}
+        >
+          Add a meal
+        </Button>
+      </Col>  */}
     </Col>
 
-    <Col>
 
+    <Col>
     {userWorkoutData.id &&
       <>
-
       <Card className="mb-2 text-center">
       <Card.Header>Summary</Card.Header>
       <Card.Body>

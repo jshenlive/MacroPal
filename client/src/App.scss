@@ -308,6 +308,9 @@ item-display-title {
 
   .calendar-header {
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
 // Animated Text
