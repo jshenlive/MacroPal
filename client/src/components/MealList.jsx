@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect, Fragment, } from "react";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 
@@ -170,9 +170,9 @@ export default function MealList (props) {
     // if (lineFoodArray.length>0){
       return lineFoodArray.map((item)=>{     
         return (
-          <>
+          <Fragment key={item.id+100}>
           {item.meal_type === type ? getContent(item.id, item.food_id, item.food_amount) : ""}
-          </>)
+          </Fragment>)
       })
     // }
   }
