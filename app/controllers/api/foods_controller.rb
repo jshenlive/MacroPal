@@ -36,10 +36,10 @@ class Api::FoodsController < ApplicationController
   #   render json: @foods
   # end
 
-  # # GET /foods/1
-  # def show
-  #   render json: @food
-  # end
+  # GET /foods/1
+  def show
+    render json: @food
+  end
 
   # # POST /foods
   # def create
@@ -68,9 +68,9 @@ class Api::FoodsController < ApplicationController
 
   private
   #   # Use callbacks to share common setup or constraints between actions.
-  #   def set_food
-  #     @food = Food.find(params[:id])
-  #   end
+    def set_food
+      @food = Food.find(params[:id])
+    end
 
     def fetch_save(name,category,health,amount_type)
       is_branded = false

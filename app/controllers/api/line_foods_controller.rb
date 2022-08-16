@@ -49,21 +49,23 @@ class Api::LineFoodsController < ApplicationController
     food_amount = params[:food_amount]
 
     prev_amount = @line_food.food_amount
-    @line_exercise.food_amount = food_amount
+
+
+    @line_food.food_amount = food_amount
     diff_amount = food_amount - prev_amount
 
     meal = Meal.find_by_id(@line_food.meal_id)
 
     prev_calories = @line_food.total_food_calories
     curr_calories = total_food_calories(meal, @line_food.food_id, food_amount)
-    @line_exercise.total_food_calories = curr_calories
+    @line_food.total_food_calories = curr_calories
     diff_calories = curr_calories - prev_calories
 
     meal.total_meal_calories += diff_calories
     meal.total_meal_amount += diff_amount
     
-    if @line_exercise.save && workout.save
-      render json: @line_exercise
+    if @line_food.save && meal.save
+      render json: @line_food
     else
       render json: @line_food.errors, status: :unprocessable_entity
     end
@@ -76,6 +78,9 @@ class Api::LineFoodsController < ApplicationController
     meal.total_meal_amount -= @line_food.food_amount
     meal.save
     @line_food.destroy
+    if meal.total_meal_amount <=0 
+      meal.destroy
+    end
   end
 
   private
