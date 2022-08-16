@@ -23,7 +23,7 @@ export default function Workout (props) {
     setUnitFunction,
     calculateWeightInLbs,
   } = AppUnits();
-
+console.log('cart', cart)
     //navigation function
     const navigate = useNavigate();
 
@@ -107,7 +107,6 @@ useEffect(() => {
   //Choose your Activity Input change
   const onChangeHandler = (query) => {
  
-
     let matches = [];
 
     if (query.length > 0) {
@@ -208,17 +207,23 @@ useEffect(() => {
 
   }
 
+  const resetFormInput = () => {
+    setExerciseCalories(0);
+    setDurations(0);
+  }
 
  return (
   <Container className="container-margins">
-          <Row>
 
-        <Card className="mt-5" style={{ width: '36rem' }}>
-          <Card.Body> 
-            <Col>       
-              <div className="workout-title mt-1">
+    <Row className="justify-content-md-center">
+    
+    
+        <Col className="app-section" xs={10}>
+
+              <div className="app-header-bar">
                 Calculate How Many Calories You're Burning
               </div>   
+              
               <br/>
                   <Form.Group
                    className="mt-2"
@@ -230,7 +235,9 @@ useEffect(() => {
                     >
                       <Form.Control 
                       type="text"
+                      autocomplete="off"
                       name= "activitiesQuery"
+                      onFocus={()=> resetFormInput()}
                       onChange={event => onChangeHandler(event.target.value)}
                       onBlur={() => {
                         setTimeout(() => {
@@ -252,7 +259,9 @@ useEffect(() => {
 
                     </FloatingLabel>
                   </Form.Group>
-                  <Row>
+        
+ 
+              <Row>
                 <Col>
                   <Form.Group className="mt-2">
                     <FloatingLabel
@@ -262,13 +271,17 @@ useEffect(() => {
                     >
                       <Form.Control 
                       type="text"
+                      value={durations}
                       name= "duration"
+                      autocomplete="off"
                       onChange={event => onDurationInputChangeHandler(event)}
                       placeholder="Enter Duration"
                       />
                     </FloatingLabel>
                   </Form.Group>
                 </Col>
+
+
                 <Col>
                 <Form.Control 
                       type="text"
@@ -276,7 +289,7 @@ useEffect(() => {
                       placeholder={`Your Weight: ${weight(userWeight)} ${units.mass}`}
                       readOnly
                       />
-                  <div key="inline-radio" className="mb-3">
+                  <div key="inline-radio" className="font-bold mb-3">
                   <Form.Check
                     inline
                     label="English"
@@ -295,15 +308,16 @@ useEffect(() => {
                     onClick={() => setUnitFunction("Metric")}
                     checked={units.name === "Metric"}
                   />
-                </div>
+                   </div>
                 </Col>
+
               </Row>
 
               <Row>
 
-                <Col>
+                <Col md={3}>
                   <Button 
-                  className="mt-2" 
+                  className="font-bold mb-3" 
                   variant="info" 
                   type="submit"
                   onClick={() => addExercise()}
@@ -312,63 +326,52 @@ useEffect(() => {
                   </Button>
                 </Col>
 
-                <Col className="mt-5">
-                  <div>
-                  Calories burned:  
-                    {(durations && query)? <span> {exerciseCalories}</span>
-                    :
-                    <span> 0</span>
-                    }
+                <Col md={{ span: 5, offset: 4 }}>
+                  <div className="animate-charcter info-text">
+                  {durations && query? <div> Calories burned:{exerciseCalories} </div> : <span>Calories burned:0 </span>}
                   </div>
                   <br/>
                 </Col>
 
               </Row>
 
-            </Col>
+        </Col>
 
-          </Card.Body>
-        </Card>          
-
-        { cart.length > 0?
-        <Card className="ms-5" style={{ width: '24rem' }}>
-          <Card.Body>
-
-            <Col>
+        { cart.length > 0 ?
+        
+          <Col className="app-section" xs={10}>
 
             <Row className="mt-2">
-            <h4 className="mb-2">Summary of activities added:</h4>
+            <div className="app-header-bar mb-2">Summary of activities added:</div>
 
+            <Col>
               {cart.map((exerciseItem, index) => (
-                <div className="mt-2">
-                <div>{index + 1}: {exerciseItem.exercise.name}</div>
-                <div>Duration:{exerciseItem.exercise_duration}</div>
-                <div>Calories Burned:{exerciseCaloriesBurned[index+1]}</div>
+                <div key={index} className="exercise-items mt-2">
+                <div><span className="font-bold">{exerciseItem.exercise.name}</span> for <span className="data-info">{exerciseItem.exercise_duration} minutes</span>,  Calories: <span className="data-info">{exerciseCaloriesBurned[index+1]}</span></div>
                 </div>
               ))}
+            </Col>
 
-              <h4 className="mt-5">Total Calories burned: {caloriesTotal}</h4>
-
-              <Col>
-                
+            <Col xs={4}>
+          <Card className="headshot headshot-2 card mt-2">
+            <Card.Body>
+            <h4 className="mt-4 circle-heading-workout font-bold">Total Calories burned: {caloriesTotal}</h4>
               <Button 
-                  className="mt-2" 
+                  className="font-bold mb-3" 
                   variant="info" 
                   type="submit"
                   onClick={() => submitAllExercise()}
                   >
                     Submit All exercises
               </Button>
-              </Col>
-            </Row>
-
-            </Col>
-
-        </Card.Body>
+              </Card.Body>
           </Card>
-                : null }
-
+            </Col>
           </Row>
+
+          </Col>
+          : null }
+    </Row>
 
   </Container>
  );

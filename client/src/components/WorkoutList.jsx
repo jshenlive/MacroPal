@@ -17,12 +17,12 @@ const [startDate, setStartDate] = useState(null);
 useEffect(() => {
 
 let dateObj = new Date();
-let month = dateObj.getUTCMonth() + 1; //months from 1-12
+let month = dateObj.getMonth() + 1; //months from 1-12
 if (month < 10) {
   month = '0' + month
 }
-let day = dateObj.getUTCDate();
-let year = dateObj.getUTCFullYear();
+let day = dateObj.getDate();
+let year = dateObj.getFullYear();
 const todayDate = year + "-" + month + "-" + day;
 
 Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {

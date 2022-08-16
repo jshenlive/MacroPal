@@ -16,12 +16,14 @@ const [breakfastInfo, setBreakfastInfo] = useState([]);
 const [lunchInfo, setLunchInfo] = useState([]);
 const [dinnerInfo, setDinnerInfo] = useState([]);
 const [snackInfo, setSnackInfo] = useState([]);
-const [totalCalMac, setTotalCalMac] = useState([]);
-const [breakfastTotalCalMac, setBreakfastTotalCalMac] = useState([]);
-const [lunchTotalCalMac, setLunchTotalCalMac] = useState([]);
-const [dinnerTotalCalMac, setDinnerTotalCalMac] = useState([]);
-const [snackTotalCalMac, setSnackTotalCalMac] = useState([]);
+// const [totalCalMac, setTotalCalMac] = useState([]);
+// const [breakfastTotalCalMac, setBreakfastTotalCalMac] = useState([]);
+// const [lunchTotalCalMac, setLunchTotalCalMac] = useState([]);
+// const [dinnerTotalCalMac, setDinnerTotalCalMac] = useState([]);
+// const [snackTotalCalMac, setSnackTotalCalMac] = useState([]);
 
+console.log('unchInfo', lunchInfo)
+console.log('mealData', mealData)
 
     //navigation function
     const navigate = useNavigate();
@@ -32,7 +34,7 @@ const [snackTotalCalMac, setSnackTotalCalMac] = useState([]);
 // Get Meal data for a specific user and date////////////////
 ///////////////Initial stage when no date is selected////////
 useEffect(() => {
-console.log('startDate', startDate)
+console.log('lunchInfooooooooooooooooooo', lunchInfo)
   if (props.state.user.id && startDate === null) {
   Axios.get(`/api/meals/user/${props.state.user.id}`).then ( res => {
 
@@ -97,7 +99,7 @@ useEffect(() => {
 
       userMealsId.forEach(item => {
         Axios.get(`/api/meals/${item}`).then((res) => {
-          console.log('res-data-inside mealdata use effect', res.data);
+console.log('res.data', res.data);
             setMealData((prev) => ([...prev, res.data]))
         })
     });
@@ -112,12 +114,11 @@ useEffect(() => {
 useEffect(() => {
 
   const breakfastData = () => {
-    
-    setBreakfastInfo([]);
 
+    if (breakfastInfo.length > 0) {
 
+      setBreakfastInfo([]);
 
-    if (mealData.length > 0) {
       mealData.forEach(item => {
 
         let mealInformation = {
@@ -137,7 +138,7 @@ useEffect(() => {
         item.line_food.forEach((element, index) => {
   
           if (element.meal_type === "1breakfast") {
-    console.log('itemfood', item.food[index])
+
               mealInformation = {
               name: item.food[index].food.name,
               brand: item.food[index].food.brand,
@@ -174,55 +175,57 @@ useEffect(() => {
 useEffect(() => {
 
   const lunchData = () => {
-  
-    let mealInformation = {
-      name: "",
-      brand: "",
-      health: "",
-      category: "",
-      carbs: "",
-      fat: "",
-      protein: "",
-      food_amount: "",
-      total_food_calories: "",
-      meal_type: "",
-      id: "",
-    }
-  
+    console.log('mealData', mealData)
+    setLunchInfo([]);
+
     if (mealData.length > 0) {
 
-    mealData.forEach(item => {
 
-      item.line_food.forEach((element, index) => {
-  
-        if (element.meal_type === "2lunch") {
-  
-            mealInformation = {
-            name: item.food[index].food.name,
-            brand: item.food[index].food.brand,
-            health: item.food[index].food.health,
-            category: item.food[index].food.category,
-            carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-            fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-            protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-            food_amount: element.food_amount,
-            total_food_calories: element.total_food_calories,
-            meal_type: element.meal_type.slice(1),
-            id: element.id,
-          }
-          
-          setLunchInfo((prev) => ([
-            ...prev, mealInformation 
-          ]));
-  
+      mealData.forEach(item => {
+
+        let mealInformation = {
+          name: "",
+          brand: "",
+          health: "",
+          category: "",
+          carbs: "",
+          fat: "",
+          protein: "",
+          food_amount: "",
+          total_food_calories: "",
+          meal_type: "",
+          id: "",
         }
+
+        item.line_food.forEach((element, index) => {
   
+          if (element.meal_type === "2lunch") {
+
+              mealInformation = {
+              name: item.food[index].food.name,
+              brand: item.food[index].food.brand,
+              health: item.food[index].food.health,
+              category: item.food[index].food.category,
+              carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+              fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+              protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+              food_amount: element.food_amount,
+              total_food_calories: element.total_food_calories,
+              meal_type: element.meal_type.slice(1),
+              id: element.id,
+            }
+  
+          }
+    
+        })
+
+        setLunchInfo((prev) => ([
+          ...prev, mealInformation 
+        ]));
+    
       })
-  
-    })
-  
+
     }
-  
   
   };
   lunchData();
@@ -234,54 +237,56 @@ useEffect(() => {
 useEffect(() => {
 
   const dinnerData = () => {
-  
-    let mealInformation = {
-      name: "",
-      brand: "",
-      health: "",
-      category: "",
-      carbs: "",
-      fat: "",
-      protein: "",
-      food_amount: "",
-      total_food_calories: "",
-      meal_type: "",
-      id: "",
-    }
-  
-  if (mealData.length > 0) {
 
-    mealData.forEach(item => {
+    if (dinnerInfo.length > 0) {
 
-      item.line_food.forEach((element, index) => {
-  
-        if (element.meal_type === "3dinner") {
-  
-            mealInformation = {
-            name: item.food[index].food.name,
-            brand: item.food[index].food.brand,
-            health: item.food[index].food.health,
-            category: item.food[index].food.category,
-            carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-            fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-            protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-            food_amount: element.food_amount,
-            total_food_calories: element.total_food_calories,
-            meal_type: element.meal_type.slice(1),
-            id: element.id,
-          }
-          
-          setDinnerInfo((prev) => ([
-            ...prev, mealInformation 
-          ]));
-  
+      setDinnerInfo([]);
+
+      mealData.forEach(item => {
+
+        let mealInformation = {
+          name: "",
+          brand: "",
+          health: "",
+          category: "",
+          carbs: "",
+          fat: "",
+          protein: "",
+          food_amount: "",
+          total_food_calories: "",
+          meal_type: "",
+          id: "",
         }
+
+        item.line_food.forEach((element, index) => {
   
+          if (element.meal_type === "3dinner") {
+
+              mealInformation = {
+              name: item.food[index].food.name,
+              brand: item.food[index].food.brand,
+              health: item.food[index].food.health,
+              category: item.food[index].food.category,
+              carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+              fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+              protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+              food_amount: element.food_amount,
+              total_food_calories: element.total_food_calories,
+              meal_type: element.meal_type.slice(1),
+              id: element.id,
+            }
+  
+          }
+    
+        })
+
+        setLunchInfo((prev) => ([
+          ...prev, mealInformation 
+        ]));
+    
       })
-  
-    })
-  
-  }
+
+    }
   
   };
   dinnerData();
@@ -293,54 +298,56 @@ useEffect(() => {
 useEffect(() => {
 
   const snackData = () => {
-  
-    let mealInformation = {
-      name: "",
-      brand: "",
-      health: "",
-      category: "",
-      carbs: "",
-      fat: "",
-      protein: "",
-      food_amount: "",
-      total_food_calories: "",
-      meal_type: "",
-      id: "",
-    }
-  
-  if (mealData.length > 0) {
 
-    mealData.forEach(item => {
+    if (snackInfo.length > 0) {
 
-      item.line_food.forEach((element, index) => {
-  
-        if (element.meal_type === "4snack") {
-  
-            mealInformation = {
-            name: item.food[index].food.name,
-            brand: item.food[index].food.brand,
-            health: item.food[index].food.health,
-            category: item.food[index].food.category,
-            carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
-            fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
-            protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
-            food_amount: element.food_amount,
-            total_food_calories: element.total_food_calories,
-            meal_type: element.meal_type.slice(1),
-            id: element.id,
-          }
-          
-          setSnackInfo((prev) => ([
-            ...prev, mealInformation 
-          ]));
-  
+      setSnackInfo([]);
+
+      mealData.forEach(item => {
+
+        let mealInformation = {
+          name: "",
+          brand: "",
+          health: "",
+          category: "",
+          carbs: "",
+          fat: "",
+          protein: "",
+          food_amount: "",
+          total_food_calories: "",
+          meal_type: "",
+          id: "",
         }
-  
-      })
-  
-    })
 
-  }
+        item.line_food.forEach((element, index) => {
+  
+          if (element.meal_type === "4snack") {
+
+              mealInformation = {
+              name: item.food[index].food.name,
+              brand: item.food[index].food.brand,
+              health: item.food[index].food.health,
+              category: item.food[index].food.category,
+              carbs: Math.round(item.food[index].food.carbs * 1e2 ) / 1e2,
+              fat: Math.round(item.food[index].food.fat * 1e2 ) / 1e2,
+              protein: Math.round(item.food[index].food.protein * 1e2 ) / 1e2,
+              food_amount: element.food_amount,
+              total_food_calories: element.total_food_calories,
+              meal_type: element.meal_type.slice(1),
+              id: element.id,
+            }
+  
+          }
+    
+        })
+
+        setLunchInfo((prev) => ([
+          ...prev, mealInformation 
+        ]));
+    
+      })
+
+    }
   
   };
   snackData();
@@ -350,12 +357,27 @@ useEffect(() => {
 ////////////////////////////////////////////////
 // Calculate Total Calories, Macros 
 ///////////////////////////// /////////////////
-useEffect(() => {
+// useEffect(() => {
   const totalCalMacFunc = (breakfast, lunch, dinner, snack) => {
 
     let totalCalMacArr = [];
-    totalCalMacArr.push(breakfast, lunch, dinner, snack);
-  
+
+    if (breakfast.length > 0) {
+    totalCalMacArr.push(breakfast);
+    }
+
+    if (lunch.length > 0) {
+      totalCalMacArr.push(lunch);
+      }
+
+    if (dinner.length > 0) {
+        totalCalMacArr.push(dinner);
+    }
+
+    if (snack.length > 0) {
+      totalCalMacArr.push(snack);
+    }
+
     const totalCalMacCalculated = totalCalMacArr.reduce((accum, current) => {
       Object.entries(current).forEach(([key, value]) => {
   
@@ -373,7 +395,7 @@ useEffect(() => {
   }
   
   const totalSetCalMac = (mealset) => {
-  console.log('mealset', mealset)
+
     const totalCalMacCalculated = mealset.reduce((accum, current) => {
       Object.entries(current).forEach(([key, value]) => {
   
@@ -388,18 +410,25 @@ useEffect(() => {
     return totalCalMacCalculated;
   }
 
-  const breakfastTotalCalMac = totalSetCalMac(breakfastInfo);
-  const lunchTotalCalMac = totalSetCalMac(lunchInfo);
-  const dinnerTotalCalMac = totalSetCalMac(dinnerInfo);
-  const snackTotalCalMac = totalSetCalMac(snackInfo);
-  const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinnerTotalCalMac, snackTotalCalMac);
-  setBreakfastTotalCalMac(breakfastTotalCalMac);
-  setLunchTotalCalMac(lunchTotalCalMac);
-  setDinnerTotalCalMac(dinnerTotalCalMac);
-  setSnackTotalCalMac(snackTotalCalMac);
-  setTotalCalMac(totalCalMac);
 
-}, [breakfastInfo])
+  const breakfastTotalCalMac = totalSetCalMac(breakfastInfo);
+
+  const lunchTotalCalMac = totalSetCalMac(lunchInfo);
+
+  const dinnerTotalCalMac = totalSetCalMac(dinnerInfo);
+  
+  const snackTotalCalMac = totalSetCalMac(snackInfo);
+  // debugger;
+  const totalCalMac = totalCalMacFunc(breakfastTotalCalMac, lunchTotalCalMac, dinnerTotalCalMac, snackTotalCalMac);
+
+  
+  // setBreakfastTotalCalMac(breakfastTotalCalMac);
+  // setLunchTotalCalMac(lunchTotalCalMac);
+  // setDinnerTotalCalMac(dinnerTotalCalMac);
+  // setSnackTotalCalMac(snackTotalCalMac);
+  // setTotalCalMac(totalCalMac);
+
+// }, [breakfastInfo])
 
 
 
@@ -440,18 +469,18 @@ const deleteMealItem = (foodId, index) => {
           inline
         />
 
-      <Card className="background-img card mt-2">
+      <Card className="headshot headshot-2 card mt-2">
         <Card.Body>
-          <h3>Overview</h3>
+          <h3 className="font-bold mt-3 circle-heading">Overview</h3>
         <div>
-          <h5><span>Calories</span> {totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</h5>
-          <h5 className="heading">Carbs {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</h5>
+          <h5 className="font-bold circle-heading">Calories{totalCalMac.total_food_calories && (totalCalMac.total_food_calories).toFixed(2)}</h5>
+          <h5 className="font-bold circle-heading">Carbs {totalCalMac.carbs && (totalCalMac.carbs).toFixed(2)}</h5>
         </div>
         <div>
-          <h5 className="heading">Fat {totalCalMac.fat && (totalCalMac.fat).toFixed(2)} g</h5>
+          <h5 className="font-bold circle-heading">Fat {totalCalMac.fat && (totalCalMac.fat).toFixed(2)} g</h5>
         </div>
         <div>
-          <h5 className="heading">Protein {totalCalMac.protein && (totalCalMac.protein).toFixed(2)} g</h5>
+          <h5 className="font-bold circle-heading">Protein {totalCalMac.protein && (totalCalMac.protein).toFixed(2)} g</h5>
         </div>
         </Card.Body>
       </Card>
@@ -494,10 +523,10 @@ const deleteMealItem = (foodId, index) => {
         </div>
 
         <Col xs={9} className="header-bar-text mt-2">
-          <span className="animate-charcter">Calories: {(breakfastTotalCalMac.total_food_calories).toFixed(2)}</span>
-          <span className="animate-charcter">Carbs: {(breakfastTotalCalMac.carbs).toFixed(2)}</span>
-          <span className="animate-charcter">Fat: {(breakfastTotalCalMac.fat).toFixed(2)}</span>
-          <span className="animate-charcter">Protein: {(breakfastTotalCalMac.protein).toFixed(2)}</span>
+          <span className="animate-charcter">Calories: {breakfastTotalCalMac && (breakfastTotalCalMac.total_food_calories)}</span>
+          <span className="animate-charcter">Carbs: {breakfastTotalCalMac && (breakfastTotalCalMac.carbs)}</span>
+          <span className="animate-charcter">Fat: {breakfastTotalCalMac && (breakfastTotalCalMac.fat)}</span>
+          <span className="animate-charcter">Protein: {breakfastTotalCalMac && (breakfastTotalCalMac.protein)}</span>
           </Col>
           <Col className="mt-2">
           <div className="attached-fixed">
