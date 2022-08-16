@@ -360,10 +360,10 @@ useEffect(() => {
               ))}
             </Col>
 
-            <Col xs={4}>
+            <Col className="headshot circle-heading-workout" xs={4}>
           <Card className="headshot headshot-2 card mt-2">
             <Card.Body>
-            <h4 className="mt-4 circle-heading-workout font-bold">Total Calories burned: {caloriesTotal}</h4>
+            <h4 className="mt-4 font-bold">Total Calories burned: {caloriesTotal}</h4>
               <Button 
                   className="font-bold mb-3" 
                   variant="info" 
