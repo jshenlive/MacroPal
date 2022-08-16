@@ -1,6 +1,6 @@
 import Axios from "axios";
-import React, { useState, useEffect, } from "react";
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import React, { useState, useEffect, Fragment, } from "react";
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 
 export default function MealList (props) {
@@ -10,11 +10,15 @@ export default function MealList (props) {
   const prevDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1}`;
 
   const [queryDate, setQueryDate] = useState(currDate)
+  const [dataChange, setDataChange] = useState(false)
   const [mealData, setMealData] = useState([])
 
   const [mealArray, setMealArray] = useState([])
-
-
+  const [lineFoodArray, setLineFoodArray] = useState([])
+  
+  // const [foodData, setFoodData] = useState({}) 
+  const [foodArray, setFoodArray] = useState([]) 
+  const [amountChange, setAmountChange] = useState(0)
 
 
   useEffect(()=>{
@@ -42,7 +46,7 @@ export default function MealList (props) {
     .catch((e)=>{
       console.log(e)
     })
-  },[props.state.user.id, queryDate])
+  },[props.state.user.id, queryDate,dataChange])
 
   // useEffect(()=>{
   //   if (mealData.length>0){
@@ -60,6 +64,44 @@ export default function MealList (props) {
   //   }
   // }, [mealData])
 
+
+  useEffect(()=>{
+    if(mealArray.length>0){
+      let temp = []
+      mealArray.map(item=>
+        temp = [...temp,item.line_food].flat().sort((a,b)=>{
+          let fa = a.meal_type
+          let fb = b.meal_type
+    
+          if (fa < fb) {
+          return -1;
+          }
+          if (fa > fb) {
+              return 1;
+          }
+          return 0;})
+      )
+      setLineFoodArray(temp)
+    } else{
+      setLineFoodArray([])
+    }
+  },[mealArray])
+
+  useEffect(()=>{
+    if(lineFoodArray.length>0){
+      // let temp = []
+      lineFoodArray.forEach(item=>{
+        Axios.get(`/api/foods/${item.food_id}`)
+          .then(res=>{
+            console.log("fetchFood: ",res.data)
+            setFoodArray(prev=>[...prev,res.data])
+            })        
+      })
+    }
+  },[lineFoodArray])
+
+  console.log("lineFoodArray: ",lineFoodArray)
+  
   console.log("mealArray info: ",mealArray)
 
   const totalCaloriesIntake = () => {
@@ -75,8 +117,109 @@ export default function MealList (props) {
     },0)
   }
 
-  return(
-    <div></div>
-  )
+  // console.log("FoodArray", foodArray)
+
+  const editFoodMeal = (id) => {
+    Axios.patch(`/api/line_foods/${id}`,{"food_amount": amountChange})
+    .then(()=>{
+      setMealArray([])
+      setDataChange(!dataChange)
+    })
+  }
+
+  const deleteFoodMeal = (id)=>{
+    console.log("delete?")
+    Axios.delete(`/api/line_foods/${id}`)
+    .then(() => {
+      setMealArray([])
+      setDataChange(!dataChange)
+    })
+  }
+
+
+  const getContent = (line_id,food_id, amount) =>{
+    let foodData = foodArray.find(item=>item.id === food_id)
+    // console.log("foodData",foodData)
+    let info = () =>{
+      return (
+        <>
+        <b>{foodData.name}</b> for <input placeholder={amount} onChange={(e)=>{setAmountChange(parseInt(e.target.value))}}></input> grams &emsp; 
+        <Button onClick={()=>editFoodMeal(line_id)}> Edit </Button> &emsp; 
+        <Button onClick={()=>deleteFoodMeal(line_id)}>Delete</Button>
+
+        <br></br>
+        Calories: {Math.round(foodData.calories * amount / 100)} &nbsp;
+        Protein: {(foodData.protein * amount / 100).toFixed(2)} &nbsp;
+        Carbs: {(foodData.carbs * amount / 100).toFixed(2)} &nbsp;
+        Fat: {(foodData.fat * amount / 100).toFixed(2)} &nbsp;
+        </>
+      )
+    } 
+
+    return (
+      <>
+      <p>
+      {foodData && info()}
+      </p>
+      </>
+    )    
+  }
+  
+  const showContent = (type) =>{
+    //type should be string of: 1breakfast, 2lunch, 3dinner, 4snack
+    // if (lineFoodArray.length>0){
+      return lineFoodArray.map((item)=>{     
+        return (
+          <Fragment key={item.id+100}>
+          {item.meal_type === type ? getContent(item.id, item.food_id, item.food_amount) : ""}
+          </Fragment>)
+      })
+    // }
+  }
+
+  return (
+    <Container className="mt-5">
+
+      <Row className="mb-5 text-center">
+      <Col>
+
+      <Card className="mb-2">
+      <Card.Header>Daily Total</Card.Header>
+      <Card.Body>
+        Total day calories intake: {totalCaloriesIntake()}
+        <br></br>
+        Total day meal amount: {totalMealWeight()} grams
+      </Card.Body>
+      </Card>
+
+      <Card className="mb-2">
+      <Card.Header>Breakfast</Card.Header>
+      <Card.Body>{showContent("1breakfast")}</Card.Body>
+      </Card>
+
+      <Card className="mb-2">
+      <Card.Header >Lunch</Card.Header>
+      <Card.Body>{showContent("2lunch")}</Card.Body>
+      </Card>
+
+
+      <Card className="mb-2">
+      <Card.Header>Dinner</Card.Header>
+      <Card.Body>{showContent("3dinner")}</Card.Body>
+      </Card>
+
+
+      <Card className="mb-2">
+      <Card.Header>Snacks</Card.Header>
+      <Card.Body>{showContent("4snack")}</Card.Body>
+      </Card>
+
+
+      </Col>
+
+      </Row>
+
+    </Container>
+  );
 
 }
