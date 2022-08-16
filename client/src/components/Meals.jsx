@@ -245,7 +245,8 @@ export default function Meals (props) {
         
         return (
           <div key={item.id+1}>
-            <h5>{item.name}</h5>
+            <b>{item.name}</b> &nbsp;({Math.round(item.grams_per_serving)} grams)
+
             <Row>  
             {is_branded && <Col>{"Brand: " + item.brand + ""}</Col>}
               <Col>       
@@ -292,7 +293,7 @@ export default function Meals (props) {
             <Fragment key={item.food.id}>
             <h5>{capitalize(title)}</h5>
           <div >
-            {item.food_amount} grams of {item.food.name}
+            {Math.round(item.food_amount)} grams of {item.food.name}
             <br></br>
             Calories: {Math.round(itemCalories)} kCal
           </div>
