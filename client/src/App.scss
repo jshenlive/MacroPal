@@ -2,6 +2,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 body {
+  --img-url: url('/assets/media/images/overview-box.jpg');
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   // color: #FFF;
@@ -157,6 +158,7 @@ form {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  margin-bottom: 32px;
 }
 
 .item-display {
@@ -183,6 +185,28 @@ item-display-title {
   position: relative;
 }
 
+.circle-heading {
+  color: white;
+}
+
+.circle-heading-workout {
+  margin-top: 60px;
+  margin-left: 20px;
+  color: white;
+}
+.info-text {
+  font-weight: bold;
+  font-size: 28px !important;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.data-info {
+  color: #820000;
+}
+
 .food-items {
   padding-left: 46px;
   padding-top: 20px;
@@ -198,6 +222,18 @@ item-display-title {
     border-bottom: none;
     padding-bottom: 16px;
   }
+
+  .exercise-items {
+    padding-left: 46px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #7A4495;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: bold;
+    
+    }
 
   .background-img {
   color: white;
@@ -249,5 +285,34 @@ item-display-title {
 
 .react-datepicker__day--keyboard-selected:hover {
   background-color: #00b4d8 !important;
+}
+
+// headSHot styles
+.headshot {
+	flex-shrink: 0;
+	margin: 20px;
+	height: calc(150px + 6vw);
+	width: calc(150px + 6vw);
+	border: calc(8px + 0.2vw) solid transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	background-size: cover;
+	box-sizing: border-box;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.headshot-1 {
+	border-radius: 30%;
+	background-image: var(--img-url), linear-gradient(#f9f047, #0fd850);
+}
+
+.headshot-2 {
+	border-radius: 50%;
+	background-image: var(--img-url), linear-gradient(to bottom right, #ff3cac, #562b7c, #2b86c5);
+}
+
+.headshot-3 {
+	border-radius: 50% 10%;
+	background-image: var(--img-url), linear-gradient(to bottom left, #f83600, #f9d423);
 }
 
