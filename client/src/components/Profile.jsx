@@ -52,7 +52,11 @@ export default function Profile(props) {
   const [queryDate, setQueryDate] = useState(currDate)
   const [suggestion, setSuggestion] = useState("initial")
   const [suggestedDuration, setSuggestedDuration] = useState(0)
-  const [isCalculated, setIsCalculate] = useState(false)
+  const [isMealCalculated, setIsMealCalculate] = useState(false)
+  const [isWorkCalculated, setIsWorkCalculate] = useState(false)
+
+  const [mealReady, setMealReady] = useState(false)
+  const [workoutReady, setWorkoutReady] = useState(false)
 
   const [showYesterday, setShowYesterday] = useState(false)
 
@@ -65,6 +69,10 @@ export default function Profile(props) {
   const [workoutModalData,setWorkoutModalData] = useState([])
   // const [isOpen, setIsSeen] = useState(false)
 
+  const [addSuggested, setAddSuggested] = useState(false)
+
+  const [dailyTotalCalories,setDailyTotalCalories] = useState(0)
+
 
   //goals constants
 
@@ -74,22 +82,31 @@ export default function Profile(props) {
     .then((res)=>{
       console.log("meal", res.data)
       setMealData(res.data)
+      if (res.data.length>0){      
+        setIsMealCalculate(true)
+      }      
     })
+    .then(setMealReady(true))
     .catch((e)=>{
       console.log(e)
     })
-  },[props.state.user.id,queryDate])
+  },[props.state.user.id,queryDate,addSuggested])
 
   useEffect(()=>{
     Axios.post('/api/workouts/get_with_date', {"user_id": props.state.user.id, "date": queryDate})
     .then((res)=>{
       console.log("workout", res.data)
-      setWorkoutData(res.data)      
+      setWorkoutData(res.data)
+      if(res.data.length>0){
+        setIsWorkCalculate(true)
+      }
+
     })
+    .then(setWorkoutReady(true))    
     .catch((e)=>{
       console.log(e)
     })
-  },[props.state.user.id,queryDate])
+  },[props.state.user.id,queryDate,addSuggested])
 
   const totalCaloriesIntake = () => {
       return mealData.reduce((accumulator,item)=>{
@@ -98,9 +115,7 @@ export default function Profile(props) {
   }
 
   useEffect(()=>{
-    if (mealData.length>0 && workoutData.length>0){
-      setIsCalculate(true)
-    }
+    setDailyTotalCalories(totalCalories())
   },[mealData,workoutData])
 
   useEffect(()=>{
@@ -110,7 +125,7 @@ export default function Profile(props) {
       console.log("exercise",exercise)
       let caloriesPerHour = exercise[props.state.user.weight_class]
   
-      setSuggestedDuration(Math.round(totalCalories()/caloriesPerHour*60))
+      setSuggestedDuration(Math.ceil(dailyTotalCalories*60/caloriesPerHour)+7)
     })
     .catch((e)=>{
       console.log(e)
@@ -396,6 +411,38 @@ export default function Profile(props) {
     )
   }
 
+  const showMealSum = () =>{
+    return(
+      <>
+      
+        <Card className="text-center app-section">
+          <Card.Body>
+              <Card.Title>
+              <div className="app-header-bar">Meal Summary</div>
+              </Card.Title>
+            <Card.Text>{showMeal()}</Card.Text>
+          </Card.Body>
+        </Card>
+      
+      </>
+    )
+  }
+
+  const showWorkoutSum = () => {
+    return(
+      <>
+        <Card className=" app-section text-center">
+          <Card.Body>
+            <Card.Title>
+            <div className="app-header-bar">Workout Summary</div>
+            </Card.Title>
+            <Card.Text>{showWorkout()}</Card.Text>
+          </Card.Body>
+        </Card>
+      </>
+    )
+  }
+
   const setActivity = () => {
     if (!showYesterday){
     return (
@@ -496,13 +543,15 @@ export default function Profile(props) {
   
   const fetchPrev = ()=>{
     setShowYesterday(true)
-    setIsCalculate(false)
+    setIsMealCalculate(false)
+    setIsWorkCalculate(false)
     setQueryDate(prevDate)
   }
 
   const fetchCurr = ()=>{
     setShowYesterday(false)
-    setIsCalculate(false)
+    setIsMealCalculate(false)
+    setIsWorkCalculate(false)
     setQueryDate(currDate)
   }
 
@@ -516,6 +565,17 @@ export default function Profile(props) {
   
   }
 
+  const addSuggestion = () =>{
+    let workout_id = workoutData[0].id
+    console.log("workoutData",workoutData)
+    console.log("workout_id",workout_id)
+
+    let exercise_id = suggestedExercise[suggestion]
+
+    Axios.post(`/api/add_line_exercise`,{"workout_id": workout_id, "exercise_id": exercise_id, "exercise_duration": suggestedDuration})
+    .then(()=>setAddSuggested(!addSuggested))
+  }
+
   //   const a = setTimeout(()=>{
   //     if (isCalculated){
   //      showSummary()
@@ -527,15 +587,25 @@ export default function Profile(props) {
   // }
 
   const showSuggestion = ()=>{
+    const showAdd = () =>{
+      return (
+        <>
+        <Button variant = "outline-dark" onClick={()=>addSuggestion()}>Add It!</Button>
+        </>
+      )
+    }
     return (
       <>
+      Looks like you're being a 🥔
+      <br></br>
       Suggestions: &nbsp;
       {menuDropDown()}
 
       <br></br>
-      {suggestion!== "initial" ? `Try ${suggestion} for ${suggestedDuration} minutes to hit your goal today!` : ""}
+      {suggestion!== "initial" ? `Try ${suggestion} for ${suggestedDuration} minutes to hit your goal today!`  : ""}
+      {suggestion!== "initial" ? showAdd() : " "}
       </>
-      
+          
 
     )
   }
@@ -599,14 +669,17 @@ export default function Profile(props) {
 
                 <p>
              {/* {isCalculated? showSummary() : displayActivity()} */}
-             {isCalculated? showSummary() : setActivity()}
+             {(isMealCalculated&&isWorkCalculated)? showSummary() : setActivity()}
                     
              </p>
                  
               </Card.Title>
             </Card.Body>
           </Card>
-          {isCalculated && showPlanSummary() }
+          {/* {isCalculated && showPlanSummary() } */}
+
+          {(isWorkCalculated) && showWorkoutSum()}
+          {isMealCalculated && showMealSum()}
 
         </Col>        
       </Row>

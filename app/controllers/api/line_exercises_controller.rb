@@ -21,10 +21,12 @@ class Api::LineExercisesController < ApplicationController
     exercise_duration = params[:exercise_duration].to_i
 
     workout = Workout.find_by_id(workout_id)
+    exercise = Exercise.find_by_id(exercise_id)
 
     total_exercise_calories =  total_exercise_calories(workout,exercise_id, exercise_duration)
 
     line_exercise = LineExercise.new(
+      name: exercise.name,
       workout_id: workout_id,
       exercise_id: exercise_id,
       exercise_duration: exercise_duration,
