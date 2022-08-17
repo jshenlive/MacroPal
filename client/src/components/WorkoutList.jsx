@@ -49,7 +49,6 @@ console.log('##userworkout##', userWorkoutData );
   }
 
   }, [startDate]);
-  //////////////////////////////////////////////
 
   return (
 
@@ -70,7 +69,7 @@ console.log('##userworkout##', userWorkoutData );
         />
         <div className="mb-1">Please select a date</div>
 
-      {/* /* <Card className="background-img card mt-2">
+      <Card className="background-img card mt-2">
         <Card.Body>
           <h3>Overview</h3>
         <div>
@@ -84,10 +83,9 @@ console.log('##userworkout##', userWorkoutData );
           <h5 className="heading">Protein g</h5>
         </div>
         </Card.Body>
-      </Card>  */}
+      </Card>
 
-
-      {/* <Col className="mt-3">
+      <Col className="mt-3">
         <Button 
         className="mr-5" 
         variant="info" 
@@ -96,58 +94,11 @@ console.log('##userworkout##', userWorkoutData );
         >
           Add a meal
         </Button>
-      </Col>  */}
+      </Col> 
     </Col>
 
-
-    <Col>
-    {userWorkoutData.id &&
-      <>
-      <Card className="mb-2 text-center">
-      <Card.Header>Summary</Card.Header>
-      <Card.Body>
-
-      <Col>
-      <div>Workout Duration: {userWorkoutData.workout_duration} minutes</div>
-      <div>Total Workout Calories: {userWorkoutData.total_workout_calories} </div>
-      <div>Work out Created at {userWorkoutData.date} </div>
-      <div>Last updated: {userWorkoutData.updated_at} </div>
-      </Col>
-
-      </Card.Body>
-      </Card>
-
-      {userWorkoutData.id && 
-      <Card>
-      <Card.Header>List of exercises:</Card.Header>
-      <Card.Body>
-      <Exercise workoutId={userWorkoutData.id} />
-      </Card.Body>
-      </Card>
-      }
-      </>
-    }
-    </Col>
-
-
-          <Col>
+        <Col>
    
-          <>
-          <Card className="mb-2 text-center">
-          <Card.Header>Summary</Card.Header>
-          <Card.Body>
-    
-          <Col>
-          {/* <div>Workout Duration: {workoutData.workout_duration} minutes</div>
-          <div>Total Workout Calories: {workoutData.total_workout_calories} </div>
-          <div>Work out Created at {workoutData.date} </div>
-          <div>Last updated: {workoutData.updated_at} </div> */}
-          </Col>
-    
-          </Card.Body>
-          </Card>
-    
-      
           <Card>
           <Card.Header>List of exercises:</Card.Header>
             {userWorkoutData.map(workoutData => (
@@ -157,11 +108,7 @@ console.log('##userworkout##', userWorkoutData );
             ))}
           </Card>
           
-          </>
-        
         </Col>
-   
-
 
     </Row>
 

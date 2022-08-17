@@ -368,11 +368,13 @@ export default function Meals (props) {
 
   return (
     <Container className="container-margins">
-      <p></p>
+      
       <Row>
-        <Col>
+        
+        <Col className="app-section-top" xs={7}>
+          
           <form autoComplete="off" onSubmit={(event)=> event.preventDefault()}>
-          <h3>Create Meal Plans:</h3>
+          <div className="app-header-bar">Create Meal Plans:</div>
             <label>Select Meal Type</label>
             <br></br>
             {menuDropDown()}
