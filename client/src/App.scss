@@ -237,6 +237,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
   justify-content: space-between;
   font-weight: bold;
   color: #001f54;
+  font-size: 20px;
+  margin-top: 5px;
+  border-bottom: #240046 solid 2px;
 }
 //meals
 .message-display {
@@ -293,10 +296,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
   margin: auto;
 }
 
-// .circle-heading-text:first-child {
-//   margin-top: 42px;
-// }
-
 .info-text {
   font-weight: bold;
   font-size: 28px !important;
@@ -308,6 +307,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
 
 .data-info {
   color: #820000;
+  font-weight: bold;
+  font-size: 26px;
 }
 
 .food-items {

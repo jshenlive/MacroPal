@@ -159,13 +159,13 @@ export default function MealList (props) {
 
           {!displayEdit?
           <>
-          <Col>
+          <Col className="data-info">
           <div>Calories: {Math.round(foodData.calories * amount / 100)}</div>
           </Col>
 
-          <Col className="post-section">
+          <Col xs={5} className="post-section">
             
-          <div>
+          <div className="item-display">
             <span>Protein: {(foodData.protein * amount / 100).toFixed(2)}</span>
             <span>Carbs: {(foodData.carbs * amount / 100).toFixed(2)}</span>
             <span>Fat: {(foodData.fat * amount / 100).toFixed(2)}</span>
