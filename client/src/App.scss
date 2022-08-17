@@ -51,8 +51,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
 }
 
 .input-section {
-  padding: 36px;
+  padding: 14px;
+  font-weight: bold;
 }
+//ex:meal.js
+.info-section-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #023e7d;
+}
+.info-section-title {
+  padding-top: 12px;
+  color: #002855;
+  font-weight: bold;
+  font-size: 36px;
+  border-bottom: #240046 1px dashed;
+}
+
 
 .Signup-form {
   margin-top: 32px;

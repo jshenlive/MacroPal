@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, {useState, useEffect, Fragment} from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form, Button, NumericInput } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import '../App.scss'
 import { Navigate } from "react-router";
 
@@ -226,7 +226,7 @@ export default function Meals (props) {
     }
 
     return(
-      <Form className="app-section" >
+      <Form className="app-section input-section" >
         <div className="app-header-bar">Search Results { queryResults.length > 0 && ("for "+queryFoodAmount + " "+ amountType +" of "+ capitalize(queryFoodName))}</div>
         <br></br>
         {isLoading && <h2>Loading...</h2>}
@@ -257,7 +257,7 @@ export default function Meals (props) {
             Fats: {(item.fat / 100 * amount).toFixed(2)}
             </Col> 
             <Col> 
-            <Button onClick={()=>addFood(item.id,amount)} >Add to meal</Button>
+            <Button className="btn-info" onClick={()=>addFood(item.id,amount)} >Add to meal</Button>
             </Col> 
             </Row>
           </div>
@@ -273,67 +273,77 @@ export default function Meals (props) {
     const titled = {titled1:false, titled2:false, titled3:false, titled4: false}
     
     return(
-    <form>
-    <h3>Currently Added</h3>
+      <>
+      <Form className="info-section-text app-section input-section" >
+        <div className="app-header-bar">Currently Added</div>
 
-    {cart.map(item=>{
-        let itemCalories = item.food.calories / 100 * item.food_amount
+        {cart.map(item=>{
+            let itemCalories = item.food.calories / 100 * item.food_amount
 
-        const showItem = (titledid)=>{
-          let title = ""
-          if(!titled[titledid]){
-            titled[titledid] = true;
-            title = item.food_type.slice(1)
-          }
-          return(
-            <Fragment key={item.food.id}>
-            <h5>{capitalize(title)}</h5>
-          <div >
-            {Math.round(item.food_amount)} grams of {item.food.name}
-            <br></br>
-            Calories: {Math.round(itemCalories)} kCal
-          </div>
-          </Fragment>
+            const showItem = (titledid)=>{
+              let title = ""
+              if(!titled[titledid]){
+                titled[titledid] = true;
+                title = item.food_type.slice(1)
+              }
+              return(
+                <Fragment key={item.food.id}>
+                <h5 className="info-section-title">{capitalize(title)}</h5>
+              <div >
+                {Math.round(item.food_amount)} grams of {item.food.name}
+                <br></br>
+                Calories: {Math.round(itemCalories)} kCal
+              </div>
+              </Fragment>
+              )
+            }
+
+              if( item.food_type === "1breakfast") {
+                return showItem("titled1")
+              } else if( item.food_type === "2lunch"){
+                return (
+                  showItem("titled2")
+                )
+              } else if( item.food_type === "3dinner"){
+                return (
+                  showItem("titled3")
+              )
+              } else if(item.food_type ==="4snack"){
+              return (
+                showItem("titled4")
+              )} else {
+                return "Something went wrong"
+              }
+            }
+          )}
+
+          <p></p>
+
+          <Button className="btn-info" onClick={() => saveMeal()}>
+                    Save Meal Plan
+          </Button>
+          </Form>
+
+          <Form>
+            <Card className="background-img card mt-2">
+            <Card.Body>
+            <div className="animate-charcter info-text">Total calories intake: {Math.round(totalCartCalories)}</div>
+            </Card.Body>
+            </Card>
+            <p></p>
+          </Form>
+          </>
           )
         }
-
-        if( item.food_type === "1breakfast") {
-          return showItem("titled1")
-        } else if( item.food_type === "2lunch"){
-          return (
-            showItem("titled2")
-          )
-        } else if( item.food_type === "3dinner"){
-          return (
-            showItem("titled3")
-        )
-        } else if(item.food_type ==="4snack"){
-        return (
-          showItem("titled4")
-        )} else {
-          return "Something went wrong"
-        }
-      }
-    )}
-
-    <p></p>
-    <h5>Total calories intake: {Math.round(totalCartCalories)}</h5>
-    <p></p>
-    <Button onClick={() => saveMeal()}>
-              Save Meal Plan
-    </Button>
-    </form>
-    )
-  }
 
   const setContinue = () => {
     return(
       <>
       <form>
       <h4>Meal Plan Saved Successful!</h4>
-      <Button onClick={()=>reset()}>Add More</Button>
-      <Button onClick={()=>navigate("/meal-list")}>Meals Summary</Button>
-      <Button onClick={()=>navigate("/profile")}>Profile</Button>
+      <Button className="btn-info" onClick={()=>reset()}>Add More</Button>
+      <Button className="btn-info" onClick={()=>navigate("/meal-list")}>Meals Summary</Button>
+      <Button className="btn-info" onClick={()=>navigate("/profile")}>Profile</Button>
 
       </form>
       
@@ -343,7 +353,7 @@ export default function Meals (props) {
 
   function showMoreBtn() {
     return (
-      <button style={{marginBottom:"120px"}} className="btn btn-primary" onClick={()=>setItemsToShow(prev=>prev+5)}>
+      <button className="btn btn-primary" onClick={()=>setItemsToShow(prev=>prev+5)}>
       Show More
       </button>
       )
@@ -412,12 +422,12 @@ export default function Meals (props) {
             {foodAmountOption()}
             <Row>
               <Col>
-                <Button onClick={() => reset()}>
+                <Button className="btn-info" onClick={() => reset()}>
                   Reset
                 </Button>
               </Col>
               <Col>
-                <Button onClick={() => fetchFood()}>
+                <Button className="btn-info" onClick={() => fetchFood()}>
                   Search
                 </Button>
               </Col>
@@ -444,9 +454,7 @@ export default function Meals (props) {
     {(queryResults.length>5) &&itemsToShow>=queryResults.length && showLessBtn()}
 
     </Row>
-    <Row>
-    <p style={{marginBottom:"100px"}}> </p>
-    </Row> 
+
     </Container>
     
   );
