@@ -44,7 +44,6 @@ useEffect(() => {
     
   }).flat(1)
 
-  console.log('exercisesState', exercisesState)
   
   setexercises(exercisesState)
 
@@ -163,18 +162,16 @@ const editExercise = (index) => {
     }
 
 /////////Submit Button ////////////
-const submitExercise = (exerciseId, index) => {
-
-
-  
+const submitExercise = (exerciseId, workoutId) => {
 
 
 
-  return Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": props.workoutId, "exercise_id": index, "exercise_duration":durations})
+  return Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": workoutId, "exercise_id": exerciseId, "exercise_duration":durations})
   .then (() => {
 
     setUserWorkoutDetails([]);
-
+    setExerciseEdit(-1);
+    
     userWorkoutData.forEach((item) => {
 
       Axios.get(`/api/workouts/${item.id}`).then (res => {
@@ -185,14 +182,13 @@ const submitExercise = (exerciseId, index) => {
 
     })
 
-
     //Later change this part to update exercise to reflect changes to the exercise
     Axios.get(`/api/workouts/${userWorkoutData}`).then (res => {
       console.log('res', res)
 
       setUserWorkoutDetails(res.data)
     //////
-      setExerciseEdit(-1);
+
 
     });
 
@@ -202,9 +198,7 @@ const submitExercise = (exerciseId, index) => {
 
     }    
 
-    console.log('exercises', exercises);
-    console.log('userworkoutdetails', userWorkoutDetails);
-    console.log('userworkoutdata', userWorkoutData)
+    console.log("start date", startDate)
 
   return (
 
@@ -257,6 +251,7 @@ const submitExercise = (exerciseId, index) => {
   <Col>
 
   <Row className="app-section">
+  
   <div className="app-header-bar">
     Summary
   </div>
@@ -298,7 +293,7 @@ const submitExercise = (exerciseId, index) => {
                       <Button 
                       variant="info" 
                       type="submit"
-                      onClick={() => {item.id && deleteExercise(item.id, index)}}
+                      onClick={() => {item.id && deleteExercise(item.id, item.workout_id)}}
                       >
                         Delete
                       </Button>
@@ -308,7 +303,7 @@ const submitExercise = (exerciseId, index) => {
                       <Button 
                       variant="info" 
                       type="submit"
-                      onClick={() => {item.id && submitExercise(item.id, index)}}
+                      onClick={() => {item.id && submitExercise(item.id, item.workout_id)}}
                       >
                         Submit
                       </Button>
