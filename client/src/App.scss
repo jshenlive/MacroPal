@@ -48,6 +48,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
   margin-bottom: 26px;
   font-size: 32px;
   font-weight: bold;
+  color: #6f2dbd;
 }
 
 .input-section {
@@ -187,6 +188,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
 .app-header-bar {
   border-radius: 20px 50px;
   background: #1b263b;
+  color: white;
+  height: 32px;
+  text-align: center;
+  padding: 0 40px 0 20px;
+  font-size: 20px;
+
+}
+
+.user-welcome {
+  border-radius: 20px 50px;
+  background: #fb6107;
   color: white;
   height: 32px;
   text-align: center;

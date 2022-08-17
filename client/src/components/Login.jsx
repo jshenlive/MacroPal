@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Loading from './Loading';
 import React, { Component } from 'react';
 import { Navigate } from "react-router-dom";
 import {Link} from 'react-router-dom'
@@ -71,12 +72,15 @@ export default class Login extends Component {
 
     return (
     <Container fluid>
+      <Row className="mt-5">
+      <Loading/>
+      </Row>
       <Row> </Row>
       <Row className="mt-5 mb-5">
         <Col></Col>
         <Col >
         <Form
-          className="mb-2" 
+          className="mb-2 form-login input-section" 
           onSubmit={this.handleSubmit}
         >
           <div className="login-text">

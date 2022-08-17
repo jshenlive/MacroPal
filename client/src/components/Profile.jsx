@@ -370,7 +370,7 @@ export default function Profile(props) {
         <Card className="text-center">
           <Card.Body>
             <Card.Title>
-              <h3>Workout Summary</h3>
+            <div className="app-header-bar">Workout Summary</div>
             </Card.Title>
             <Card.Text>{showWorkout()}</Card.Text>
           </Card.Body>
@@ -379,7 +379,7 @@ export default function Profile(props) {
         <Card className="text-center">
           <Card.Body>
               <Card.Title>
-                <h3>Meal Summary</h3>
+              <div className="app-header-bar">Meal Summary</div>
               </Card.Title>
             <Card.Text>{showMeal()}</Card.Text>
           </Card.Body>
@@ -515,18 +515,18 @@ export default function Profile(props) {
   }
 
   return (
-    <Container className="mt-5">
+    <Container className="container-margins">
       <Row >
         <Col sm={4}>
-          <Card>
+          <Card  className="app-section">
             <Card.Body>
-              <Card.Title> Welcome, 
+            <div className="user-welcome">
+            Welcome, 
                 &nbsp;
                 {props.state.user && props.state.user.first_name}
                 &nbsp;
                 {props.state.user && props.state.user.last_name}!
-
-              </Card.Title>
+            </div>
 
               <Figure>
                 <Figure.Image
@@ -563,7 +563,7 @@ export default function Profile(props) {
             <Card.Body>
               <Card.Title> 
 
-                <h3>Activity Summary</h3>
+                <div className="app-header-bar">Activity Summary</div>
                  <Button onClick={()=>fetchPrev()}>Yesterday</Button> 
                   &emsp;
                   <Button onClick={()=>fetchCurr()}>Today</Button>  
