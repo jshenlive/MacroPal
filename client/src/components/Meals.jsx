@@ -226,16 +226,11 @@ export default function Meals (props) {
     }
 
     return(
-    <form>
-    <h3>Search Results { queryResults.length > 0 && ("for "+queryFoodAmount + " "+ amountType +" of "+ capitalize(queryFoodName))}</h3> 
-
-    <br></br>
-    {isLoading && <h2>Loading...</h2>}
-    {queryResults.slice(0, itemsToShow).map(item=>{
-
-      console.log("item in search", item)
-
-
+      <Form className="app-section" >
+        <div className="app-header-bar">Search Results { queryResults.length > 0 && ("for "+queryFoodAmount + " "+ amountType +" of "+ capitalize(queryFoodName))}</div>
+        <br></br>
+        {isLoading && <h2>Loading...</h2>}
+        {queryResults.slice(0, itemsToShow).map(item=>{
         let amount = 0
         if (amountOption === "whole" || amountOption === "servings"){
            amount = item.grams_per_serving * queryFoodAmount
@@ -244,7 +239,7 @@ export default function Meals (props) {
         }
         
         return (
-          <div key={item.id+1}>
+          <div className="food-items" key={item.id+1}>
             <b>{item.name}</b> &nbsp;({Math.round(item.grams_per_serving)} grams)
 
             <Row>  
@@ -268,7 +263,8 @@ export default function Meals (props) {
           </div>
         )
       })}
-    </form>
+      </Form>
+
     )
   }
 
