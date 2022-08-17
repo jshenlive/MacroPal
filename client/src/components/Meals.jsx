@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, {useState, useEffect, Fragment} from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, NumericInput } from 'react-bootstrap';
 import '../App.scss'
 import { Navigate } from "react-router";
 
@@ -136,13 +136,13 @@ export default function Meals (props) {
 
   const menuDropDown = ()=>{
     return(
-      <select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}} >
+  <Form.Select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}}>
+      <option>Select Meal Type</option>
       <option value="1breakfast">Breakfast</option>
       <option value="2lunch">Lunch</option>
       <option value="3dinner">Dinner</option>
       <option value="4snack">Snacks</option>
-      </select>)
-  }
+    </Form.Select>)}
 
   const healthOption=()=>{
     if (queryCategory === "generic-meals") {
@@ -174,15 +174,15 @@ export default function Meals (props) {
 
     return(
       <>
-        <input
-          
-          name="foodAmount"
-          type="number"
-          placeholder="in Grams..."
-          value={queryFoodAmount}
-          onChange={(event)=> setQueryFoodAmount(parseInt(event.target.value))}
-        />
-        
+      <input
+      size="sm"
+       className="numeric-input form-control"
+       name="foodAmount"
+        type="number"
+        placeholder="in Grams..."
+        value={queryFoodAmount}
+        onChange={(event)=> setQueryFoodAmount(parseInt(event.target.value))}
+       />
         <p></p>
       </>
     )
@@ -372,50 +372,48 @@ export default function Meals (props) {
       <Row>
         
         <Col className="app-section-top" xs={7}>
-          
-          <form autoComplete="off" onSubmit={(event)=> event.preventDefault()}>
-          <div className="app-header-bar">Create Meal Plans:</div>
-            <label>Select Meal Type</label>
-            <br></br>
-            {menuDropDown()}
-            <p></p>
-            <label>Search Food name:</label>
-            <br></br>
-            <input
-              name="foodName"
-              type="text"
-              placeholder="ie. apple pie..."
-              value={queryFoodName}
-              onChange={(event)=> setQueryFoodName(event.target.value)}
-              onFocus={(event)=> setQueryResults([])}
-            />
-            <p></p>
 
-            <label>Choose Food Category:</label>
+
+
+        <Form className="input-section" autoComplete="off" onSubmit={(event)=> event.preventDefault()}>
+            <div className="app-header-bar">Create Meal Plans:</div>
             <br></br>
-            <select name="selectList" id="selectList" onChange={(event)=> setQueryCategory(event.target.value)} >
+            <Form.Label>Select Meal Type</Form.Label>
+            {menuDropDown()}
+            <br></br>
+            <Form.Group className="mb-3">
+
+            <Form.Label>Search Food name:</Form.Label>
+            <Form.Control 
+            name="foodName" 
+            type="text" 
+            placeholder="ie. apple pie..." 
+            onChange={(event)=> setQueryFoodName(event.target.value)}
+            onFocus={(event)=> setQueryResults([])}
+            />
+            </Form.Group>
+            <Form.Group className="mb-3">
+            </Form.Group>
+            <p></p>
+            <Form.Label>Choose Food Category:</Form.Label>
+            <Form.Select name="selectList" id="selectList" onChange={(event)=> setQueryCategory(event.target.value)} >
               <option value="">Optional</option>
               <option value="generic-foods">Generic foods</option>
               <option value="generic-meals">Generic meals</option>
               <option value="packaged-foods">Packaged foods</option>
               <option value="fast-foods">Fast foods</option>
-            </select>
-
-            <p></p>
-
+            </Form.Select>
+            <br></br>
             {healthOption()}
-
-            Choose intake &nbsp;
-            
-            <select name="amountList" id="amountList" onChange={(event)=>setAmountOption(event.target.value)}>
-            <option value="servings">per Servings</option>
+            Choose intake
+            <br></br>
+            <Form.Select size="sm" name="amountList" id="amountList" onChange={(event)=>setAmountOption(event.target.value)} >
+              <option value="">Optional</option>
+              <option value="servings">per Servings</option>
             <option value="grams">per Grams</option>
             <option value="whole">per Whole</option>
-            </select>
-            <br></br>
-            
+            </Form.Select>
             {foodAmountOption()}
-
             <Row>
               <Col>
                 <Button onClick={() => reset()}>
@@ -428,8 +426,9 @@ export default function Meals (props) {
                 </Button>
               </Col>
             </Row>
-      
-          </form>
+        </Form>
+
+
       </Col>
       <Col>
           {cart.length>0 && daySummary()}

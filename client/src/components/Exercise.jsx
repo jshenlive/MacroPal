@@ -100,7 +100,7 @@ const onDurationInputChangeHandler = (event) => {
 
 
   return (
-    <Container className="mb-2">
+    <Container>
 
       <Row>
 

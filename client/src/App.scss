@@ -35,7 +35,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
 	}
 }
 
-form {
+.form-login {
   background-color: rgba(255,255,255,0.83);
   border-radius: 10px;
   // backdrop-filter: blur(10px);
@@ -48,6 +48,10 @@ form {
   margin-bottom: 26px;
   font-size: 32px;
   font-weight: bold;
+}
+
+.input-section {
+  padding: 36px;
 }
 
 .Signup-form {
@@ -300,6 +304,12 @@ item-display-title {
     font-weight: bold;
     
     }
+
+  .numeric-input {
+    margin-top: 5px;
+    width: 30%;
+  }
+
 
   .background-img {
   color: white;

@@ -13,9 +13,8 @@ export default function WorkoutList (props) {
 //this state contains selected day
 const [startDate, setStartDate] = useState(null);
 
-////Fetch Today workout data on mount
-useEffect(() => {
 
+//Calculate today date
 let dateObj = new Date();
 let month = dateObj.getMonth() + 1; //months from 1-12
 if (month < 10) {
@@ -24,6 +23,11 @@ if (month < 10) {
 let day = dateObj.getDate();
 let year = dateObj.getFullYear();
 const todayDate = year + "-" + month + "-" + day;
+
+console.log('props.state', props.state)
+////Fetch Today workout data on mount
+useEffect(() => {
+
 
 Axios.get(`/api/workouts/user/${props.state.user.id}`).then(res => {
   const workouts = res.data
@@ -98,15 +102,20 @@ console.log('##userworkout##', userWorkoutData );
     </Col>
 
         <Col>
-        <Card className="form">
+        {userWorkoutData &&
+        <Card className="top-section">
+        <div className="app-header-bar">
+          Activities on {todayDate}
+          </div>
         <Card.Body>
             {userWorkoutData.map(workoutData => (
-                        <div key={workoutData.id}>
+                        <div className="exercise-items" key={workoutData.id}>
                         <Exercise workoutId={workoutData.id} />
                         </div>
             ))}
         </Card.Body>
-      </Card>
+         </Card>
+         }
         </Col>
 
     </Row>
