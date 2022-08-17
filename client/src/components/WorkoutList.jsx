@@ -30,6 +30,7 @@ const todayDate = year + "-" + month + "-" + day;
 
 useEffect(() => {
 
+  //with flat1 we clean the variable from repeated items in nested loop
   const exercisesState = userWorkoutDetails.map((item) => {
 
     const lineExercises = item.line_exercises;
@@ -63,14 +64,11 @@ useEffect(() => {
 
 }, [props.state]);
 
-// console.log('##userworkout##', userWorkoutData );
-// console.log('userWorkoutData', userWorkoutData);
-// console.log('userWorkoutDetails', userWorkoutDetails);
-console.log('exercises', exercises);
-
 
   // Get work out data for a specific user and date//
   useEffect(() => {
+
+    setUserWorkoutDetails([]);
 
     if (props.state.user.id && startDate) {
     Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
@@ -92,7 +90,11 @@ console.log('exercises', exercises);
 
       Axios.get(`/api/workouts/${item.id}`).then (res => {
 
-        setUserWorkoutDetails((prev) => ([...prev, res.data]))
+        if (res.data.exercises.length !== 0) {
+
+          setUserWorkoutDetails((prev) => ([...prev, res.data]))
+
+        }
   
       });
 
@@ -126,7 +128,13 @@ const navigateToAddMeal = () => {
 ////// Delete Exercise ///////
 const deleteExercise = (exerciseId, index) => {
 
+
   Axios.delete(`/api/line_exercises/${exerciseId}`).then (res => {
+
+    console.log('serWorkoutDetails', userWorkoutDetails)
+
+
+
     let newExercises = [...userWorkoutDetails.exercises]
     newExercises.splice(index, 1)
 
@@ -146,6 +154,57 @@ const deleteExercise = (exerciseId, index) => {
 
     }
 
+  
+    //////// Edit Exercise /////////
+const editExercise = (index) => {
+
+  setExerciseEdit(index)
+
+    }
+
+/////////Submit Button ////////////
+const submitExercise = (exerciseId, index) => {
+
+
+  
+
+
+
+  return Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": props.workoutId, "exercise_id": index, "exercise_duration":durations})
+  .then (() => {
+
+    setUserWorkoutDetails([]);
+
+    userWorkoutData.forEach((item) => {
+
+      Axios.get(`/api/workouts/${item.id}`).then (res => {
+
+        setUserWorkoutDetails((prev) => ([...prev, res.data]))
+  
+      });
+
+    })
+
+
+    //Later change this part to update exercise to reflect changes to the exercise
+    Axios.get(`/api/workouts/${userWorkoutData}`).then (res => {
+      console.log('res', res)
+
+      setUserWorkoutDetails(res.data)
+    //////
+      setExerciseEdit(-1);
+
+    });
+
+
+  }).catch(error => console.log(error));
+  //Ideally this part should rendere an error message on the page below the post
+
+    }    
+
+    console.log('exercises', exercises);
+    console.log('userworkoutdetails', userWorkoutDetails);
+    console.log('userworkoutdata', userWorkoutData)
 
   return (
 
@@ -239,7 +298,7 @@ const deleteExercise = (exerciseId, index) => {
                       <Button 
                       variant="info" 
                       type="submit"
-                      // onClick={() => {lineExercise && deleteExercise(lineExercise[index].id, index)}}
+                      onClick={() => {item.id && deleteExercise(item.id, index)}}
                       >
                         Delete
                       </Button>
@@ -249,7 +308,7 @@ const deleteExercise = (exerciseId, index) => {
                       <Button 
                       variant="info" 
                       type="submit"
-                      // onClick={() => {lineExercise && submitExercise(lineExercise[index].id, index)}}
+                      onClick={() => {item.id && submitExercise(item.id, index)}}
                       >
                         Submit
                       </Button>
@@ -262,7 +321,7 @@ const deleteExercise = (exerciseId, index) => {
                       className="post-button" 
                       variant="info" 
                       type="submit"
-                      // onClick={() => {lineExercise && editExercise(index)}}
+                      onClick={() => {item.id && editExercise(index)}}
                       >
                         Edit
                       </Button>
@@ -273,7 +332,7 @@ const deleteExercise = (exerciseId, index) => {
                      className="post-button" 
                      variant="info" 
                      type="submit"
-                    //  onClick={() => {lineExercise && setExerciseEdit(-1)}}
+                     onClick={() => {item.id && setExerciseEdit(-1)}}
                      >
                        Cancel
                      </Button>
