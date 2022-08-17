@@ -85,7 +85,7 @@ console.log('##userworkout##', userWorkoutData );
         </Card.Body>
       </Card>
 
-      <Col className="mt-3">
+      {/* <Col className="mt-3">
         <Button 
         className="mr-5" 
         variant="info" 
@@ -94,20 +94,17 @@ console.log('##userworkout##', userWorkoutData );
         >
           Add a meal
         </Button>
-      </Col> 
+      </Col>  */}
     </Col>
 
         <Col>
-   
-          <Card>
-          <Card.Header>List of exercises:</Card.Header>
+
             {userWorkoutData.map(workoutData => (
-                        <Card.Body key={workoutData.id}>
+                        <div key={workoutData.id}>
                         <Exercise workoutId={workoutData.id} />
-                        </Card.Body>
+                        </div>
             ))}
-          </Card>
-          
+
         </Col>
 
     </Row>
