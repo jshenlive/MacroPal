@@ -302,11 +302,11 @@ export default function Profile(props) {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      <div className="user-profile-text">
+      <div className="post-body user-profile-text">
         Total meal weight: {item.total_meal_amount} (grams)
         Total meal calories: {item.total_meal_calories} (kCal)
       </div>
-      <Button variant="info" onClick={() => mealClick(item)}>
+      <Button className="mb-3" variant="info" onClick={() => mealClick(item)}>
       Meal {index+1}
       </Button>
         </Fragment>
@@ -325,11 +325,11 @@ export default function Profile(props) {
         show={workoutModalShow}
         onHide={() => setWorkoutModalShow(false)}
       />
-      <div className="user-profile-text">
+      <div className="post-body user-profile-text">
         Total workout duration: {item.workout_duration} (minutes)
         Total calories burned: {item.total_workout_calories} (kCal)
       </div>
-      <Button className="mt-3" variant="info" onClick={() => workoutClick(item)}>
+      <Button variant="info" onClick={() => workoutClick(item)}>
       Workout {index+1}
       </Button>
 
@@ -340,7 +340,10 @@ export default function Profile(props) {
 
   const showSummary = () =>{
     return (
-      <div className="user-profile-text">
+
+      <Row className="post-body user-profile-text" >
+
+      <Col xs={6} >
       Total Calories Intake: {totalCaloriesIntake()}
       <br></br>
       Your BMR: {Math.round(userBasic)}
@@ -349,10 +352,12 @@ export default function Profile(props) {
       <br></br>
       {totalCalories()> 0 ? "Excess Calories Gained: ": "Excess Calories Burned: "} {totalCalories()} Kcal
       <br></br>
-      
+      </Col>
+      <Col xs={6}>
       {totalCalories()>0 ? (showYesterday? "🥔Did not maintain weight yesterday, work harder today!🥔" : showSuggestion()) : (showYesterday ? "🔥Well done hitting you goals yesterday!🔥" : "🔥Good Job hitting your goals today!🔥")}
+      </Col>
 
-      </div>
+      </Row>
     )
   }
 
@@ -433,9 +438,12 @@ export default function Profile(props) {
   const showUserInfo = ()=>{
     return(
       <>
-        <span>
-        Username: {props.state.user && props.state.user.username}  <Badge bg="warning">New User</Badge>
-        </span>
+      
+      <div className="user-profilebox-text">
+        <div className="user-name-text">
+        {props.state.user && props.state.user.username}  <Badge bg="warning">New User</Badge>
+        </div>
+        
         <br />                  
         <span>Age: {props.state.user && props.state.user.age}</span>
         <br />
@@ -446,6 +454,7 @@ export default function Profile(props) {
         <span>
           Height: {props.state.user && props.state.user.height_cm} cm
         </span>
+      </div>
         <br />
         {isMore && showMore()}
         <Button className="mt-2" variant="info" onClick={()=>setMore()}>

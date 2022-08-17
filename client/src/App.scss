@@ -196,6 +196,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
 
 }
 
+.post-body {
+  border-radius: 20px 60px;
+  background: #3c18ca35;
+  color: #003554;
+  width: auto;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
 .user-welcome {
   border-radius: 20px 50px;
   background: #fb6107;
@@ -342,6 +351,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
   .user-profile-text {
     font-size: 18px !important;
     font-weight: bold;
+    text-align: left !important;
+  }
+
+  .user-profilebox-text {
+    font-size: 18px !important;
+    font-weight: bold;
+    text-align: center !important;
+  }
+
+  .user-name-text {
+    font-size: 26px !important;
+    color: #30343f;
+    font-weight: bold;
+    text-align: center !important;
+    margin-bottom: 1px;
   }
 
   .exercise-items {
