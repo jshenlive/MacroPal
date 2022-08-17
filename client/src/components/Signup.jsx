@@ -87,15 +87,15 @@ handleErrors = () => {
       return (
         <Container fluid className="mb-5">
         <Row> </Row>
-        <Row className="mt-2">
+        <Row className="mt-5">
           <Col></Col>
           <Col >
           <Form 
           autoComplete="off"  
           onSubmit={this.handleSubmit}
-          className="singup-form"
+          className="form-login"
           >
-            <div className="loginText">
+            <div className="loginText login-text">
               Sign up today!
             </div>
             <Row> 
