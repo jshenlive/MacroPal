@@ -35,7 +35,7 @@ export default function Profile(props) {
   
   const WBMR = (655.1 + (9.53 * weight_kg) + (1.85 * height_cm) - (4.676 * age))*1.2
 
-  const MBMR = (66.5 + (13.75 * weight_kg) + (5.003* height_cm) - (6.75*age)) *1.2
+  const MBMR = (66.5 + (13.75 * weight_kg) + (5.003* height_cm) - (6.75*age))*1.2
 
   const userBasic = (props.state.user.gender === "male" ? MBMR : WBMR)
 
@@ -507,10 +507,24 @@ export default function Profile(props) {
   }
 
 
-  const fetchSuggestion = ()=>{
-
-
+  const displayActivity = ()=>{
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("hello");
+      },500);
+    });
+  
   }
+
+  //   const a = setTimeout(()=>{
+  //     if (isCalculated){
+  //      showSummary()
+  //     }else{
+  //       setActivity()}
+  //   },500)
+  //   clearTimeout()
+  //   return a
+  // }
 
   const showSuggestion = ()=>{
     return (
@@ -584,7 +598,9 @@ export default function Profile(props) {
                   </p>
 
                 <p>
-             {isCalculated ? showSummary() : setActivity()}
+             {/* {isCalculated? showSummary() : displayActivity()} */}
+             {isCalculated? showSummary() : setActivity()}
+                    
              </p>
                  
               </Card.Title>

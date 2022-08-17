@@ -138,7 +138,7 @@ export default function Meals (props) {
   const menuDropDown = ()=>{
     return(
   <Form.Select name="mealType" id="mealType" onChange={(event)=>{setQueryMealType(event.target.value)}}>
-      <option>Select Meal Type</option>
+      {/* <option>Select Meal Type</option> */}
       <option value="1breakfast">Breakfast</option>
       <option value="2lunch">Lunch</option>
       <option value="3dinner">Dinner</option>
@@ -241,7 +241,7 @@ export default function Meals (props) {
         
         return (
           <div className="food-items" key={item.id+1}>
-            <b>{item.name}</b> &nbsp;({Math.round(item.grams_per_serving)} grams)
+            <b>{item.name}</b> &nbsp;({Math.round(item.grams_per_serving)} grams {(amountOption==="gram")? "" : "per " + amountType})
 
             <Row>  
             {is_branded && <Col>{"Brand: " + item.brand + ""}</Col>}
