@@ -7,7 +7,6 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import AddWorkout from './components/AddWorkout';
 import WorkoutList from './components/WorkoutList';
-import WorkoutSummary from './components/WorkoutSummary';
 import Exercise from './components/Exercise';
 import Meals from './components/Meals';
 import MealList from './components/MealList';
@@ -75,7 +74,6 @@ class App extends Component {
          <Route  exact path='/addworkout' element={<AddWorkout state={this.state}/>}/>
          <Route  exact path='/exercise' element={<Exercise/>}/>
          <Route  exact path='/workoutList' element={<WorkoutList  state={this.state}/>}/>
-         <Route  exact path='/WorkoutSummary' element={<WorkoutSummary state={this.state}/>}/>
          <Route  exact path='/summary' element={<Summary />}/>
          <Route  exact path='/profile' element={<Profile state={this.state} />}/>
          <Route  exact path='/loading' element={<Loading/>}/>

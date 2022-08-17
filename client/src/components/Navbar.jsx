@@ -42,7 +42,6 @@ export default function Fitpalnavbar(props) {
               <NavDropdown.Item href="/workoutList">Summary</NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link href="/workoutsummary">Review</Nav.Link>
             </>
           }
           </Nav>
