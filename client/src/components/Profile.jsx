@@ -298,21 +298,17 @@ export default function Profile(props) {
       return(
         <Fragment key={index + 100}>
         
-      <Button variant="primary" onClick={() => mealClick(item)}>
-      Meal {index+1}
-      </Button>
-
       <MealModal       
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-
-        <br></br>
+      <div className="user-profile-text">
         Total meal weight: {item.total_meal_amount} (grams)
-        <br></br>
         Total meal calories: {item.total_meal_calories} (kCal)
-        <br></br>
-        <br></br>
+      </div>
+      <Button variant="info" onClick={() => mealClick(item)}>
+      Meal {index+1}
+      </Button>
         </Fragment>
       )
     })
@@ -325,30 +321,26 @@ export default function Profile(props) {
     return workoutData.map((item,index)=>{
       return(
         <Fragment key={index + 1000}>
-       
-       <Button variant="primary" onClick={() => workoutClick(item)}>
-      Workout {index+1}
-      </Button>
-
       <WorkoutModal       
         show={workoutModalShow}
         onHide={() => setWorkoutModalShow(false)}
       />
-
-        <br></br>
+      <div className="user-profile-text">
         Total workout duration: {item.workout_duration} (minutes)
-        <br></br>
         Total calories burned: {item.total_workout_calories} (kCal)
-        <br></br>    
-  
-        </Fragment>
+      </div>
+      <Button className="mt-3" variant="info" onClick={() => workoutClick(item)}>
+      Workout {index+1}
+      </Button>
+
+      </Fragment>
       )
     })
   }
 
   const showSummary = () =>{
     return (
-      <Card.Text>
+      <div className="user-profile-text">
       Total Calories Intake: {totalCaloriesIntake()}
       <br></br>
       Your BMR: {Math.round(userBasic)}
@@ -360,14 +352,14 @@ export default function Profile(props) {
       
       {totalCalories()>0 ? (showYesterday? "🥔Did not maintain weight yesterday, work harder today!🥔" : showSuggestion()) : (showYesterday ? "🔥Well done hitting you goals yesterday!🔥" : "🔥Good Job hitting your goals today!🔥")}
 
-    </Card.Text>
+      </div>
     )
   }
 
   const showPlanSummary = () =>{
     return(
       <>
-        <Card className="text-center">
+        <Card className=" app-section text-center">
           <Card.Body>
             <Card.Title>
             <div className="app-header-bar">Workout Summary</div>
@@ -376,7 +368,7 @@ export default function Profile(props) {
           </Card.Body>
         </Card>
 
-        <Card className="text-center">
+        <Card className="text-center app-section">
           <Card.Body>
               <Card.Title>
               <div className="app-header-bar">Meal Summary</div>
@@ -456,11 +448,11 @@ export default function Profile(props) {
         </span>
         <br />
         {isMore && showMore()}
-        <Button className="mt-2" variant="outline-info" onClick={()=>setMore()}>
+        <Button className="mt-2" variant="info" onClick={()=>setMore()}>
         {isMore ? "Hide Info" : "Show More"}
         </Button>
         &emsp;
-        <Button className="mt-2" variant="outline-info">
+        <Button className="mt-2" variant="info">
         Edit Info
       </Button>
     </>
@@ -518,7 +510,7 @@ export default function Profile(props) {
     <Container className="container-margins">
       <Row >
         <Col sm={4}>
-          <Card  className="app-section">
+          <Card  className="app-section text-center">
             <Card.Body>
             <div className="user-welcome">
             Welcome, 
@@ -544,34 +536,35 @@ export default function Profile(props) {
             </Card.Body>
 
           </Card>
-          <Card>
+          <Card className="app-section text-center">
             <Card.Body>
-              <Card.Title>Earned Badges</Card.Title>
+            <div className="user-welcome">Earned Badges</div>
               Daily_Maximizer_icon, Weekly_Warrior_icon....
             </Card.Body>
           </Card>
-          <Card>
+
+          <Card className="app-section text-center">
             <Card.Body>
-              <Card.Title>Weekly Graph</Card.Title>
+            <div className="user-welcome">Weekly Graph</div>
               Graph?
             </Card.Body>
           </Card>
         </Col>
 
         <Col sm={8}>
-          <Card className="text-center">
+          <Card className="text-center app-section">
             <Card.Body>
               <Card.Title> 
 
-                <div className="app-header-bar">Activity Summary</div>
-                 <Button onClick={()=>fetchPrev()}>Yesterday</Button> 
+                <div className="app-header-bar mb-3">Activity Summary</div>
+             {isCalculated ? showSummary() : setActivity()}
+                 <Button variant="info" onClick={()=>fetchPrev()}>Yesterday</Button> 
                   &emsp;
-                  <Button onClick={()=>fetchCurr()}>Today</Button>  
+                  <Button variant="info" onClick={()=>fetchCurr()}>Today</Button>  
                   &emsp; 
                   {/* <Button onClick={()=>console.log("hello")}>Week So Far</Button>  */}
 
               </Card.Title>
-             {isCalculated ? showSummary() : setActivity()}
             </Card.Body>
           </Card>
           {isCalculated && showPlanSummary() }
