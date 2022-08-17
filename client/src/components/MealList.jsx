@@ -142,17 +142,29 @@ export default function MealList (props) {
     // console.log("foodData",foodData)
     let info = () =>{
       return (
-        <>
-        <b>{foodData.name}</b> for <input placeholder={amount} onChange={(e)=>{setAmountChange(parseInt(e.target.value))}}></input> grams &emsp; 
-        <Button onClick={()=>editFoodMeal(line_id)}> Edit </Button> &emsp; 
-        <Button onClick={()=>deleteFoodMeal(line_id)}>Delete</Button>
+         <Row>
+          <Col>
+          <div>Calories: {Math.round(foodData.calories * amount / 100)}</div>
+          </Col>
+          <Col className="post-section">
+            
 
-        <br></br>
-        Calories: {Math.round(foodData.calories * amount / 100)} &nbsp;
-        Protein: {(foodData.protein * amount / 100).toFixed(2)} &nbsp;
-        Carbs: {(foodData.carbs * amount / 100).toFixed(2)} &nbsp;
-        Fat: {(foodData.fat * amount / 100).toFixed(2)} &nbsp;
-        </>
+
+        {/* <b>{foodData.name}</b> for <input placeholder={amount} onChange={(e)=>{setAmountChange(parseInt(e.target.value))}}></input> grams &emsp;  */}
+
+          <div>
+            <span>Protein: {(foodData.protein * amount / 100).toFixed(2)}</span>
+            <span>Carbs: {(foodData.carbs * amount / 100).toFixed(2)}</span>
+            <span>Fat: {(foodData.fat * amount / 100).toFixed(2)}</span>
+          </div>
+
+          </Col>
+
+          <Col>
+          <Button onClick={()=>editFoodMeal(line_id)}> Edit </Button> &emsp; 
+          <Button onClick={()=>deleteFoodMeal(line_id)}>Delete</Button>
+          </Col>
+          </Row>
       )
     } 
 
