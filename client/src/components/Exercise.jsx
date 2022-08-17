@@ -9,7 +9,7 @@ const [userWorkoutDetails, setUserWorkoutDetails] = useState({});
 const [exerciseEdit, setExerciseEdit] = useState(-1);
 const [durations, setDurations] = useState("");
 const [exercises, setexercises] = useState([]);
-
+console.log('userWorkoutDetails', userWorkoutDetails)
 const lineExercise = userWorkoutDetails.line_exercises;
 
 useEffect(() => {

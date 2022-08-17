@@ -25,38 +25,26 @@ let day = dateObj.getDate();
 let year = dateObj.getFullYear();
 const todayDate = year + "-" + month + "-" + day;
 
-Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
-  
+Axios.get(`/api/workouts/user/${props.state.user.id}`).then(res => {
+  const workouts = res.data
+  const todayWorkouts = workouts.filter(workout => workout.date === todayDate)
 
-  res.data.map((item) => {
-    console.log('item', item);
-    if (item.date === todayDate) {
-
-      setUserWorkoutData(item);
-    }
-  })
-
+  setUserWorkoutData(todayWorkouts);
 })
 
 }, [props.state]);
 
+console.log('##userworkout##', userWorkoutData );
 
 
-
-  //Get work out data for a specific user and date//
+  // Get work out data for a specific user and date//
   useEffect(() => {
 
     if (props.state.user.id) {
     Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
-
-      res.data.map((item) => {
-
-        if (startDate && item.date === startDate.toISOString().substring(0, 10)) {
-
-          setUserWorkoutData(item);
-        }
-      })
-
+      const workouts = res.data
+      const todayWorkouts = workouts.filter(workout => workout.date === startDate.toISOString().substring(0, 10))
+      setUserWorkoutData(todayWorkouts);
     })
   }
 
@@ -140,6 +128,40 @@ Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
       </>
     }
     </Col>
+
+
+          <Col>
+   
+          <>
+          <Card className="mb-2 text-center">
+          <Card.Header>Summary</Card.Header>
+          <Card.Body>
+    
+          <Col>
+          {/* <div>Workout Duration: {workoutData.workout_duration} minutes</div>
+          <div>Total Workout Calories: {workoutData.total_workout_calories} </div>
+          <div>Work out Created at {workoutData.date} </div>
+          <div>Last updated: {workoutData.updated_at} </div> */}
+          </Col>
+    
+          </Card.Body>
+          </Card>
+    
+      
+          <Card>
+          <Card.Header>List of exercises:</Card.Header>
+            {userWorkoutData.map(workoutData => (
+                        <Card.Body key={workoutData.id}>
+                        <Exercise workoutId={workoutData.id} />
+                        </Card.Body>
+            ))}
+          </Card>
+          
+          </>
+        
+        </Col>
+   
+
 
     </Row>
 
