@@ -181,17 +181,27 @@ export default function MealList (props) {
     <Container className="mt-5">
 
       <Row className="mb-5 text-center">
+        <Col xs={2}>
+      <div className="circle-heading-2">Daily Total</div>
+
+        <div  className="circle-heading-workout">
+          <div className="headshot headshot-3 card mt-2">
+            <div className="circle-heading-text">
+            <div><div className="item-display-title">Intake </div><div>{totalCaloriesIntake()}</div> Kcal</div>
+            </div>
+          </div>
+        </div>
+
+        <div  className="circle-heading-workout">
+          <div className="headshot headshot-3 card mt-2">
+            <div className="circle-heading-text">
+            <div><div className="item-display-title">Meal </div><div>{totalMealWeight()}</div> Grams</div>
+            </div>
+          </div>
+        </div>
+        </Col>
+
       <Col>
-
-      <Card className="mb-2">
-      <div className="app-header-bar">Daily Total</div>
-      <Card.Body>
-        Total day calories intake: {totalCaloriesIntake()}
-        <br></br>
-        Total day meal amount: {totalMealWeight()} grams
-      </Card.Body>
-      </Card>
-
       <Card className="mb-3">
       <div className="app-header-bar">Breakfast</div>
       <Card.Body>{showContent("1breakfast")}</Card.Body>

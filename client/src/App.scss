@@ -249,8 +249,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
   justify-content: center;
 }
 
-item-display-title {
-  color: #ff9505 !important;
+.item-display-title {
+  color: #ebebeb !important;
+  font-weight: bold;
+  font-size: 32px;
 }
 
 
@@ -267,6 +269,11 @@ item-display-title {
 
 .circle-heading {
   color: white;
+}
+
+.circle-heading-2 {
+  font-size: 30px;
+  color: #ebebeb;
 }
 
 .circle-heading-workout {
@@ -414,8 +421,8 @@ item-display-title {
 }
 
 .headshot-1 {
-	border-radius: 30%;
-	background-image: var(--img-url), linear-gradient(#f9f047, #0fd850);
+	border-radius: 40%;
+	background-image: var(--img-url), linear-gradient(#023e7d, #00b2ca);
 }
 
 .headshot-2 {
