@@ -107,11 +107,11 @@ export default class Login extends Component {
             onChange={this.handleChange}
             />
             </Form.Group>
-            <Button className="mt-2" variant="info" type="submit">
+            <Button className="font-bold mt-2" variant="info" type="submit">
                Login
             </Button>
               <div>
-              or <Link to='/Signup'>sign up</Link>
+              or <Link to='/Signup'><span className="font-bold mt-2">sign up</span></Link>
               </div>
            </Form>
            </Col>
