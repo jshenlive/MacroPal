@@ -107,9 +107,11 @@ const onDurationInputChangeHandler = (event) => {
           {exercises && exercises.map((item, index) => {
             return (
 
-              <div key={index}>
+              <div className="post-section" key={index}>
 
-                <div >{item.exercise.name}, for the duration of {exerciseEdit !== index && item.exercise_duration} {exerciseEdit !== index && <span>Minutes</span>}</div>
+                <div className="exercise-items-list mt-2"><span>{item.exercise.name}!</span>{exerciseEdit !== index && <span>Duration: {item.exercise_duration} Minutes.</span>}
+                <span>Total: {item.total_exercise_calories} Calories</span>
+                </div>
 
                 {exerciseEdit === index &&
                 <Col>
@@ -132,25 +134,12 @@ const onDurationInputChangeHandler = (event) => {
 
                 <div>
 
-                {exerciseEdit !== index && <span>Total: {item.total_exercise_calories} Calories</span>
-                }
+                      <Row className="mb-2">
 
-                      {exerciseEdit === index &&
-                      <Button 
-                      className="mt-2" 
-                      variant="info" 
-                      type="submit"
-                      onClick={() => {lineExercise && submitExercise(lineExercise[index].id, index)}}
-                      >
-                        Submit
-                      </Button>
-                      
-                       }
-                      <Col className="mb-2">
+                      <Col className="post-tools">
                       {exerciseEdit !== index &&
                       
                       <Button 
-                      className="mr-5" 
                       variant="info" 
                       type="submit"
                       onClick={() => {lineExercise && deleteExercise(lineExercise[index].id, index)}}
@@ -159,34 +148,48 @@ const onDurationInputChangeHandler = (event) => {
                       </Button>
                       
                        }
-                      </Col>
-                      <Col>
+                       {exerciseEdit === index &&
+                      <Button 
+                      variant="info" 
+                      type="submit"
+                      onClick={() => {lineExercise && submitExercise(lineExercise[index].id, index)}}
+                      >
+                        Submit
+                      </Button>
+                      
+                       }
+                      
                       {exerciseEdit !== index &&
                       
                       <Button 
-                      className="mr-5" 
+                      className="post-button" 
                       variant="info" 
                       type="submit"
                       onClick={() => {lineExercise && editExercise(index)}}
                       >
                         Edit
                       </Button>
-                     
                      }
+                    {exerciseEdit === index &&
+                     
+                     <Button 
+                     className="post-button" 
+                     variant="info" 
+                     type="submit"
+                     onClick={() => {lineExercise && setExerciseEdit(-1)}}
+                     >
+                       Cancel
+                     </Button>
+                     
+                    }
                       </Col>
+
+                      </Row>
+
+
+
                      
-                     {exerciseEdit === index &&
-                     
-                      <Button 
-                      className="mt-2" 
-                      variant="info" 
-                      type="submit"
-                      onClick={() => {lineExercise && setExerciseEdit(-1)}}
-                      >
-                        Cancel
-                      </Button>
-                      
-                     }
+
                     </div>
               </div>
             )

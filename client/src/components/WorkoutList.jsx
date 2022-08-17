@@ -98,13 +98,15 @@ console.log('##userworkout##', userWorkoutData );
     </Col>
 
         <Col>
-
+        <Card className="form">
+        <Card.Body>
             {userWorkoutData.map(workoutData => (
                         <div key={workoutData.id}>
                         <Exercise workoutId={workoutData.id} />
                         </div>
             ))}
-
+        </Card.Body>
+      </Card>
         </Col>
 
     </Row>
