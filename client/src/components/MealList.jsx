@@ -159,8 +159,10 @@ export default function MealList (props) {
 
           {!displayEdit?
           <>
+          <h3>{foodData.name}</h3>
           <Col className="data-info">
-          <div>Calories: {Math.round(foodData.calories * amount / 100)}</div>
+          
+          <div>Calories: {Math.floor(foodData.calories * amount / 100)}</div>
           </Col>
 
           <Col xs={5} className="post-section">
@@ -178,19 +180,24 @@ export default function MealList (props) {
           <Col>
           </Col>
            <Col xs={5} className="item-display">
-           <div>{foodData.name} for </div> <input placeholder={amount} onChange={(e)=>{setAmountChange(parseInt(e.target.value))}}></input> <div>grams</div>
+           <div>{foodData.name} for &emsp;
+           <input 
+           size = "3"
+           placeholder={amount}
+            onChange={(e)=>{setAmountChange(parseInt(e.target.value))}
+            }></input> grams</div>
            </Col>
           </>
           }
          {!displayEdit?
           <Col>
-          <Button onClick={()=>activateEditFoodMeal()}> Edit </Button> &emsp; 
-          <Button onClick={()=>deleteFoodMeal(line_id)}>Delete</Button>
+          <Button variant="outline-dark" onClick={()=>activateEditFoodMeal()}> Edit </Button> &emsp; 
+          <Button variant="outline-dark" onClick={()=>deleteFoodMeal(line_id)}>Delete</Button>
           </Col>
           :
           <Col>
-          <Button onClick={()=>editFoodMeal(line_id)}>Submit</Button> &emsp; 
-          <Button onClick={()=>cancelEdit()}> Cancel </Button>
+          <Button variant="outline-dark" onClick={()=>editFoodMeal(line_id)}>Submit</Button> &emsp; 
+          <Button variant="outline-dark" onClick={()=>cancelEdit()}> Cancel </Button>
           </Col>
          }
           </Row>

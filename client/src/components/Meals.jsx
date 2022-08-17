@@ -82,8 +82,9 @@ export default function Meals (props) {
 
     // console.log(props.state.user.id)
     Axios.post("/api/meals",{"user_id": props.state.user.id, "date": currDate})
-    .then(()=>
-      setMealSaved(true)
+    .then(()=>{
+      reset()
+      setMealSaved(true)}
     ).catch((e)=>{
       console.log(e)
     })
@@ -392,9 +393,10 @@ export default function Meals (props) {
             <Form.Control 
             name="foodName" 
             type="text" 
-            placeholder="ie. apple pie..." 
+            placeholder="ie. apple pie..."
+            value={queryFoodName} 
             onChange={(event)=> setQueryFoodName(event.target.value)}
-            onFocus={(event)=> setQueryResults([])}
+            onFocus={(event)=> reset()}
             />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -412,8 +414,7 @@ export default function Meals (props) {
             {healthOption()}
             Choose intake
             <br></br>
-            <Form.Select size="sm" name="amountList" id="amountList" onChange={(event)=>setAmountOption(event.target.value)} >
-              <option value="">Optional</option>
+            <Form.Select size="sm" name="amountList" id="amountList" onChange={(event)=>setAmountOption(event.target.value)} >       
               <option value="servings">per Servings</option>
             <option value="grams">per Grams</option>
             <option value="whole">per Whole</option>

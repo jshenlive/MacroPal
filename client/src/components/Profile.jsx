@@ -302,13 +302,18 @@ export default function Profile(props) {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
+  
       <div className="post-body user-profile-text">
+      <center>
+      <Button className="mb-3" variant="outline-dark" onClick={() => mealClick(item)}>
+      Meal {index+1}
+      </Button>  
+      </center>
         Total meal weight: {item.total_meal_amount} (grams)
         Total meal calories: {item.total_meal_calories} (kCal)
+  
       </div>
-      <Button className="mb-3" variant="info" onClick={() => mealClick(item)}>
-      Meal {index+1}
-      </Button>
+      
         </Fragment>
       )
     })
@@ -326,12 +331,15 @@ export default function Profile(props) {
         onHide={() => setWorkoutModalShow(false)}
       />
       <div className="post-body user-profile-text">
+        <center>
+      <Button variant="outline-dark" onClick={() => workoutClick(item)}>
+      Workout {index+1}
+      </Button>
+      </center>
         Total workout duration: {item.workout_duration} (minutes)
         Total calories burned: {item.total_workout_calories} (kCal)
       </div>
-      <Button variant="info" onClick={() => workoutClick(item)}>
-      Workout {index+1}
-      </Button>
+
 
       </Fragment>
       )
@@ -350,7 +358,7 @@ export default function Profile(props) {
       <br></br>
       Total Calories Burned: {totalCaloriesBurned()}
       <br></br>
-      {totalCalories()> 0 ? "Excess Calories Gained: ": "Excess Calories Burned: "} {totalCalories()} Kcal
+      {totalCalories()> 0 ? (<p style={"color: red"}>"Excess Calories Gained: "</p>): "Excess Calories Burned: "} {totalCalories()} Kcal
       <br></br>
       </Col>
       <Col xs={6}>
@@ -389,7 +397,7 @@ export default function Profile(props) {
     if (!showYesterday){
     return (
       <>
-      Complete <a href="/addworkout">workout</a> or <a href="/meals"> meals</a> to show summary
+      Complete <a href="/addworkout">workout</a> or <a href="/meals"> meals</a> to show summary      
       </>
     )}else {
       return(
@@ -564,15 +572,18 @@ export default function Profile(props) {
           <Card className="text-center app-section">
             <Card.Body>
               <Card.Title> 
-
-                <div className="app-header-bar mb-3">Activity Summary</div>
-             {isCalculated ? showSummary() : setActivity()}
-                 <Button variant="info" onClick={()=>fetchPrev()}>Yesterday</Button> 
+              <div className="app-header-bar mb-3">Activity Summary</div>
+                <p>
+              <Button variant="outline-dark" onClick={()=>fetchPrev()}>Yesterday</Button> 
                   &emsp;
-                  <Button variant="info" onClick={()=>fetchCurr()}>Today</Button>  
+                  <Button variant="outline-dark" onClick={()=>fetchCurr()}>Today</Button>  
                   &emsp; 
-                  {/* <Button onClick={()=>console.log("hello")}>Week So Far</Button>  */}
+                  </p>
 
+                <p>
+             {isCalculated ? showSummary() : setActivity()}
+             </p>
+                 
               </Card.Title>
             </Card.Body>
           </Card>
