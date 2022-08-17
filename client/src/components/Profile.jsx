@@ -13,10 +13,12 @@ import {
 } from "react-bootstrap";
 import Axios from "axios";
 
-export default function Profile(props) {
-  console.log("props.state.user", props.state.user);
-  const profile_width = "18rem" 
 
+
+export default function Profile(props) {
+  // console.log("props.state.user", props.state.user);
+  const profile_width = "18rem" 
+  
   const date = new Date();
   const currDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
   const prevDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()-1}`;
@@ -39,6 +41,7 @@ export default function Profile(props) {
 
   const userLoseWeight = userBasic * 0.8
   const userLoseWeightFast = userLoseWeight * 0.65
+
 
 
   const suggestedExercise = {"initial":1, "hiking":157, "walking":170, "jogging":50,"running":43, "cycling":5, "swimming":196}
@@ -65,12 +68,6 @@ export default function Profile(props) {
 
   //goals constants
 
-  useEffect(()=>{
-    if (mealData.length>0 && workoutData.length>0){
-      setIsCalculate(true)
-    }
-  },[mealData,workoutData])
-  
 
   useEffect(()=>{
     Axios.post('/api/meals/get_with_date', {"user_id": props.state.user.id, "date": queryDate})
@@ -87,7 +84,7 @@ export default function Profile(props) {
     Axios.post('/api/workouts/get_with_date', {"user_id": props.state.user.id, "date": queryDate})
     .then((res)=>{
       console.log("workout", res.data)
-      setWorkoutData(res.data)
+      setWorkoutData(res.data)      
     })
     .catch((e)=>{
       console.log(e)
@@ -99,6 +96,12 @@ export default function Profile(props) {
         return accumulator + item.total_meal_calories
       },0)
   }
+
+  useEffect(()=>{
+    if (mealData.length>0 && workoutData.length>0){
+      setIsCalculate(true)
+    }
+  },[mealData,workoutData])
 
   useEffect(()=>{
     Axios.get(`/api/exercises/${suggestedExercise[suggestion]}`)
@@ -118,7 +121,7 @@ export default function Profile(props) {
   useEffect(()=>{
     Axios.get(`/api/meals/${mealModalIndex}`)
     .then((res)=>{
-      console.log(res.data)
+      console.log("meal with index:",res.data)
       setMealModalData(res.data)
     })
     .catch((e)=>{
@@ -129,7 +132,7 @@ export default function Profile(props) {
   useEffect(()=>{
     Axios.get(`/api/workouts/${workoutModalIndex}`)
     .then((res)=>{
-      console.log(res.data)
+      console.log("workout with index",res.data)
       setWorkoutModalData(res.data)
     })
     .catch((e)=>{
@@ -234,7 +237,7 @@ export default function Profile(props) {
             <ul>
               {showLineFood()}
             </ul>
-            {console.log(mealModalData)}
+            {console.log("modal data: ",mealModalData)}
           </p>
         </Modal.Body>
         <Modal.Footer>
@@ -262,7 +265,7 @@ export default function Profile(props) {
             <ul>
               {showLineExercise()}
             </ul>
-            {console.log(workoutModalData)}
+            {console.log("workout modal data",workoutModalData)}
      
         </Modal.Body>
         <Modal.Footer>
@@ -291,7 +294,7 @@ export default function Profile(props) {
   const totalCalories = ()=> totalCaloriesIntake()-Math.round(userBasic) - totalCaloriesBurned()
 
   const showMeal = () =>{
-    console.log(mealData)
+    console.log("mealData in showMeal: ",mealData)
     
     return mealData.map((item,index)=>{
       
@@ -320,7 +323,7 @@ export default function Profile(props) {
   }
 
   const showWorkout = () =>{
-    console.log(workoutData)
+    console.log("workoutData in showWorkout",workoutData)
     
     // if(workoutData.length>0)
     return workoutData.map((item,index)=>{
@@ -358,7 +361,7 @@ export default function Profile(props) {
       <br></br>
       Total Calories Burned: {totalCaloriesBurned()}
       <br></br>
-      {totalCalories()> 0 ? (<p style={"color: red"}>"Excess Calories Gained: "</p>): "Excess Calories Burned: "} {totalCalories()} Kcal
+      {totalCalories()> 0 ? "Excess Calories Gained: " : "Excess Calories Burned: "} {totalCalories()} Kcal
       <br></br>
       </Col>
       <Col xs={6}>

@@ -78,6 +78,9 @@ class Api::LineExercisesController < ApplicationController
     workout.workout_duration -= @line_exercise.exercise_duration
     workout.save
     @line_exercise.destroy
+    if workout.workout_duration <=0 
+      workout.destroy
+    end
   end
 
   private

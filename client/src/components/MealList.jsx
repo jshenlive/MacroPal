@@ -162,7 +162,7 @@ export default function MealList (props) {
           <h3>{foodData.name}</h3>
           <Col className="data-info">
           
-          <div>Calories: {Math.floor(foodData.calories * amount / 100)}</div>
+          <div>Calories: {Math.round(foodData.calories * amount / 100)}</div>
           </Col>
 
           <Col xs={5} className="post-section">

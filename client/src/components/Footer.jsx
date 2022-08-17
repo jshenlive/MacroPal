@@ -7,7 +7,8 @@ export default function Footer () {
     <Container>
       <Row>
         <footer className="footer mt-auto">
-          <div>	Copyright &copy; FitPal All rights reserved</div>
+          {/* <div>	Copyright &copy; FitPal All rights reserved</div> */}
+          <div>FitPalalå</div>
           <div>Resources</div>
           <div>About Us</div>
           <div>

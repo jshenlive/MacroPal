@@ -130,9 +130,9 @@ export default function Meals (props) {
     setMealSaved(false);
     setQueryFoodName("");
     setQueryFoodAmount(1);
-    setQueryCategory("");
+    // setQueryCategory("");
     setQueryHealth("");
-    setQueryMealType("1breakfast")
+    // setQueryMealType("1breakfast")
   }
 
   const menuDropDown = ()=>{
@@ -180,7 +180,7 @@ export default function Meals (props) {
        className="numeric-input form-control"
        name="foodAmount"
         type="number"
-        placeholder="in Grams..."
+        placeholder="enter amount..."
         value={queryFoodAmount}
         onChange={(event)=> setQueryFoodAmount(parseInt(event.target.value))}
        />
