@@ -19,6 +19,7 @@ export default function MealList (props) {
   // const [foodData, setFoodData] = useState({}) 
   const [foodArray, setFoodArray] = useState([]) 
   const [amountChange, setAmountChange] = useState(0)
+  const [displayEdit, setDisplayEdit] = useState(false)
 
 
   useEffect(()=>{
@@ -120,6 +121,9 @@ export default function MealList (props) {
   // console.log("FoodArray", foodArray)
 
   const editFoodMeal = (id) => {
+
+    setDisplayEdit(false);
+
     Axios.patch(`/api/line_foods/${id}`,{"food_amount": amountChange})
     .then(()=>{
       setMealArray([])
@@ -136,6 +140,15 @@ export default function MealList (props) {
     })
   }
 
+  const cancelEdit = () => {
+    setDisplayEdit(false);
+  }
+
+  const activateEditFoodMeal = () => {
+    setDisplayEdit(true);
+  }
+  
+
 
   const getContent = (line_id,food_id, amount) =>{
     let foodData = foodArray.find(item=>item.id === food_id)
@@ -143,27 +156,43 @@ export default function MealList (props) {
     let info = () =>{
       return (
          <Row>
+
+          {!displayEdit?
+          <>
           <Col>
           <div>Calories: {Math.round(foodData.calories * amount / 100)}</div>
           </Col>
+
           <Col className="post-section">
             
-
-
-        {/* <b>{foodData.name}</b> for <input placeholder={amount} onChange={(e)=>{setAmountChange(parseInt(e.target.value))}}></input> grams &emsp;  */}
-
           <div>
             <span>Protein: {(foodData.protein * amount / 100).toFixed(2)}</span>
             <span>Carbs: {(foodData.carbs * amount / 100).toFixed(2)}</span>
             <span>Fat: {(foodData.fat * amount / 100).toFixed(2)}</span>
           </div>
 
-          </Col>
-
+         </Col>
+         </>
+           :
+           <>
           <Col>
-          <Button onClick={()=>editFoodMeal(line_id)}> Edit </Button> &emsp; 
+          </Col>
+           <Col xs={5} className="item-display">
+           <div>{foodData.name} for </div> <input placeholder={amount} onChange={(e)=>{setAmountChange(parseInt(e.target.value))}}></input> <div>grams</div>
+           </Col>
+          </>
+          }
+         {!displayEdit?
+          <Col>
+          <Button onClick={()=>activateEditFoodMeal()}> Edit </Button> &emsp; 
           <Button onClick={()=>deleteFoodMeal(line_id)}>Delete</Button>
           </Col>
+          :
+          <Col>
+          <Button onClick={()=>editFoodMeal(line_id)}>Submit</Button> &emsp; 
+          <Button onClick={()=>cancelEdit()}> Cancel </Button>
+          </Col>
+         }
           </Row>
       )
     } 
