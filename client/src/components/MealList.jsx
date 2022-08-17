@@ -184,7 +184,7 @@ export default function MealList (props) {
       <Col>
 
       <Card className="mb-2">
-      <Card.Header>Daily Total</Card.Header>
+      <div className="app-header-bar">Daily Total</div>
       <Card.Body>
         Total day calories intake: {totalCaloriesIntake()}
         <br></br>
@@ -192,25 +192,25 @@ export default function MealList (props) {
       </Card.Body>
       </Card>
 
-      <Card className="mb-2">
-      <Card.Header>Breakfast</Card.Header>
+      <Card className="mb-3">
+      <div className="app-header-bar">Breakfast</div>
       <Card.Body>{showContent("1breakfast")}</Card.Body>
       </Card>
 
-      <Card className="mb-2">
-      <Card.Header >Lunch</Card.Header>
+      <Card className="mb-3">
+      <div className="app-header-bar">Lunch</div>
       <Card.Body>{showContent("2lunch")}</Card.Body>
       </Card>
 
 
-      <Card className="mb-2">
-      <Card.Header>Dinner</Card.Header>
+      <Card className="mb-3">
+      <div className="app-header-bar">Dinner</div>
       <Card.Body>{showContent("3dinner")}</Card.Body>
       </Card>
 
 
-      <Card className="mb-2">
-      <Card.Header>Snacks</Card.Header>
+      <Card className="mb-3">
+      <div className="app-header-bar">Snacks</div>
       <Card.Body>{showContent("4snack")}</Card.Body>
       </Card>
 

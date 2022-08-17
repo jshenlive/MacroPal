@@ -339,12 +339,11 @@ export default function Meals (props) {
   const setContinue = () => {
     return(
       <>
-      <form>
-      <h4>Meal Plan Saved Successful!</h4>
-      <Button className="btn-info" onClick={()=>reset()}>Add More</Button>
-      <Button className="btn-info" onClick={()=>navigate("/meal-list")}>Meals Summary</Button>
-      <Button className="btn-info" onClick={()=>navigate("/profile")}>Profile</Button>
-
+      <form className="background-img message-display">
+      <h4 className="message-title">Meal Plan Saved Successful!</h4>
+      <Button size="lg" className="navigation-button btn-info" onClick={()=>reset()}>Add More</Button>
+      <Button size="lg" className="navigation-button btn-info" onClick={()=>navigate("/meal-list")}>Meals Summary</Button>
+      <Button size="lg" className="navigation-button btn-info" onClick={()=>navigate("/profile")}>Profile</Button>
       </form>
       
       </>

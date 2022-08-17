@@ -238,6 +238,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
   font-weight: bold;
   color: #001f54;
 }
+//meals
+.message-display {
+  padding: 31px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 item-display-title {
   color: #ff9505 !important;
@@ -320,12 +330,19 @@ item-display-title {
     font-weight: bold;
     
     }
+    //meals
+    .navigation-button {
+      margin-bottom: 30px;
+    }
+
+    .message-title {
+    margin-bottom: 30px;
+    }
 
   .numeric-input {
     margin-top: 5px;
     width: 30%;
   }
-
 
   .background-img {
   color: white;
