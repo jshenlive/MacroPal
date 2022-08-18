@@ -1,6 +1,9 @@
 import React, {Fragment, useEffect, useState} from "react";
 import "./loading.scss";
 // import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRankingStar, faMedal } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from "react-router";
 import Modal from 'react-bootstrap/Modal'
 import {
   Container,
@@ -16,6 +19,7 @@ import Axios from "axios";
 
 
 export default function Profile(props) {
+  let navigate = useNavigate()
   // console.log("props.state.user", props.state.user);
   const profile_width = "18rem" 
   
@@ -499,7 +503,7 @@ export default function Profile(props) {
       
       <div className="user-profilebox-text">
         <div className="user-name-text">
-        {props.state.user && props.state.user.username}  <Badge bg="warning">New User</Badge>
+        <Badge bg="warning">VIP User: {props.state.user && props.state.user.username}  </Badge>
         </div>
         
         <br />                  
@@ -619,9 +623,8 @@ export default function Profile(props) {
             <div className="user-welcome">
             Welcome, 
                 &nbsp;
-                {props.state.user && props.state.user.first_name}
-                &nbsp;
-                {props.state.user && props.state.user.last_name}!
+                {props.state.user && props.state.user.first_name}!
+
             </div>
 
               <Figure>
@@ -643,14 +646,18 @@ export default function Profile(props) {
           <Card className="app-section text-center">
             <Card.Body>
             <div className="user-welcome">Earned Badges</div>
-              Daily_Maximizer_icon, Weekly_Warrior_icon....
+            <br></br>
+            <FontAwesomeIcon icon={faRankingStar} />
+            &emsp;
+            <FontAwesomeIcon icon={faMedal} />
             </Card.Body>
           </Card>
 
           <Card className="app-section text-center">
             <Card.Body>
-            <div className="user-welcome">Weekly Graph</div>
-              Graph?
+            <div className="user-welcome">Historic Data</div>
+            <br></br>
+              <Button variant="outline-dark" onClick={()=>navigate('/workout-overview')}>Overview</Button>
             </Card.Body>
           </Card>
         </Col>
