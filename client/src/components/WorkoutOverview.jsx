@@ -305,7 +305,7 @@ console.log()
 <Col>
         {totalWorkoutCalories.length === 0 ?
         <>
-      <Alert variant="success">
+      <Alert variant="info">
       <Alert.Heading
       className="mb-3"
       >Physical Activities</Alert.Heading>

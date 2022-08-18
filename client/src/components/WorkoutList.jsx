@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Form, Container, Row, Col, Card, Button, FloatingLabel } from 'react-bootstrap';
+import { Form, Container, Row, Col, Card, Button, FloatingLabel, Alert } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
@@ -237,21 +237,6 @@ const submitExercise = (exerciseId, workoutId) => {
     />
     <div className="mb-1">Please select a date</div>
 
-  <Card className="background-img card mt-2">
-    <Card.Body>
-      <h3>Overview</h3>
-    <div>
-      <h5><span>Calories</span></h5>
-      <h5 className="heading">Carbs</h5>
-    </div>
-    <div>
-      <h5 className="heading">Fat</h5>
-    </div>
-    <div>
-      <h5 className="heading">Protein g</h5>
-    </div>
-    </Card.Body>
-  </Card>
 
 <Col className="mt-3">
     <Button 
@@ -265,10 +250,29 @@ const submitExercise = (exerciseId, workoutId) => {
   </Col> 
 </Col>
 
-    <Col>
 
+    <Col>
+    {exercises.length === 0 &&
+    <Row className="app-section">
+    <div className="app-header-bar">
+    Summary
+    </div>
+    <Alert variant="info">
+      <Alert.Heading>Select a day, and view your exercises!</Alert.Heading>
+      <div>
+      <p>
+      Like Strong, this app allows you to track your workouts. The app comes with exercises and plans already registered and you can add others. You can also create routines, track your progress over time, and record your weight and body measurements. With the app, you get access to the community of people who use Jefit and the training plans they create, something you do not get with Strong.
+      </p>
+      <img className="chart-image center" src="https://www.bodybuilding.com/images/2021/march/what-is-the-best-5-day-workout-split-header-960x540.jpg"></img>
+      </div>
+    </Alert>
+
+    </Row>
+      }
+
+  {exercises.length > 0  &&  
          <Row className="app-section">
-  
+
           <div className="app-header-bar">
           Summary
           </div>
@@ -278,7 +282,7 @@ const submitExercise = (exerciseId, workoutId) => {
             return (
               <div key={index}>
 
-                <div className="exercise-items-list mt-2"><span>{item.name}!</span>{exerciseEdit !== index && <span>Duration: {item.exercise_duration} Minutes.</span>}
+                <div className="item-display exercise-items-list mt-2"><span>{item.name}!</span>{exerciseEdit !== index && <span>Duration: {item.exercise_duration} Minutes.</span>}
                 <span>Total: {item.total_exercise_calories} Calories</span>
               </div>
 
@@ -362,17 +366,10 @@ const submitExercise = (exerciseId, workoutId) => {
             )
            })}
           </div>
-          <div>
-            {exercises.length === 0 && 
-            <>
-            <p className="mt-3">
-              Like Strong, this app allows you to track your workouts. The app comes with exercises and plans already registered and you can add others. You can also create routines, track your progress over time, and record your weight and body measurements. With the app, you get access to the community of people who use Jefit and the training plans they create, something you do not get with Strong.
-            </p>
-            <p className="mt-2"> An app to record your workouts in an easy and intuitive way. The app comes with exercises and plans already registered, but you can also add your own. Create your routines and track your progress over time. Finally, the app also allows you to record your weight and body measurements.</p>
-            </>
-            }
-          </div>
+
         </Row>
+      } 
+
 
       </Col>
 
