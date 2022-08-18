@@ -16,6 +16,14 @@ const [durations, setDurations] = useState("");
 const [exercises, setexercises] = useState([]);
 const [startDate, setStartDate] = useState(null);
 const navigate = useNavigate();
+///////////////////////////
+const [period, setperiod] = useState(7);
+  const [periodWorkoutData, setPeriodWorkoutData] = useState([]);
+  const [totalperiodData, setTotalperiodData] = useState({
+    totalCalorie: "",
+    totalhours: "",
+  });
+////////////////////////////////
 
 //Calculate today date
 let dateObj = new Date();
@@ -53,13 +61,16 @@ useEffect(() => {
 ////Fetch Today workout data on mount
 useEffect(() => {
 
+  if (props.state.user.id) {
+
     Axios.get(`/api/workouts/user/${props.state.user.id}`).then(res => {
       const workouts = res.data
       const todayWorkouts = workouts.filter(workout => workout.date === todayDate)
     
       setUserWorkoutData(todayWorkouts);
     })
-    
+
+  }
 
 }, [props.state]);
 
@@ -207,6 +218,57 @@ const submitExercise = (exerciseId, workoutId) => {
     }    
 
 
+/////get workout data for last n days///////
+///////////////////////////////////////////
+useEffect(() => {
+  const getWorkoutDataLastnDays = () => {
+
+    const lastnDays = userWorkoutData.slice(-period)
+    setPeriodWorkoutData(lastnDays)
+
+  }
+  getWorkoutDataLastnDays()
+}, [period]);
+
+//Calculate total calorie burn for the period
+
+useEffect(() => {
+const calculateTotalCalorieBurn = () => {
+  
+  let totalCalorie = 0;
+  let totalminutes = 0;
+
+
+  for (let i = 0; i < periodWorkoutData.length; i++) {
+
+    totalCalorie += periodWorkoutData[i].total_workout_calories
+    totalminutes += periodWorkoutData[i].workout_duration
+
+  }
+
+  //Convert minutes into hours minutes
+  const hours = totalminutes/60;
+  const rhours = Math.floor(hours);
+  const minutes = (hours - rhours) * 60;
+  const rminutes = Math.round(minutes);
+  const hoursminutes = rhours + " hour(s) and " + rminutes + " minute(s).";
+  
+  setTotalperiodData({
+    totalCalorie: totalCalorie,
+    totalhours: hoursminutes,
+  });
+}
+
+
+calculateTotalCalorieBurn()
+}, [periodWorkoutData]);
+
+const pickPeriod = (data) => {
+  setperiod(data);
+}
+
+
+
 
   return (
 
@@ -262,7 +324,7 @@ const submitExercise = (exerciseId, workoutId) => {
           <div className="app-header-bar">
           Summary
           </div>
-          <di>
+          <div>
           {exercises && exercises.map((item, index) => {
 
             return (
@@ -351,7 +413,7 @@ const submitExercise = (exerciseId, workoutId) => {
               </div>
             )
            })}
-          </di>
+          </div>
           <div>
             {exercises.length === 0 && 
             <>

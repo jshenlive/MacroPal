@@ -6,7 +6,7 @@ import '../App.scss';
 export default function WorkoutSummary (props) {
 
   //states
-  const [userWorkoutData, setUserWorkoutData] = useState("");
+  const [userWorkouts, setUserWorkouts] = useState("");
   const [period, setperiod] = useState(7);
   const [periodWorkoutData, setPeriodWorkoutData] = useState([]);
   const [totalperiodData, setTotalperiodData] = useState({
@@ -18,25 +18,45 @@ export default function WorkoutSummary (props) {
 
 let dateObj = new Date();
 
-let month = dateObj.getUTCMonth() + 1; //months from 1-12
+let month = dateObj.getMonth() + 1; //months from 1-12
 if (month < 10) {
   month = '0' + month
 }
-let day = dateObj.getUTCDate();
-let year = dateObj.getUTCFullYear();
+let day = dateObj.getDate();
+let year = dateObj.getFullYear();
 const todayDate = year + "-" + month + "-" + day;
 
-  //Get work out data for a user //
-  useEffect(() => {
+console.log('userWorkoutId', userWorkouts)
+////Fetch Today workout data on mount
+useEffect(() => {
 
-    if (props.state.user.id) {
-    Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
-
-      setUserWorkoutData(res.data);
+    Axios.get(`/api/workouts/user/${props.state.user.id}`).then(res => {
+      const workouts = res.data
+      const todayWorkouts = workouts.filter(workout => workout.date === todayDate)
+    
+      setUserWorkouts(todayWorkouts);
     })
-  }
+    
 
-  }, [props.state]);
+}, [props.state]);
+
+
+  // // Get work out data for a specific user and date//
+  // useEffect(() => {
+
+  //   setUserWorkoutDetails([]);
+
+  //   if (props.state.user.id && startDate) {
+  //   Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
+
+  //     const workouts = res.data
+  //     const todayWorkouts = workouts.filter(workout => workout.date === startDate.toISOString().substring(0, 10))
+  //     setUserWorkouts(todayWorkouts);
+  //   })
+  // }
+
+  // }, [startDate]);
+
 
 
 
@@ -45,7 +65,7 @@ const todayDate = year + "-" + month + "-" + day;
   useEffect(() => {
   const getWorkoutDataLastnDays = () => {
 
-    const lastnDays = userWorkoutData.slice(-period)
+    const lastnDays = userWorkouts.slice(-period)
     setPeriodWorkoutData(lastnDays)
 
   }
@@ -94,7 +114,7 @@ const pickPeriod = (data) => {
 console.log('period', period)
 
 return (
-  <Container className="container-margins">
+  <Container className="container-margins app-section">
   <h1 className="mb-5">Past 7 Days Workouts: </h1>
     <>
       <Form.Select 

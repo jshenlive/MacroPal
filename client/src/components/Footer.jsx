@@ -8,7 +8,7 @@ export default function Footer () {
       <Row>
         <footer className="footer mt-auto">
           {/* <div>	Copyright &copy; FitPal All rights reserved</div> */}
-          <div>FitPalalå</div>
+          <div>Contact Us</div>
           <div>Resources</div>
           <div>About Us</div>
           <div>
