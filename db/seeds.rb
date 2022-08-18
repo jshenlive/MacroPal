@@ -48,6 +48,33 @@ u = User.create!({
 
 puts "Added Users"
 
+# Let's Creae Another User ...
+puts "Creating initial users ..."
+
+u = User.create!({
+  first_name: "Gloria",
+  last_name: "Higgins",
+  username: "Gloria",
+  email: "GloriaDHiggins@dayrep.com",
+  avatar_url: "https://static.vecteezy.com/system/resources/thumbnails/002/002/257/small_2x/beautiful-woman-avatar-character-icon-free-vector.jpg",
+  age: 27,
+  birthday: "1992-08-05",
+  gender: "male",
+  goal: "active",
+  weight_kg: 64,
+  weight_class: "calories_burned_s",
+  height_cm: 165,
+  city: 'Tofino',
+  province: 'BC',
+  country: 'Canada',
+  is_admin: true,
+  message: "this is 'get' from test user: Gloria",
+  password: "gloria123",
+  password_confirmation: "gloria123"
+})
+
+puts "Added Users"
+
 puts "Finding or Creating Initial Exercises"
 exercisesfile = Rails.root + 'db/seed_assets/exercises.csv'
 
@@ -68,23 +95,6 @@ avatar_file = Rails.root + 'db/seed_assets/avatars.csv'
 CSV.foreach(avatar_file, headers: true) do |row|
   Avatar.find_or_create_by({url: row[0]}) do |t|
     t.url = row[0].to_s
-  end
-end 
-
-
-
-puts "Finding or Creating Initial Workouts for Jojo"
-workouts_file = Rails.root + 'db/seed_assets/workouts_file.csv'
-
-CSV.foreach(workouts_file, headers: true) do |row|
-  Workout.find_or_create_by({id: row[0]}) do |t|
-    t.id = row[0]
-    t.total_workout_calories = row[1]
-    t.workout_duration = row[2]
-    t.date = row[3]
-    t.user_id = row[4]
-    t.created_at = row[5]
-    t.updated_at = row[6]
   end
 end 
 
@@ -222,6 +232,37 @@ lm5 = LineFood.create!({
 
 puts "Yesterday Data ADDED"
 
+
+puts "Finding or Creating Initial Workouts for Gloria"
+workouts_file = Rails.root + 'db/seed_assets/workouts_file.csv'
+
+CSV.foreach(workouts_file, headers: true) do |row|
+  Workout.find_or_create_by({id: row[0]}) do |t|
+    t.id = row[0]
+    t.total_workout_calories = row[1]
+    t.workout_duration = row[2]
+    t.date = row[3]
+    t.user_id = row[4]
+    t.created_at = row[5]
+    t.updated_at = row[6]
+  end
+end 
+
+puts "Gloria Workouts ADDED"
+
+puts "Finding or Creating Initial linexercise for Gloria"
+workouts_file = Rails.root + 'db/seed_assets/line_exercises.csv'
+CSV.foreach(workouts_file, headers: true) do |row|
+  LineExercise.find_or_create_by({id: row[0]}) do |t|
+    t.workout_id = row[0]
+    t.exercise_id = row[1]
+    t.total_exercise_calories = row[2]
+    t.exercise_duration = row[3]
+    t.name = row[4]
+  end
+end 
+
+puts "Gloria Exercises ADDED"
 # exercise=
 # exercise_duration = 30
 # l = LineExercise.create!({
