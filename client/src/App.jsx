@@ -11,6 +11,7 @@ import Meals from './components/Meals';
 import MealList from './components/MealList';
 import Profile from './components/Profile';
 import Summary from './components/Summary';
+import WorkoutOverview from './components/WorkoutOverview'
 import axios from 'axios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.scss';
@@ -74,6 +75,7 @@ class App extends Component {
          <Route  exact path='/workoutList' element={<WorkoutList  state={this.state}/>}/>
          <Route  exact path='/summary' element={<Summary />}/>
          <Route  exact path='/profile' element={<Profile state={this.state} />}/>
+         <Route  exact path='/workout-overview' element={<WorkoutOverview state={this.state} />}/>
          <Route  exact path='/loading' element={<Loading/>}/>
         </Routes>
       </BrowserRouter>
