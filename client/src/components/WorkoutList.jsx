@@ -218,58 +218,6 @@ const submitExercise = (exerciseId, workoutId) => {
     }    
 
 
-/////get workout data for last n days///////
-///////////////////////////////////////////
-useEffect(() => {
-  const getWorkoutDataLastnDays = () => {
-
-    const lastnDays = userWorkoutData.slice(-period)
-    setPeriodWorkoutData(lastnDays)
-
-  }
-  getWorkoutDataLastnDays()
-}, [period]);
-
-//Calculate total calorie burn for the period
-
-useEffect(() => {
-const calculateTotalCalorieBurn = () => {
-  
-  let totalCalorie = 0;
-  let totalminutes = 0;
-
-
-  for (let i = 0; i < periodWorkoutData.length; i++) {
-
-    totalCalorie += periodWorkoutData[i].total_workout_calories
-    totalminutes += periodWorkoutData[i].workout_duration
-
-  }
-
-  //Convert minutes into hours minutes
-  const hours = totalminutes/60;
-  const rhours = Math.floor(hours);
-  const minutes = (hours - rhours) * 60;
-  const rminutes = Math.round(minutes);
-  const hoursminutes = rhours + " hour(s) and " + rminutes + " minute(s).";
-  
-  setTotalperiodData({
-    totalCalorie: totalCalorie,
-    totalhours: hoursminutes,
-  });
-}
-
-
-calculateTotalCalorieBurn()
-}, [periodWorkoutData]);
-
-const pickPeriod = (data) => {
-  setperiod(data);
-}
-
-
-
-
   return (
 
 <Container className="container-margins">
