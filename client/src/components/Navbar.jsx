@@ -30,6 +30,8 @@ export default function Fitpalnavbar(props) {
             <>
             <Nav.Link href="/">Home</Nav.Link>
 
+            <Nav.Link href="/profile">Profile</Nav.Link>
+
             <NavDropdown title="Meals" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/meals">Add</NavDropdown.Item>
               <NavDropdown.Divider />
@@ -37,9 +39,9 @@ export default function Fitpalnavbar(props) {
             </NavDropdown>
 
             <NavDropdown title="Workouts" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/addworkout">Manage</NavDropdown.Item>
+              <NavDropdown.Item href="/addworkout">Add</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/workoutList">Summary</NavDropdown.Item>
+              <NavDropdown.Item href="/workoutList">Manage</NavDropdown.Item>
             </NavDropdown>
 
             </>
@@ -61,7 +63,7 @@ export default function Fitpalnavbar(props) {
             {props.state.isLoggedIn && 
             <>
             <a className="navbar-brand">{props.state.user.first_name}, You're a <span className='couch-potato'>Couch</span> <span className='fit-potato'>Fit!</span> Pot ATO! 🥔</a>
-            <Nav.Link href="/profile">Profile</Nav.Link>
+            {/* <Nav.Link href="/profile">Profile</Nav.Link> */}
             <Nav.Link eventKey={2} onClick={logout}>
             Log out
             </Nav.Link>

@@ -219,7 +219,7 @@ useEffect(() => {
 
   const resetFormInput = () => {
     setExerciseCalories(0);
-    setDurations(0);
+    setDurations("");
   }
 
  return (
@@ -324,7 +324,7 @@ useEffect(() => {
 
                 <Col md={{ span: 5, offset: 4 }}>
                   <div className="animate-charcter info-text">
-                  {durations && query? <div> Calories burned:{exerciseCalories} </div> : <span>Calories burned:0 </span>}
+                  {durations && query? <div> Estimate Calorie Burn: {exerciseCalories} kCal</div> : <span>Calories burned:0 </span>}
                   </div>
                   <br/>
                 </Col>

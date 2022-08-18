@@ -187,8 +187,8 @@ lm1 = LineFood.create!({
 lm2 = LineFood.create!({
   name: "Egg Toast",
   meal_type: "1breakfast",
-  food_amount: 250,
-  total_food_calories: 612,
+  food_amount: 125,
+  total_food_calories: 306,
   food_id: 2,
   meal_id: 1  
 })
