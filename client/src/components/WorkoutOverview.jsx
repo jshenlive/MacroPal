@@ -73,11 +73,14 @@ useEffect(() => {
 
     setUserWorkoutDetails([]);
 
-    if (props.state.user.id && startDate) {
+    if (props.state.user.id && startDate && endDate) {
+
+      
+
     Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
 
       const workouts = res.data
-    
+    console.log('endDate', endDate)
       const periodStart = startDate.toISOString().substring(8, 10)
       const periodEnd = endDate.toISOString().substring(8, 10)
   
@@ -107,6 +110,8 @@ useEffect(() => {
       setPeriodLables(periodLables);
       
     })
+
+  
   }
 
   }, [endDate]);
