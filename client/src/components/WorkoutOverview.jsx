@@ -1,23 +1,42 @@
 import Axios from "axios";
-import React, { useState, useEffect, } from "react";
-import { Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap';
-import '../App.scss';
+import React, { useState, useEffect } from "react";
+import WorkoutChart from './WorkoutChart';
+import DatePicker from "react-datepicker";
+import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
+import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from 'react-router-dom';
+import '../App.scss'
 
-export default function WorkoutSummary (props) {
 
-  //states
-  const [userWorkouts, setUserWorkouts] = useState("");
-  const [period, setperiod] = useState(7);
+export default function WorkoutList (props) {
+
+
+const [totalWorkoutCalories, setTotalWorkoutCalories] = useState([]);
+const [totalworkoutDuration, setTotalworkoutDuration] = useState([]);
+const [userWorkoutData, setUserWorkoutData] = useState([]);
+const [periodLables, setPeriodLables] = useState([]);
+const [userWorkoutDetails, setUserWorkoutDetails] = useState([]);
+const [exerciseEdit, setExerciseEdit] = useState(-1);
+const [durations, setDurations] = useState("");
+const [exercises, setexercises] = useState([]);
+const [startDate, setStartDate] = useState(new Date());
+const [endDate, setEndDate] = useState(null);
+const navigate = useNavigate();
+///////////////////////////
+const [period, setperiod] = useState(7);
   const [periodWorkoutData, setPeriodWorkoutData] = useState([]);
-  const [totalperiodData, setTotalperiodData] = useState({
-    totalCalorie: "",
-    totalhours: "",
-  });
+  const [totalperiodData, setTotalperiodData] = useState({});
+////////////////////////////////
+////////////Daypicker//////////
+const onChange = (dates) => {
+  const [start, end] = dates;
+  setStartDate(start);
+  setEndDate(end);
+};
 
-////Calculate date(Today)
 
+//Calculate today date
 let dateObj = new Date();
-
 let month = dateObj.getMonth() + 1; //months from 1-12
 if (month < 10) {
   month = '0' + month
@@ -26,131 +45,301 @@ let day = dateObj.getDate();
 let year = dateObj.getFullYear();
 const todayDate = year + "-" + month + "-" + day;
 
-console.log('userWorkoutId', userWorkouts)
-////Fetch Today workout data on mount
+
 useEffect(() => {
 
-    Axios.get(`/api/workouts/user/${props.state.user.id}`).then(res => {
-      const workouts = res.data
-      const todayWorkouts = workouts.filter(workout => workout.date === todayDate)
-    
-      setUserWorkouts(todayWorkouts);
+  //with flat1 we clean the variable from repeated items in nested loop
+  const exercisesState = userWorkoutDetails.map((item) => {
+
+    const lineExercises = item.line_exercises;
+
+    return lineExercises.map(nestedItem => {
+
+      return nestedItem
+
     })
+
     
+  }).flat(1)
 
-}, [props.state]);
+  
+  setexercises(exercisesState)
 
-
-  // // Get work out data for a specific user and date//
-  // useEffect(() => {
-
-  //   setUserWorkoutDetails([]);
-
-  //   if (props.state.user.id && startDate) {
-  //   Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
-
-  //     const workouts = res.data
-  //     const todayWorkouts = workouts.filter(workout => workout.date === startDate.toISOString().substring(0, 10))
-  //     setUserWorkouts(todayWorkouts);
-  //   })
-  // }
-
-  // }, [startDate]);
+}, [userWorkoutDetails])
 
 
+  // Get work out data for a specific user and date//
+  useEffect(() => {
+
+    setUserWorkoutDetails([]);
+
+    if (props.state.user.id && startDate) {
+    Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
+
+      const workouts = res.data
+    
+      const periodStart = startDate.toISOString().substring(8, 10)
+      const periodEnd = endDate.toISOString().substring(8, 10)
+  
+
+      const periodWorkoutData = [];
+      const periodTotalworkoutDuration = [];
+      const periodTotalWorkoutCalories = [];
+      const periodLables = [];
 
 
-  /////get workout data for last n days
+      workouts.forEach(workout => {
+        if (workout.date.substring(8, 10) >= periodStart && workout.date.substring(8, 10) <= periodEnd) {
+
+          periodWorkoutData.push(workout);
+          periodTotalworkoutDuration.push(workout.workout_duration);
+          periodTotalWorkoutCalories.push(workout.total_workout_calories);
+          periodLables.push(workout.date);
+
+
+        }
+
+        });
+        
+      setUserWorkoutData(periodWorkoutData);
+      setTotalWorkoutCalories(periodTotalWorkoutCalories);
+      setTotalworkoutDuration(periodTotalworkoutDuration);
+      setPeriodLables(periodLables);
+      
+    })
+  }
+
+  }, [endDate]);
+
+
+  /////////// Get Exercise Info//////
 
   useEffect(() => {
-  const getWorkoutDataLastnDays = () => {
 
-    const lastnDays = userWorkouts.slice(-period)
-    setPeriodWorkoutData(lastnDays)
+    userWorkoutData.forEach((item) => {
+
+      Axios.get(`/api/workouts/${item.id}`).then (res => {
+
+        if (res.data.exercises.length !== 0) {
+
+          setUserWorkoutDetails((prev) => ([...prev, res.data]))
+
+        }
+  
+      });
+
+    })
+
+  }, [userWorkoutData])
+
+/////////////////////////////////
+/////////////////////////////////
+
+//Input durations change handler
+const onDurationInputChangeHandler = (event) => {
+
+  const regExp = /[a-zA-Z]/g;
+
+  if (!regExp.test(event.target.value)) {
+
+    setDurations(event.target.value)
 
   }
-  getWorkoutDataLastnDays()
-}, [period]);
 
-//Calculate total calorie burn for the period
-
-useEffect(() => {
-const calculateTotalCalorieBurn = () => {
-  
-  let totalCalorie = 0;
-  let totalminutes = 0;
+};
 
 
-  for (let i = 0; i < periodWorkoutData.length; i++) {
+const navigateToAddMeal = () => {
 
-    totalCalorie += periodWorkoutData[i].total_workout_calories
-    totalminutes += periodWorkoutData[i].workout_duration
+  navigate('/addworkout');
 
-  }
-
-  //Convert minutes into hours minutes
-  const hours = totalminutes/60;
-  const rhours = Math.floor(hours);
-  const minutes = (hours - rhours) * 60;
-  const rminutes = Math.round(minutes);
-  const hoursminutes = rhours + " hour(s) and " + rminutes + " minute(s).";
-  
-  setTotalperiodData({
-    totalCalorie: totalCalorie,
-    totalhours: hoursminutes,
-  });
 }
 
+////// Delete Exercise ///////
+const deleteExercise = (exerciseId, workoutId) => {
+
+
+  Axios.delete(`/api/line_exercises/${exerciseId}`).then (res => {
 
 
 
-calculateTotalCalorieBurn()
-}, [periodWorkoutData]);
+    const workoutDetailsElement = userWorkoutDetails.find(element => element.workout.id === workoutId);
+    const workoutDetailsElementIndex = userWorkoutDetails.findIndex(element => element.workout.id === workoutId);
+    const elementLineExerciseTodeleteIndex = workoutDetailsElement.line_exercises.findIndex(element => element.id === exerciseId);
+
+
+
+    let newExercises = [...userWorkoutDetails[workoutDetailsElementIndex].exercises]
+
+    newExercises.splice(elementLineExerciseTodeleteIndex, 1)
+
+    let newLineExercises = [...userWorkoutDetails[workoutDetailsElementIndex].line_exercises]
+    newLineExercises.splice(elementLineExerciseTodeleteIndex, 1)
+
+    const newuserWorkoutDetailsElement = {
+      ...userWorkoutDetails[workoutDetailsElementIndex],
+
+      exercises: newExercises,
+      line_exercises: newLineExercises,
+    }
+
+    let userWorkoutDetailsCopy = [...userWorkoutDetails]
+    userWorkoutDetailsCopy[workoutDetailsElementIndex] = newuserWorkoutDetailsElement
+
+    setUserWorkoutDetails(userWorkoutDetailsCopy);
+
+  }).catch((error) => console.log(error))
+
+    }
+
+    //////// Edit Exercise /////////
+const editExercise = (index) => {
+
+  setExerciseEdit(index)
+
+    }
+
+/////////Submit Button ///////////////
+const submitExercise = (exerciseId, workoutId) => {
+
+
+
+  return Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": workoutId, "exercise_id": exerciseId, "exercise_duration":durations})
+  .then (() => {
+
+    setUserWorkoutDetails([]);
+    setExerciseEdit(-1);
+
+    userWorkoutData.forEach((item) => {
+
+      Axios.get(`/api/workouts/${item.id}`).then (res => {
+
+        setUserWorkoutDetails((prev) => ([...prev, res.data]))
+  
+      });
+
+    })
+
+    //Later change this part to update exercise to reflect changes to the exercise
+    Axios.get(`/api/workouts/${userWorkoutData}`).then (res => {
+
+
+      setUserWorkoutDetails(res.data)
+    //////
+
+
+    });
+
+
+  }).catch(error => console.log(error));
+  //Ideally this part should rendere an error message on the page below the post
+
+    }    
+
+/////get workout data for last n days///////
+///////////////////////////////////////////
+useEffect(() => {
+
+  const caloriesSum = totalWorkoutCalories.reduce((partialSum, a) => partialSum + a, 0);
+  const durationSum = totalworkoutDuration.reduce((partialSum, a) => partialSum + a, 0);
+  const daysNumber = periodLables.length
+  const hours = durationSum/60;
+
+  setTotalperiodData({
+    totalCalorie: caloriesSum,
+    totalhours: hours,
+    days: daysNumber,
+  });
+
+}, [totalWorkoutCalories, totalworkoutDuration, periodLables]);
+
 
 const pickPeriod = (data) => {
   setperiod(data);
 }
+console.log()
+  return (
 
-console.log('period', period)
+<Container className="container-margins">
 
-return (
-  <Container className="container-margins app-section">
-  <h1 className="mb-5">Past 7 Days Workouts: </h1>
-    <>
-      <Form.Select 
-      className="mb-5" 
-      size="sm"
-      onChange={(event)=> pickPeriod(event.target.value)}
-      >
-        <option>Please Select a period</option>
-        <option value="1">One Day</option>
-        <option value="7">7 Days</option>
-        <option value="14">Two weeks</option>
-        <option value="30">One Month</option>
-        <option value="180">6 months</option>
-        <option value="365">Year</option>
-      </Form.Select>
-    </>
+  <Row>
 
-  {periodWorkoutData && period && periodWorkoutData.map((item, index) => {
+<Col className="calendar-header " xs={3}>
 
-            return (
 
-              <div key={index}>
+      <DatePicker
+      selected={startDate}
+      onChange={onChange}
+      startDate={startDate}
+      endDate={endDate}
+      selectsRange
+      inline
+      />
+    <div className="mb-1">Please select a date</div>
 
-              <h4>Date: {item.date} </h4>
-              <div>Total Calories:  {item.total_workout_calories} </div>
-              <div>Total Minutes:  {item.workout_duration} </div>
-              <hr></hr>
+  <Card className="background-img card mt-2">
+    <Card.Body>
+      <h3>Overview {totalperiodData.days && <span> For {totalperiodData.days} Days</span>}</h3>
+    <div>
+    <h5 className="heading">Burned {totalperiodData.totalCalorie && <span>{totalperiodData.totalCalorie} Kcal</span>} </h5>
+    </div>
+    <div>
+      <h5 className="heading">Physical Activity {totalperiodData.totalhours && <span>{Math.round(totalperiodData.totalhours)} Hours</span>}</h5>
+    </div>
+    </Card.Body>
+  </Card>
 
-              </div>
+<Col className="mt-3">
+    <Button 
+    className="mr-5" 
+    variant="info" 
+    type="submit"
+    onClick={() => {navigateToAddMeal()}}
+    >
+      Log an activity
+    </Button>
+  </Col> 
+</Col>
 
-            )
-      })}
 
-  <h1 className="mb-3">Total Calories burned: {totalperiodData.totalCalorie} Calories</h1>
-  <h1 >Total Hour Working out: {totalperiodData.totalhours} </h1>
-  </Container>
-);
+<Col>
+        {totalWorkoutCalories.length === 0 ?
+        <>
+      <Alert variant="info">
+      <Alert.Heading
+      className="mb-3"
+      >Physical Activities</Alert.Heading>
+      <p>
+      Physical activity or exercise can improve your health and reduce the risk of developing several diseases like type 2 diabetes, cancer and cardiovascular disease. Physical activity and exercise can have immediate and long-term health benefits. Most importantly, regular activity can improve your quality of life.
+      You can now view details about how much active you are during a period of time, please go ahead and pick a date!
+      </p>
+      </Alert>
+      <img className="chart-image center" src="http://cdn.shopify.com/s/files/1/0013/1471/7798/articles/shutterstock_564335488_1024x1024.jpg?v=1589827933"></img>
+        </>
+          :
 
+        <>
+        <div  className="app-section-chart">
+      <div>
+      <WorkoutChart 
+      lables={periodLables}
+      calories={totalWorkoutCalories}
+      duration={totalworkoutDuration}
+      />
+      </div> 
+      <div className="chart-info"><Button className="chart-button-green mb-5" variant="success" disabled>Duration</Button>&nbsp;&nbsp;&nbsp;<Button className="chart-button-blue mb-5" variant="primary" disabled>Calories</Button></div>
+      </div>
+        </>
+        }
+
+      </Col>
+      
+
+
+      </Row>
+
+
+   </Container>
+  );
 }
+

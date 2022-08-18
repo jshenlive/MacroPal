@@ -35,6 +35,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
 	}
 }
 
+
 .form-login {
   background-color: rgba(255,255,255,0.83);
   border-radius: 10px;
@@ -207,7 +208,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
 
 .user-welcome {
   border-radius: 20px 50px;
-  background: #143774;
+  background: #1b263b;
   color: white;
   height: 32px;
   text-align: center;
@@ -222,6 +223,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
   justify-content: space-between;
   margin-left: 102px;
   font-weight: bold;
+}
+
+.fw-light {
+  background-color: rgba(255, 0, 0, 0.181);
+  color: rgb(255, 255, 255) !important;
 }
 
 .app-section-top {
@@ -242,6 +248,43 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f233c', end
   box-shadow: 0 0 40px rgba(8,7,16,0.6);
   margin-bottom: 32px;
 }
+
+.app-section-chart {
+  background-color: rgba(219, 219, 219, 0.83);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-top: 10px;
+  padding-top: 2px;
+  font-weight: bold;
+}
+
+.chart-image {
+  width: 600px;
+  height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+
+.chart-info {
+  text-align: center;
+}
+
+.chart-button-green {
+  background-color: #A1CA7F;
+  color: black;
+  font-weight: bold;
+}
+
+.chart-button-blue {
+  color: #6171C0;
+  color: white;
+  font-weight: bold;
+}
+
 
 .app-section-summary {
   background-color: rgba(255,255,255,0.83);
