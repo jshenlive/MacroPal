@@ -125,29 +125,38 @@ const navigateToAddMeal = () => {
 }
 
 ////// Delete Exercise ///////
-const deleteExercise = (exerciseId, index) => {
+const deleteExercise = (exerciseId, workoutId) => {
 
 
   Axios.delete(`/api/line_exercises/${exerciseId}`).then (res => {
 
-    console.log('serWorkoutDetails', userWorkoutDetails)
+    console.log('######serWorkoutDetails', userWorkoutDetails)
+    console.log("test", userWorkoutDetails[0].workout.id)
+
+    const workoutDetailsElement = userWorkoutDetails.find(element => element.workout.id === workoutId);
+    const workoutDetailsElementIndex = userWorkoutDetails.findIndex(element => element.workout.id === workoutId);
+    const elementLineExerciseTodeleteIndex = workoutDetailsElement.line_exercises.findIndex(element => element.id === exerciseId);
+    console.log('elementLineExerciseTodelete', elementLineExerciseTodeleteIndex);
 
 
+    let newExercises = [...userWorkoutDetails[workoutDetailsElementIndex].exercises]
 
-    let newExercises = [...userWorkoutDetails.exercises]
-    newExercises.splice(index, 1)
+    newExercises.splice(elementLineExerciseTodeleteIndex, 1)
 
-    let newLineExercises = [...userWorkoutDetails.line_exercises]
-    newLineExercises.splice(index, 1)
+    let newLineExercises = [...userWorkoutDetails[workoutDetailsElementIndex].line_exercises]
+    newLineExercises.splice(elementLineExerciseTodeleteIndex, 1)
 
-    const newuserWorkoutDetails = {
-      ...userWorkoutDetails,
+    const newuserWorkoutDetailsElement = {
+      ...userWorkoutDetails[workoutDetailsElementIndex],
 
       exercises: newExercises,
       line_exercises: newLineExercises,
     }
 
-    setUserWorkoutDetails(newuserWorkoutDetails);
+    let userWorkoutDetailsCopy = [...userWorkoutDetails]
+    userWorkoutDetailsCopy[workoutDetailsElementIndex] = newuserWorkoutDetailsElement
+
+    setUserWorkoutDetails(userWorkoutDetailsCopy);
 
   }).catch((error) => console.log(error))
 
@@ -171,7 +180,7 @@ const submitExercise = (exerciseId, workoutId) => {
 
     setUserWorkoutDetails([]);
     setExerciseEdit(-1);
-    
+
     userWorkoutData.forEach((item) => {
 
       Axios.get(`/api/workouts/${item.id}`).then (res => {
@@ -198,7 +207,7 @@ const submitExercise = (exerciseId, workoutId) => {
 
     }    
 
-    console.log("start date", startDate)
+
 
   return (
 
