@@ -48,33 +48,6 @@ u = User.create!({
 
 puts "Added Users"
 
-# Let's Creae Another User ...
-puts "Creating initial users ..."
-
-u = User.create!({
-  first_name: "Gloria",
-  last_name: "Higgins",
-  username: "Gloria",
-  email: "GloriaDHiggins@dayrep.com",
-  avatar_url: "https://static.vecteezy.com/system/resources/thumbnails/002/002/257/small_2x/beautiful-woman-avatar-character-icon-free-vector.jpg",
-  age: 27,
-  birthday: "1992-08-05",
-  gender: "male",
-  goal: "active",
-  weight_kg: 64,
-  weight_class: "calories_burned_s",
-  height_cm: 165,
-  city: 'Tofino',
-  province: 'BC',
-  country: 'Canada',
-  is_admin: true,
-  message: "this is 'get' from test user: Gloria",
-  password: "gloria123",
-  password_confirmation: "gloria123"
-})
-
-puts "Added Users"
-
 puts "Finding or Creating Initial Exercises"
 exercisesfile = Rails.root + 'db/seed_assets/exercises.csv'
 
@@ -233,7 +206,7 @@ lm5 = LineFood.create!({
 puts "Yesterday Data ADDED"
 
 
-puts "Finding or Creating Initial Workouts for Gloria"
+puts "Finding or Creating Initial Workouts for Jojo"
 workouts_file = Rails.root + 'db/seed_assets/workouts_file.csv'
 
 CSV.foreach(workouts_file, headers: true) do |row|
@@ -248,9 +221,9 @@ CSV.foreach(workouts_file, headers: true) do |row|
   end
 end 
 
-puts "Gloria Workouts ADDED"
+puts "Jojo Workouts ADDED"
 
-puts "Finding or Creating Initial linexercise for Gloria"
+puts "Finding or Creating Initial linexercise for Jojo"
 workouts_file = Rails.root + 'db/seed_assets/line_exercises.csv'
 CSV.foreach(workouts_file, headers: true) do |row|
   LineExercise.find_or_create_by({id: row[0]}) do |t|
@@ -262,7 +235,7 @@ CSV.foreach(workouts_file, headers: true) do |row|
   end
 end 
 
-puts "Gloria Exercises ADDED"
+puts "Jojo Exercises ADDED"
 # exercise=
 # exercise_duration = 30
 # l = LineExercise.create!({
