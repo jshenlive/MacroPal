@@ -162,7 +162,6 @@ const deleteExercise = (exerciseId, workoutId) => {
 
     }
 
-  
     //////// Edit Exercise /////////
 const editExercise = (index) => {
 
@@ -256,14 +255,14 @@ const submitExercise = (exerciseId, workoutId) => {
   </Col> 
 </Col>
 
+    <Col>
 
-  <Col>
-
-  <Row className="app-section">
+         <Row className="app-section">
   
-  <div className="app-header-bar">
-    Summary
-  </div>
+          <div className="app-header-bar">
+          Summary
+          </div>
+          <di>
           {exercises && exercises.map((item, index) => {
 
             return (
@@ -302,6 +301,7 @@ const submitExercise = (exerciseId, workoutId) => {
                       <Button 
                       variant="info" 
                       type="submit"
+                      className="button-tool"
                       onClick={() => {item.id && deleteExercise(item.id, item.workout_id)}}
                       >
                         Delete
@@ -311,6 +311,7 @@ const submitExercise = (exerciseId, workoutId) => {
                        {exerciseEdit === index &&
                       <Button 
                       variant="info" 
+                      className="button-tool"
                       type="submit"
                       onClick={() => {item.id && submitExercise(item.id, item.workout_id)}}
                       >
@@ -322,7 +323,7 @@ const submitExercise = (exerciseId, workoutId) => {
                       {exerciseEdit !== index &&
                       
                       <Button 
-                      className="post-button" 
+                      className="button-tool"
                       variant="info" 
                       type="submit"
                       onClick={() => {item.id && editExercise(index)}}
@@ -333,7 +334,7 @@ const submitExercise = (exerciseId, workoutId) => {
                     {exerciseEdit === index &&
                      
                      <Button 
-                     className="post-button" 
+                     className="button-tool"
                      variant="info" 
                      type="submit"
                      onClick={() => {item.id && setExerciseEdit(-1)}}
@@ -349,15 +350,24 @@ const submitExercise = (exerciseId, workoutId) => {
                     </div>
               </div>
             )
-      })}
+           })}
+          </di>
+          <div>
+            {exercises.length === 0 && 
+            <>
+            <p className="mt-3">
+              Like Strong, this app allows you to track your workouts. The app comes with exercises and plans already registered and you can add others. You can also create routines, track your progress over time, and record your weight and body measurements. With the app, you get access to the community of people who use Jefit and the training plans they create, something you do not get with Strong.
+            </p>
+            <p className="mt-2"> An app to record your workouts in an easy and intuitive way. The app comes with exercises and plans already registered, but you can also add your own. Create your routines and track your progress over time. Finally, the app also allows you to record your weight and body measurements.</p>
+            </>
+            }
+          </div>
+        </Row>
 
-      
-    </Row>
+      </Col>
 
+      </Row>
 
-  </Col>
-
-</Row>
    </Container>
   );
 }

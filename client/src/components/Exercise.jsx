@@ -141,6 +141,7 @@ const onDurationInputChangeHandler = (event) => {
                       
                       <Button 
                       variant="info" 
+                      className="button-tool"
                       type="submit"
                       onClick={() => {lineExercise && deleteExercise(lineExercise[index].id, index)}}
                       >
