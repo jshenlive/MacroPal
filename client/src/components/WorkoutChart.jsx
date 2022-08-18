@@ -16,7 +16,7 @@ const lableData = trimlable.sort(function(a, b) {
 
 const option = {
   xAxis: {
-    name: "Calories / Duration",
+    name: "Cal / Duration",
     type: 'category',
     data: lableData,
   },

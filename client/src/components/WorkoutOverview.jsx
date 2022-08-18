@@ -25,10 +25,7 @@ const navigate = useNavigate();
 ///////////////////////////
 const [period, setperiod] = useState(7);
   const [periodWorkoutData, setPeriodWorkoutData] = useState([]);
-  const [totalperiodData, setTotalperiodData] = useState({
-    totalCalorie: "",
-    totalhours: "",
-  });
+  const [totalperiodData, setTotalperiodData] = useState({});
 ////////////////////////////////
 ////////////Daypicker//////////
 const onChange = (dates) => {
@@ -83,6 +80,7 @@ useEffect(() => {
     
       const periodStart = startDate.toISOString().substring(8, 10)
       const periodEnd = endDate.toISOString().substring(8, 10)
+  
 
       const periodWorkoutData = [];
       const periodTotalworkoutDuration = [];
@@ -91,12 +89,15 @@ useEffect(() => {
 
 
       workouts.forEach(workout => {
+        if (workout.date.substring(8, 10) >= periodStart && workout.date.substring(8, 10) <= periodEnd) {
 
-          if (workout.date.substring(8, 10) >= periodStart && workout.date.substring(8, 10) <= periodEnd)
           periodWorkoutData.push(workout);
           periodTotalworkoutDuration.push(workout.workout_duration);
           periodTotalWorkoutCalories.push(workout.total_workout_calories);
           periodLables.push(workout.date);
+
+
+        }
 
         });
         
@@ -238,53 +239,25 @@ const submitExercise = (exerciseId, workoutId) => {
 /////get workout data for last n days///////
 ///////////////////////////////////////////
 useEffect(() => {
-  const getWorkoutDataLastnDays = () => {
 
-    const lastnDays = userWorkoutData.slice(-period)
-    setPeriodWorkoutData(lastnDays)
+  const caloriesSum = totalWorkoutCalories.reduce((partialSum, a) => partialSum + a, 0);
+  const durationSum = totalworkoutDuration.reduce((partialSum, a) => partialSum + a, 0);
+  const daysNumber = periodLables.length
+  const hours = durationSum/60;
 
-  }
-  getWorkoutDataLastnDays()
-}, [period]);
-
-//Calculate total calorie burn for the period
-
-useEffect(() => {
-const calculateTotalCalorieBurn = () => {
-  
-  let totalCalorie = 0;
-  let totalminutes = 0;
-
-
-  for (let i = 0; i < periodWorkoutData.length; i++) {
-
-    totalCalorie += periodWorkoutData[i].total_workout_calories
-    totalminutes += periodWorkoutData[i].workout_duration
-
-  }
-
-  //Convert minutes into hours minutes
-  const hours = totalminutes/60;
-  const rhours = Math.floor(hours);
-  const minutes = (hours - rhours) * 60;
-  const rminutes = Math.round(minutes);
-  const hoursminutes = rhours + " hour(s) and " + rminutes + " minute(s).";
-  
   setTotalperiodData({
-    totalCalorie: totalCalorie,
-    totalhours: hoursminutes,
+    totalCalorie: caloriesSum,
+    totalhours: hours,
+    days: daysNumber,
   });
-}
 
+}, [totalWorkoutCalories, totalworkoutDuration, periodLables]);
 
-calculateTotalCalorieBurn()
-}, [periodWorkoutData]);
 
 const pickPeriod = (data) => {
   setperiod(data);
 }
-
-
+console.log()
   return (
 
 <Container className="container-margins">
@@ -306,16 +279,12 @@ const pickPeriod = (data) => {
 
   <Card className="background-img card mt-2">
     <Card.Body>
-      <h3>Overview</h3>
+      <h3>Overview {totalperiodData.days && <span> For {totalperiodData.days} Days</span>}</h3>
     <div>
-      <h5><span>Calories</span></h5>
-      <h5 className="heading">Carbs</h5>
+    <h5 className="heading">Burned {totalperiodData.totalCalorie && <span>{totalperiodData.totalCalorie} Kcal</span>} </h5>
     </div>
     <div>
-      <h5 className="heading">Fat</h5>
-    </div>
-    <div>
-      <h5 className="heading">Protein g</h5>
+      <h5 className="heading">Physical Activity {totalperiodData.totalhours && <span>{Math.round(totalperiodData.totalhours)} Hours</span>}</h5>
     </div>
     </Card.Body>
   </Card>
