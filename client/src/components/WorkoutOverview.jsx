@@ -1,7 +1,8 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Form, Container, Row, Col, Card, Button, FloatingLabel } from 'react-bootstrap';
+import WorkoutChart from './WorkoutChart';
 import DatePicker from "react-datepicker";
+import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
 import '../App.scss'
@@ -13,6 +14,7 @@ export default function WorkoutList (props) {
 const [totalWorkoutCalories, setTotalWorkoutCalories] = useState([]);
 const [totalworkoutDuration, setTotalworkoutDuration] = useState([]);
 const [userWorkoutData, setUserWorkoutData] = useState([]);
+const [periodLables, setPeriodLables] = useState([]);
 const [userWorkoutDetails, setUserWorkoutDetails] = useState([]);
 const [exerciseEdit, setExerciseEdit] = useState(-1);
 const [durations, setDurations] = useState("");
@@ -34,6 +36,7 @@ const onChange = (dates) => {
   setStartDate(start);
   setEndDate(end);
 };
+
 
 //Calculate today date
 let dateObj = new Date();
@@ -84,18 +87,23 @@ useEffect(() => {
       const periodWorkoutData = [];
       const periodTotalworkoutDuration = [];
       const periodTotalWorkoutCalories = [];
+      const periodLables = [];
+
 
       workouts.forEach(workout => {
 
           if (workout.date.substring(8, 10) >= periodStart && workout.date.substring(8, 10) <= periodEnd)
           periodWorkoutData.push(workout);
-          periodTotalworkoutDuration.push(workout.workout_duration)
-          periodTotalWorkoutCalories.push(workout.total_workout_calories)
-      });
+          periodTotalworkoutDuration.push(workout.workout_duration);
+          periodTotalWorkoutCalories.push(workout.total_workout_calories);
+          periodLables.push(workout.date);
 
+        });
+        
       setUserWorkoutData(periodWorkoutData);
       setTotalWorkoutCalories(periodTotalWorkoutCalories);
       setTotalworkoutDuration(periodTotalworkoutDuration);
+      setPeriodLables(periodLables);
       
     })
   }
@@ -276,9 +284,6 @@ const pickPeriod = (data) => {
   setperiod(data);
 }
 
-console.log('period', period)
-console.log('startDate', startDate)
-console.log('endDate', endDate)
 
   return (
 
@@ -329,154 +334,12 @@ console.log('endDate', endDate)
 
     <Col>
 
-         <Row className="app-section">
-  
-          <div className="app-header-bar">
-          Summary
-          </div>
-          <div>
-          {exercises && exercises.map((item, index) => {
-
-            return (
-              <div key={index}>
-
-                <div className="exercise-items-list mt-2"><span>{item.name}!</span>{exerciseEdit !== index && <span>Duration: {item.exercise_duration} Minutes.</span>}
-                <span>Total: {item.total_exercise_calories} Calories</span>
-              </div>
-
-                {exerciseEdit === index &&
-                <Col>
-                  <Form.Group className="mt-2">
-                    <FloatingLabel
-                    controlId="floatingInput"
-                    label="Enter Duration (Minutes)"
-                    onChange={event => onDurationInputChangeHandler(event)}
-                    className="mb-3"
-                    >
-                      <Form.Control 
-                      type="text"
-                      name= "duration"
-                      placeholder="Enter Duration"
-                      />
-                    </FloatingLabel>
-                  </Form.Group>
-                </Col>
-                }
-
-                <div>
-
-                      <Row className="mb-2">
-
-                      <Col className="post-tools">
-                      {exerciseEdit !== index &&
-                      
-                      <Button 
-                      variant="info" 
-                      type="submit"
-                      className="button-tool"
-                      onClick={() => {item.id && deleteExercise(item.id, item.workout_id)}}
-                      >
-                        Delete
-                      </Button>
-                      
-                       }
-                       {exerciseEdit === index &&
-                      <Button 
-                      variant="info" 
-                      className="button-tool"
-                      type="submit"
-                      onClick={() => {item.id && submitExercise(item.id, item.workout_id)}}
-                      >
-                        Submit
-                      </Button>
-                      
-                       }
-                      
-                      {exerciseEdit !== index &&
-                      
-                      <Button 
-                      className="button-tool"
-                      variant="info" 
-                      type="submit"
-                      onClick={() => {item.id && editExercise(index)}}
-                      >
-                        Edit
-                      </Button>
-                     }
-                    {exerciseEdit === index &&
-                     
-                     <Button 
-                     className="button-tool"
-                     variant="info" 
-                     type="submit"
-                     onClick={() => {item.id && setExerciseEdit(-1)}}
-                     >
-                       Cancel
-                     </Button>
-                     
-                    }
-                      </Col>
-
-                      </Row>
-
-                    </div>
-              </div>
-            )
-           })}
-          </div>
-          <div>
-            {exercises.length === 0 && 
-            <>
-            <p className="mt-3">
-              Like Strong, this app allows you to track your workouts. The app comes with exercises and plans already registered and you can add others. You can also create routines, track your progress over time, and record your weight and body measurements. With the app, you get access to the community of people who use Jefit and the training plans they create, something you do not get with Strong.
-            </p>
-            <p className="mt-2"> An app to record your workouts in an easy and intuitive way. The app comes with exercises and plans already registered, but you can also add your own. Create your routines and track your progress over time. Finally, the app also allows you to record your weight and body measurements.</p>
-            </>
-            }
-          </div>
-
-          {/* /////////////////////////// */}
-            <Col className="mt-5">
-          <div className=" app-section">
-            <h1 className="mb-5">Past 7 Days Workouts: </h1>
-              <>
-                <Form.Select 
-              className="mb-5" 
-              size="sm"
-              onChange={(event)=> pickPeriod(event.target.value)}
-              >
-                <option>Please Select a period</option>
-                <option value="1">One Day</option>
-                <option value="7">7 Days</option>
-                <option value="14">Two weeks</option>
-                <option value="30">One Month</option>
-                <option value="180">6 months</option>
-                <option value="365">Year</option>
-              </Form.Select>
-            </>
-
-  {periodWorkoutData && period && periodWorkoutData.map((item, index) => {
-
-            return (
-
-              <div key={index}>
-
-              <h4>Date: {item.date} </h4>
-              <div>Total Calories:  {item.total_workout_calories} </div>
-              <div>Total Minutes:  {item.workout_duration} </div>
-              <hr></hr>
-
-              </div>
-
-                    )
-              })}
-
-          <h1 className="mb-3">Total Calories burned: {totalperiodData.totalCalorie} Calories</h1>
-          <h1 >Total Hour Working out: {totalperiodData.totalhours} </h1>
-          </div>
-          </Col>
-
-        
+        <Row className="app-section">
+      <WorkoutChart 
+      lables={periodLables}
+      calories={totalWorkoutCalories}
+      duration={totalworkoutDuration}
+      />
         </Row>
 
       </Col>
