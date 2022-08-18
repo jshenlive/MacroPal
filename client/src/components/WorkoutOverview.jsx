@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import WorkoutChart from './WorkoutChart';
 import DatePicker from "react-datepicker";
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
 import '../App.scss'
@@ -301,17 +301,40 @@ console.log()
   </Col> 
 </Col>
 
-    <Col>
 
-        <Row className="app-section">
+<Col>
+        {totalWorkoutCalories.length === 0 ?
+        <>
+      <Alert variant="success">
+      <Alert.Heading
+      className="mb-3"
+      >Physical Activities</Alert.Heading>
+      <p>
+      Physical activity or exercise can improve your health and reduce the risk of developing several diseases like type 2 diabetes, cancer and cardiovascular disease. Physical activity and exercise can have immediate and long-term health benefits. Most importantly, regular activity can improve your quality of life.
+      You can now view details about how much active you are during a period of time, please go ahead and pick a date!
+      </p>
+      </Alert>
+      <img className="chart-image center" src="http://cdn.shopify.com/s/files/1/0013/1471/7798/articles/shutterstock_564335488_1024x1024.jpg?v=1589827933"></img>
+        </>
+          :
+
+        <>
+        <div  className="app-section-chart">
+      <div>
       <WorkoutChart 
       lables={periodLables}
       calories={totalWorkoutCalories}
       duration={totalworkoutDuration}
       />
-        </Row>
+      </div> 
+      <div className="chart-info"><Button className="chart-button-green mb-5" variant="success" disabled>Duration</Button>&nbsp;&nbsp;&nbsp;<Button className="chart-button-blue mb-5" variant="primary" disabled>Calories</Button></div>
+      </div>
+        </>
+        }
 
       </Col>
+      
+
 
       </Row>
 

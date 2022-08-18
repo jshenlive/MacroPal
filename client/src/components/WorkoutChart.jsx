@@ -38,3 +38,5 @@ const option = {
 }; 
 return <ReactEcharts option={option}/>;
 } 
+
+///greenone duraton
