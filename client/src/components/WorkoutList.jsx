@@ -16,6 +16,14 @@ const [durations, setDurations] = useState("");
 const [exercises, setexercises] = useState([]);
 const [startDate, setStartDate] = useState(null);
 const navigate = useNavigate();
+///////////////////////////
+const [period, setperiod] = useState(7);
+  const [periodWorkoutData, setPeriodWorkoutData] = useState([]);
+  const [totalperiodData, setTotalperiodData] = useState({
+    totalCalorie: "",
+    totalhours: "",
+  });
+////////////////////////////////
 
 //Calculate today date
 let dateObj = new Date();
@@ -30,6 +38,7 @@ const todayDate = year + "-" + month + "-" + day;
 
 useEffect(() => {
 
+  //with flat1 we clean the variable from repeated items in nested loop
   const exercisesState = userWorkoutDetails.map((item) => {
 
     const lineExercises = item.line_exercises;
@@ -43,7 +52,6 @@ useEffect(() => {
     
   }).flat(1)
 
-  console.log('exercisesState', exercisesState)
   
   setexercises(exercisesState)
 
@@ -53,24 +61,24 @@ useEffect(() => {
 ////Fetch Today workout data on mount
 useEffect(() => {
 
+  if (props.state.user.id) {
+
     Axios.get(`/api/workouts/user/${props.state.user.id}`).then(res => {
       const workouts = res.data
       const todayWorkouts = workouts.filter(workout => workout.date === todayDate)
     
       setUserWorkoutData(todayWorkouts);
     })
-    
+
+  }
 
 }, [props.state]);
-
-// console.log('##userworkout##', userWorkoutData );
-// console.log('userWorkoutData', userWorkoutData);
-// console.log('userWorkoutDetails', userWorkoutDetails);
-console.log('exercises', exercises);
 
 
   // Get work out data for a specific user and date//
   useEffect(() => {
+
+    setUserWorkoutDetails([]);
 
     if (props.state.user.id && startDate) {
     Axios.get(`/api/workouts/user/${props.state.user.id}`).then ( res => {
@@ -92,7 +100,11 @@ console.log('exercises', exercises);
 
       Axios.get(`/api/workouts/${item.id}`).then (res => {
 
-        setUserWorkoutDetails((prev) => ([...prev, res.data]))
+        if (res.data.exercises.length !== 0) {
+
+          setUserWorkoutDetails((prev) => ([...prev, res.data]))
+
+        }
   
       });
 
@@ -124,27 +136,138 @@ const navigateToAddMeal = () => {
 }
 
 ////// Delete Exercise ///////
-const deleteExercise = (exerciseId, index) => {
+const deleteExercise = (exerciseId, workoutId) => {
+
 
   Axios.delete(`/api/line_exercises/${exerciseId}`).then (res => {
-    let newExercises = [...userWorkoutDetails.exercises]
-    newExercises.splice(index, 1)
 
-    let newLineExercises = [...userWorkoutDetails.line_exercises]
-    newLineExercises.splice(index, 1)
+    console.log('######serWorkoutDetails', userWorkoutDetails)
+    console.log("test", userWorkoutDetails[0].workout.id)
 
-    const newuserWorkoutDetails = {
-      ...userWorkoutDetails,
+    const workoutDetailsElement = userWorkoutDetails.find(element => element.workout.id === workoutId);
+    const workoutDetailsElementIndex = userWorkoutDetails.findIndex(element => element.workout.id === workoutId);
+    const elementLineExerciseTodeleteIndex = workoutDetailsElement.line_exercises.findIndex(element => element.id === exerciseId);
+    console.log('elementLineExerciseTodelete', elementLineExerciseTodeleteIndex);
+
+
+    let newExercises = [...userWorkoutDetails[workoutDetailsElementIndex].exercises]
+
+    newExercises.splice(elementLineExerciseTodeleteIndex, 1)
+
+    let newLineExercises = [...userWorkoutDetails[workoutDetailsElementIndex].line_exercises]
+    newLineExercises.splice(elementLineExerciseTodeleteIndex, 1)
+
+    const newuserWorkoutDetailsElement = {
+      ...userWorkoutDetails[workoutDetailsElementIndex],
 
       exercises: newExercises,
       line_exercises: newLineExercises,
     }
 
-    setUserWorkoutDetails(newuserWorkoutDetails);
+    let userWorkoutDetailsCopy = [...userWorkoutDetails]
+    userWorkoutDetailsCopy[workoutDetailsElementIndex] = newuserWorkoutDetailsElement
+
+    setUserWorkoutDetails(userWorkoutDetailsCopy);
 
   }).catch((error) => console.log(error))
 
     }
+
+    //////// Edit Exercise /////////
+const editExercise = (index) => {
+
+  setExerciseEdit(index)
+
+    }
+
+/////////Submit Button ///////////////
+const submitExercise = (exerciseId, workoutId) => {
+
+
+
+  return Axios.put(`/api/line_exercises/${exerciseId}`, {"workout_id": workoutId, "exercise_id": exerciseId, "exercise_duration":durations})
+  .then (() => {
+
+    setUserWorkoutDetails([]);
+    setExerciseEdit(-1);
+
+    userWorkoutData.forEach((item) => {
+
+      Axios.get(`/api/workouts/${item.id}`).then (res => {
+
+        setUserWorkoutDetails((prev) => ([...prev, res.data]))
+  
+      });
+
+    })
+
+    //Later change this part to update exercise to reflect changes to the exercise
+    Axios.get(`/api/workouts/${userWorkoutData}`).then (res => {
+      console.log('res', res)
+
+      setUserWorkoutDetails(res.data)
+    //////
+
+
+    });
+
+
+  }).catch(error => console.log(error));
+  //Ideally this part should rendere an error message on the page below the post
+
+    }    
+
+
+/////get workout data for last n days///////
+///////////////////////////////////////////
+useEffect(() => {
+  const getWorkoutDataLastnDays = () => {
+
+    const lastnDays = userWorkoutData.slice(-period)
+    setPeriodWorkoutData(lastnDays)
+
+  }
+  getWorkoutDataLastnDays()
+}, [period]);
+
+//Calculate total calorie burn for the period
+
+useEffect(() => {
+const calculateTotalCalorieBurn = () => {
+  
+  let totalCalorie = 0;
+  let totalminutes = 0;
+
+
+  for (let i = 0; i < periodWorkoutData.length; i++) {
+
+    totalCalorie += periodWorkoutData[i].total_workout_calories
+    totalminutes += periodWorkoutData[i].workout_duration
+
+  }
+
+  //Convert minutes into hours minutes
+  const hours = totalminutes/60;
+  const rhours = Math.floor(hours);
+  const minutes = (hours - rhours) * 60;
+  const rminutes = Math.round(minutes);
+  const hoursminutes = rhours + " hour(s) and " + rminutes + " minute(s).";
+  
+  setTotalperiodData({
+    totalCalorie: totalCalorie,
+    totalhours: hoursminutes,
+  });
+}
+
+
+calculateTotalCalorieBurn()
+}, [periodWorkoutData]);
+
+const pickPeriod = (data) => {
+  setperiod(data);
+}
+
+
 
 
   return (
@@ -194,13 +317,14 @@ const deleteExercise = (exerciseId, index) => {
   </Col> 
 </Col>
 
+    <Col>
 
-  <Col>
-
-  <Row className="app-section">
-  <div className="app-header-bar">
-    Summary
-  </div>
+         <Row className="app-section">
+  
+          <div className="app-header-bar">
+          Summary
+          </div>
+          <div>
           {exercises && exercises.map((item, index) => {
 
             return (
@@ -239,7 +363,8 @@ const deleteExercise = (exerciseId, index) => {
                       <Button 
                       variant="info" 
                       type="submit"
-                      // onClick={() => {lineExercise && deleteExercise(lineExercise[index].id, index)}}
+                      className="button-tool"
+                      onClick={() => {item.id && deleteExercise(item.id, item.workout_id)}}
                       >
                         Delete
                       </Button>
@@ -248,8 +373,9 @@ const deleteExercise = (exerciseId, index) => {
                        {exerciseEdit === index &&
                       <Button 
                       variant="info" 
+                      className="button-tool"
                       type="submit"
-                      // onClick={() => {lineExercise && submitExercise(lineExercise[index].id, index)}}
+                      onClick={() => {item.id && submitExercise(item.id, item.workout_id)}}
                       >
                         Submit
                       </Button>
@@ -259,10 +385,10 @@ const deleteExercise = (exerciseId, index) => {
                       {exerciseEdit !== index &&
                       
                       <Button 
-                      className="post-button" 
+                      className="button-tool"
                       variant="info" 
                       type="submit"
-                      // onClick={() => {lineExercise && editExercise(index)}}
+                      onClick={() => {item.id && editExercise(index)}}
                       >
                         Edit
                       </Button>
@@ -270,10 +396,10 @@ const deleteExercise = (exerciseId, index) => {
                     {exerciseEdit === index &&
                      
                      <Button 
-                     className="post-button" 
+                     className="button-tool"
                      variant="info" 
                      type="submit"
-                    //  onClick={() => {lineExercise && setExerciseEdit(-1)}}
+                     onClick={() => {item.id && setExerciseEdit(-1)}}
                      >
                        Cancel
                      </Button>
@@ -286,15 +412,24 @@ const deleteExercise = (exerciseId, index) => {
                     </div>
               </div>
             )
-      })}
+           })}
+          </div>
+          <div>
+            {exercises.length === 0 && 
+            <>
+            <p className="mt-3">
+              Like Strong, this app allows you to track your workouts. The app comes with exercises and plans already registered and you can add others. You can also create routines, track your progress over time, and record your weight and body measurements. With the app, you get access to the community of people who use Jefit and the training plans they create, something you do not get with Strong.
+            </p>
+            <p className="mt-2"> An app to record your workouts in an easy and intuitive way. The app comes with exercises and plans already registered, but you can also add your own. Create your routines and track your progress over time. Finally, the app also allows you to record your weight and body measurements.</p>
+            </>
+            }
+          </div>
+        </Row>
 
-      
-    </Row>
+      </Col>
 
+      </Row>
 
-  </Col>
-
-</Row>
    </Container>
   );
 }
