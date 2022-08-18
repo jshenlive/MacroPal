@@ -169,7 +169,7 @@ const editExercise = (index) => {
 
     }
 
-/////////Submit Button ////////////
+/////////Submit Button ///////////////
 const submitExercise = (exerciseId, workoutId) => {
 
 
