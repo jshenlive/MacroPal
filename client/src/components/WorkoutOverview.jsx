@@ -9,6 +9,9 @@ import '../App.scss'
 
 export default function WorkoutList (props) {
 
+
+const [totalWorkoutCalories, setTotalWorkoutCalories] = useState([]);
+const [totalworkoutDuration, setTotalworkoutDuration] = useState([]);
 const [userWorkoutData, setUserWorkoutData] = useState([]);
 const [userWorkoutDetails, setUserWorkoutDetails] = useState([]);
 const [exerciseEdit, setExerciseEdit] = useState(-1);
@@ -78,17 +81,22 @@ useEffect(() => {
       const periodStart = startDate.toISOString().substring(8, 10)
       const periodEnd = endDate.toISOString().substring(8, 10)
 
-      const todayWorkouts = [];
+      const periodWorkoutData = [];
+      const periodTotalworkoutDuration = [];
+      const periodTotalWorkoutCalories = [];
 
       workouts.forEach(workout => {
 
           if (workout.date.substring(8, 10) >= periodStart && workout.date.substring(8, 10) <= periodEnd)
-            todayWorkouts.push(workout);
+          periodWorkoutData.push(workout);
+          periodTotalworkoutDuration.push(workout.workout_duration)
+          periodTotalWorkoutCalories.push(workout.total_workout_calories)
       });
 
-      console.log('todayWorkouts', todayWorkouts)
-       
-      setUserWorkoutData(todayWorkouts);
+      setUserWorkoutData(periodWorkoutData);
+      setTotalWorkoutCalories(periodTotalWorkoutCalories);
+      setTotalworkoutDuration(periodTotalworkoutDuration);
+      
     })
   }
 
